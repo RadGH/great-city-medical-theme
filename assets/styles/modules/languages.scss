@@ -1,0 +1,41 @@
+/* language list */
+.language-list ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.language-list ul li {
+	display: inline-block;
+}
+
+.language-list .sep {
+	margin: 0;
+	color: $color_gray_6;
+	cursor: default;
+	user-select: none;
+}
+
+.language-list .language {
+
+}
+
+.language-list .language a {
+	display: inline-block;
+	padding: 4px;
+	color: $color_gray_4;
+	text-decoration: none;
+
+	&:hover {
+		color: $color_black;
+		font-weight: 500;
+	}
+}
+
+
+/* Highlight the current language based on Translatepress */
+body.translatepress-en_US .language-list .language.language-en_us a,
+body.translatepress-es_MX .language-list .language.language-es_mx a {
+	font-weight: 500;
+	color: #0e0d0d;
+}

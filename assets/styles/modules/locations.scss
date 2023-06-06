@@ -1,0 +1,31 @@
+/* Location styles */
+.location .address,
+.location .phone {
+	font-weight: 500;
+}
+
+.location .phone a {
+	color: #9069ac;
+	text-decoration: none;
+}
+
+.location .title,
+.location .address {
+	margin: 0 0 6px;
+}
+
+.location .gcm-icon {
+	width: 14px;
+	height: 14px;
+	margin-right: 3px;
+}
+
+/* Bold icons because they are scaled down */
+.header-location .gcm-icon svg path {
+	stroke-width: 3px !important;
+}
+
+/* Temporarily hide 2nd location @todo */
+.header-location .location:not(:first-child) {
+	display: none;
+}

@@ -1,0 +1,124 @@
+/*
+Theme Name: Great City Medical
+Description: A custom WordPress theme for Great City Medical. Built by Radley Sustaire and designed by Pavel.
+Version: 1.0.0
+Author: Radley Sustaire <radleygh@gmail.com>
+Author URI: https://radleysustaire.com/
+Text Domain: gcm
+*/
+
+/*
+SCSS Includes
+*/
+@import "assets/styles/_variables.scss";
+
+@import "assets/styles/header.scss";
+
+/*
+Breakpoints. Uses 0.1px for minimum width to avoid clashing breakpoints and support high density displays.
+
+mobile
+	@media ( max-width: 480px )
+	@media ( min-width: 480.1px )
+tablet
+	@media ( max-width: 768px )
+	@media ( min-width: 768.1px )
+laptop
+	@media ( max-width: 1200px )
+	@media ( min-width: 1200.1px )
+desktop
+
+*/
+
+/*
+CSS Variables
+*/
+:root {
+}
+
+/*
+CSS Reset
+*/
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body, ol, ul {
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	padding: 0;
+	overflow-wrap: break-word;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+picture, video, canvas, svg {
+	display: block;
+	max-width: 100%;
+}
+
+input, button, textarea, select {
+	font: inherit;
+}
+
+/*
+Global structure
+*/
+html {
+	font-family: sofia-pro, Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 500;
+	margin: 0 0 15px;
+}
+
+p {
+	margin: 0 0 15px;
+}
+
+strong {
+	font-weight: 500;
+}
+
+/*
+Font sizes
+*/
+html { font-size: 16px; line-height: 1.4; }
+
+h1 { font-size: 80px; }
+h2 { font-size: 60px; }
+h3 { font-size: 32px; }
+h4 { font-size: 28px; }
+h5 { font-size: 18px; }
+h6 { font-size: 18px; }
+
+@media ( max-width: 480px ) {
+	/* Font sizes: Mobile */
+	html { font-size: 18px; line-height: 1.5; }
+
+	h1 { font-size: 36px; }
+	h2 { font-size: 32px; }
+	h3 { font-size: 24px; }
+	h4 { font-size: 18px; }
+	h5 { font-size: 18px; }
+	h6 { font-size: 18px; }
+}

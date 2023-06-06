@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+  <path fill="#f0f0f0" d="M0 0h150v150H0z" />
+  <path fill="#0052b4" d="M0 0h75v75H0z" />
+  <g fill="#d80027">
+    <path d="M75 16.298h75v19.575H75zM75 55.433h75V75H75zM0 94.56h150v19.568H0zM0 133.695h150V150H0z"/>
+  </g>
+  <g fill="#f0f0f0" transform="matrix(7.5 0 0 7.5 0 0)">
+    <path id="star" fill="#f0f0f0" stroke-width=".133" d="m8.607 9.002-.848-.617-.85.617.325-.997-.849-.616h1.049l.324-.998.324.998h1.049l-.848.616.325.997Z" />
+    <use xlink:href="#star" transform="translate(0 -2.877)"/>
+    <use xlink:href="#star" transform="translate(0 -5.755)"/>
+    <use xlink:href="#star" transform="translate(-3.546)"/>
+    <use xlink:href="#star" transform="translate(-3.546 -2.877)"/>
+    <use xlink:href="#star" transform="translate(-3.546 -5.755)"/>
+    <path id="star-cut" fill="#f0f0f0" stroke-width=".133" d="m.667 6.39-.325.999H0v.513l.142.103L0 8.442v.428l.668-.485.847.617h.001l-.324-.997.848-.616H.99Z" />
+    <use xlink:href="#star-cut" transform="translate(0 -2.877)"/>
+    <use xlink:href="#star-cut" transform="translate(0 -5.754)"/>
+  </g>
+</svg>
