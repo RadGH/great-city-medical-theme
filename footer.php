@@ -6,7 +6,7 @@
 	
 		<div class="footer-content">
 			<div class="inside">
-				<?php echo wpautop( get_field( 'footer_content', 'gcm_settings' ) ); ?>
+				<?php echo wpautop( __(get_field( 'footer_content', 'gcm_settings' ), 'gcm') ); ?>
 			</div>
 		</div>
 		
@@ -54,7 +54,7 @@
 			<div class="inside">
 				
 				<div class="footer-copyright">
-					<?php echo wpautop( get_field( 'copyright_text', 'gcm_settings' ) ); ?>
+					<?php echo wpautop( __(get_field( 'copyright_text', 'gcm_settings' ), 'gcm') ); ?>
 				</div>
 				
 			</div>

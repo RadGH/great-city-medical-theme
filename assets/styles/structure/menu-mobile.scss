@@ -36,6 +36,18 @@
 		max-width: 100%;
 	}
 
+	// BIGGER LOGO (not as designed)
+	.menu-header {
+		padding: 8px 16px 8px 8px;
+	}
+	.menu-logo a {
+		padding: 4px;
+	}
+	.menu-logo img {
+		width: 194px;
+	}
+	// END BIGGER LOGO
+
 	// Menu button
 	#menu-button {
 		width: 44px;
