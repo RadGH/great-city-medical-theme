@@ -1,0 +1,10 @@
+.inside {
+	max-width: $site_content_width;
+	padding: 0 $site_gutter_width;
+	margin: 0 auto;
+}
+
+.site-content {
+	background: $color_gray_10;
+	padding: 90px 150px;
+}

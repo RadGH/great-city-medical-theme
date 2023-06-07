@@ -1,0 +1,14 @@
+// Note:
+// Some text formatting uses mixins. Those are located in typography.scss.
+
+// Default style for elements that have :focus-within
+@mixin focus_within() {
+	outline: 3px solid $color_focus;
+}
+
+// Down pointing triangle icon, used for sub menus and dropdowns
+@mixin down_pointing_rectangle( $color ) {
+	$color: str-replace($color, '#', '%23');
+
+	background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='" + $color + "' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+}

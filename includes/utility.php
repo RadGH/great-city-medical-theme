@@ -22,8 +22,9 @@ function gcm_is_developer() {
  *     @type string $display_code  ES
  *     @type string $code_short    es
  *     @type string $code_long     es_mx
- *     @type string $icon_url      https://example.org/wp-content/themes/great-city-medical/assets/flags/lang-es_mx.png
- *     @type string $slug          es
+ *     @type string $icon_png      lang-es_mx.png
+ *     @type string $icon_svg      lang-es_mx.svg
+ *     @type string $slug          "" or "es"
  * }
  */
 function gcm_get_languages( $language_code = null ) {
@@ -36,27 +37,31 @@ function gcm_get_languages( $language_code = null ) {
 	// require_once( ABSPATH . 'wp-admin/includes/translation-install.php' )
 	// wp_get_available_translations()
 	
-	$flag_url = get_template_directory_uri() . '/assets/flags';
+	// Icon URL: get_template_directory_uri() . '/assets/flags/'
+	// Icon Path: get_template_directory() . '/assets/flags/'
 	
 	$languages = array(
-		'en' => array(
+		'en_us' => array(
 			'code_short' => 'en',
 			'code_long' => 'en_us',
 			'english_name' => 'English',
 			'display_name' => 'English',
 			'display_code' => 'EN',
-			'icon_url' => $flag_url . '/lang-en_us.png',
+			'icon_png' => 'lang-en_us.png',
+			'icon_svg' => 'lang-en_us.svg',
 			'slug' => '',
 		),
-		'es' => array(
+		'es_mx' => array(
 			'code_short' => 'es',
 			'code_long' => 'es_mx',
 			'english_name' => 'Spanish (Mexico)',
 			'display_name' => 'Español de México',
 			'display_code' => 'ES',
-			'icon_url' => $flag_url . '/lang-es_mx.png',
+			'icon_png' => 'lang-es_mx.png',
+			'icon_svg' => 'lang-es_mx.svg',
 			'slug' => 'es',
 		),
+		// we also have an icon lang-es_es: Spanish (Spain)
 	);
 	
 	if ( $language_code !== null ) {
@@ -69,10 +74,10 @@ function gcm_get_languages( $language_code = null ) {
 /**
  * Get the page url converted to a specific language. Also prevents TranslatePress from converting that URL again.
  *
- * @param string      $language_code  "en" or "es" matching a key from gcm_get_languages()
+ * @param string      $language_code  "en_us" or "es_mx" matching a key from gcm_get_languages()
  * @param null|string $url            Permalink to use. Overrides $post_id if provided.
  */
-function gcm_get_language_url( $url, $language_code = 'en' ) {
+function gcm_get_language_url( $url, $language_code = 'en_us' ) {
 	// Convert url to relative, starting with a slash
 	$relative_url = wp_make_link_relative( $url );
 	if ( ! $relative_url ) return $url;
@@ -157,10 +162,6 @@ function gcm_format_phone( $phone, $html = true, $extension_prefix = 'ext. ', $d
 	
 	$output = '';
 	
-	if ( $html ) {
-		$output .= '<span class="tel">';
-	}
-	
 	// Start html link
 	if ( $html ) {
 		$tel_href = sprintf('tel:+%d%d%d%d', $country_code, $matches[2], $matches[3], $matches[4]);
@@ -186,10 +187,6 @@ function gcm_format_phone( $phone, $html = true, $extension_prefix = 'ext. ', $d
 		}else{
 			$output .= $extension_prefix . $extension;
 		}
-	}
-	
-	if ( $html ) {
-		$output .= '</span>';
 	}
 	
 	return $output;

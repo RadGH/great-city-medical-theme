@@ -6,25 +6,19 @@
 .gcm-menu a {
 	display: block;
 	text-decoration: none;
-	color: #0e0d0d;
+	color: $color_black;
 	line-height: 1;
 	padding: 8px;
 }
 
 .gcm-menu a:hover {
-	color: #9069ac;
+	color: $color_text_purple;
 }
 
+.gcm-menu .current-menu-ancestor > a,
 .gcm-menu li.current-menu-item > a {
-	color: #9069ac;
+	color: $color_text_purple;
 	font-weight: 500;
-}
-
-.primary-menu > ul {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
 }
 
 /* menu items with children */
@@ -39,20 +33,23 @@
 	background-size: 12px 7px;
 
 	// background image: images/dropdown-handle.svg
-	background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='%230E0D0D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	// background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='%230E0D0D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	@include down_pointing_rectangle( $color_text_primary );
 }
 
 .gcm-menu li.menu-item-has-children:hover > a:hover::after,
+.gcm-menu li.menu-item-has-children.current-menu-ancestor > a::after,
 .gcm-menu li.menu-item-has-children.current-menu-item > a::after {
 	// background image: images/dropdown-handle.svg
-	background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='%239069AC' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	// background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='%239069AC' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	@include down_pointing_rectangle( $color_text_purple );
 }
 
 .gcm-menu li.menu-item-has-children:hover > a::after {
 	transform: rotate(180deg);
 }
 
-/* submenu dropdowns */
+/* sub menu dropdowns */
 .gcm-menu li.menu-item-has-children {
 	position: relative;
 }
@@ -61,20 +58,26 @@
 	display: none;
 }
 
-.gcm-menu li.menu-item-has-children:hover > .sub-menu {
+// Touchscreens: Click to open menus
+@media ( pointer: coarse ) {
+	.gcm-menu li.menu-item-has-children.sub-menu-open > .sub-menu {
+		display: block;
+	}
+}
+
+// Mouse: Hover to show menus
+@media ( pointer: fine ) {
+	.gcm-menu li.menu-item-has-children:hover > .sub-menu {
+		display: block;
+	}
+}
+
+// Keyboard navigation or other focus keeps menu open
+.gcm-menu li.menu-item-has-children:focus-within > .sub-menu {
 	display: block;
 }
 
 .gcm-menu .sub-menu {
-	position: absolute;
-	top: 100%;
-	min-width: 100%;
-
-	padding: 6px 12px;
-	background: #FFFFFF;
-	border: 1px solid #E3E3E3;
-	border-radius: 12px;
-
 	font-size: 14px;
 }
 
@@ -82,11 +85,58 @@
 }
 
 .gcm-menu .sub-menu li a {
-	padding: 10px 0;
+	padding: 10px 6px;
 }
 
-@media ( min-width: 800px ) {
+/* Desktop */
+@media ( min-width: $break_above_desktop ) {
 	.gcm-menu .sub-menu li a {
 		white-space: nowrap;
 	}
+
+	.gcm-menu > ul {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+	}
+
+	.gcm-menu .sub-menu {
+		position: absolute;
+		z-index: 10;
+		top: 100%;
+		min-width: 100%;
+
+		padding: 6px;
+		background: $color_white;
+		border: 1px solid $color_gray_6;
+		border-radius: 12px;
+	}
+}
+
+/* Mobile */
+@media ( max-width: $break_at_desktop ) {
+
+	.gcm-menu a {
+		padding: 16px 8px;
+		margin-left: -8px;
+		margin-right: -8px;
+	}
+
+	.gcm-menu li.menu-item-has-children > a:focus-within {
+		outline: none;
+	}
+
+	.gcm-menu .sub-menu {
+		position: relative;
+		padding: 0;
+		margin: 0 0 8px;
+		border-left: 2px solid;
+	}
+
+	.gcm-menu .sub-menu li a {
+		padding: 16px;
+		margin: 0;
+	}
+
 }

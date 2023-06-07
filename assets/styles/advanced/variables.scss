@@ -1,15 +1,21 @@
 // Breakpoints
-$break_mobile: 480px;
-$break_tablet: 768px;
-$break_desktop: 1200px;
+// 1. Use with @media (max-width)
+$break_at_mobile: 480px;
+$break_at_tablet: 768px;
+$break_at_desktop: 1200px;
 
-$break_above_mobile: $break_mobile + 0.1px;
-$break_above_tablet: $break_tablet + 0.1px;
-$break_above_desktop: $break_desktop + 0.1px;
+// 2. Use with @media (min-width)
+$break_above_mobile: $break_at_mobile + 0.1px;
+$break_above_tablet: $break_at_tablet + 0.1px;
+$break_above_desktop: $break_at_desktop + 0.1px;
+
+// Specific sizes
+$site_content_width: 1560px;
+$site_gutter_width: 12px; // Left/right padding to prevent elements touching the edge of the screen
 
 /*
 Usage #1:
-@media ( max-width: $break_mobile ) {
+@media ( max-width: $break_at_mobile ) {
 	Mobile - These styles only appear on mobile
 }
 
@@ -29,6 +35,7 @@ $color_true_black: #000000;
 $color_white: #ffffff;
 $color_gray_10: #fafafa; // old: #fbfbfb
 $color_gray_8: #f1f1f1;
+$color_gray_7: #e7e7e7; // this is very close to #e3e3e3 so maybe we should just combine them?
 $color_gray_6: #e3e3e3;
 $color_gray_4: #3e3e3e;
 $color_black: #0e0d0d;
@@ -38,7 +45,7 @@ $color_blue: #0957de;
 $color_dark_purple: #68626e;
 
 // Focus color (used when input/links are tabbed to with keyboard)
-$color_focus: $color_blue;
+$color_focus: $color_purple;
 
 // Colors used for text
 $color_text_primary: $color_black;

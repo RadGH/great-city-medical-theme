@@ -1,6 +1,11 @@
 /* Location styles */
 .location .address,
 .location .phone {
+	display: grid;
+	grid-template-columns: 38px auto;
+	gap: 0 5px;
+	align-items: center;
+
 	font-weight: 500;
 }
 
@@ -9,23 +14,3 @@
 	text-decoration: none;
 }
 
-.location .title,
-.location .address {
-	margin: 0 0 6px;
-}
-
-.location .gcm-icon {
-	width: 14px;
-	height: 14px;
-	margin-right: 3px;
-}
-
-/* Bold icons because they are scaled down */
-.header-location .gcm-icon svg path {
-	stroke-width: 3px !important;
-}
-
-/* Temporarily hide 2nd location @todo */
-.header-location .location:not(:first-child) {
-	display: none;
-}

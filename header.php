@@ -10,6 +10,8 @@
 	-->
 	<link rel="stylesheet" href="https://use.typekit.net/wfu3bib.css">
 	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
 	<?php
 	// Custom header CSS
 	if ( $css = get_field( 'custom_css_header', 'option' ) ) {
@@ -21,74 +23,78 @@
 		echo "\n<script type=\"text/javascript\" id=\"custom-header-js\">\n". esc_html( $js ) . "\n</script>\n";
 	}
 	?>
-	
 </head>
 
 <body <?php body_class('loading'); ?>>
 
-	<header class="site-header">
-		
-		<div class="header-row top">
-			<div class="inside">
-		
-				<div class="header-location">
-					<?php get_template_part( 'template-parts/locations', null, array( 'hours' => false ) ); ?>
-				</div>
-				
-				<div class="header-logo">
-					<?php get_template_part( 'template-parts/logo', null, array() ); ?>
-				</div>
-				
-				<div class="header-links">
-					<div class="language-list">
-						<?php get_template_part( 'template-parts/languages', null, array( 'icon' => false, 'code' => true ) ); ?>
-					</div>
-					
-					<?php
-					$button = get_field( 'header_button', 'gcm_settings' );
-					if ( $button['text'] && $button['url'] ) {
-						?>
-						<div class="major-button">
-							<a href="<?php echo esc_attr($button['url']); ?>" target="_blank" rel="external" class="button button-secondary"><?php _e( $button['text'], 'gcm' ); ?></a>
-						</div>
-						<?php
-					}
-					?>
-				</div>
-				
-			</div>
-		</div>
-		
-		<div class="header-row bottom">
-			<div class="inside">
-				<nav id="primary-menu" class="gcm-menu primary-menu" role="navigation">
-					<?php
-					wp_nav_menu(array(
-						'theme_location' => 'primary',
-						'container' => '',
-						'depth' => 3,
-						'fallback_cb' => false,
-					));
-					?>
-				</nav>
-			</div>
-		</div>
-		
-		<!--
-		<div class="header-row mobile">
-			<div class="header-menu-button">
-				<a href="#" id="menu-button" aria-expanded="false" aria-controls="primary-menu">>
-					<span class="open"><?php
-						echo file_get_contents( __DIR__ . '/assets/images/menu-button.svg' );
-					?></span>
-					<span class="close"><?php
-						echo file_get_contents( __DIR__ . '/assets/images/menu-close.svg' );
-					?></span>
-				</a>
-			</div>
-		</div>
-		-->
-		
-	</header>
+<?php
+global $show_admin_bar;
+$tab_index = ($show_admin_bar ?? false) ? 2 : 1;
+?>
+<a class="screen-reader-shortcut" href="#site-content" tabindex="<?php echo $tab_index; ?>">Skip to page content</a>
 
-<div class="site-content">
+<div class="menu-header">
+	
+	<div class="menu-logo">
+		<?php get_template_part( 'template-parts/logo', null, array() ); ?>
+	</div>
+	
+	<a href="#" id="menu-button" aria-expanded="false" aria-controls="primary-menu">
+		<span class="open"><?php echo file_get_contents( __DIR__ . '/assets/images/menu-button.svg' ); ?></span>
+		<span class="close"><?php echo file_get_contents( __DIR__ . '/assets/images/menu-close.svg' ); ?></span>
+	</a>
+
+</div>
+
+<header class="site-header">
+	
+	<div class="row top">
+		<div class="inside">
+	
+			<div class="header-locations">
+				<?php get_template_part( 'template-parts/locations', null, array( 'hours' => false ) ); ?>
+			</div>
+			
+			<div class="header-logo">
+				<?php get_template_part( 'template-parts/logo', null, array() ); ?>
+			</div>
+			
+			<div class="header-links">
+				<div class="language-list">
+					<?php get_template_part( 'template-parts/languages', null, array( 'icon' => false, 'code' => true ) ); ?>
+				</div>
+				
+				<?php
+				$button = get_field( 'header_button', 'gcm_settings' );
+				if ( $button['text'] && $button['url'] ) {
+					?>
+					<div class="major-button">
+						<a href="<?php echo esc_attr($button['url']); ?>" target="_blank" rel="external" class="button button-secondary"><?php _e( $button['text'], 'gcm' ); ?></a>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="row bottom">
+		<div class="inside">
+			
+			<nav id="primary-menu" class="gcm-menu primary-menu" role="navigation">
+				<?php
+				wp_nav_menu(array(
+					'theme_location' => 'primary',
+					'container' => '',
+					'depth' => 2,
+				));
+				?>
+			</nav>
+			
+		</div>
+	</div>
+	
+</header>
+
+<div class="site-content" id="site-content">

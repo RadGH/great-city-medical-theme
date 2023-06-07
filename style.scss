@@ -7,20 +7,34 @@ Author URI: https://radleysustaire.com/
 Text Domain: gcm
 */
 
-/*! style.scss */
+/*
+CSS Variables
+*/
+:root {
+}
 
-// Globals
-@import "assets/styles/_variables.scss";
-@import "assets/styles/_mixins.scss";
+// Advanced
+@import "assets/styles/advanced/variables.scss";
+@import "assets/styles/advanced/functions.scss";
+@import "assets/styles/advanced/mixins.scss";
+@import "assets/styles/advanced/reset.scss";
+@import "assets/styles/advanced/accessibility.scss";
 
 // Modules
-@import "assets/styles/modules/languages";
-@import "assets/styles/modules/locations";
+@import "assets/styles/modules/languages.scss";
+@import "assets/styles/modules/locations.scss";
+
+// Plugins
+@import "assets/styles/plugins/translatepress.scss";
 
 // Structure
-@import "assets/styles/structure/menu";
-@import "assets/styles/structure/fields";
-@import "assets/styles/structure/header";
+@import "assets/styles/structure/theme.scss";
+@import "assets/styles/structure/typography.scss";
+@import "assets/styles/structure/fields.scss";
+@import "assets/styles/structure/header.scss";
+@import "assets/styles/structure/menu.scss";
+@import "assets/styles/structure/menu-mobile.scss";
+@import "assets/styles/structure/footer.scss";
 
 /*
 Breakpoints. Uses 0.1px for minimum width to avoid clashing breakpoints and support high density displays.
@@ -38,47 +52,7 @@ desktop
 
 */
 
-/*
-CSS Variables
-*/
-:root {
-}
 
-/*
-CSS Reset
-*/
-*, *:before, *:after {
-	box-sizing: inherit;
-}
-
-html {
-	box-sizing: border-box;
-}
-
-body, ol, ul {
-	margin: 0;
-	padding: 0;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-	padding: 0;
-	overflow-wrap: break-word;
-}
-
-img {
-	display: block;
-	max-width: 100%;
-	height: auto;
-}
-
-picture, video, canvas, svg {
-	display: block;
-	max-width: 100%;
-}
-
-input, button, textarea, select {
-	font: inherit;
-}
 
 /*
 Global structure
@@ -105,38 +79,4 @@ p {
 
 strong {
 	font-weight: 500;
-}
-
-/*
-Font sizes
-*/
-html { font-size: 16px; line-height: 1.4; }
-
-h1 { font-size: 80px; }
-h2 { font-size: 60px; }
-h3 { font-size: 32px; }
-h4 { font-size: 28px; }
-h5 { font-size: 18px; }
-h6 { font-size: 18px; }
-
-@media ( max-width: 480px ) {
-	/* Font sizes: Mobile */
-	html { font-size: 18px; line-height: 1.5; }
-
-	h1 { font-size: 36px; }
-	h2 { font-size: 32px; }
-	h3 { font-size: 24px; }
-	h4 { font-size: 18px; }
-	h5 { font-size: 18px; }
-	h6 { font-size: 18px; }
-}
-
-
-/*
-Focus / Accessibility
-*/
-a:focus-within,
-input:focus-within {
-	outline: 3px solid $color_focus;
-	border-radius: 4px;
 }

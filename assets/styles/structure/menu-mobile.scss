@@ -1,0 +1,143 @@
+// On desktop, hide mobile menu header
+@media ( min-width: $break_above_desktop ) {
+	.menu-header {
+		display: none;
+	}
+}
+
+// Everything else here is mobile-only
+@media ( max-width: $break_at_desktop ) {
+
+	// Hide regular header on desktop until menu is opened
+	body:not(.menu-open) .site-header {
+		display: none;
+	}
+
+	// Menu header row
+	.menu-header {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		padding: 4px 12px;
+		border-bottom: 1px solid #E3E3E3;
+		align-items: center;
+	}
+
+	.menu-logo a {
+		display: block;
+		float: left;
+		padding: 8px;
+	}
+
+	.menu-logo img {
+		width: 135px;
+		max-width: 100%;
+	}
+
+	// Menu button
+	#menu-button {
+		width: 44px;
+		height: 44px;
+		padding: 10px;
+	}
+
+	// Change menu icon from X to three lines
+	body.menu-open #menu-button .open {
+		display: none;
+	}
+
+	body:not(.menu-open) #menu-button .close {
+		display: none;
+	}
+
+	// The header becomes the modal window
+	.site-header {
+		position: absolute;
+		z-index: 10000000;
+		left: 0;
+		right: 0;
+		background: #fff;
+		padding: 16px 0;
+	}
+
+	.site-header .row {
+		text-align: center;
+	}
+
+	.site-header .inside {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	// On tablet size screens, the menu is floating on the right (instead of full width)
+	@media ( min-width: $break_above_mobile ) {
+		header.site-header {
+			width: fit-content;
+			left: auto;
+		}
+	}
+
+	// On small screens the menu is full width (the rest of the page is hidden)
+	@media ( max-width: $break_at_mobile ) {
+		body.menu-open .site-content,
+		body.menu-open .site-footer {
+			display: none;
+		}
+	}
+
+	// Reorder some elements
+	.site-header { display: grid; }
+	.site-header .row.top { order: 2; }
+	.site-header .row-bottom { order: 1; }
+
+	.header-links { display: grid; }
+	.header-links .language-list { order: 2; }
+	.header-links .major-button { order: 1; }
+
+	.header-logo { display: none; }
+
+	// Primary menu
+	#primary-menu {
+		padding-bottom: 16px;
+		border-bottom: 1px solid #E3E3E3;
+		margin-bottom: 16px;
+		text-align: left;
+	}
+
+	// Location
+	.header-locations {
+		margin: 16px 0;
+		text-align: left;
+	}
+
+	.site-header .header-locations {
+		font-size: 14px;
+	}
+
+	.location .address,
+	.location .phone {
+		font-weight: 300;
+	}
+
+	// Links
+	.header-links {
+	}
+
+	// Links -> Button
+	.header-links .major-button {
+		margin: 16px 0;
+	}
+
+	.header-links .major-button .button {
+		display: block;
+		text-align: center;
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+
+	// Links -> Language
+	.header-links .language-list {
+
+	}
+
+// END: mobile-only media query
+}

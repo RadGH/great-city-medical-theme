@@ -1,0 +1,380 @@
+/*
+1. Footer Contact Area
+*/
+
+.site-footer {
+	padding-top: 150px;
+}
+
+// Mixed styles
+.footer-contact p,
+.footer-locations .address,
+.footer-locations .phone,
+.footer-locations .hours-list .day {
+	color: $color_text_secondary;
+}
+
+// Contact us content
+.footer-contact h6 {
+	@include font_style_eyebrow;
+	margin: 0 0 6px;
+}
+
+.footer-contact h1,
+.footer-contact h2 {
+	@include font_size_h2;
+	line-height: 1;
+	margin: 0 0 14px;
+}
+
+.footer-contact p {
+	max-width: 764px;
+	margin: 0 auto;
+}
+
+// Footer locations
+.footer-locations .location .title {
+	margin: 0;
+}
+
+.footer-locations .gcm-icon {
+	width: 38px;
+	height: 38px;
+	padding: 7px;
+}
+
+.footer-locations .location .address,
+.footer-locations .location .phone {
+	font-weight: 300;
+}
+
+.footer-locations .location .phone a:not(:hover) {
+	color: inherit;
+}
+
+.footer-locations .hours-list .hours {
+	font-weight: 500;
+}
+
+// Hide weekends if they are closed
+.footer-locations .hours-list .hours-item.day-sunday.closed,
+.footer-locations .hours-list .hours-item.day-saturday.closed {
+	display: none;
+}
+
+.footer-locations .location-list {
+	display: grid;
+	grid-gap: 32px;
+}
+
+// Individual location formatting
+.footer-locations {
+	margin-top: 40px;
+}
+
+.footer-locations .location {
+	display: grid;
+	gap: 16px;
+}
+
+.footer-locations .location {
+	background: $color_white;
+	border: 1px solid $color_gray_7;
+	border-radius: 24px;
+	padding: 32px 32px 32px 40px;
+}
+
+// Address and Phone
+.footer-locations .location .address,
+.footer-locations .location .phone {
+	gap: 12px;
+}
+
+// Hours
+.footer-locations .location .hours-list {
+	display: grid;
+	align-items: center;
+	gap: 12px;
+}
+
+.footer-locations .hours-item {
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+.footer-locations .hours-item .hours {
+	text-align: right;
+}
+
+// Background map
+.footer-locations {
+	position: relative;
+	padding-bottom: 365px;
+}
+
+.footer-locations::before {
+	content: '';
+	display: block;
+	position: absolute;
+	z-index: -1;
+	top: 115px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	@media ( min-width: $break_above_desktop ) {
+		background-image: url(/wp-content/themes/great-city-medical/assets/images/map-new-york-medium.png);
+	}
+
+	@media ( max-width: $break_at_desktop ) {
+		background-image: url(/wp-content/themes/great-city-medical/assets/images/map-new-york-mobile.png);
+	}
+}
+
+/*
+2. Footer bottom rows
+*/
+.footer-main .row.top {
+	padding: 32px 0;
+}
+
+.footer-main .row.top .inside {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	align-items: center;
+}
+
+.footer-main .row.bottom .inside {
+	padding: 24px 0;
+	border-top: 1px solid $color_gray_6;
+}
+
+// Logo
+.footer-logo {
+
+}
+
+.footer-logo a {
+	display: inline-block;
+}
+
+.footer-logo img {
+	width: 210px;
+	max-width: 100%;
+}
+
+// Menu
+#footer-menu > ul {
+	justify-content: center;
+	gap: 0 44px;
+}
+
+#footer-menu .sub-menu {
+	top: auto;
+	bottom: 100%;
+}
+
+// Copyright
+.footer-copyright {
+	text-align: center;
+	color: $color_dark_purple;
+}
+
+.footer-copyright a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+// Language picker
+.footer-languages .language a {
+	display: grid;
+	grid-template-columns: 24px 1fr auto;
+	align-items: center;
+	grid-gap: 10px;
+}
+
+.footer-languages .language-icon svg,
+.footer-languages .language-icon img {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+}
+
+.footer-languages li.sep {
+	display: none;
+}
+
+// Language menu button
+.footer-languages .current-language a::after {
+	content: "";
+	display: inline-block;
+	width: 12px;
+	height: 7px;
+	background-repeat: no-repeat;
+	background-size: 12px 7px;
+	background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='%230e0d0d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+}
+.footer-languages:focus-within .current-language a::after,
+.footer-languages .current-language:hover a::after {
+	transform: rotate(180deg);
+}
+
+// Language dropdown menu
+.footer-languages .language-dropdown {
+	position: relative;
+	float: right;
+}
+
+.footer-languages .other-languages {
+	display: none;
+	padding-top: 8px;
+
+	position: absolute;
+	top: 100%;
+
+	// If the screen is too narrow to expand the dropdown to the right, expand it to the left instead
+	@media ( max-width: $site_content_width + 100px ) {
+		right: 0;
+	}
+}
+
+.footer-languages .other-languages nav {
+	display: inline-block;
+
+	padding: 16px 12px;
+
+	background: $color_white;
+	border: 1px solid $color_gray_6;
+	border-radius: 12px;
+}
+
+.footer-languages .other-languages nav ul {
+	display: grid;
+	grid-template-rows: 1fr;
+	gap: 16px;
+}
+
+.footer-languages .current-language:hover + .other-languages,
+.footer-languages .other-languages:hover,
+.footer-languages:focus-within .other-languages {
+	display: block;
+}
+
+.footer-languages .other-languages .language.selected {
+	display: none;
+}
+
+.footer-languages .other-languages .language-icon svg,
+.footer-languages .other-languages .language-icon img {
+	width: 20px;
+	height: 20px;
+}
+
+.footer-languages .other-languages .language-name {
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+
+
+// $break_above_desktop
+// $break_at_desktop
+// $break_above_tablet
+// $break_at_tablet
+// $break_above_mobile
+// $break_at_mobile
+
+// Tablet + Desktop: Show two columns locations (which each have two columns in them)
+@media ( min-width: $break_above_tablet ) {
+	.footer-locations .location-list {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+// Desktop: Two column locations
+@media ( min-width: $break_above_desktop ) {
+	.footer-locations .location {
+		grid-template-columns: 8fr 5fr;
+		grid-template-rows: 1fr auto auto;
+	}
+
+	.footer-locations .location .title {
+		grid-area: 1 / 1;
+	}
+
+	.footer-locations .location .address {
+		grid-area: 2 / 1;
+	}
+
+	.footer-locations .location .phone {
+		grid-area: 3 / 1;
+	}
+
+	.footer-locations .location .hours-list {
+		grid-column: 2;
+		grid-row: 1 / 4;
+	}
+}
+
+// Mobile shows one column location with one column of content
+@media ( max-width: $break_at_desktop ) {
+	.footer-locations {
+		font-size: 16px;
+		padding-bottom: 150px;
+	}
+
+	// Footer menu stays horizontal
+	#footer-menu > ul {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+	}
+
+	#footer-menu a {
+		padding: 16px 22px;
+	}
+}
+
+// When collapsing to one column, set a max width on the locations
+@media ( max-width: $break_at_tablet ) {
+	.footer-locations .location {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+}
+
+// Mobile footer adjustments
+@media ( max-width: $break_at_tablet ) {
+	.footer-main .row.top .inside {
+		grid-template-columns: 3fr 2fr;
+		gap: 24px;
+	}
+
+	.footer-main .row.top .inside .footer-logo {
+		grid-area: 1 / 1;
+	}
+
+	.footer-main .row.top .inside .footer-languages {
+		grid-area: 1 / 2;
+	}
+
+	.footer-main .row.top .inside .footer-menu {
+		grid-row: 2;
+		grid-column: 1 / 3;
+	}
+
+	.footer-main .row.top {
+		padding-bottom: 14px;
+	}
+
+	.footer-main .row .inside {
+		margin: 0 20px;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}

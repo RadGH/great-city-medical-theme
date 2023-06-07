@@ -32,10 +32,7 @@
 	}
 }
 
-
-/* Highlight the current language based on Translatepress */
-body.translatepress-en_US .language-list .language.language-en_us a,
-body.translatepress-es_MX .language-list .language.language-es_mx a {
+.language-list .language.selected a {
 	font-weight: 500;
 	color: #0e0d0d;
 }

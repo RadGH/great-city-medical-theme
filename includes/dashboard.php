@@ -23,7 +23,7 @@ function gcm_register_options_pages() {
 	acf_add_options_sub_page( array(
 		'parent_slug' => 'acf-gcm-root',
 		'menu_slug'   => 'acf-gcm-settings',
-		'page_title'  => __( 'General Settings', 'gcm' ),
+		'page_title'  => __( 'General Settings', 'gcm' ) . ' (gcm_settings)',
 		'menu_title'  => __( 'General Settings', 'gcm' ),
 		'capability'  => 'manage_options',
 		'post_id'     => 'gcm_settings',

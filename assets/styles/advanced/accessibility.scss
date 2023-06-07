@@ -1,0 +1,49 @@
+// Touch screen tap color
+* {
+	-webkit-tap-highlight-color: #9069ac44;
+}
+
+// Focus styles
+a:focus-within,
+input:focus-within {
+	@include focus_within;
+	&:not(.button):not(.screen-reader-shortcut) {
+		border-radius: 4px;
+	}
+}
+
+// Skip to page content shortcut
+a.screen-reader-shortcut {
+	position: absolute;
+	top: -1000em;
+	left: 10px;
+	display: block;
+	z-index: 100000;
+	background: #faf4ff;
+	color: #9069ac;
+	border-radius: 100px;
+	text-decoration: none;
+	font-weight: 500;
+	padding: 24px;
+	box-shadow: none;
+	@include focus_within;
+}
+
+a.screen-reader-shortcut:focus {
+	position: fixed;
+	top: 10px;
+}
+
+body.admin-bar a.screen-reader-shortcut:focus {
+	top: 42px;
+}
+
+
+#wpadminbar .screen-reader-shortcut:focus {
+	@extend a.screen-reader-shortcut;
+}
+
+// Disable WP default skip link because we have our own in header.php
+#wpadminbar a[href="#wp-toolbar"] {
+	display: none;
+}
