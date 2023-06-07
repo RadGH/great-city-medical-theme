@@ -15,11 +15,14 @@
 
 	// Menu header row
 	.menu-header {
+		position: relative;
+		z-index: 15;
 		display: grid;
 		grid-template-columns: 1fr auto;
-		padding: 4px 12px;
+		padding: 4px 12px 4px 4px;
 		border-bottom: 1px solid #E3E3E3;
 		align-items: center;
+		background: $color_white;
 	}
 
 	.menu-logo a {
@@ -52,7 +55,7 @@
 	// The header becomes the modal window
 	.site-header {
 		position: absolute;
-		z-index: 10000000;
+		z-index: 10;
 		left: 0;
 		right: 0;
 		background: #fff;
@@ -63,16 +66,24 @@
 		text-align: center;
 	}
 
-	.site-header .inside {
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-
 	// On tablet size screens, the menu is floating on the right (instead of full width)
 	@media ( min-width: $break_above_mobile ) {
 		header.site-header {
 			width: fit-content;
 			left: auto;
+		}
+
+		body.menu-open .site-content,
+		body.menu-open .site-footer {
+			opacity: 0.3;
+		}
+
+		// add border and shadow
+		header.site-header {
+			border-left: 1px solid #E3E3E3;
+			border-bottom: 1px solid #E3E3E3;
+			border-radius: 0 0 0 24px;
+			box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 		}
 	}
 
