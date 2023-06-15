@@ -17,7 +17,7 @@ function gcm_setup_theme() {
 	register_nav_menus( array (
 		'primary'     => __( 'Primary Menu', 'gcm' ),
 		'footer'      => __( 'Footer Menu', 'gcm' ),
-		'sub_footer'  => __( 'Sub Footer Menu', 'gcm' ),
+		// 'sub_footer'  => __( 'Sub Footer Menu', 'gcm' ),
 	));
 	
 	// old theme settings:

@@ -1,3 +1,4 @@
 #trp-floater-ls {
+	display: none !important; // we have our own language switcher buttons. we can disable this floating one
 	z-index: 5 !important;
 }

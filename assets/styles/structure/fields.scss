@@ -5,6 +5,10 @@
 	line-height: 1;
 	text-decoration: none;
 	border-radius: 100px;
+
+	&:focus-within {
+		@include focus_within;
+	}
 }
 
 @mixin button_primary {
@@ -30,12 +34,5 @@
 	@include button_secondary;
 	&:hover {
 		@include button_primary;
-	}
-}
-
-.button {
-	&:focus-within {
-		border-color: #fff;
-		@include focus_within;
 	}
 }

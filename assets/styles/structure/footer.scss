@@ -238,7 +238,7 @@
 	top: 100%;
 
 	// If the screen is too narrow to expand the dropdown to the right, expand it to the left instead
-	@media ( max-width: $site_content_width + 100px ) {
+	@media ( max-width: $site_content_width + 200px ) {
 		right: 0;
 	}
 }
