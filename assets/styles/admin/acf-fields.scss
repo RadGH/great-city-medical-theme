@@ -1,0 +1,19 @@
+/*
+Icon picker in acf dropdown
+*/
+.select2-selection .acf-selection {
+	.icon-title {
+		display: inline-block;
+	}
+
+	.icon-svg {
+		display: inline-block;
+		margin-right: 3px;
+	}
+
+	.icon-svg svg {
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+	}
+}

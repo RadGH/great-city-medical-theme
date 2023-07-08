@@ -30,8 +30,8 @@
 
 	/* Bottom row */
 	.site-header .row.bottom {
-		border-top: 1px solid $color_gray_6;
-		border-bottom: 1px solid $color_gray_6;
+		border-top: 1px solid $color_gray_4;
+		border-bottom: 1px solid $color_gray_4;
 	}
 
 	/* Links (Language and button) */
@@ -92,7 +92,6 @@ START: Header location
 
 // Align icons in header with text, adjusting for white space in the icon
 .header-locations .gcm-icon {
-	width: 17px;
 	margin-left: -3px;
 }
 

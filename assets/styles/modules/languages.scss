@@ -11,7 +11,7 @@
 
 .language-list .sep {
 	margin: 0;
-	color: $color_gray_6;
+	color: $color_gray_4;
 	cursor: default;
 	user-select: none;
 }
@@ -23,7 +23,7 @@
 .language-list .language a {
 	display: inline-block;
 	padding: 4px;
-	color: $color_gray_4;
+	color: $color_gray_2;
 	text-decoration: none;
 
 	&:hover {
@@ -35,4 +35,9 @@
 .language-list .language.selected a {
 	font-weight: 500;
 	color: #0e0d0d;
+}
+
+.language-list.with-icons.display-name a {
+	display: grid;
+	grid-template-columns: 1fr auto auto;
 }

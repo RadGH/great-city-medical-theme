@@ -1,0 +1,14 @@
+{
+	"name": "gcm/card",
+	"title": "Card",
+	"description": "A card with title and content, and additional features.",
+	"style": [ "file:./card.css" ],
+	"category": "text",
+	"icon": "admin-gcm-icon",
+	"keywords": ["card", "content", "title", "image", "button"],
+	"align": "full",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "card.php"
+	}
+}

@@ -47,9 +47,9 @@ Reusable formats
 }
 
 @mixin font_size_h6 {
-	font-size: 18px;
+	font-size: 14px;
 	@media ( max-width: $break_at_desktop ) {
-		font-size: 18px;
+		font-size: 16px;
 	}
 }
 

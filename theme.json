@@ -1,0 +1,177 @@
+{
+	"$schema": "https:\/\/schemas.wp.org\/trunk\/theme.json",
+	"version": 2,
+	"settings": {
+		"appearanceTools": true,
+		"border": {
+			"radius": false,
+			"color": false,
+			"style": false,
+			"width": false
+		},
+		"color": {
+			"custom": true,
+			"palette": [
+				{
+					"name": "Purple",
+					"slug": "purple",
+					"color": "#9069ac"
+				},
+				{
+					"name": "Light Purple",
+					"slug": "light-purple",
+					"color": "#e6c8ff"
+				},
+				{
+					"name": "Lightest Purple",
+					"slug": "lightest-purple",
+					"color": "#faf4ff"
+				},
+				{
+					"name": "Blue",
+					"slug": "blue",
+					"color": "#0957de"
+				},
+				{
+					"name": "Light Blue",
+					"slug": "light-blue",
+					"color": "#c9dcfd"
+				},
+				{
+					"name": "Lightest Blue",
+					"slug": "lightest-blue",
+					"color": "#f4f9ff"
+				},
+				{
+					"name": "White",
+					"slug": "white",
+					"color": "#ffffff"
+				},
+				{
+					"name": "Dark Purple",
+					"slug": "dark-purple",
+					"color": "#68626e"
+				},
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#0e0d0d"
+				},
+				{
+					"name": "Gray 10",
+					"slug": "gray-10",
+					"color": "#fafafa"
+				},
+				{
+					"name": "Gray 8",
+					"slug": "gray-8",
+					"color": "#f1f1f1"
+				},
+				{
+					"name": "Gray 6",
+					"slug": "gray-6",
+					"color": "#e7e7e7"
+				},
+				{
+					"name": "Gray 4",
+					"slug": "gray-4",
+					"color": "#e3e3e3"
+				},
+				{
+					"name": "Gray 2",
+					"slug": "gray-2",
+					"color": "#3e3e3e"
+				}
+			],
+			"customDuotone": false,
+			"duotone": [],
+			"customGradient": false,
+			"gradients": [],
+			"link": false,
+			"text": true,
+			"background": true,
+			"defaultGradients": false,
+			"defaultPalette": false
+		},
+		"custom": {},
+		"layout": {
+			"contentSize": "768px",
+			"wideSize": "1200px"
+		},
+		"spacing": {
+			"margin": false,
+			"padding": false,
+			"blockGap": null,
+			"units": [ "px", "em", "rem", "vh", "vw" ],
+
+			"spacingScale": {
+				"operator": "*",
+				"increment": 8,
+				"steps": 10,
+				"mediumStep": 8,
+				"unit": "px"
+			},
+			"spacingSizes": [
+				{
+					"name": "Small",
+					"slug": "small",
+					"size": "16px"
+				},
+				{
+					"name": "Medium",
+					"slug": "medium",
+					"size": "40px"
+				},
+				{
+					"name": "Large",
+					"slug": "large",
+					"size": "150px"
+				}
+			]
+		},
+		"typography": {
+			"customFontSize": true,
+			"lineHeight": false,
+			"dropCap": true,
+			"fluid": false,
+			"fontStyle": false,
+			"fontWeight": false,
+			"letterSpacing": true,
+			"textDecoration": true,
+			"textTransform": true,
+			"fontSizes": [
+				{ "name": "H1", "slug": "h1", "size": 80 },
+				{ "name": "H2", "slug": "h2", "size": 60 },
+				{ "name": "H3", "slug": "h3", "size": 32 },
+				{ "name": "H4", "slug": "h4", "size": 28 },
+				{ "name": "H5", "slug": "h5", "size": 18 },
+				{ "name": "Large", "slug": "large", "size": 18 },
+				{ "name": "Medium", "slug": "medium", "size": 16 },
+				{ "name": "Small", "slug": "small", "size": 14 },
+				{ "name": "X-Small", "slug": "x-small", "size": 10 }
+			],
+			"fontFamilies": [
+				{
+					"name": "Sofia Pro",
+					"slug": "sofia-pro",
+					"fontFamily": "sofia-pro, Helvetica, Arial, sans-serif"
+				}
+			]
+		},
+		"blocks": {
+			"core/paragraph": {
+				"color": {},
+				"custom": {},
+				"layout": {},
+				"spacing": {},
+				"typography": {}
+			},
+			"core/heading": {}
+		}
+	},
+	"styles": {
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--sofia-pro)"
+		}
+	}
+}

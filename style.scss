@@ -7,34 +7,40 @@ Author URI: https://radleysustaire.com/
 Text Domain: gcm
 */
 
-/*
-CSS Variables
-*/
-:root {
-}
-
 // Advanced
 @import "assets/styles/advanced/variables.scss";
 @import "assets/styles/advanced/functions.scss";
 @import "assets/styles/advanced/mixins.scss";
 @import "assets/styles/advanced/reset.scss";
+@import "assets/styles/advanced/typography.scss";
 @import "assets/styles/advanced/accessibility.scss";
 
-// Modules
-@import "assets/styles/modules/languages.scss";
-@import "assets/styles/modules/locations.scss";
+// Admin
+// @import "assets/styles/admin/acf-fields.scss";
+// @import "assets/styles/admin/admin.scss";
+// @import "assets/styles/admin/editor.scss";
+// @import "assets/styles/admin/dashicon.scss";
 
-// Plugins
-@import "assets/styles/plugins/translatepress.scss";
+// Blocks
+@import "assets/styles/blocks/card.scss";
 
 // Structure
+@import "assets/styles/structure/core.scss";
 @import "assets/styles/structure/theme.scss";
-@import "assets/styles/structure/typography.scss";
+@import "assets/styles/structure/buttons.scss";
 @import "assets/styles/structure/fields.scss";
 @import "assets/styles/structure/header.scss";
 @import "assets/styles/structure/menu.scss";
 @import "assets/styles/structure/menu-mobile.scss";
 @import "assets/styles/structure/footer.scss";
+
+// Modules
+@import "assets/styles/modules/icons.scss";
+@import "assets/styles/modules/locations.scss";
+@import "assets/styles/modules/languages.scss";
+
+// Plugins
+@import "assets/styles/plugins/translatepress.scss";
 
 /*
 Breakpoints. Uses 0.1px for minimum width to avoid clashing breakpoints and support high density displays.
@@ -54,29 +60,3 @@ desktop
 
 
 
-/*
-Global structure
-*/
-html {
-	font-family: $font_family_body;
-	font-weight: 300;
-	-webkit-font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-weight: 500;
-	margin: 0 0 15px;
-}
-
-p {
-	margin: 0 0 15px;
-}
-
-strong {
-	font-weight: 500;
-}

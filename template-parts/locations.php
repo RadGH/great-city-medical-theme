@@ -5,7 +5,9 @@
 $display_address = $args['address'] ?? true; // unused
 $display_phone = $args['phone'] ?? true;
 $display_hours = $args['hours'] ?? true; // unused
-$circle_icon = $args['circle_icon'] ?? false;
+$icon_color = $args['icon_color'] ?? 'purple'; // unused
+$icon_type = $args['icon_type'] ?? 'flat';
+$icon_size = $args['icon_size'] ?? ''; // unused
 $show_closed_days = $args['show_closed_days'] ?? true;
 
 $locations = gcm_get_locations();
@@ -22,8 +24,6 @@ foreach( $locations as $i => $l ) {
 	
 	$title = __( $title, 'gcm' );
 	
-	$icon_type = $circle_icon ? 'type-circle' : 'type-flat';
-
 	// For schema address markup, see example #3: https://schema.org/address
 	?>
 	<div class="location" data-location="<?php echo esc_attr($title); ?>" itemscope itemtype="https://schema.org/LocalBusiness">
@@ -36,14 +36,14 @@ foreach( $locations as $i => $l ) {
 		
 		<?php if ( $address && $display_address ) { ?>
 		<div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-			<span class="gcm-icon icon-map-pin <?php echo $icon_type; ?>"></span>
+			<?php echo gcm_icon_get_styled_html( 'map-pin', $icon_color, $icon_type, $icon_size ); ?>
 			<span class="address-text"><?php echo esc_html( $address ); ?></span>
 		</div>
 		<?php } ?>
 		
 		<?php if ( $phone && $display_phone ) { ?>
 		<div class="phone" itemprop="telephone">
-			<span class="gcm-icon icon-phone <?php echo $icon_type; ?>"></span>
+			<?php echo gcm_icon_get_styled_html( 'phone', $icon_color, $icon_type, $icon_size ); ?>
 			<span class="phone-text"><?php echo gcm_format_phone( $phone ); ?></span>
 		</div>
 		<?php } ?>

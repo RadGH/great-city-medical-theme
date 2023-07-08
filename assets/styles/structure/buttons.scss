@@ -1,0 +1,236 @@
+/* buttons */
+.button {
+	display: inline-block;
+	padding: 18px 48px;
+	line-height: 1;
+	text-decoration: none;
+	border-radius: 100px;
+
+	&:focus-within {
+		@include focus_within;
+	}
+}
+
+.button-text {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+@mixin button_primary($color) {
+	color: $color_white;
+
+	@if $color == 'purple' {
+		border: 1px solid $color_purple;
+		background: $color_purple;
+	}
+	@else if $color == 'black' {
+		border: 1px solid $color_black;
+		background: $color_black;
+	}
+	@else if $color == 'blue' {
+		border: 1px solid $color_blue;
+		background: $color_blue;
+	}
+	@else if $color == 'white' {
+		color: $color_black;
+		border: 1px solid $color_white;
+		background: $color_white;
+	}
+}
+
+@mixin button_secondary($color) {
+	@if $color == 'purple' {
+		color: $color_purple;
+		border: 1px solid $color_purple;
+		background: $color_purple_lightest;
+	}
+	@else if $color == 'black' {
+		color: $color_black;
+		border: 1px solid $color_black;
+		background: $color_black_lightest;
+	}
+	@else if $color == 'blue' {
+		color: $color_blue;
+		border: 1px solid $color_blue;
+		background: $color_blue_lightest;
+	}
+	@else if $color == 'white' {
+		color: $color_black;
+		border: 1px solid $color_white;
+		background: $color_black_light;
+	}
+}
+
+@mixin button_outline($color) {
+	background: transparent;
+	
+	@if $color == 'purple' {
+		color: $color_purple;
+		border: 1px solid $color_purple;
+	}
+	@else if $color == 'black' {
+		color: $color_black;
+		border: 1px solid $color_black;
+	}
+	@else if $color == 'blue' {
+		color: $color_blue;
+		border: 1px solid $color_blue;
+	}
+	@else if $color == 'white' {
+		color: $color_white;
+		border: 1px solid $color_white;
+		background: $color_black;
+	}
+}
+
+@mixin button_text($color) {
+	background: transparent;
+	border: 1px solid transparent;
+	
+	@if $color == 'purple' {
+		color: $color_purple;
+	}
+	@else if $color == 'black' {
+		color: $color_black;
+	}
+	@else if $color == 'blue' {
+		color: $color_blue;
+	}
+	@else if $color == 'white' {
+		color: $color_white;
+	}
+}
+
+// Purple, solid
+.button {
+	@include button_primary( 'purple' );
+	&:hover {
+		@include button_secondary( 'purple' );
+	}
+}
+
+// Purple, faded
+.button-secondary {
+	@include button_secondary( 'purple' );
+	&:hover {
+		@include button_primary( 'purple' );
+	}
+}
+
+// Purple, outline
+.button-outline {
+	@include button_outline( 'purple' );
+	&:hover {
+		@include button_primary( 'purple' );
+	}
+}
+
+// Purple, text
+.button-text {
+	@include button_text( 'purple' );
+	&:hover {
+		@include button_outline( 'purple' );
+	}
+}
+
+// Blue, solid
+.button-blue {
+	&.button {
+		@include button_primary( 'blue' );
+		&:hover {
+			@include button_secondary( 'blue' );
+		}
+	}
+	
+	// Blue, faded
+	&.button-secondary {
+		@include button_secondary( 'blue' );
+		&:hover {
+			@include button_primary( 'blue' );
+		}
+	}
+	
+	// Blue, outline
+	&.button-outline {
+		@include button_outline( 'blue' );
+		&:hover {
+			@include button_primary( 'blue' );
+		}
+	}
+	
+	// Blue, text
+	&.button-text {
+		@include button_text( 'blue' );
+		&:hover {
+			@include button_outline( 'blue' );
+		}
+	}
+}
+
+// Black, solid
+.button-black {
+	&.button {
+		@include button_primary( 'black' );
+		&:hover {
+			@include button_secondary( 'black' );
+		}
+	}
+	
+	// Black, faded
+	&.button-secondary {
+		@include button_secondary( 'black' );
+		&:hover {
+			@include button_primary( 'black' );
+		}
+	}
+	
+	// Black, outline
+	&.button-outline {
+		@include button_outline( 'black' );
+		&:hover {
+			@include button_primary( 'black' );
+		}
+	}
+	
+	// Black, text
+	&.button-text {
+		@include button_text( 'black' );
+		&:hover {
+			@include button_outline( 'black' );
+		}
+	}
+}
+
+// White, solid
+.button-white {
+	&.button {
+		@include button_primary( 'white' );
+		&:hover {
+			@include button_secondary( 'white' );
+		}
+	}
+	
+	// White, faded
+	&.button-secondary {
+		@include button_primary( 'white' );
+		&:hover {
+			@include button_secondary( 'white' );
+		}
+	}
+	
+	// White, outline
+	&.button-outline {
+		@include button_outline( 'white' );
+		&:hover {
+			@include button_primary( 'white' );
+		}
+	}
+	
+	// White, text
+	&.button-text {
+		@include button_text( 'white' );
+		&:hover {
+			@include button_outline( 'white' );
+		}
+	}
+}

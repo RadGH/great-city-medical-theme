@@ -12,7 +12,7 @@
 		
 		<div class="footer-locations">
 			<div class="inside">
-				<?php get_template_part( 'template-parts/locations', null, array( 'circle_icon' => true ) ); ?>
+				<?php get_template_part( 'template-parts/locations', null, array( 'icon_type' => 'circle', 'icon_size' => 'small' ) ); ?>
 			</div>
 		</div>
 	

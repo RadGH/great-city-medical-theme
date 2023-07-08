@@ -29,18 +29,13 @@
 
 .footer-contact p {
 	max-width: 764px;
-	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 // Footer locations
 .footer-locations .location .title {
 	margin: 0;
-}
-
-.footer-locations .gcm-icon {
-	width: 38px;
-	height: 38px;
-	padding: 7px;
 }
 
 .footer-locations .location .address,
@@ -79,7 +74,7 @@
 
 .footer-locations .location {
 	background: $color_white;
-	border: 1px solid $color_gray_7;
+	border: 1px solid $color_gray_6;
 	border-radius: 24px;
 	padding: 32px 32px 32px 40px;
 }
@@ -151,7 +146,7 @@
 .footer-main .row.bottom .inside {
 	padding-top: 24px;
 	padding-bottom: 24px;
-	border-top: 1px solid $color_gray_6;
+	border-top: 1px solid $color_gray_4;
 }
 
 // Logo
@@ -249,7 +244,7 @@
 	padding: 16px 12px;
 
 	background: $color_white;
-	border: 1px solid $color_gray_6;
+	border: 1px solid $color_gray_4;
 	border-radius: 12px;
 }
 
@@ -269,8 +264,7 @@
 	display: none;
 }
 
-.footer-languages .other-languages .language-icon svg,
-.footer-languages .other-languages .language-icon img {
+.footer-languages .other-languages .language-icon {
 	width: 20px;
 	height: 20px;
 }

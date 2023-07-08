@@ -1,0 +1,177 @@
+/*
+Icon type: Circle (type-circle)
+*/
+.gcm-icon {
+	display: inline-block;
+}
+
+.gcm-icon .icon-frame {
+	display: inline-block;
+}
+
+.gcm-icon svg {
+	display: block;
+	width: auto;
+	height: auto;
+	max-width: none;
+}
+
+/*
+Icon frame styles
+*/
+.gcm-icon.type-circle .icon-frame {
+	padding: 15px;
+	border-radius: 100%;
+	box-sizing: content-box;
+}
+
+.gcm-icon.type-circle .icon-frame {
+	box-shadow: inset 0 0 0 1px $color_purple;
+	background-color: $color_purple_lightest;
+}
+
+.gcm-icon.type-circle.color-blue .icon-frame {
+	box-shadow: inset 0 0 0 1px $color_blue;
+	background-color: $color_blue_lightest;
+}
+
+.gcm-icon.type-circle.color-black .icon-frame {
+	box-shadow: inset 0 0 0 1px $color_black;
+	background-color: $color_black_lightest;
+}
+
+/*
+Icon sizes
+
+	From figma:
+	14 (header location icon)
+	18 (testimonial review stars)
+	24 [14+5] (learn more arrow, circled)
+	32 [18+7] (accordion dropdown, circled)
+	38 [20+9] (footer location icon, circled)
+	47 [25+11] (hero testimonial icon, circled)
+	60 (testimonial quote icon)
+	80 [44+18] (hero images, circled)
+
+	Icon field group:
+	https://greatcitymedical.radgh.com/wp-admin/post.php?post=4211&action=edit
+
+*/
+.gcm-icon {
+	&.size-tiny {
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+		&.type-circle .icon-frame {
+			padding: 7px;
+		}
+	}
+
+	&.size-x-small {
+		svg {
+			width: 18px;
+			height: 18px;
+		}
+		&.type-circle .icon-frame {
+			padding: 7px;
+		}
+	}
+
+	&.size-small {
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+		&.type-circle .icon-frame {
+			padding: 9px;
+		}
+	}
+
+	&.size-medium {
+		svg {
+			width: 25px;
+			height: 25px;
+		}
+		&.type-circle .icon-frame {
+			padding: 11px;
+		}
+	}
+
+	&.size-large {
+		svg {
+			width: 32px;
+			height: 32px;
+		}
+		&.type-circle .icon-frame {
+			padding: 14px;
+		}
+	}
+
+	&.size-x-large {
+		svg {
+			width: 44px;
+			height: 44px;
+		}
+		&.type-circle .icon-frame {
+			padding: 18px;
+		}
+	}
+}
+
+/*
+[gcm_icon_list]
+*/
+table.gcm-icon-list {
+}
+
+table.gcm-icon-list th,
+table.gcm-icon-list td {
+	text-align: left;
+	vertical-align: top;
+	padding: 5px;
+}
+
+table.gcm-icon-list tr th:first-child em {
+	font-weight: 300;
+}
+
+table.gcm-icon-list tr > * {
+	width: 120px;
+	text-align: center;
+}
+table.gcm-icon-list tr > * span {
+	display: inline-block;
+}
+
+table.gcm-icon-list tr > :first-child {
+	width: 200px;
+}
+
+table.gcm-icon-list {
+	position: relative;
+}
+
+table.gcm-icon-list thead {
+	position: sticky;
+	top: 0px;
+	background: #fff;
+}
+
+body.admin-bar table.gcm-icon-list thead {
+	top: 32px;
+}
+
+.gcm-icon-list .icon-wrap {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	width: 120px;
+	height: 80px;
+}
+
+.gcm-icon-list input[type="text"] {
+	width: 100%;
+	font-size: 10px;
+	padding: 3px 0;
+}

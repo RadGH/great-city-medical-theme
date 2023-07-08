@@ -1,0 +1,14 @@
+{
+	"name": "gcm/icon",
+	"title": "Icon",
+	"description": "An icon provided by the theme.",
+	"style": [ "file:./icon.css" ],
+	"category": "text",
+	"icon": "admin-gcm-icon",
+	"keywords": ["icon", "content"],
+	"align": "full",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "icon.php"
+	}
+}

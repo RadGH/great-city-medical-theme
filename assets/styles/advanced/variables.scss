@@ -26,43 +26,67 @@ Usage #2:
 */
 
 // Font families
-$font_family_body: sofia-pro, Helvetica, Arial, sans-serif;
+$font_family_sofia_pro: sofia-pro, Helvetica, Arial, sans-serif;
+
+// Generic families
+$font_family_body: $font_family_sofia_pro;
 
 // Base Colors
-$color_true_white: #ffffff;
-$color_true_black: #000000;
+// Also see theme.json for colors used in Gutenberg blocks, w hich adds the corresponding CSS variables to the :root element
 
-$color_white: #ffffff;
-$color_gray_10: #fafafa; // old: #fbfbfb
-$color_gray_8: #f1f1f1;
-$color_gray_7: #e7e7e7; // this is very close to #e3e3e3 so maybe we should just combine them?
-$color_gray_6: #e3e3e3;
-$color_gray_4: #3e3e3e;
-$color_black: #0e0d0d;
+$color_purple: #9069ac;                   // --wp--preset--color--purple
+$color_purple_light: #e6c8ff;             // --wp--preset--color--light-purple
+$color_purple_lightest: #faf4ff;          // --wp--preset--color--lightest-purple
 
-$color_purple: #9069ac;
-$color_blue: #0957de;
-$color_dark_purple: #68626e;
+$color_blue: #0957de;                     // --wp--preset--color--blue
+$color_blue_light: #c9dcfd;               // --wp--preset--color--light-blue
+$color_blue_lightest: #f4f8ff;            // --wp--preset--color--lightest-blue
 
-// Focus color (used when input/links are tabbed to with keyboard)
-$color_focus: $color_purple;
+$color_white: #ffffff;                    // --wp--preset--color--white
+$color_dark_purple: #68626e;              // --wp--preset--color--dark-purple
+$color_black: #0e0d0d;                    // --wp--preset--color--black
 
-// Colors used for text
+$color_gray_10: #fafafa; // old: #fbfbfb  // --wp--preset--color--gray-10
+$color_gray_8: #f1f1f1;                   // --wp--preset--color--gray-8
+$color_gray_6: #e7e7e7;                   // --wp--preset--color--gray-6
+$color_gray_4: #e3e3e3;                   // --wp--preset--color--gray-4
+$color_gray_2: #3e3e3e;                   // --wp--preset--color--gray-2
+
+// Aliases
 $color_text_primary: $color_black;
 $color_text_secondary: $color_dark_purple;
 $color_text_purple: $color_purple;
 $color_text_blue: $color_blue;
 
-// Colors used in icons
-// https://radleysustaire.com/s3/d8f3ec/chrome
-$color_purple_solid: $color_purple;  // used on: primary button backgrounds, borders, text colors
-$color_purple_fill: #e6c8ff;         // the darker fill of a 3-tone icon.
-$color_purple_fill_light: #faf4ff;   // the lighter fill of a 3-tone icon. purple @ 5% opacity
+$color_black_light: $color_gray_4;
+$color_black_lightest: #fafafa; // old: #fafaff
 
-$color_blue_solid: $color_blue;
-$color_blue_fill: #c9dcfd;
-$color_blue_fill_light: #f4f8ff; // old: F4F9FF
+body {
+	--font-sofia-pro: #{$font_family_body};
 
-$color_black_solid: $color_black;
-$color_black_fill: $color_gray_6;
-$color_black_fill_light: #fafafa; // old: #fafaff
+	--color-purple: #{$color_purple};
+	--color-purple-light: #{$color_purple_light};
+	--color-purple-lightest: #{$color_purple_lightest};
+
+	--color-blue: #{$color_blue};
+	--color-blue-light: #{$color_blue_light};
+	--color-blue-lightest: #{$color_blue_lightest};
+
+	--color-white: #{$color_white};
+	--color-dark-purple: #{$color_dark_purple};
+	--color-black: #{$color_black};
+
+	--color-gray-10: #{$color_gray_10};
+	--color-gray-8: #{$color_gray_8};
+	--color-gray-6: #{$color_gray_6};
+	--color-gray-4: #{$color_gray_4};
+	--color-gray-2: #{$color_gray_2};
+
+	--color-text-primary: #{$color_text_primary};
+	--color-text-secondary: #{$color_text_secondary};
+
+	--color-text-purple: #{$color_text_purple};
+	--color-text-blue: #{$color_text_blue};
+	--color-black-light: #{$color_black_light};
+	--color-black-lightest: #{$color_black_lightest};
+}

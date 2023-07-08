@@ -3,7 +3,7 @@
 
 // Default style for elements that have :focus-within
 @mixin focus_within() {
-	outline: 3px solid $color_focus;
+	outline: 3px solid $color_purple;
 }
 
 // Down pointing triangle icon, used for sub menus and dropdowns

@@ -1,0 +1,41 @@
+/*
+Visual Editor Classes
+> editor.php
+*/
+.font-sofia-pro { font-family: $font_family_body; }
+
+.text-color-purple { color: $color_purple; }
+.text-color-purple-light { color: $color_purple_light; }
+.text-color-purple-lightest { color: $color_purple_lightest; }
+
+.text-color-blue { color: $color_blue; }
+.text-color-blue-light { color: $color_blue_light; }
+.text-color-blue-lightest { color: $color_blue_lightest; }
+
+.text-color-black { color: $color_black; }
+.text-color-black-light { color: $color_black_light; }
+.text-color-black-lightest { color: $color_black_lightest; }
+
+.text-color-white { color: $color_white; }
+
+/*
+Gutenberg Blocks
+> blocks.php
+*/
+.eyebrow-text {
+	color: $color_blue;
+	@include font_size_base();
+	line-height: 24px;
+	text-transform: uppercase;
+}
+
+.eyebrow-heading {
+	color: $color_blue;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+
+	div& {
+		@include font_size_h6();
+	}
+}

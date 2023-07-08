@@ -110,6 +110,49 @@ function gcm_enqueue_asset( $handle, $asset_path, $deps = array(), $version = nu
 }
 
 /**
+ * Get an array of web fonts used on the website
+ *
+ * @return string[]
+ */
+function gcm_get_web_font_urls() {
+	return array(
+		
+		// Adobe font: Sofia Pro
+		// Font family: sofia-pro
+		// Font styles: 300, 300i, 500, 500i
+		'sofia-pro' => 'https://use.typekit.net/wfu3bib.css',
+		
+	);
+}
+
+/**
+ * Add fonts to the frontend and Gutenberg editor
+ *
+ * @return void
+ */
+function gcm_enqueue_fonts() {
+	foreach( gcm_get_web_font_urls() as $name => $url ) {
+		wp_enqueue_style( $name, $url );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'gcm_enqueue_fonts', 10 );
+add_action( 'enqueue_block_editor_assets', 'gcm_enqueue_fonts', 10 );
+
+/**
+ * Add CSS/JS to the visual editor (classic editor / tinymce, NOT gutenberg)
+ *
+ * @return void
+ */
+function gcm_enqueue_editor_scripts() {
+	foreach( gcm_get_web_font_urls() as $name => $url ) {
+		add_editor_style( $url );
+	}
+	
+	add_editor_style( get_theme_file_uri( '/editor.css' ) );
+}
+add_action( 'after_setup_theme', 'gcm_enqueue_editor_scripts', 20 );
+
+/**
  * Add CSS/JS to the frontend and backend
  *
  * @return void
@@ -117,14 +160,12 @@ function gcm_enqueue_asset( $handle, $asset_path, $deps = array(), $version = nu
 function gcm_enqueue_global_scripts() {
 	gcm_enqueue_asset( 'gcm-global', 'assets/global.css' );
 	gcm_enqueue_asset( 'gcm-global', 'assets/global.js' );
-	
-	gcm_enqueue_asset( 'gcm-icons', 'assets/icons/gcm-icons.css' );
 }
 add_action( 'wp_enqueue_scripts', 'gcm_enqueue_global_scripts', 15 );
 add_action( 'admin_enqueue_scripts', 'gcm_enqueue_global_scripts', 15 );
 
 /**
- * Add CSS/JS to the frontend
+ * Add CSS/JS to the visual editor (classic editor / tinymce, NOT gutenberg)
  *
  * @return void
  */
@@ -140,7 +181,51 @@ add_action( 'wp_enqueue_scripts', 'gcm_enqueue_public_scripts', 20 );
  * @return void
  */
 function gcm_enqueue_admin_scripts() {
-	gcm_enqueue_asset( 'gcm-admin', 'assets/admin.css' );
+	gcm_enqueue_asset( 'gcm-admin', 'admin.css' );
 	gcm_enqueue_asset( 'gcm-admin', 'assets/admin.js', array( 'gcm-global' ) );
 }
 add_action( 'admin_enqueue_scripts', 'gcm_enqueue_admin_scripts', 20 );
+
+/**
+ * Add CSS/JS to the gutenberg editor
+ *
+ * @return void
+ */
+function gcm_enqueue_gutenberg_styles() {
+	wp_enqueue_style( 'gcm-gutenberg', get_theme_file_uri( '/gutenberg.css' ), false );
+	
+	wp_enqueue_script(
+		'gcm-blocks',
+		get_template_directory_uri() . '/assets/blocks.js',
+		array( 'wp-blocks', 'wp-data', 'wp-block-editor' ),
+		filemtime( get_template_directory() . '/assets/blocks.js' ),
+		true
+	);
+	
+	wp_enqueue_script(
+		'gcm-icons',
+		get_template_directory_uri() . '/assets/icons.js',
+		array( 'wp-blocks', 'wp-data', 'wp-block-editor' ),
+		filemtime( get_template_directory() . '/assets/icons.js' ),
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'gcm_enqueue_gutenberg_styles' );
+
+function gcm_block_categories( $categories, $post ) {
+	return array_merge(
+		$categories,
+		array(
+			array(
+				'slug' => 'great-city-medical',
+				'title' => __( 'Great City Medical', 'my-plugin' ),
+				// 'icon'  => file_get_contents( get_template_directory() . '/assets/logo/icon-flat.svg' ),
+//				'icon'  => array(
+//					'src' => file_get_contents( get_template_directory() . '/assets/logo/icon-flat.svg' ),
+//				),
+			),
+		)
+	);
+}
+add_filter( 'block_categories_all', 'gcm_block_categories', 10, 2 );
+
