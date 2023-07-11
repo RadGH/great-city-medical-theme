@@ -1,26 +1,6 @@
 /*
 Global structure
 */
-body {
-	font-family: $font_family_body;
-	font-weight: 300;
-	-webkit-font-smoothing: antialiased;
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-weight: 500;
-	margin: 0 0 15px;
-}
-
-p {
-	margin: 0 0 15px;
-}
-
-strong {
-	font-weight: 500;
-}
+@include core_theme_styles();
+@include editor_formats();

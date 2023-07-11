@@ -2,7 +2,7 @@
 // 1. Use with @media (max-width)
 $break_at_mobile: 480px;
 $break_at_tablet: 768px;
-$break_at_desktop: 1200px;
+$break_at_desktop: 1200px; // 1560?
 
 // 2. Use with @media (min-width)
 $break_above_mobile: $break_at_mobile + 0.1px;
@@ -62,6 +62,7 @@ $color_black_light: $color_gray_4;
 $color_black_lightest: #fafafa; // old: #fafaff
 
 body {
+	// Custom variables
 	--font-sofia-pro: #{$font_family_body};
 
 	--color-purple: #{$color_purple};
@@ -89,4 +90,53 @@ body {
 	--color-text-blue: #{$color_text_blue};
 	--color-black-light: #{$color_black_light};
 	--color-black-lightest: #{$color_black_lightest};
+
+	// Figma variables
+	/* Color styles */
+	--grey: #{$color_gray_4};
+	--white: #{$color_white};
+	--black: #{$color_black};
+	--secondary-text: #{$color_dark_purple};
+	--bg: #{$color_gray_10};
+	--primary--violet: #{$color_purple};
+	--primary--blue: #{$color_blue};
+
+	// Figma variables
+	/* Text-size styles */
+	--button: 16px;
+	--h1: 80px;
+	--h2: 60px;
+	--h3: 32px;
+	--h4: 28px;
+	--h5: 18px;
+	--mobile---h1: 36px;
+	--mobile---h2: 32px;
+	--mobile---h3: 24px;
+	--mobile---h4: 18px;
+	--mobile---h4-light: 18px;
+	--mobile---h3-light--uppercase: 24px;
+	--body--light: 16px;
+	--body--light--uppercase: 16px;
+	--body--medium: 16px;
+	--small--light--uppercase: 14px;
+	--small--light: 14px;
+	--small-2--medium: 12px;
+	--small-2--light: 12px;
+
+	// These didn't exist in Figma, but should have
+	--body--mobile: 18px;
+}
+
+// Border width based on pixel ratio
+// 1.5x pixel ratio = 1.5px border width
+body {
+	--border-1px-width: 1px;
+
+	@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+		--border-1px-width: 1.5px;
+	}
+
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+		--border-1px-width: 2px;
+	}
 }

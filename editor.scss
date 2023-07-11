@@ -3,22 +3,23 @@
 @import "assets/styles/advanced/variables.scss";
 @import "assets/styles/advanced/functions.scss";
 @import "assets/styles/advanced/mixins.scss";
-// @import "assets/styles/advanced/reset.scss";
+@import "assets/styles/advanced/reset.scss";
 @import "assets/styles/advanced/typography.scss";
 // @import "assets/styles/advanced/accessibility.scss";
 
 // Admin
 // @import "assets/styles/admin/acf-fields.scss";
 // @import "assets/styles/admin/admin.scss";
-@import "assets/styles/admin/editor.scss";
 // @import "assets/styles/admin/dashicon.scss";
+@import "assets/styles/admin/editor-classic.scss";
+// @import "assets/styles/admin/editor-gutenberg.scss";
 
 // Blocks
-// @import "assets/styles/blocks/card.scss";
+// @import "assets/styles/blocks/_all_blocks.scss";
 
 // Structure
-@import "assets/styles/structure/core.scss";
-@import "assets/styles/structure/theme.scss";
+// @import "assets/styles/structure/core.scss";
+// @import "assets/styles/structure/theme.scss";
 @import "assets/styles/structure/buttons.scss";
 @import "assets/styles/structure/fields.scss";
 // @import "assets/styles/structure/header.scss";
@@ -31,4 +32,4 @@
 // @import "assets/styles/modules/locations.scss";
 
 // Plugins
-// @import "assets/styles/plugins/translatepress.scss";
+// @import "assets/styles/plugins/_all_plugins.scss";

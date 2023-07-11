@@ -1,0 +1,4 @@
+body .editor-styles-wrapper {
+	@include core_theme_styles();
+	@include editor_formats();
+}

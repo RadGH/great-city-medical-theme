@@ -199,7 +199,7 @@ function gcm_icon_config() {
 		),
 		'medicine' => array(
 			'filename' => 'medicine.svg',
-			'tags' => 'medicine',
+			'tags' => 'medicine pills prescription drug',
 		),
 		'menstrual-cup' => array(
 			'filename' => 'menstrual-cup.svg',

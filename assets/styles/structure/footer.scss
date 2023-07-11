@@ -15,16 +15,13 @@
 }
 
 // Contact us content
-.footer-contact h6 {
-	@include font_style_eyebrow;
-	margin: 0 0 6px;
-}
-
 .footer-contact h1,
 .footer-contact h2 {
-	@include font_size_h2;
 	line-height: 1;
-	margin: 0 0 14px;
+}
+
+.footer-contact h6 {
+	margin: 0 0 6px;
 }
 
 .footer-contact p {

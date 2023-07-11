@@ -1,0 +1,14 @@
+{
+	"name": "gcm/patients-summary",
+	"title": "Patients Summary",
+	"description": "Displays a summary of patients for the Great City Medical website.",
+	"style": [],
+	"category": "great-city-medical",
+	"icon": "admin-gcm-icon",
+	"keywords": ["content"],
+	"align": "full",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "patients-summary.php"
+	}
+}

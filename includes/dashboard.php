@@ -10,7 +10,7 @@ function gcm_register_options_pages() {
 	acf_add_options_page(array(
 		'menu_slug'     => 'acf-gcm-root',
 		'menu_title' 	=> __( 'Great City Medical', 'gcm' ),
-		'icon_url'      => 'dashicons-gcm-icon-medium',
+		'icon_url'      => 'dashicons-gcm-icon',
 		'capability'    => 'manage_options',
 		'page_title' 	=> __( 'General Settings', 'gcm' ),
 		'post_id'       => null,

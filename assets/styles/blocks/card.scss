@@ -1,3 +1,5 @@
-.gcm-card-block .card-button .text-blue {
-	color: $color_blue;
+.gcm-card-block {
+	.card-button .text-blue {
+		color: var(--color-blue, $color_blue);
+	}
 }

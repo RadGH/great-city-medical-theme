@@ -1,0 +1,20 @@
+.yoast-breadcrumbs {
+	color: var(--secondary-text, #68626E);
+
+	& > span {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-content: space-around;
+	}
+
+	a:not(:hover):not(:focus) {
+		color: var(--secondary-text, #68626E);
+		text-decoration: none;
+	}
+
+	.breadcrumb_last {
+		color: var(--primary-blue, #0957DE);
+	}
+}

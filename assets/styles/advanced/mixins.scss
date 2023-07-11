@@ -12,3 +12,158 @@
 
 	background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='" + $color + "' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
 }
+
+
+// Font size base
+// <html>
+@mixin font_size_base( $responsive: true ) {
+	font-size: var( --body--light, 16px );
+	@if $responsive {
+		@media ( max-width: $break_at_desktop ) {
+			font-size: var( --body--mobile, 18px );
+		}
+	}
+}
+
+// Font size for headings
+// <h1> -> <h6>
+@mixin font_size_h1( $responsive: true ) {
+	font-size: var( --h1, 80px );
+	@if $responsive {
+		@media ( max-width: $break_at_desktop ) {
+			font-size: var( --mobile---h1, 36px );
+		}
+	}
+}
+
+@mixin font_size_h2( $responsive: true ) {
+	font-size: var( --h2, 60px );
+	@if $responsive {
+		@media ( max-width: $break_at_desktop ) {
+			font-size: var( --mobile---h2, 32px );
+		}
+	}
+}
+
+@mixin font_size_h3( $responsive: true ) {
+	font-size: var( --h3, 32px );
+	@if $responsive {
+		@media ( max-width: $break_at_desktop ) {
+			font-size: var( --mobile---h3, 24px );
+		}
+	}
+}
+
+@mixin font_size_h4( $responsive: true ) {
+	font-size: var( --h4, 28px );
+	@if $responsive {
+		@media ( max-width: $break_at_desktop ) {
+			font-size: var( --mobile---h4, 18px );
+		}
+	}
+}
+
+@mixin font_size_h5( $responsive: true ) {
+	font-size: var( --h5, 18px );
+	@if $responsive {
+		@media ( max-width: $break_at_desktop ) {
+			font-size: var( --mobile---h5, 18px );
+		}
+	}
+}
+
+@mixin font_size_h6( $responsive: true ) {
+	font-size: var( --h6, 14px );
+	@if $responsive {
+		@media ( max-width: $break_at_desktop ) {
+			font-size: var( --mobile---h6, 16px );
+		}
+	}
+}
+
+
+// Core styles
+// Note: Classic editor uses $responsive = false
+@mixin core_theme_styles( $responsive: true ) {
+
+	// Font sizes
+	@include font_size_base( $responsive );
+
+	h1 { @include font_size_h1( $responsive ); }
+	h2 { @include font_size_h2( $responsive ); }
+	h3 { @include font_size_h3( $responsive ); }
+	h4 { @include font_size_h4( $responsive ); }
+	h5 { @include font_size_h5( $responsive ); }
+	h6 { @include font_size_h6( $responsive ); }
+
+	// Base typography
+	font-family: $font_family_body;
+	font-weight: 300;
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.4;
+
+	@media ( max-width: $break_above_mobile ) {
+		line-height: 1.5;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 500;
+		margin: 0 0 15px;
+	}
+
+	p {
+		margin: 0 0 15px;
+	}
+
+	strong {
+		font-weight: 500;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: underline;
+
+		&:hover {
+			color: var( --color-purple, $color_purple );
+		}
+	}
+
+}
+
+
+/*
+Visual Editor and Gutenberg Block element styles
+> editor.php
+> blocks.php
+*/
+@mixin editor_formats() {
+	.font-sofia-pro { font-family: $font_family_body; }
+
+	.text-color-purple { color: $color_purple; }
+	.text-color-purple-light { color: $color_purple_light; }
+	.text-color-purple-lightest { color: $color_purple_lightest; }
+
+	.text-color-blue { color: $color_blue; }
+	.text-color-blue-light { color: $color_blue_light; }
+	.text-color-blue-lightest { color: $color_blue_lightest; }
+
+	.text-color-black { color: $color_black; }
+	.text-color-black-light { color: $color_black_light; }
+	.text-color-black-lightest { color: $color_black_lightest; }
+
+	.text-color-white { color: $color_white; }
+
+	.heading-eyebrow-text {
+		// Text style for "eyebrow" headings. Typically an <h6>
+		// This is the small blue text that appears before titles on most pages/sections, including the contact us text in the footer
+		color: $color_text_blue;
+		font-weight: 300;
+		text-transform: uppercase;
+	}
+
+}

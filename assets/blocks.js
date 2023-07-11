@@ -85,7 +85,7 @@ wp.blocks.registerBlockType('gcm/heading-eyebrow', {
 	},
 	edit: function (props) {
 		return wp.element.createElement(wp.blockEditor.RichText, {
-			className: 'eyebrow-heading',
+			className: 'heading-eyebrow-title',
 			tagName: 'div',
 			onChange: (c) => { props.setAttributes({ content: c }) },
 			value: props.attributes.content,
@@ -94,7 +94,7 @@ wp.blocks.registerBlockType('gcm/heading-eyebrow', {
 	},
 	save: function (props) {
 		return wp.element.createElement(wp.blockEditor.RichText.Content, {
-			className: 'eyebrow-heading',
+			className: 'heading-eyebrow-title',
 			tagName: 'div',
 			value: props.attributes.content
 		});

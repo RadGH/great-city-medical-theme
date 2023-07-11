@@ -18,11 +18,13 @@ Text Domain: gcm
 // Admin
 // @import "assets/styles/admin/acf-fields.scss";
 // @import "assets/styles/admin/admin.scss";
-// @import "assets/styles/admin/editor.scss";
 // @import "assets/styles/admin/dashicon.scss";
+// @import "assets/styles/admin/editor.scss";
+// @import "assets/styles/admin/editor-classic.scss";
+// @import "assets/styles/admin/editor-gutenberg.scss";
 
 // Blocks
-@import "assets/styles/blocks/card.scss";
+@import "assets/styles/blocks/_all_blocks.scss";
 
 // Structure
 @import "assets/styles/structure/core.scss";
@@ -40,7 +42,7 @@ Text Domain: gcm
 @import "assets/styles/modules/languages.scss";
 
 // Plugins
-@import "assets/styles/plugins/translatepress.scss";
+@import "assets/styles/plugins/_all_plugins.scss";
 
 /*
 Breakpoints. Uses 0.1px for minimum width to avoid clashing breakpoints and support high density displays.

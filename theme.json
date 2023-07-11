@@ -93,10 +93,9 @@
 			"defaultGradients": false,
 			"defaultPalette": false
 		},
-		"custom": {},
 		"layout": {
 			"contentSize": "768px",
-			"wideSize": "1200px"
+			"wideSize": "1560px"
 		},
 		"spacing": {
 			"margin": false,
@@ -131,7 +130,7 @@
 		},
 		"typography": {
 			"customFontSize": true,
-			"lineHeight": false,
+			"lineHeight": true,
 			"dropCap": true,
 			"fluid": false,
 			"fontStyle": false,
@@ -140,15 +139,15 @@
 			"textDecoration": true,
 			"textTransform": true,
 			"fontSizes": [
-				{ "name": "H1", "slug": "h1", "size": 80 },
-				{ "name": "H2", "slug": "h2", "size": 60 },
-				{ "name": "H3", "slug": "h3", "size": 32 },
-				{ "name": "H4", "slug": "h4", "size": 28 },
-				{ "name": "H5", "slug": "h5", "size": 18 },
-				{ "name": "Large", "slug": "large", "size": 18 },
-				{ "name": "Medium", "slug": "medium", "size": 16 },
-				{ "name": "Small", "slug": "small", "size": 14 },
-				{ "name": "X-Small", "slug": "x-small", "size": 10 }
+				{ "name": "H1", "slug": "h1", "size": "80px" },
+				{ "name": "H2", "slug": "h2", "size": "60px" },
+				{ "name": "H3", "slug": "h3", "size": "32px" },
+				{ "name": "H4", "slug": "h4", "size": "28px" },
+				{ "name": "H5", "slug": "h5", "size": "18px" },
+				{ "name": "Large", "slug": "large", "size": "18px" },
+				{ "name": "Medium", "slug": "medium", "size": "16px" },
+				{ "name": "Small", "slug": "small", "size": "14px" },
+				{ "name": "X-Small", "slug": "x-small", "size": "10px" }
 			],
 			"fontFamilies": [
 				{

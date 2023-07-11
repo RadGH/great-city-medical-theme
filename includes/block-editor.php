@@ -9,6 +9,9 @@ function gcm_register_acf_blocks() {
 	
 	register_block_type( __DIR__ . '/../blocks/card/' );
 	register_block_type( __DIR__ . '/../blocks/icon/' );
+	register_block_type( __DIR__ . '/../blocks/patients-summary/' );
+	register_block_type( __DIR__ . '/../blocks/photo-overlay/' );
+	register_block_type( __DIR__ . '/../blocks/testimonial/' );
 	
 	// The parameters passed to the block type templates:
 	/**
@@ -123,30 +126,25 @@ function gcm_get_block_classes( $block ) {
 }
 
 /**
- * Adds a block pattern category for the theme in order to distinguish our custom patterns from default ones.
+ * Adds a block category for theme blocks.
  *
- * @return void
+ * @param $categories
+ * @param $post
+ *
+ * @return array
  */
-function gcm_register_block_pattern_category() {
-	if ( ! function_exists( 'register_block_pattern_category' ) ) return;
-
-	register_block_pattern_category(
-		'gcm-blocks',
-		array( 'label' => __( 'Great City Medical Blocks', 'gcm' ) )
+function gcm_block_categories( $categories, $post ) {
+	return array_merge(
+		$categories,
+		array(
+			array(
+				'slug' => 'great-city-medical',
+				'title' => __( 'Great City Medical', 'my-plugin' ),
+				// icon disabled for now. to set it up later, follow:
+				// https://github.com/WordPress/gutenberg/issues/11594
+				// 'icon'  => file_get_contents( get_template_directory() . '/assets/logo/icon-flat.svg' ),
+			),
+		)
 	);
 }
-add_action( 'init', 'gcm_register_block_pattern_category' );
-
-function my_theme_register_block_patterns() {
-	if( function_exists( 'register_block_pattern' ) ) {
-		register_block_pattern(
-			'my-theme/my-custom-pattern',
-			array(
-				'title'      => __( 'My Custom Pattern', 'my-theme' ),
-				'categories' => array( 'my-custom-category' ),
-				'content'    => "<!-- Your block pattern markup here -->",
-			)
-		);
-	}
-}
-add_action( 'init', 'my_theme_register_block_patterns' );
+add_filter( 'block_categories_all', 'gcm_block_categories', 10, 2 );

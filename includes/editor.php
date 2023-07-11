@@ -21,6 +21,16 @@ function gcm_insert_editor_formats( $init_array ) {
 	/* Default Style Formats */
 	$style_formats = array(
 		array(
+			'title'   => 'Formats',
+			'items' => array(
+				array(
+					'title'   => 'Eyebrow Text',
+					'block' => 'h6',
+					'classes'  => 'heading-eyebrow-text',
+				),
+			),
+		),
+		array(
 			'title'   => 'Colors',
 			'items' => array(
 				array(

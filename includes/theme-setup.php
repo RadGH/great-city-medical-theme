@@ -20,8 +20,40 @@ function gcm_setup_theme() {
 		// 'sub_footer'  => __( 'Sub Footer Menu', 'gcm' ),
 	));
 	
-	// old theme settings:
+	// image sizes (overwrite default sizes)
 	
+	// [large]
+	// full content width, one column, @see https://radleysustaire.com/s3/eb065c/figma
+	// 1600px = 20px margin + [1560px] + 20px margin
+	update_option( 'large_size_w', 1560 );
+	update_option( 'large_size_h', 0 );
+	
+	// [medium_large]
+	// one-half content width, two columns, @see https://radleysustaire.com/s3/076920/
+	// 1600px = 20px margin + [764px] + 32px gutter + [764px] + 20px margin
+	update_option( 'medium_large_size_w', 764 );
+	update_option( 'medium_large_size_h', 0 );
+	
+	// [medium]
+	// one-third content width, three columns, @see https://radleysustaire.com/s3/c39214/figma
+	// 1600px = 20px margin + [500px] + 30px gutter + [500px] + 30px gutter + [500px] + 20px margin
+	update_option( 'medium_size_w', 500 ); // third page width (when using 32px gutter)
+	update_option( 'medium_size_h', 0 );
+	
+	// thumbnail
+	// cropped to square
+	update_option( 'thumbnail_size_w', 300 );
+	update_option( 'thumbnail_size_h', 300 );
+	
+	// thumbnail_uncropped
+	// preserve aspect ratio
+	add_image_size( 'thumbnail_uncropped', 300, 300, false );
+	
+	// remove old image sizes so that they are no longer created when images are uploaded
+	remove_image_size( '1536x1536' );
+	remove_image_size( '2048x2048' );
+	
+	// old theme settings:
 	// add_theme_support( 'post-formats', array( 'image', 'gallery', 'video', 'audio', 'link', 'quote' ) );
 	// add_post_type_support( 'page', 'excerpt' );
 	
@@ -211,21 +243,4 @@ function gcm_enqueue_gutenberg_styles() {
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'gcm_enqueue_gutenberg_styles' );
-
-function gcm_block_categories( $categories, $post ) {
-	return array_merge(
-		$categories,
-		array(
-			array(
-				'slug' => 'great-city-medical',
-				'title' => __( 'Great City Medical', 'my-plugin' ),
-				// 'icon'  => file_get_contents( get_template_directory() . '/assets/logo/icon-flat.svg' ),
-//				'icon'  => array(
-//					'src' => file_get_contents( get_template_directory() . '/assets/logo/icon-flat.svg' ),
-//				),
-			),
-		)
-	);
-}
-add_filter( 'block_categories_all', 'gcm_block_categories', 10, 2 );
 

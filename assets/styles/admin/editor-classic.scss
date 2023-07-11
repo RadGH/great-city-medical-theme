@@ -1,0 +1,4 @@
+body.mce-content-body {
+	@include core_theme_styles( false );
+	@include editor_formats();
+}

@@ -6,13 +6,14 @@
 @import "assets/styles/advanced/typography.scss";
 
 // Admin
-@import "assets/styles/admin/acf-fields.scss";
+// @import "assets/styles/admin/acf-fields.scss";
 // @import "assets/styles/admin/admin.scss";
-@import "assets/styles/admin/editor.scss";
 // @import "assets/styles/admin/dashicon.scss";
+// @import "assets/styles/admin/editor-classic.scss";
+@import "assets/styles/admin/editor-gutenberg.scss";
 
 // Blocks
-@import "assets/styles/blocks/card.scss";
+@import "assets/styles/blocks/_all_blocks.scss";
 
 // Structure
 @import "assets/styles/structure/core.scss";
@@ -21,3 +22,4 @@
 @import "assets/styles/modules/icons.scss";
 
 // Plugins
+// @import "assets/styles/plugins/_all_plugins.scss";
