@@ -59,3 +59,4 @@ function gcm_allow_svg_upload( $mimes ) {
 	return $mimes;
 }
 add_filter( 'upload_mimes', 'gcm_allow_svg_upload' );
+

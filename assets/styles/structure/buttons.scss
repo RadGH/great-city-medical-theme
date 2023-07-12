@@ -101,7 +101,7 @@
 	}
 }
 
-// Purple, solid
+// Purple, solid, primary
 .button {
 	@include button_primary( 'purple' );
 	&:hover {

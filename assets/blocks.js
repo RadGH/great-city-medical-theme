@@ -71,58 +71,116 @@ wp.blocks.registerBlockStyle('core/heading', {
 // #############
 // Custom Blocks
 
-// Heading (Eyebrow)
-wp.blocks.registerBlockType('gcm/heading-eyebrow', {
-	title: 'Heading (Eyebrow)',
-	icon: 'gcm',
-	category: 'great-city-medical',
-	attributes: {
-		content: {
-			type: 'string',
-			source: 'html',
-			selector: 'div',
-		},
-	},
-	edit: function (props) {
-		return wp.element.createElement(wp.blockEditor.RichText, {
-			className: 'heading-eyebrow-title',
-			tagName: 'div',
-			onChange: (c) => { props.setAttributes({ content: c }) },
-			value: props.attributes.content,
-			placeholder: 'Enter text...'
-		});
-	},
-	save: function (props) {
-		return wp.element.createElement(wp.blockEditor.RichText.Content, {
-			className: 'heading-eyebrow-title',
-			tagName: 'div',
-			value: props.attributes.content
-		});
-	},
-});
+// When WP is loaded
+wp.domReady(function () {
 
-/*
-wp.blocks.registerBlockType('gcm/my-block', {
-	title: 'My Block',
-	category: 'great-city-medical',
-	icon: 'smiley',
-	supports: {
-		html: false,  // Disables the HTML edit mode
-	},
-	edit: (props) => {
-		return wp.element.createElement(
-			wp.blockEditor.InnerBlocks,
-			{
-				template: [
-					['core/image', {}],
-					['core/paragraph', { placeholder: 'Enter text...' }],
-				],
-				templateLock: 'all',
-			}
-		);
-	},
-	save: () => {
-		return wp.element.createElement(wp.blockEditor.InnerBlocks.Content);
-	},
+	let setup_button_styles = function() {
+		// Remove built-in button styles
+		wp.blocks.unregisterBlockStyle('core/button', 'outline');
+
+		// Add custom button styles for primary and secondary buttons
+		// Styles mimic editor.php -> gcm_insert_editor_formats()
+
+		// Style
+		// (note: primary is the default)
+		wp.blocks.registerBlockStyle('core/button', {
+			name: 'secondary',
+			label: 'Secondary'
+		});
+		wp.blocks.registerBlockStyle('core/button', {
+			name: 'outline',
+			label: 'Outline'
+		});
+		wp.blocks.registerBlockStyle('core/button', {
+			name: 'text',
+			label: 'Text'
+		});
+
+		// Color
+		wp.blocks.registerBlockStyle('core/button', {
+			name: 'purple',
+			label: 'Purple'
+		});
+		wp.blocks.registerBlockStyle('core/button', {
+			name: 'blue',
+			label: 'Blue'
+		});
+		wp.blocks.registerBlockStyle('core/button', {
+			name: 'black',
+			label: 'Black'
+		});
+		wp.blocks.registerBlockStyle('core/button', {
+			name: 'white',
+			label: 'White'
+		});
+
+	}
+
+	let setup_group_styles = function() {
+	};
+
+	let setup_heading_styles = function() {
+		// Heading (Eyebrow)
+		wp.blocks.registerBlockType('gcm/heading-eyebrow', {
+			title: 'Heading (Eyebrow)',
+			icon: 'gcm',
+			category: 'great-city-medical',
+			attributes: {
+				content: {
+					type: 'string',
+					source: 'html',
+					selector: 'div',
+				},
+			},
+			edit: function (props) {
+				return wp.element.createElement(wp.blockEditor.RichText, {
+					className: 'heading-eyebrow-title',
+					tagName: 'div',
+					onChange: (c) => { props.setAttributes({ content: c }) },
+					value: props.attributes.content,
+					placeholder: 'Enter text...'
+				});
+			},
+			save: function (props) {
+				return wp.element.createElement(wp.blockEditor.RichText.Content, {
+					className: 'heading-eyebrow-title',
+					tagName: 'div',
+					value: props.attributes.content
+				});
+			},
+		});
+	}
+
+	/*
+	wp.blocks.registerBlockType('gcm/my-block', {
+		title: 'My Block',
+		category: 'great-city-medical',
+		icon: 'smiley',
+		supports: {
+			html: false,  // Disables the HTML edit mode
+		},
+		edit: (props) => {
+			return wp.element.createElement(
+				wp.blockEditor.InnerBlocks,
+				{
+					template: [
+						['core/image', {}],
+						['core/paragraph', { placeholder: 'Enter text...' }],
+					],
+					templateLock: 'all',
+				}
+			);
+		},
+		save: () => {
+			return wp.element.createElement(wp.blockEditor.InnerBlocks.Content);
+		},
+	});
+	*/
+
+	setup_button_styles();
+
+	setup_group_styles();
+
+	setup_heading_styles();
+
 });
-*/

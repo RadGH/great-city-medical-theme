@@ -8,3 +8,8 @@
 	background: $color_gray_10;
 	padding: 90px 0;
 }
+
+// Group blocks that are immediate children of an article are separated by 150px
+article > .wp-block-group:not(:last-child) {
+	margin-bottom: 150px;
+}

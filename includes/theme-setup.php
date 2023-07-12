@@ -244,3 +244,37 @@ function gcm_enqueue_gutenberg_styles() {
 }
 add_action( 'enqueue_block_editor_assets', 'gcm_enqueue_gutenberg_styles' );
 
+/**
+ * Display a custom post state for the 404 not found page, similar to how Draft and Pending are displayed
+ */
+function gcm_display_404_not_found_post_state( $post_states, $post ) {
+	$error_page_id = get_field( 'page_404', 'gcm_settings' );
+	
+	if ( $post->ID == $error_page_id ) {
+		$post_states[] = __( '404 Page', 'gcm' );
+	}
+	
+	return $post_states;
+}
+add_filter( 'display_post_states', 'gcm_display_404_not_found_post_state', 10, 2 );
+
+/**
+ * Send a 404 error when viewing the 404 not found page
+ */
+function gcm_send_404_error() {
+	$is_404 = is_404();
+	
+	// Check if accessing the 404 page directly, which also counts as "not found" (although it technically exists)
+	if ( ! $is_404 ) {
+		$error_page_id = get_field( 'page_404', 'gcm_settings' );
+		if ( get_queried_object_id() == $error_page_id ) $is_404 = true;
+	}
+	
+	if ( $is_404 ) {
+		status_header( 404 );
+		nocache_headers();
+		include( get_query_template( '404' ) );
+		die();
+	}
+}
+add_action( 'template_redirect', 'gcm_send_404_error' );

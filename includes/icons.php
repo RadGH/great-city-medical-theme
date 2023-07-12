@@ -235,7 +235,11 @@ function gcm_icon_config() {
 		),
 		'quote' => array(
 			'filename' => 'quote.svg',
-			'tags' => 'quote',
+			'tags' => 'left double quote',
+		),
+		'r-quote' => array(
+			'filename' => 'r-quote.svg',
+			'tags' => 'right double quote',
 		),
 		'sanitary-pad' => array(
 			'filename' => 'sanitary-pad.svg',

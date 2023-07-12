@@ -1,4 +1,4 @@
-<article <?php post_class( 'entry' ); ?>>
+<article <?php post_class( 'classic-entry' ); ?>>
 	
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
