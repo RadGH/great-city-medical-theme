@@ -1,4 +1,98 @@
+// Theme styles, editor formats, etc
 body .editor-styles-wrapper {
-	@include core_theme_styles();
+	@include body_styles( true );
+	@include theme_styles( true );
 	@include editor_formats();
+	@include block_formats();
+	@include gutenberg_buttons();
+}
+
+// Gutenberg editor: button groups
+.gcm-editor--button-group {
+	.components-button-group {
+		width: 100%;
+	}
+	.gcm-editor--button-group--grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
+	}
+	.gcm-editor--button-group--grid button {
+		place-content: center;
+	}
+}
+
+// Gutenberg editor: Button color and style fields
+// (note: this is for the buttons in the custom field, not the button itself)
+.gcm-editor-button-colors button.components-button {
+	&, &:hover, &:focus {
+		&.color-purple {
+			border-color: $color_purple;
+			background: $color_purple;
+			color: $color_white;
+		}
+		&.color-blue {
+			border-color: $color_blue;
+			background: $color_blue;
+			color: $color_white;
+		}
+		&.color-black {
+			border-color: $color_black;
+			background: $color_black;
+			color: $color_white;
+		}
+		&.color-white {
+			border-color: $color_white;
+			background: $color_white;
+			color: $color_black;
+		}
+	}
+}
+
+// Button style appearance
+// (note: this is for the buttons in the custom field, not the button itself)
+.gcm-editor-button-styles button.components-button {
+	&, &:hover, &:focus {
+		&.style-primary {
+			border-color: $color_black;
+			background: $color_black;
+			color: $color_white;
+		}
+		&.style-secondary {
+			border-color: $color_black;
+			background: $color_black_light;
+			color: $color_black;
+		}
+		&.style-outline {
+			border-color: $color_black;
+			background: $color_white;
+			color: $color_black;
+		}
+		&.style-text {
+			border-color: $color_white;
+			background: $color_white;
+			color: $color_black;
+		}
+	}
+}
+
+// Button style + color selection appearance
+.gcm-editor-button-colors,
+.gcm-editor-button-styles {
+	button.components-button {
+		border-width: 1px;
+		border-style: solid;
+		box-shadow: none !important;
+		border-radius: 50px !important;
+
+		&:hover, &:focus, &.is-primary {
+			box-shadow:
+				0 0 0 2px #fff,
+				0 0 0 3px #006ba1 !important;
+		}
+
+		&:not(.is-primary) {
+			opacity: 0.5;
+		}
+	}
 }

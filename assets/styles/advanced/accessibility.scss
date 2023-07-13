@@ -40,7 +40,7 @@ body.admin-bar a.screen-reader-shortcut:focus {
 
 
 #wpadminbar .screen-reader-shortcut:focus {
-	@extend a.screen-reader-shortcut;
+	@extend .screen-reader-shortcut;
 }
 
 // Disable WP default skip link because we have our own in header.php

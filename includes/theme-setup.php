@@ -142,6 +142,21 @@ function gcm_enqueue_asset( $handle, $asset_path, $deps = array(), $version = nu
 }
 
 /**
+ * Get the version number used for enqueued CSS/JS files from this theme
+ * Note that this version number is updated when the build script runs, see the theme readme for info
+ */
+function gcm_get_theme_version() {
+	// Check if the current host is a subdomain of .radgh.com
+	if ( strpos( $_SERVER['HTTP_HOST'], '.radgh.com' ) !== false ) {
+		// If so, use the current timestamp as the version number
+		// This ensures that the latest version of the theme is always loaded
+		return 'dev_' . time();
+	}else{
+		return wp_get_theme()->get('Version');
+	}
+}
+
+/**
  * Get an array of web fonts used on the website
  *
  * @return string[]
@@ -190,8 +205,8 @@ add_action( 'after_setup_theme', 'gcm_enqueue_editor_scripts', 20 );
  * @return void
  */
 function gcm_enqueue_global_scripts() {
-	gcm_enqueue_asset( 'gcm-global', 'assets/global.css' );
-	gcm_enqueue_asset( 'gcm-global', 'assets/global.js' );
+	gcm_enqueue_asset( 'gcm-global', 'assets/global.css', array(), gcm_get_theme_version() );
+	gcm_enqueue_asset( 'gcm-global', 'assets/global.js', array(), gcm_get_theme_version() );
 }
 add_action( 'wp_enqueue_scripts', 'gcm_enqueue_global_scripts', 15 );
 add_action( 'admin_enqueue_scripts', 'gcm_enqueue_global_scripts', 15 );
@@ -202,8 +217,8 @@ add_action( 'admin_enqueue_scripts', 'gcm_enqueue_global_scripts', 15 );
  * @return void
  */
 function gcm_enqueue_public_scripts() {
-	gcm_enqueue_asset( 'gcm-theme', 'style.css' );
-	gcm_enqueue_asset( 'gcm-theme', 'assets/public.js', array( 'gcm-global' ) );
+	gcm_enqueue_asset( 'gcm-theme', 'style.css', array(), gcm_get_theme_version() );
+	gcm_enqueue_asset( 'gcm-theme', 'assets/public.js', array( 'gcm-global' ), gcm_get_theme_version() );
 }
 add_action( 'wp_enqueue_scripts', 'gcm_enqueue_public_scripts', 20 );
 
@@ -213,8 +228,8 @@ add_action( 'wp_enqueue_scripts', 'gcm_enqueue_public_scripts', 20 );
  * @return void
  */
 function gcm_enqueue_admin_scripts() {
-	gcm_enqueue_asset( 'gcm-admin', 'admin.css' );
-	gcm_enqueue_asset( 'gcm-admin', 'assets/admin.js', array( 'gcm-global' ) );
+	gcm_enqueue_asset( 'gcm-admin', 'admin.css', array(), gcm_get_theme_version() );
+	gcm_enqueue_asset( 'gcm-admin', 'assets/admin.js', array( 'gcm-global' ), gcm_get_theme_version() );
 }
 add_action( 'admin_enqueue_scripts', 'gcm_enqueue_admin_scripts', 20 );
 
@@ -224,22 +239,19 @@ add_action( 'admin_enqueue_scripts', 'gcm_enqueue_admin_scripts', 20 );
  * @return void
  */
 function gcm_enqueue_gutenberg_styles() {
-	wp_enqueue_style( 'gcm-gutenberg', get_theme_file_uri( '/gutenberg.css' ), false );
+	wp_enqueue_style( 'gcm-gutenberg', get_theme_file_uri( '/gutenberg.css' ), false, gcm_get_theme_version() );
+	
+	// The blocks script is compiled using "npm run build" (or "wp-scripts build")
+	// The package.json file in the theme root defines the build script with a custom output-path
+	// @see https://github.com/WordPress/gutenberg/blob/trunk/packages/scripts/README.md
+	// For more info see the theme readme file
+	$block_asset_path = require get_template_directory() . '/assets/js-build/blocks.asset.php';
 	
 	wp_enqueue_script(
 		'gcm-blocks',
-		get_template_directory_uri() . '/assets/blocks.js',
-		array( 'wp-blocks', 'wp-data', 'wp-block-editor' ),
-		filemtime( get_template_directory() . '/assets/blocks.js' ),
-		true
-	);
-	
-	wp_enqueue_script(
-		'gcm-icons',
-		get_template_directory_uri() . '/assets/icons.js',
-		array( 'wp-blocks', 'wp-data', 'wp-block-editor' ),
-		filemtime( get_template_directory() . '/assets/icons.js' ),
-		true
+		get_template_directory_uri() . '/assets/js-build/blocks.js',
+		array(), //$block_asset_path['dependencies'],
+		$block_asset_path['version']
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'gcm_enqueue_gutenberg_styles' );

@@ -1,7 +1,7 @@
 /*!
 Theme Name: Great City Medical
 Description: A custom WordPress theme for Great City Medical. Built by Radley Sustaire and designed by Pavel.
-Version: 1.0.0
+Version: 1.0.0.3
 Author: Radley Sustaire <radleygh@gmail.com>
 Author URI: https://radleysustaire.com/
 Text Domain: gcm
@@ -24,7 +24,9 @@ Text Domain: gcm
 // @import "assets/styles/admin/editor-gutenberg.scss";
 
 // Blocks
-@import "assets/styles/blocks/_all_blocks.scss";
+@import "assets/styles/blocks/card.scss";
+@import "assets/styles/blocks/patients-summary.scss";
+@import "assets/styles/blocks/positioned-elements.scss";
 
 // Structure
 @import "assets/styles/structure/core.scss";

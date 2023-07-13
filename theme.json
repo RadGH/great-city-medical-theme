@@ -43,21 +43,6 @@
 					"color": "#f4f9ff"
 				},
 				{
-					"name": "White",
-					"slug": "white",
-					"color": "#ffffff"
-				},
-				{
-					"name": "Dark Purple",
-					"slug": "dark-purple",
-					"color": "#68626e"
-				},
-				{
-					"name": "Black",
-					"slug": "black",
-					"color": "#0e0d0d"
-				},
-				{
 					"name": "Gray 10",
 					"slug": "gray-10",
 					"color": "#fafafa"
@@ -81,6 +66,21 @@
 					"name": "Gray 2",
 					"slug": "gray-2",
 					"color": "#3e3e3e"
+				},
+				{
+					"name": "Dark Purple",
+					"slug": "dark-purple",
+					"color": "#68626e"
+				},
+				{
+					"name": "White",
+					"slug": "white",
+					"color": "#ffffff"
+				},
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#0e0d0d"
 				}
 			],
 			"customDuotone": false,
@@ -158,6 +158,13 @@
 			]
 		},
 		"blocks": {
+			"core/button": {
+				"color": {},
+				"custom": {},
+				"layout": {},
+				"spacing": {},
+				"typography": {}
+			},
 			"core/paragraph": {
 				"color": {},
 				"custom": {},

@@ -13,17 +13,15 @@ $break_above_desktop: $break_at_desktop + 0.1px;
 $site_content_width: 1600px;
 $site_gutter_width: 20px; // Left/right padding to prevent elements touching the edge of the screen
 
-/*
-Usage #1:
-@media ( max-width: $break_at_mobile ) {
-	Mobile - These styles only appear on mobile
-}
-
-Usage #2:
-@media ( min-width: $break_above_mobile ) {
-	Desktop - These styles do NOT appear on mobile
-}
-*/
+//  Usage #1:
+//  @media ( max-width: $break_at_mobile ) {
+//  	Mobile - These styles only appear on mobile
+//  }
+//
+//  Usage #2:
+//  @media ( min-width: $break_above_mobile ) {
+//  	Desktop - These styles do NOT appear on mobile
+//  }
 
 // Font families
 $font_family_sofia_pro: sofia-pro, Helvetica, Arial, sans-serif;
@@ -61,10 +59,36 @@ $color_text_blue: $color_blue;
 $color_black_light: $color_gray_4;
 $color_black_lightest: #fafafa; // old: #fafaff
 
+// Font Sizes
+$font_size_body: 16px;
+$font_size_body_mobile: 18px;
+
+$font_size_large: 18px;
+$font_size_regular: 16px;
+$font_size_small: 14px;
+$font_size_x_small: 12px;
+
+$font_size_h1: 80px;
+$font_size_h2: 60px;
+$font_size_h3: 32px;
+$font_size_h4: 28px;
+$font_size_h5: 18px;
+$font_size_h6: 18px;
+$font_size_h1_mobile: 36px;
+$font_size_h2_mobile: 32px;
+$font_size_h3_mobile: 24px;
+$font_size_h4_mobile: 18px;
+$font_size_h5_mobile: 18px;
+$font_size_h6_mobile: 18px;
+
+$font_size_button: 16px;
+$font_size_button_mobile: 16px;
+
 body {
-	// Custom variables
+	// Font Families
 	--font-sofia-pro: #{$font_family_body};
 
+	// Colors
 	--color-purple: #{$color_purple};
 	--color-purple-light: #{$color_purple_light};
 	--color-purple-lightest: #{$color_purple_lightest};
@@ -91,52 +115,86 @@ body {
 	--color-black-light: #{$color_black_light};
 	--color-black-lightest: #{$color_black_lightest};
 
-	// Figma variables
-	/* Color styles */
-	--grey: #{$color_gray_4};
-	--white: #{$color_white};
-	--black: #{$color_black};
-	--secondary-text: #{$color_dark_purple};
-	--bg: #{$color_gray_10};
-	--primary--violet: #{$color_purple};
-	--primary--blue: #{$color_blue};
+	// Font Sizes
+	--font-size-body: #{$font_size_body};
+	--font-size-body-mobile: #{$font_size_body_mobile};
 
-	// Figma variables
-	/* Text-size styles */
-	--button: 16px;
-	--h1: 80px;
-	--h2: 60px;
-	--h3: 32px;
-	--h4: 28px;
-	--h5: 18px;
-	--mobile---h1: 36px;
-	--mobile---h2: 32px;
-	--mobile---h3: 24px;
-	--mobile---h4: 18px;
-	--mobile---h4-light: 18px;
-	--mobile---h3-light--uppercase: 24px;
-	--body--light: 16px;
-	--body--light--uppercase: 16px;
-	--body--medium: 16px;
-	--small--light--uppercase: 14px;
-	--small--light: 14px;
-	--small-2--medium: 12px;
-	--small-2--light: 12px;
+	--font-size-large: #{$font_size_large};
+	--font-size-regular: #{$font_size_regular};
+	--font-size-small: #{$font_size_small};
+	--font-size-x-small: #{$font_size_x_small};
 
-	// These didn't exist in Figma, but should have
-	--body--mobile: 18px;
+	--font-size-h1: #{$font_size_h1};
+	--font-size-h2: #{$font_size_h2};
+	--font-size-h3: #{$font_size_h3};
+	--font-size-h4: #{$font_size_h4};
+	--font-size-h5: #{$font_size_h5};
+	--font-size-h6: #{$font_size_h6};
+
+	--font-size-h1-mobile: #{$font_size_h1_mobile};
+	--font-size-h2-mobile: #{$font_size_h2_mobile};
+	--font-size-h3-mobile: #{$font_size_h3_mobile};
+	--font-size-h4-mobile: #{$font_size_h4_mobile};
+	--font-size-h5-mobile: #{$font_size_h5_mobile};
+	--font-size-h6-mobile: #{$font_size_h6_mobile};
+
+	--font-size-button: #{$font_size_button};
+	--font-size-button-mobile: #{$font_size_button_mobile};
+}
+
+// Figma Variables -- Do not use!
+// If any of these variables are used in another SCSS file, replace it as dictated below.
+body.figma-variables {
+	// Colors - Figma variables (aliases)
+	--grey: var( --color-gray_4 );
+	--white: var( --color-white );
+	--black: var( --color-black );
+	--secondary-text: var( --color-dark-purple );
+	--bg: var( --color-gray-10 );
+	--primary-violet: var( --color-purple );
+	--primary-blue: var( --color-blue );
+
+	// Font Sizes - Figma variables (aliases)
+	--button: var( --font-size-button );
+	--h1: var( --font-size-h1 );
+	--h2: var( --font-size-h2 );
+	--h3: var( --font-size-h3 );
+	--h4: var( --font-size-h4 );
+	--h5: var( --font-size-h5 );
+	--mobile---h1: var( --font-size-h1-mobile );
+	--mobile---h2: var( --font-size-h2-mobile );
+	--mobile---h3: var( --font-size-h3-mobile );
+	--mobile---h4: var( --font-size-h4-mobile );
+	--mobile---h4-light: var( --font-size-h4-mobile );
+	--mobile---h3-light--uppercase: var( --font-size-h3-mobile );
+	--body--light: var( --font-size-body );
+	--body--light--uppercase: var( --font-size-body );
+	--body--medium: var( --font-size-body );
+	--small--light--uppercase: var( --font-size-small );
+	--small--light: var( --font-size-small );
+	--small-2--medium: var( --font-size-x-small );
+	--small-2--light: var( --font-size-x-small );
+
+	// (These didn't exist in Figma. I added them for consistency.)
+	--h6: var( --font-size-h6 );
+	--body--mobile: var( --font-size-large );
+	--mobile---h5: var( --font-size-h5-mobile );
+	--mobile---h6: var( --font-size-h6-mobile );
 }
 
 // Border width based on pixel ratio
 // 1.5x pixel ratio = 1.5px border width
 body {
 	--border-1px-width: 1px;
+	--border-2px-width: 2px;
 
 	@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
 		--border-1px-width: 1.5px;
+		--border-2px-width: 3px;
 	}
 
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
 		--border-1px-width: 2px;
+		--border-2px-width: 4px;
 	}
 }

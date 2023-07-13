@@ -1,5 +1,5 @@
 .yoast-breadcrumbs {
-	color: var(--secondary-text, #68626E);
+	color: var( --color-dark-purple, #68626E );
 
 	& > span {
 		display: flex;
@@ -10,11 +10,11 @@
 	}
 
 	a:not(:hover):not(:focus) {
-		color: var(--secondary-text, #68626E);
+		color: var( --color-dark-purple, #68626E );
 		text-decoration: none;
 	}
 
 	.breadcrumb_last {
-		color: var(--primary-blue, #0957DE);
+		color: var( --color-blue, #0957DE );
 	}
 }

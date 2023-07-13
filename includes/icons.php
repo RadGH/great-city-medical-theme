@@ -438,30 +438,6 @@ function gcm_icon_set_style( $svg, $color = '', $type = '', $size = '' ) {
 }
 
 /**
- * Includes the CSS and JS to improve icons and load them via javascript
- *
- * @return void
- */
-/*
-function gcm_icon_svg_list_js() {
-	$url = get_stylesheet_directory_uri() . '/assets/icons/gcm-icons.js';
-	$path = get_stylesheet_directory() . '/assets/icons/gcm-icons.js';
-	$v = filemtime($path);
-	wp_enqueue_script( 'gcm-icon', $url, array( 'jquery' ), $v );
-	
-	// Settings to be sent to js
-	$settings = array(
-		'icons' => gcm_get_icon_settings(),
-		'colors' => gcm_get_icon_colors(),
-	);
-	
-	wp_localize_script( 'gcm-icon', 'gcm_icon_settings', $settings );
-}
-add_action( 'wp_enqueue_scripts', 'gcm_icon_svg_list_js' );
-*/
-
-
-/**
  * Load the icon list in a dropdown for an ACF field.
  *
  * @param $field

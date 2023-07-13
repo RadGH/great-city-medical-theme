@@ -25,8 +25,48 @@ function gcm_insert_editor_formats( $init_array ) {
 			'items' => array(
 				array(
 					'title'   => 'Eyebrow Text',
-					'block' => 'h6',
+					'inline' => 'span',
 					'classes'  => 'heading-eyebrow-text',
+				),
+				array(
+					'title'   => 'H1',
+					'inline' => 'span',
+					'classes'  => 'heading-h1',
+				),
+				array(
+					'title'   => 'H2',
+					'inline' => 'span',
+					'classes'  => 'heading-h2',
+				),
+				array(
+					'title'   => 'H3',
+					'inline' => 'span',
+					'classes'  => 'heading-h3',
+				),
+				array(
+					'title'   => 'H4',
+					'inline' => 'span',
+					'classes'  => 'heading-h4',
+				),
+				array(
+					'title'   => 'H5',
+					'inline' => 'span',
+					'classes'  => 'heading-h5',
+				),
+				array(
+					'title'   => 'H6',
+					'inline' => 'span',
+					'classes'  => 'heading-h6',
+				),
+				array(
+					'title'   => 'Lower Case (abc)',
+					'inline' => 'span',
+					'classes'  => 'text-lowercase',
+				),
+				array(
+					'title'   => 'Upper Case (ABC)',
+					'inline' => 'span',
+					'classes'  => 'text-uppercase',
 				),
 			),
 		),

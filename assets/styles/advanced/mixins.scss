@@ -8,7 +8,9 @@
 
 // Down pointing triangle icon, used for sub menus and dropdowns
 @mixin down_pointing_rectangle( $color ) {
-	$color: str-replace($color, '#', '%23');
+	$color: '' + $color;
+
+	$color: str-replace( $color, '#', '%23' );
 
 	background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='" + $color + "' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
 }
@@ -17,10 +19,10 @@
 // Font size base
 // <html>
 @mixin font_size_base( $responsive: true ) {
-	font-size: var( --body--light, 16px );
+	font-size: var( --font-size-body, 16px );
 	@if $responsive {
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --body--mobile, 18px );
+			font-size: var( --font-size-body-mobile, 18px );
 		}
 	}
 }
@@ -28,67 +30,177 @@
 // Font size for headings
 // <h1> -> <h6>
 @mixin font_size_h1( $responsive: true ) {
-	font-size: var( --h1, 80px );
+	font-size: var( --font-size-h1, 80px );
 	@if $responsive {
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --mobile---h1, 36px );
+			font-size: var( --font-size-h1-mobile, 36px );
 		}
 	}
 }
 
 @mixin font_size_h2( $responsive: true ) {
-	font-size: var( --h2, 60px );
+	font-size: var( --font-size-h2, 60px );
 	@if $responsive {
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --mobile---h2, 32px );
+			font-size: var( --font-size-h2-mobile, 32px );
 		}
 	}
 }
 
 @mixin font_size_h3( $responsive: true ) {
-	font-size: var( --h3, 32px );
+	font-size: var( --font-size-h3, 32px );
 	@if $responsive {
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --mobile---h3, 24px );
+			font-size: var( --font-size-h3-mobile, 24px );
 		}
 	}
 }
 
 @mixin font_size_h4( $responsive: true ) {
-	font-size: var( --h4, 28px );
+	font-size: var( --font-size-h4, 28px );
 	@if $responsive {
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --mobile---h4, 18px );
+			font-size: var( --font-size-h4-mobile, 18px );
 		}
 	}
 }
 
 @mixin font_size_h5( $responsive: true ) {
-	font-size: var( --h5, 18px );
+	font-size: var( --font-size-h5, 18px );
 	@if $responsive {
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --mobile---h5, 18px );
+			font-size: var( --font-size-h5-mobile, 18px );
 		}
 	}
 }
 
 @mixin font_size_h6( $responsive: true ) {
-	font-size: var( --h6, 14px );
+	font-size: var( --font-size-h6, 14px );
 	@if $responsive {
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --mobile---h6, 16px );
+			font-size: var( --font-size-h6-mobile, 16px );
 		}
 	}
 }
 
 
-// Core styles
-// Note: Classic editor uses $responsive = false
-@mixin core_theme_styles( $responsive: true ) {
+@mixin button_primary($color) {
+	color: $color_white;
 
-	// Font sizes
+	@if $color == 'purple' {
+		border: 1px solid $color_purple;
+		background: $color_purple;
+	}
+	@else if $color == 'black' {
+		border: 1px solid $color_black;
+		background: $color_black;
+	}
+	@else if $color == 'blue' {
+		border: 1px solid $color_blue;
+		background: $color_blue;
+	}
+	@else if $color == 'white' {
+		color: $color_black;
+		border: 1px solid $color_white;
+		background: $color_white;
+	}
+}
+
+@mixin button_secondary($color) {
+	@if $color == 'purple' {
+		color: $color_purple;
+		border: 1px solid $color_purple;
+		background: $color_purple_lightest;
+	}
+	@else if $color == 'black' {
+		color: $color_black;
+		border: 1px solid $color_black;
+		background: $color_black_lightest;
+	}
+	@else if $color == 'blue' {
+		color: $color_blue;
+		border: 1px solid $color_blue;
+		background: $color_blue_lightest;
+	}
+	@else if $color == 'white' {
+		color: $color_black;
+		border: 1px solid $color_white;
+		background: $color_black_light;
+	}
+}
+
+@mixin button_outline($color) {
+	background: transparent;
+
+	@if $color == 'purple' {
+		color: $color_purple;
+		border: 1px solid $color_purple;
+	}
+	@else if $color == 'black' {
+		color: $color_black;
+		border: 1px solid $color_black;
+	}
+	@else if $color == 'blue' {
+		color: $color_blue;
+		border: 1px solid $color_blue;
+	}
+	@else if $color == 'white' {
+		color: $color_white;
+		border: 1px solid $color_white;
+		background: $color_black;
+	}
+}
+
+@mixin button_text($color) {
+	background: transparent;
+	border: 1px solid transparent;
+
+	@if $color == 'purple' {
+		color: $color_purple;
+	}
+	@else if $color == 'black' {
+		color: $color_black;
+	}
+	@else if $color == 'blue' {
+		color: $color_blue;
+	}
+	@else if $color == 'white' {
+		color: $color_white;
+	}
+}
+
+@mixin button_transitions() {
+	transition: all 0.2s ease-in-out;
+}
+
+
+
+
+
+
+
+// Body styles
+// Typically applied to the <body> element.
+// With Gutenberg, this is applied to the "body .editor-styles-wrapper" selector instead.
+// The classic editor uses $responsive = false
+@mixin body_styles( $responsive: true ) {
 	@include font_size_base( $responsive );
 
+	font-family: $font_family_body;
+	font-weight: 300;
+	line-height: 1.4;
+	-webkit-font-smoothing: subpixel-antialiased; // or: antialiased
+
+	@media ( max-width: $break_above_mobile ) {
+		line-height: 1.5;
+	}
+}
+
+// Theme styles
+// The classic editor uses $responsive = false
+@mixin theme_styles( $responsive: true ) {
+
+	// Font sizes
 	h1 { @include font_size_h1( $responsive ); }
 	h2 { @include font_size_h2( $responsive ); }
 	h3 { @include font_size_h3( $responsive ); }
@@ -97,15 +209,6 @@
 	h6 { @include font_size_h6( $responsive ); }
 
 	// Base typography
-	font-family: $font_family_body;
-	font-weight: 300;
-	-webkit-font-smoothing: antialiased;
-	line-height: 1.4;
-
-	@media ( max-width: $break_above_mobile ) {
-		line-height: 1.5;
-	}
-
 	h1,
 	h2,
 	h3,
@@ -136,11 +239,9 @@
 }
 
 
-/*
-Visual Editor and Gutenberg Block element styles
-> editor.php
-> blocks.php
-*/
+// Visual Editor and Gutenberg Block element styles
+// see editor.php
+// see blocks.php
 @mixin editor_formats() {
 	.font-sofia-pro { font-family: $font_family_body; }
 
@@ -158,6 +259,9 @@ Visual Editor and Gutenberg Block element styles
 
 	.text-color-white { color: $color_white; }
 
+	.text-lowercase { text-transform: lowercase; }
+	.text-uppercase { text-transform: uppercase; }
+
 	.heading-eyebrow-text {
 		// Text style for "eyebrow" headings. Typically an <h6>
 		// This is the small blue text that appears before titles on most pages/sections, including the contact us text in the footer
@@ -166,4 +270,193 @@ Visual Editor and Gutenberg Block element styles
 		text-transform: uppercase;
 	}
 
+	.heading-h1 { @include font_size_h1(); }
+	.heading-h2 { @include font_size_h2(); }
+	.heading-h3 { @include font_size_h3(); }
+	.heading-h4 { @include font_size_h4(); }
+	.heading-h5 { @include font_size_h5(); }
+	.heading-h6 { @include font_size_h6(); }
+
+}
+
+// Block editor formats
+// see blocks.js
+@mixin block_formats() {
+
+	/*
+	Group Styles
+	*/
+
+
+	/*
+	Rounded Styles
+	*/
+
+	// Rounded (100%)
+	.wp-block-image .is-style-rounded img,
+	.wp-block-image.is-style-rounded img,
+	.wp-block-group.is-style-rounded {
+		border-radius: 100%;
+		overflow: hidden;
+	}
+
+	// Rounded (Hero)
+	.wp-block-image .is-style-rounded-hero img,
+	.wp-block-image.is-style-rounded-hero img,
+	.wp-block-group.is-style-rounded-hero {
+		border-radius: 24px 100px;
+		overflow: hidden;
+
+		@media ( max-width: $break_at_desktop ) {
+			border-radius: 10px 45px; // 10.712px 44.634px
+		}
+	}
+}
+
+// Gutenberg button block
+@mixin gutenberg_buttons {
+	.wp-block-button {
+
+		// Purple (default if no other color selected)
+		& {
+			.wp-block-button__link {
+				@include button_transitions();
+
+				@include button_primary( 'purple' );
+				&:hover { @include button_secondary( 'purple' ); }
+			}
+		}
+
+		// Purple, secondary
+		&.button-style-secondary {
+			.wp-block-button__link {
+				@include button_secondary( 'purple' );
+				&:hover { @include button_primary( 'purple' ); }
+			}
+		}
+
+		// Purple, outline
+		&.button-style-outline {
+			.wp-block-button__link {
+				@include button_outline( 'purple' );
+				&:hover { @include button_primary( 'purple' ); }
+			}
+		}
+
+		// Purple, text
+		&.button-style-text {
+			.wp-block-button__link {
+				@include button_text( 'purple' );
+				&:hover { @include button_outline( 'purple' ); }
+			}
+		}
+
+		// Blue
+		&.button-color-blue {
+
+			&.button-style-primary {
+				.wp-block-button__link {
+					@include button_primary( 'blue' );
+					&:hover { @include button_secondary( 'blue' ); }
+				}
+			}
+
+			// Blue, secondary
+			&.button-style-secondary {
+				.wp-block-button__link {
+					@include button_secondary( 'blue' );
+					&:hover { @include button_primary( 'blue' ); }
+				}
+			}
+
+			// Blue, outline
+			&.button-style-outline {
+				.wp-block-button__link {
+					@include button_outline( 'blue' );
+					&:hover { @include button_primary( 'blue' ); }
+				}
+			}
+
+			// Blue, text
+			&.button-style-text {
+				.wp-block-button__link {
+					@include button_text( 'blue' );
+					&:hover { @include button_outline( 'blue' ); }
+				}
+			}
+
+		}
+
+		// Black
+		&.button-color-black {
+
+			&.button-style-primary {
+				.wp-block-button__link {
+					@include button_primary( 'black' );
+					&:hover { @include button_secondary( 'black' ); }
+				}
+			}
+
+			// Black, secondary
+			&.button-style-secondary {
+				.wp-block-button__link {
+					@include button_secondary( 'black' );
+					&:hover { @include button_primary( 'black' ); }
+				}
+			}
+
+			// Black, outline
+			&.button-style-outline {
+				.wp-block-button__link {
+					@include button_outline( 'black' );
+					&:hover { @include button_primary( 'black' ); }
+				}
+			}
+
+			// Black, text
+			&.button-style-text {
+				.wp-block-button__link {
+					@include button_text( 'black' );
+					&:hover { @include button_outline( 'black' ); }
+				}
+			}
+
+		}
+
+		// White
+		&.button-color-white {
+
+			&.button-style-primary {
+				.wp-block-button__link {
+					@include button_primary( 'white' );
+					&:hover { @include button_secondary( 'white' ); }
+				}
+			}
+
+			// White, secondary
+			&.button-style-secondary {
+				.wp-block-button__link {
+					@include button_primary( 'white' );
+					&:hover { @include button_secondary( 'white' ); }
+				}
+			}
+
+			// White, outline
+			&.button-style-outline {
+				.wp-block-button__link {
+					@include button_outline( 'white' );
+					&:hover { @include button_primary( 'white' ); }
+				}
+			}
+
+			// White, text
+			&.button-style-text {
+				.wp-block-button__link {
+					@include button_text( 'white' );
+					&:hover { @include button_outline( 'white' ); }
+				}
+			}
+
+		}
+	}
 }

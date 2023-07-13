@@ -1,0 +1,12 @@
+// Positioned container, which can contain other elements, but also contains "Positioned Elements"
+.wp-block-gcm-positioned-container {
+	position: relative;
+
+	// Positioned elements must be inside a positioned container in order to become absolute
+	.wp-block-gcm-positioned-element {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+}

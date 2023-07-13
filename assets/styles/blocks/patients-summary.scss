@@ -25,15 +25,18 @@
 		line-height: 1.1;
 	}
 
+	/*
 	.patients-count .patients-count-number {
 		display: block;
-		font-size: 18px;
+		font-size: $font_size_large;
 		font-weight: 500;
 		color: var(--color-blue, $color_blue);
-	}
+	}*/
 
+	/*
 	.patients-count .patients-count-label {
 		display: block;
 		text-transform: lowercase;
 	}
+	*/
 }

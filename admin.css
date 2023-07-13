@@ -1,0 +1,394 @@
+body {
+  --font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
+  --color-purple: #9069ac;
+  --color-purple-light: #e6c8ff;
+  --color-purple-lightest: #faf4ff;
+  --color-blue: #0957de;
+  --color-blue-light: #c9dcfd;
+  --color-blue-lightest: #f4f8ff;
+  --color-white: #ffffff;
+  --color-dark-purple: #68626e;
+  --color-black: #0e0d0d;
+  --color-gray-10: #fafafa;
+  --color-gray-8: #f1f1f1;
+  --color-gray-6: #e7e7e7;
+  --color-gray-4: #e3e3e3;
+  --color-gray-2: #3e3e3e;
+  --color-text-primary: #0e0d0d;
+  --color-text-secondary: #68626e;
+  --color-text-purple: #9069ac;
+  --color-text-blue: #0957de;
+  --color-black-light: #e3e3e3;
+  --color-black-lightest: #fafafa;
+  --font-size-body: 16px;
+  --font-size-body-mobile: 18px;
+  --font-size-large: 18px;
+  --font-size-regular: 16px;
+  --font-size-small: 14px;
+  --font-size-x-small: 12px;
+  --font-size-h1: 80px;
+  --font-size-h2: 60px;
+  --font-size-h3: 32px;
+  --font-size-h4: 28px;
+  --font-size-h5: 18px;
+  --font-size-h6: 18px;
+  --font-size-h1-mobile: 36px;
+  --font-size-h2-mobile: 32px;
+  --font-size-h3-mobile: 24px;
+  --font-size-h4-mobile: 18px;
+  --font-size-h5-mobile: 18px;
+  --font-size-h6-mobile: 18px;
+  --font-size-button: 16px;
+  --font-size-button-mobile: 16px;
+}
+
+body.figma-variables {
+  --grey: var( --color-gray_4 );
+  --white: var( --color-white );
+  --black: var( --color-black );
+  --secondary-text: var( --color-dark-purple );
+  --bg: var( --color-gray-10 );
+  --primary-violet: var( --color-purple );
+  --primary-blue: var( --color-blue );
+  --button: var( --font-size-button );
+  --h1: var( --font-size-h1 );
+  --h2: var( --font-size-h2 );
+  --h3: var( --font-size-h3 );
+  --h4: var( --font-size-h4 );
+  --h5: var( --font-size-h5 );
+  --mobile---h1: var( --font-size-h1-mobile );
+  --mobile---h2: var( --font-size-h2-mobile );
+  --mobile---h3: var( --font-size-h3-mobile );
+  --mobile---h4: var( --font-size-h4-mobile );
+  --mobile---h4-light: var( --font-size-h4-mobile );
+  --mobile---h3-light--uppercase: var( --font-size-h3-mobile );
+  --body--light: var( --font-size-body );
+  --body--light--uppercase: var( --font-size-body );
+  --body--medium: var( --font-size-body );
+  --small--light--uppercase: var( --font-size-small );
+  --small--light: var( --font-size-small );
+  --small-2--medium: var( --font-size-x-small );
+  --small-2--light: var( --font-size-x-small );
+  --h6: var( --font-size-h6 );
+  --body--mobile: var( --font-size-large );
+  --mobile---h5: var( --font-size-h5-mobile );
+  --mobile---h6: var( --font-size-h6-mobile );
+}
+
+body {
+  --border-1px-width: 1px;
+  --border-2px-width: 2px;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+  body {
+    --border-1px-width: 1.5px;
+    --border-2px-width: 3px;
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  body {
+    --border-1px-width: 2px;
+    --border-2px-width: 4px;
+  }
+}
+
+/*
+Custom search replace
+https://css-tricks.com/snippets/sass/str-replace-function/
+*/
+/*
+Icon picker in acf dropdown
+*/
+.select2-selection .acf-selection .icon-title {
+  display: inline-block;
+}
+.select2-selection .acf-selection .icon-svg {
+  display: inline-block;
+  margin-right: 3px;
+}
+.select2-selection .acf-selection .icon-svg svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+/*
+Start: Position field
+- this field is used in the field group "Clone - Elements"
+  the field is named "Position" with field key field_64a9dbae89ca6
+  https://greatcitymedical.radgh.com/wp-admin/post.php?post=4303&action=edit
+- this is a button group of arrows for top left through bottom right (center is not used)
+- a custom class "gcm-field-position" was added to the ACF field
+*/
+.acf-field.gcm-field-position .acf-button-group {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(1) {
+  grid-row: 1;
+  grid-column: 1/3;
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(2) {
+  grid-row: 1;
+  grid-column: 3/5;
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(3) {
+  grid-row: 1;
+  grid-column: 5/7;
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(4) {
+  grid-row: 2;
+  grid-column: 1/3;
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(5) {
+  grid-row: 2;
+  grid-column: 5/7;
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(6) {
+  grid-row: 3;
+  grid-column: 1/3;
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(7) {
+  grid-row: 3;
+  grid-column: 3/5;
+}
+
+.acf-field.gcm-field-position .acf-button-group > label:nth-child(8) {
+  grid-row: 3;
+  grid-column: 5/7;
+}
+
+/*
+End: Position field
+*/
+/*
+Start: Seamless clone field style
+- this field is used in the field group "Clone - Elements"
+  the field is named "Icon" with field key field_64a9db1089ca2
+  https://greatcitymedical.radgh.com/wp-admin/post.php?post=4303&action=edit
+- this is a grouped clone field and is customized to look like a seamless clone field (however, it is still grouped)
+- a custom class "gcm-seamless-clone-field" was added to the ACF field
+*/
+.acf-field.gcm-seamless-clone-field {
+  margin: -8px 0 !important;
+}
+
+.acf-field.gcm-seamless-clone-field > .acf-label {
+  display: none;
+}
+
+.acf-field.gcm-seamless-clone-field > .acf-input > .acf-clone-fields {
+  border: none;
+  background: none;
+}
+
+/*
+End: Seamless clone field style
+*/
+/*
+Great City Medical icon
+Used on the theme settings page
+Generated by Glyphter (http://www.glyphter.com) on 5/24/2023
+
+Old logo title text: Prata
+Old logo sub text: Varela Round
+*/
+body.toplevel_page_acf-gcm-settings .wrap h1::before {
+  display: block;
+  width: 300px;
+  margin: 0 0 5px;
+  content: url(/wp-content/themes/great-city-medical/assets/logo/logo.svg);
+}
+
+#adminmenu div.dashicons-gcm-icon::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='rgba(240,246,252,.6)' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+#adminmenu li:hover div.dashicons-gcm-icon::before,
+#adminmenu li > div.dashicons-gcm-icon:focus::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%2372aee6' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+#adminmenu .current div.dashicons-gcm-icon::before,
+#adminmenu .wp-has-current-submenu div.dashicons-gcm-icon::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%23ffffff' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.components-button.is-active .dashicons-editor-gcm-icon {
+  background: #1e1e1e;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px #1e1e1e;
+  color: #fff;
+}
+.components-button .dashicons-editor-gcm-icon::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%231e1e1e' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.components-button.is-active .dashicons-editor-gcm-icon::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%23ffffff' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/*
+Icon type: Circle (type-circle)
+*/
+.gcm-icon {
+  display: inline-block;
+}
+
+.gcm-icon .icon-frame {
+  display: inline-block;
+}
+
+.gcm-icon svg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+}
+
+/*
+Icon frame styles
+*/
+.gcm-icon.type-circle .icon-frame {
+  padding: 15px;
+  border-radius: 100%;
+  box-sizing: content-box;
+}
+
+.gcm-icon.type-circle .icon-frame {
+  box-shadow: inset 0 0 0 1px #9069ac;
+  background-color: #faf4ff;
+}
+
+.gcm-icon.type-circle.color-blue .icon-frame {
+  box-shadow: inset 0 0 0 1px #0957de;
+  background-color: #f4f8ff;
+}
+
+.gcm-icon.type-circle.color-black .icon-frame {
+  box-shadow: inset 0 0 0 1px #0e0d0d;
+  background-color: #fafafa;
+}
+
+/*
+Icon sizes
+
+	From figma:
+	14 (header location icon)
+	18 (testimonial review stars)
+	24 [14+5] (learn more arrow, circled)
+	32 [18+7] (accordion dropdown, circled)
+	38 [20+9] (footer location icon, circled)
+	47 [25+11] (hero testimonial icon, circled)
+	60 (testimonial quote icon)
+	80 [44+18] (hero images, circled)
+
+	Icon field group:
+	https://greatcitymedical.radgh.com/wp-admin/post.php?post=4211&action=edit
+
+*/
+.gcm-icon.size-tiny svg {
+  width: 16px;
+  height: 16px;
+}
+.gcm-icon.size-tiny.type-circle .icon-frame {
+  padding: 7px;
+}
+.gcm-icon.size-x-small svg {
+  width: 18px;
+  height: 18px;
+}
+.gcm-icon.size-x-small.type-circle .icon-frame {
+  padding: 7px;
+}
+.gcm-icon.size-small svg {
+  width: 20px;
+  height: 20px;
+}
+.gcm-icon.size-small.type-circle .icon-frame {
+  padding: 9px;
+}
+.gcm-icon.size-medium svg {
+  width: 25px;
+  height: 25px;
+}
+.gcm-icon.size-medium.type-circle .icon-frame {
+  padding: 11px;
+}
+.gcm-icon.size-large svg {
+  width: 32px;
+  height: 32px;
+}
+.gcm-icon.size-large.type-circle .icon-frame {
+  padding: 14px;
+}
+.gcm-icon.size-x-large svg {
+  width: 44px;
+  height: 44px;
+}
+.gcm-icon.size-x-large.type-circle .icon-frame {
+  padding: 18px;
+}
+
+/*
+[gcm_icon_list]
+*/
+table.gcm-icon-list th,
+table.gcm-icon-list td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px;
+}
+
+table.gcm-icon-list tr th:first-child em {
+  font-weight: 300;
+}
+
+table.gcm-icon-list tr > * {
+  width: 120px;
+  text-align: center;
+}
+
+table.gcm-icon-list tr > * span {
+  display: inline-block;
+}
+
+table.gcm-icon-list tr > :first-child {
+  width: 200px;
+}
+
+table.gcm-icon-list {
+  position: relative;
+}
+
+table.gcm-icon-list thead {
+  position: sticky;
+  top: 0px;
+  background: #fff;
+}
+
+body.admin-bar table.gcm-icon-list thead {
+  top: 32px;
+}
+
+.gcm-icon-list .icon-wrap {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 80px;
+}
+
+.gcm-icon-list input[type=text] {
+  width: 100%;
+  font-size: 10px;
+  padding: 3px 0;
+}
+
+/*# sourceMappingURL=admin.css.map */

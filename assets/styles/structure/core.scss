@@ -2,5 +2,11 @@
 Global structure
 */
 
-@include core_theme_styles();
+body {
+	@include body_styles( true );
+}
+
+@include theme_styles( true );
 @include editor_formats();
+@include block_formats();
+@include gutenberg_buttons();

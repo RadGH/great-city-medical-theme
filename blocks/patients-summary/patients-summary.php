@@ -36,8 +36,8 @@ $classes[] = 'gcm-patients-summary-block';
 	</div>
 	
 	<div class="patients-count">
-		<strong class="patients-count-number">10,000+</strong>
-		<span class="patients-count-label">Patients</span>
+		<div><strong class="heading-h6 text-color-blue">10,000+</strong></div>
+		<div><span class="text-lowercase">Patients</span></div>
 	</div>
 	
 </div>
