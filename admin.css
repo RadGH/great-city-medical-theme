@@ -1,5 +1,6 @@
 body {
   --font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
+  --font-abhaya-libre: Abhaya Libre, serif;
   --color-purple: #9069ac;
   --color-purple-light: #e6c8ff;
   --color-purple-lightest: #faf4ff;
@@ -315,11 +316,11 @@ Icon sizes
   padding: 9px;
 }
 .gcm-icon.size-medium svg {
-  width: 25px;
-  height: 25px;
+  width: 31px;
+  height: 31px;
 }
 .gcm-icon.size-medium.type-circle .icon-frame {
-  padding: 11px;
+  padding: 8px;
 }
 .gcm-icon.size-large svg {
   width: 32px;

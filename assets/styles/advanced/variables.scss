@@ -1,17 +1,23 @@
+$design_width: 1920px;
+
 // Breakpoints
 // 1. Use with @media (max-width)
 $break_at_mobile: 480px;
 $break_at_tablet: 768px;
-$break_at_desktop: 1200px; // 1560?
+$break_at_desktop: 1200px; // or 1560?
+$break_at_large_desktop: 1920px; // the site was originally designed at this resolution
 
 // 2. Use with @media (min-width)
 $break_above_mobile: $break_at_mobile + 0.1px;
 $break_above_tablet: $break_at_tablet + 0.1px;
 $break_above_desktop: $break_at_desktop + 0.1px;
+$break_above_large_desktop: $break_at_large_desktop + 0.1px;
 
 // Specific sizes
-$site_content_width: 1600px;
+$site_content_width: 1600px; // 1560px without gutter
 $site_gutter_width: 20px; // Left/right padding to prevent elements touching the edge of the screen
+
+$site_gutter_width_tablet: 40px;
 
 //  Usage #1:
 //  @media ( max-width: $break_at_mobile ) {
@@ -24,10 +30,11 @@ $site_gutter_width: 20px; // Left/right padding to prevent elements touching the
 //  }
 
 // Font families
-$font_family_sofia_pro: sofia-pro, Helvetica, Arial, sans-serif;
+$font_family_sans_serif: sofia-pro, Helvetica, Arial, sans-serif;
+$font_family_serif: 'Abhaya Libre', serif;
 
 // Generic families
-$font_family_body: $font_family_sofia_pro;
+$font_family_body: $font_family_sans_serif;
 
 // Base Colors
 // Also see theme.json for colors used in Gutenberg blocks, w hich adds the corresponding CSS variables to the :root element
@@ -46,6 +53,7 @@ $color_black: #0e0d0d;                    // --wp--preset--color--black
 
 $color_gray_10: #fafafa; // old: #fbfbfb  // --wp--preset--color--gray-10
 $color_gray_8: #f1f1f1;                   // --wp--preset--color--gray-8
+// $color_gray_7: #ECEAEA;                   // --wp--preset--color--gray-6
 $color_gray_6: #e7e7e7;                   // --wp--preset--color--gray-6
 $color_gray_4: #e3e3e3;                   // --wp--preset--color--gray-4
 $color_gray_2: #3e3e3e;                   // --wp--preset--color--gray-2
@@ -87,6 +95,7 @@ $font_size_button_mobile: 16px;
 body {
 	// Font Families
 	--font-sofia-pro: #{$font_family_body};
+	--font-abhaya-libre: #{$font_family_serif};
 
 	// Colors
 	--color-purple: #{$color_purple};

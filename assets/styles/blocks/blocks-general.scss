@@ -1,0 +1,74 @@
+
+// Block widths
+
+// none:              is-selected wp-block-group is-style-section container-style-section block-editor-block-list__layout is-layout-constrained is-content-justification-center
+// default: alignwide is-selected wp-block-group is-style-section container-style-section block-editor-block-list__layout is-layout-constrained is-content-justification-center
+// full:    alignfull is-selected wp-block-group is-style-section container-style-section block-editor-block-list__layout is-layout-constrained is-content-justification-center
+
+// Default section width
+article > .wp-block-group:not(.alignfull) {
+	@extend .article-width;
+}
+
+.article-width {
+
+	@include site-content-width();
+	@include site-gutters();
+
+}
+
+// Container style: Section
+// Padding is provided between sections and can be given a background color
+article > .wp-block-group {
+	@extend .article-section;
+}
+
+.article-section {
+	// Top padding
+	// padding-top: 75px;
+	padding-top: respond_vw( 75px ); // 75px / 1920px = 0.0390625
+
+	@media ( max-width: $break_at_desktop ) {
+		padding-top: 80px;
+	}
+
+	// Top padding, first element only
+	&:first-child {
+		// padding-top: 92px;
+		padding-top: respond_vw( 92px );
+	}
+
+	@media ( max-width: $break_at_desktop ) {
+		&:first-child { padding-top: 60px; }
+	}
+
+	// Bottom padding
+	// padding-bottom: 150px;
+	padding-bottom: respond_vw( 150px );
+
+	@media ( max-width: $break_at_desktop ) {
+		padding-bottom: 80px;
+	}
+}
+
+// Vertical margins
+@include vertical_margins();
+
+// Container styles
+.container-style-card,
+.container-style-card-small {
+	border-radius: 18px;
+	border: 0.859px solid $color_gray_6; // #ECEAEA
+	background: $color_white;
+	padding: 10px 32px;
+}
+
+.container-style-card-small {
+	padding: 12px;
+}
+
+// Custom classes
+.no-gap,
+.editor-styles-wrapper .no-gap:where(.is-layout-flex) { gap: 0; }
+.gap-,
+.editor-styles-wrapper .gap-:where(.is-layout-flex) { gap: 0; }

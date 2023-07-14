@@ -168,6 +168,7 @@ function gcm_get_web_font_urls() {
 		// Font family: sofia-pro
 		// Font styles: 300, 300i, 500, 500i
 		'sofia-pro' => 'https://use.typekit.net/wfu3bib.css',
+		'abhaya-libre' => 'https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700&display=swap',
 		
 	);
 }

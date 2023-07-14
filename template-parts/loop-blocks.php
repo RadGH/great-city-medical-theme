@@ -1,4 +1,4 @@
-<article <?php post_class(); ?>>
+<article <?php post_class( 'is-root-container' ); ?>>
 	
 	<?php the_content(); ?>
 

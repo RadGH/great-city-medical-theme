@@ -1,5 +1,6 @@
 body {
   --font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
+  --font-abhaya-libre: Abhaya Libre, serif;
   --color-purple: #9069ac;
   --color-purple-light: #e6c8ff;
   --color-purple-lightest: #faf4ff;
@@ -141,6 +142,7 @@ body.mce-content-body {
   font-weight: 300;
   line-height: 1.4;
   -webkit-font-smoothing: subpixel-antialiased;
+  text-wrap: balance;
 }
 @media (max-width: 480.1px) {
   body.mce-content-body {
@@ -225,6 +227,12 @@ body.mce-content-body .text-lowercase {
 }
 body.mce-content-body .text-uppercase {
   text-transform: uppercase;
+}
+body.mce-content-body .text-sans-serif {
+  font-family: sofia-pro, Helvetica, Arial, sans-serif;
+}
+body.mce-content-body .text-serif {
+  font-family: "Abhaya Libre", serif;
 }
 body.mce-content-body .heading-eyebrow-text {
   color: #0957de;
@@ -545,11 +553,11 @@ Icon sizes
   padding: 9px;
 }
 .gcm-icon.size-medium svg {
-  width: 25px;
-  height: 25px;
+  width: 31px;
+  height: 31px;
 }
 .gcm-icon.size-medium.type-circle .icon-frame {
-  padding: 11px;
+  padding: 8px;
 }
 .gcm-icon.size-large svg {
   width: 32px;

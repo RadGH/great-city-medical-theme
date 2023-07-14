@@ -173,6 +173,69 @@
 	transition: all 0.2s ease-in-out;
 }
 
+@mixin vertical_margins {
+	.vertical-margin-none {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.vertical-margin-x-small {
+		margin-top: 16px;
+		margin-bottom: 16px;
+	}
+	.vertical-margin-small {
+		margin-top: 24px;
+		margin-bottom: 24px;
+	}
+	.vertical-margin-medium {
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	.vertical-margin-large {
+		margin-top: 80px;
+		margin-bottom: 80px;
+	}
+	.vertical-margin-huge {
+		margin-top: 150px;
+		margin-bottom: 150px;
+	}
+}
+
+@mixin site-content-width() {
+	margin-left: auto;
+	margin-right: auto;
+
+	@media ( min-width: $site_content_width ) {
+		max-width: $site_content_width;
+	}
+
+	// Keep the main content at the correct ratio of total width to match the design
+	// 81.25% = 1560px / 1920px
+	// 83.33% = 1600px / 1920px
+	@media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
+		width: clamp( $break_above_desktop, 83.333%, $design_width );
+	}
+}
+
+@mixin site-gutters() {
+	padding-left: $site_gutter_width;
+	padding-right: $site_gutter_width;
+
+	@media ( min-width: $break_at_tablet ) and ( max-width: $break_at_desktop ) {
+		padding-left: $site_gutter_width_tablet;
+		padding-right: $site_gutter_width_tablet;
+	}
+}
+
+@function respond_vw( $px ) {
+	// px: 75px
+	// width: 1920px
+	// vw: 3.90625vw
+	// (75 / 1920 = 0.0390625)
+	$vw: ($px / $design_width) * 100vw;
+
+	@return min( $px, $vw );
+}
+
 
 
 
@@ -190,6 +253,7 @@
 	font-weight: 300;
 	line-height: 1.4;
 	-webkit-font-smoothing: subpixel-antialiased; // or: antialiased
+	text-wrap: balance;
 
 	@media ( max-width: $break_above_mobile ) {
 		line-height: 1.5;
@@ -262,6 +326,9 @@
 	.text-lowercase { text-transform: lowercase; }
 	.text-uppercase { text-transform: uppercase; }
 
+	.text-sans-serif { font-family: $font_family_sans_serif; }
+	.text-serif { font-family: $font_family_serif; }
+
 	.heading-eyebrow-text {
 		// Text style for "eyebrow" headings. Typically an <h6>
 		// This is the small blue text that appears before titles on most pages/sections, including the contact us text in the footer
@@ -309,6 +376,30 @@
 
 		@media ( max-width: $break_at_desktop ) {
 			border-radius: 10px 45px; // 10.712px 44.634px
+		}
+	}
+
+	// Rounded (8px)
+	.wp-block-image .is-style-rounded-8px img,
+	.wp-block-image.is-style-rounded-8px img,
+	.wp-block-group.is-style-rounded-8px {
+		border-radius: 8px;
+		overflow: hidden;
+
+		@media ( max-width: $break_at_desktop ) {
+			border-radius: 6px; // 5.8px
+		}
+	}
+
+	// Rounded (32px)
+	.wp-block-image .is-style-rounded-32px img,
+	.wp-block-image.is-style-rounded-32px img,
+	.wp-block-group.is-style-rounded-32px {
+		border-radius: 32px;
+		overflow: hidden;
+
+		@media ( max-width: $break_at_desktop ) {
+			border-radius: 20px;
 		}
 	}
 }

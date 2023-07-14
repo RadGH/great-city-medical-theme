@@ -5,10 +5,26 @@
 	
 	<!--
 	Adobe font: Sofia Pro
-	Font family: sofia-pro
+	Font family: sofia-pro, Helvetica, Arial, sans-serif;
 	Font styles: 300, 300i, 500, 500i
+	Used pretty much everywhere
+	
+	Google font: Abhaya Libre
+	Font Family: 'Abhaya Libre', serif;
+	Font styles: 400, 700
+	Used as the serif font on the cards on top of certain hero images
+	See https://radleysustaire.com/s3/fd0329/figma
 	-->
-	<link rel="stylesheet" href="https://use.typekit.net/wfu3bib.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	
+	<?php
+	foreach( gcm_get_web_font_urls() as $key => $url ) {
+		?>
+		<link rel="stylesheet" id="gcm-font-<?php echo esc_attr($key); ?>" href="<?php echo esc_attr( $url ); ?>">
+		<?php
+	}
+	?>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	

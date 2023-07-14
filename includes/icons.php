@@ -155,7 +155,7 @@ function gcm_icon_config() {
 		),
 		'cross' => array(
 			'filename' => 'cross.svg',
-			'tags' => 'cross',
+			'tags' => 'cross plus',
 		),
 		'dermal-filler' => array(
 			'filename' => 'dermal-filler.svg',
@@ -227,7 +227,7 @@ function gcm_icon_config() {
 		),
 		'patient' => array(
 			'filename' => 'patient.svg',
-			'tags' => 'patient',
+			'tags' => 'patient person portrait headshot user',
 		),
 		'phone' => array(
 			'filename' => 'phone.svg',

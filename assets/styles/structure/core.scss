@@ -10,3 +10,14 @@ body {
 @include editor_formats();
 @include block_formats();
 @include gutenberg_buttons();
+
+// Classic page templates
+.entry-content {
+	@extend .article-width;
+	@extend .article-section;
+}
+
+// Default styles
+.align-center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }

@@ -26,6 +26,16 @@ $classes[] = 'gcm-patients-summary-block';
 ?>
 <div <?php echo ($id ? 'id="'. esc_attr($id) .'" ' : ''); ?> class="<?php echo esc_attr( implode(' ', $classes) ); ?>">
 	
+	<?php
+	foreach( range('a','e') as $letter ) {
+		$image_url = get_theme_file_uri('assets/images/patients/' . $letter . '.png' );
+		echo '<span class="patient"><img src="' . $image_url . '" alt=""></span>';
+	}
+	?>
+	
+	<?php
+	/*
+	?>
 	<div class="patients-list">
 		<?php
 		foreach( range('a','e') as $letter ) {
@@ -39,5 +49,7 @@ $classes[] = 'gcm-patients-summary-block';
 		<div><strong class="heading-h6 text-color-blue">10,000+</strong></div>
 		<div><span class="text-lowercase">Patients</span></div>
 	</div>
+	*/
+	?>
 	
 </div>

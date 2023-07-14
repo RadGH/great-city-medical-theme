@@ -5,6 +5,7 @@ import { registerBlockStyle } from '@wordpress/blocks';
 import { unregisterBlockStyle } from '@wordpress/blocks';
 
 // Used to create new blocks
+import { getBlockType } from '@wordpress/blocks';
 import { registerBlockType } from '@wordpress/blocks';
 
 // Formatting Toolbar API
@@ -31,6 +32,14 @@ import { fullscreen } from '@wordpress/icons';
 // For using toggle fields within custom fields of blocks
 import { ToggleControl } from '@wordpress/components';
 
+// For max width slider field
+import { addFilter } from '@wordpress/hooks';
+import { TextControl } from '@wordpress/components';
+import { RangeControl } from '@wordpress/components';
+
+// Add help text to positioned area field
+import { BaseControl } from '@wordpress/components';
+
 // import { BlockControls } from '@wordpress/block-editor';
 // import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 // import { edit } from '@wordpress/icons';
@@ -50,6 +59,21 @@ domReady(function () {
 		</SVG>;
 
 	// -------------
+	// Utilities
+	// -------------
+
+	// Check if a block name supports child blocks / nested blocks
+	const block_supports_child_blocks = ( name ) => {
+		if ( getBlockType( name ).supports.hasOwnProperty( 'innerBlocks' ) ) {
+			return true;
+		}else if ( name === 'core/group' || name === 'core/columns' ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	// -------------
 	// Custom Styles
 	// -------------
 
@@ -67,8 +91,9 @@ domReady(function () {
 	}
 
 	// Groups have some advanced formatting options for positioning and overlays (and rounding, that's separate)
-	/*
 	let setup_group_styles = function() {
+
+		/*
 		let settings = {
 			'blocks': [ 'core/group' ],
 			'styles': [
@@ -88,8 +113,8 @@ domReady(function () {
 				registerBlockStyle( block_name, style );
 			});
 		});
+		*/
 	};
-	*/
 
 	// Rounded corners can be applied to groups or images
 	let setup_rounded_styles = function() {
@@ -109,6 +134,14 @@ domReady(function () {
 				{
 					name: 'rounded-hero',
 					label: 'Rounded (Hero)'
+				},
+				{
+					name: 'rounded-8px',
+					label: 'Rounded (8px)'
+				},
+				{
+					name: 'rounded-32px',
+					label: 'Rounded (32px)'
 				},
 			]
 		};
@@ -130,39 +163,49 @@ domReady(function () {
 		let custom_formats = [
 			{
 				formatName: 'gcm/h1',
-				title: 'H1',
+				title: 'H1 (80px)',
 				className: 'heading-h1',
 			},
 			{
 				formatName: 'gcm/h2',
-				title: 'H2',
+				title: 'H2 (60px)',
 				className: 'heading-h2',
 			},
 			{
 				formatName: 'gcm/h3',
-				title: 'H3',
+				title: 'H3 (32px)',
 				className: 'heading-h3',
 			},
 			{
 				formatName: 'gcm/h4',
-				title: 'H4',
+				title: 'H4 (28px)',
 				className: 'heading-h4',
 			},
 			{
 				formatName: 'gcm/h5',
-				title: 'H5',
+				title: 'H5 (18px)',
 				className: 'heading-h5',
 			},
 			{
 				formatName: 'gcm/h6',
-				title: 'H6',
+				title: 'H6 (14px)',
 				className: 'heading-h6',
 			},
 			{
-				formatName: 'gcm/eyebrow',
-				title: 'Eyebrow Text',
-				className: 'heading-eyebrow-text',
+				formatName: 'gcm/sans-serif',
+				title: 'Sans-Serif',
+				className: 'text-sans-serif',
 			},
+			{
+				formatName: 'gcm/serif',
+				title: 'Serif',
+				className: 'text-serif',
+			},
+			// {
+			// 	formatName: 'gcm/eyebrow',
+			// 	title: 'Eyebrow Text',
+			// 	className: 'heading-eyebrow-text',
+			// },
 			{
 				formatName: 'gcm/lowercase',
 				title: 'Lower Case (abc)',
@@ -293,13 +336,13 @@ domReady(function () {
 												<div className="gcm-editor--button-group--grid">
 													{styles.map((style) => (
 														<Button
-															isPrimary={props.attributes.className && props.attributes.className.includes(style.className)}
-															isSecondary={props.attributes.className && !props.attributes.className.includes(style.className)}
+															isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(style.className)}
+															isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(style.className)}
 															onClick={() => {
 																// Create a copy of the className
 																let className = props.attributes.className ? props.attributes.className : '';
 
-																// Remove all the existing button classes
+																// Remove all the existing classes
 																all_classes.forEach((cls) => {
 																	className = className.replace(cls, '');
 																});
@@ -329,7 +372,7 @@ domReady(function () {
 			};
 		}, 'buttonColorSelect' );
 
-		wp.hooks.addFilter( 'editor.BlockEdit', 'gcm/register_button_color_select', buttonColorSelect );
+		addFilter( 'editor.BlockEdit', 'gcm/register_button_color_select', buttonColorSelect );
 
 		
 		// Add a custom field for button block to choose the button style
@@ -387,13 +430,13 @@ domReady(function () {
 												{styles.map((style) => (
 													<Button
 														title={style.altTitle}
-														isPrimary={props.attributes.className && props.attributes.className.includes(style.className)}
-														isSecondary={props.attributes.className && !props.attributes.className.includes(style.className)}
+														isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(style.className)}
+														isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(style.className)}
 														onClick={() => {
 															// Create a copy of the className
 															let className = props.attributes.className ? props.attributes.className : '';
 
-															// Remove all the existing button classes
+															// Remove all the existing classes
 															all_classes.forEach((cls) => {
 																className = className.replace(cls, '');
 															});
@@ -423,7 +466,7 @@ domReady(function () {
 			};
 		}, 'buttonStyleSelect' );
 
-		wp.hooks.addFilter( 'editor.BlockEdit', 'gcm/register_button_style_select', buttonStyleSelect );
+		addFilter( 'editor.BlockEdit', 'gcm/register_button_style_select', buttonStyleSelect );
 
 	};
 
@@ -480,13 +523,13 @@ domReady(function () {
 												<div className="gcm-editor--button-group--grid">
 													{styles.map((style) => (
 														<Button
-															isRelative={props.attributes.className && props.attributes.className.includes(style.className)}
-															isPositioned={props.attributes.className && !props.attributes.className.includes(style.className)}
+															isRelative={props.attributes.className && props.attributes.className.split(' ').includes(style.className)}
+															isPositioned={!props.attributes.className || !props.attributes.className.split(' ').includes(style.className)}
 															onClick={() => {
 																// Create a copy of the className
 																let className = props.attributes.className ? props.attributes.className : '';
 
-																// Remove all the existing button classes
+																// Remove all the existing classes
 																all_classes.forEach((cls) => {
 																	className = className.replace(cls, '');
 																});
@@ -517,7 +560,7 @@ domReady(function () {
 			};
 		}, 'groupDisplaySelect' );
 
-		wp.hooks.addFilter( 'editor.BlockEdit', 'gcm/register_group_display_select', groupDisplaySelect );
+		addFilter( 'editor.BlockEdit', 'gcm/register_group_display_select', groupDisplaySelect );
 
 	};
 	 */
@@ -539,6 +582,9 @@ domReady(function () {
 					type: 'string',
 					default: '',
 				},
+			},
+			supports: {
+				innerBlocks: true,
 			},
 			edit: (props) => {
 				const { className } = props.attributes;
@@ -575,6 +621,9 @@ domReady(function () {
 					default: '',
 				},
 			},
+			supports: {
+				innerBlocks: true,
+			},
 			edit: (props) => {
 				const { className } = props.attributes;
 
@@ -600,6 +649,470 @@ domReady(function () {
 
 	};
 
+
+
+
+	let register_positioned_block_styles = function() {
+
+		// Add a custom field for button block to choose the button style
+		const positionAreaSelect = createHigherOrderComponent( ( BlockEdit ) => {
+			const styles = [
+				{
+					name: 'inside-top',
+					className: 'position-area-inside-top',
+					label: 'Inside Top'
+				},
+				{
+					name: 'inside-top-small',
+					className: 'position-area-inside-top-small',
+					label: 'Inside Top Small'
+				},
+				{
+					name: 'inside-bottom-right',
+					className: 'position-area-inside-bottom-right',
+					label: 'Inside Bottom Right'
+				},
+				{
+					name: 'outside-top-left',
+					className: 'position-area-outside-top-left',
+					label: 'Outside Top Left'
+				},
+				{
+					name: 'outside-bottom-left',
+					className: 'position-area-outside-bottom-left',
+					label: 'Outside Bottom Left'
+				},
+				{
+					name: 'outside-right',
+					className: 'position-area-outside-right',
+					label: 'Outside Right'
+				}
+			];
+
+			// Get all classes so that we can easily remove them all when the selection changes
+			let all_classes = styles.map( style => style.className ).filter(val => val !== '');
+
+			return (props) => {
+				const { name, attributes, setAttributes, isSelected } = props;
+				const { myAttribute } = attributes;
+
+				// Only enable for positioned element
+				if (name !== 'gcm/positioned-element') {
+					return (
+						<BlockEdit {...props} />
+					);
+				}
+
+				return (
+					<Fragment>
+						<BlockEdit {...props} />
+						{isSelected && (
+							<InspectorControls>
+								<PanelBody title="Position Area" initialOpen={true}>
+									<div className="gcm-editor-position-areas gcm-editor--button-group">
+										<ButtonGroup>
+											<div className="gcm-editor--button-group--grid">
+												{styles.map((style) => (
+													<Button
+														title={style.altTitle}
+														isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(style.className)}
+														isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(style.className)}
+														onClick={() => {
+															// Create a copy of the className
+															let className = props.attributes.className ? props.attributes.className : '';
+
+															// Remove all the existing classes
+															all_classes.forEach((cls) => {
+																className = className.replace(cls, '');
+															});
+
+															// Trim whitespace
+															className = className.trim();
+
+															// Add the selected class if it exists
+															className = `${className} ${style.className}`.trim();
+
+															// Update the block's className attribute
+															props.setAttributes({ className: className });
+														}}
+														className={"style-" + style.name}
+													>
+														{style.label}
+													</Button>
+												))}
+											</div>
+										</ButtonGroup>
+									</div>
+									<BaseControl help="The positioning is only applied on the front-end.">
+										{/* We leave this part empty because we only want the help text */}
+									</BaseControl>
+								</PanelBody>
+							</InspectorControls>
+						)}
+					</Fragment>
+				);
+			};
+		}, 'positionAreaSelect' );
+
+		addFilter( 'editor.BlockEdit', 'gcm/register_position_area_select', positionAreaSelect );
+	};
+
+
+
+
+	let register_vertical_margin_select = function() {
+
+		// Add a custom field for verticals to choose a style
+		const verticalMarginSelect = createHigherOrderComponent( ( BlockEdit ) => {
+			const classPrefix = 'vertical-margin-';
+
+			const styles = [
+				{
+					name: 'none',
+					label: 'None (0px)',
+					className: 'vertical-margin-none',
+				},
+				{
+					name: 'tiny',
+					label: 'Tiny (16px)',
+					className: 'vertical-margin-tiny',
+				},
+				{
+					name: 'small',
+					label: 'Small (24px)',
+					className: 'vertical-margin-small',
+				},
+				{
+					name: 'medium',
+					label: 'Medium (40px)',
+					className: 'vertical-margin-medium',
+				},
+				{
+					name: 'large',
+					label: 'Large (80px)',
+					className: 'vertical-margin-large',
+				},
+				{
+					name: 'huge',
+					label: 'Huge (150px)',
+					className: 'vertical-margin-huge',
+				},
+			];
+
+			// Get all classes so that we can easily remove them all when the selection changes
+			let all_classes = styles.map( style => style.className ).filter(val => val !== '');
+
+			return (props) => {
+				const { name, attributes, setAttributes, isSelected } = props;
+				const { myAttribute } = attributes;
+
+				return (
+					<Fragment>
+						<BlockEdit {...props} />
+						{isSelected && (
+							<InspectorControls>
+								<PanelBody title="Vertical Margin" initialOpen={true}>
+									<div className="gcm-editor-vertical-margins gcm-editor--button-group">
+										<ButtonGroup>
+											<div className="gcm-editor--button-group--grid">
+
+												<Button
+													title="None"
+													isPrimary={!props.attributes.className || !props.attributes.className.includes("vertical-margin-")}
+													isSecondary={props.attributes.className && props.attributes.className.includes("vertical-margin-")}
+													onClick={() => {
+														// Create a copy of the className
+														let className = props.attributes.className ? props.attributes.className : '';
+
+														// Remove all the existing classes
+														all_classes.forEach((cls) => {
+															className = className.replace(cls, '');
+														});
+
+														// Trim whitespace
+														className = className.trim();
+
+														// Update the block's className attribute
+														props.setAttributes({ className: className });
+													}}
+													className={"style-default"}
+												>
+													Default
+												</Button>
+
+												{styles.map((style) => (
+													<Button
+														title={style.altTitle}
+														isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(style.className)}
+														isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(style.className)}
+														onClick={() => {
+															// Create a copy of the className
+															let className = props.attributes.className ? props.attributes.className : '';
+
+															// Remove all the existing classes
+															all_classes.forEach((cls) => {
+																className = className.replace(cls, '');
+															});
+
+															// Trim whitespace
+															className = className.trim();
+
+															// Add the selected class if it exists
+															className = `${className} ${style.className}`.trim();
+
+															// Update the block's className attribute
+															props.setAttributes({ className: className });
+														}}
+														className={"style-" + style.name}
+													>
+														{style.label}
+													</Button>
+												))}
+											</div>
+										</ButtonGroup>
+									</div>
+								</PanelBody>
+							</InspectorControls>
+						)}
+					</Fragment>
+				);
+			};
+		}, 'verticalMarginSelect' );
+
+		addFilter( 'editor.BlockEdit', 'gcm/register_vertical_margin_select', verticalMarginSelect );
+	};
+
+
+	let register_container_styles = function() {
+
+		/*
+		// Add a custom field for top level container to choose a width. Uses align classes from default blocke ditor
+		const containerWidthSelect = createHigherOrderComponent( ( BlockEdit ) => {
+			const widths = [
+				{
+					name: 'wide',
+					className: 'alignwide',
+					label: 'Normal (1560px)'
+				},
+				{
+					name: 'full',
+					className: 'alignfull',
+					label: 'Full (100%)'
+				},
+			];
+
+			// Get all classes so that we can easily remove them all when the selection changes
+			let all_classes = widths.map( width => width.className ).filter(val => val !== '');
+
+			return (props) => {
+				const { name, attributes, setAttributes, isSelected } = props;
+				const { myAttribute } = attributes;
+
+				// Only applies to group elements
+				let is_top_level_group = true;
+
+				if ( name !== 'core/group' ) {
+					is_top_level_group = false;
+				}
+
+				// Check if the block has any parent blocks
+				console.log( 'child blocks: ', wp.data.select( 'core/block-editor' ).getBlockParents( props.clientId ) );
+				if ( wp.data.select( 'core/block-editor' ).getBlockParents( props.clientId ).length > 0 ) {
+					is_top_level_group = false;
+				}
+
+				if ( ! is_top_level_group ) {
+					return (
+						<BlockEdit {...props} />
+					);
+				}
+
+				return (
+					<Fragment>
+						<BlockEdit {...props} />
+						{isSelected && (
+							<InspectorControls>
+								<PanelBody title="Container Width" initialOpen={true}>
+									<div className="gcm-editor-container-widths gcm-editor--button-group">
+										<ButtonGroup>
+											<div className="gcm-editor--button-group--grid">
+
+												<Button
+													title="None"
+													isPrimary={!props.attributes.className || !props.attributes.className.includes("align")}
+													isSecondary={props.attributes.className && props.attributes.className.includes("align")}
+													onClick={() => {
+														// Create a copy of the className
+														let className = props.attributes.className ? props.attributes.className : '';
+
+														// Remove all the existing classes
+														all_classes.forEach((cls) => {
+															className = className.replace(cls, '');
+														});
+
+														// Trim whitespace
+														className = className.trim();
+
+														// Update the block's className attribute
+														props.setAttributes({ className: className });
+													}}
+													className={"width-none"}
+												>
+													None
+												</Button>
+
+												{widths.map((width) => (
+													<Button
+														title={width.altTitle}
+														isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(width.className)}
+														isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(width.className)}
+														onClick={() => {
+															// Create a copy of the className
+															let className = props.attributes.className ? props.attributes.className : '';
+
+															// Remove all the existing classes
+															all_classes.forEach((cls) => {
+																className = className.replace(cls, '');
+															});
+
+															// Trim whitespace
+															className = className.trim();
+
+															// Add the selected class if it exists
+															className = `${className} ${width.className}`.trim();
+
+															// Update the block's className attribute
+															props.setAttributes({ className: className });
+														}}
+														className={"width-" + width.name}
+													>
+														{width.label}
+													</Button>
+												))}
+											</div>
+										</ButtonGroup>
+									</div>
+								</PanelBody>
+							</InspectorControls>
+						)}
+					</Fragment>
+				);
+			};
+		}, 'containerWidthSelect' );
+
+		addFilter( 'editor.BlockEdit', 'gcm/register_container_width_select', containerWidthSelect );
+		*/
+
+		// Add a custom field for containers to choose a style
+		const containerStyleSelect = createHigherOrderComponent( ( BlockEdit ) => {
+			const styles = [
+				{
+					name: 'section',
+					className: 'container-style-section',
+					label: 'Section'
+				},
+				{
+					name: 'card',
+					className: 'container-style-card',
+					label: 'Card'
+				},
+				{
+					name: 'card-small',
+					className: 'container-style-card-small',
+					label: 'Card (Small)'
+				},
+			];
+
+			// Get all classes so that we can easily remove them all when the selection changes
+			let all_classes = styles.map( style => style.className ).filter(val => val !== '');
+
+			return (props) => {
+				const { name, attributes, setAttributes, isSelected } = props;
+				const { myAttribute } = attributes;
+
+				// Only enable for blocks which can contain other blocks
+				if ( ! block_supports_child_blocks( name ) ) {
+					return (
+						<BlockEdit {...props} />
+					);
+				}
+
+				return (
+					<Fragment>
+						<BlockEdit {...props} />
+						{isSelected && (
+							<InspectorControls>
+								<PanelBody title="Container Style" initialOpen={true}>
+									<div className="gcm-editor-container-styles gcm-editor--button-group">
+										<ButtonGroup>
+											<div className="gcm-editor--button-group--grid">
+
+												<Button
+													title="None"
+													isPrimary={!props.attributes.className || !props.attributes.className.includes("container-style-")}
+													isSecondary={props.attributes.className && props.attributes.className.includes("container-style-")}
+													onClick={() => {
+														// Create a copy of the className
+														let className = props.attributes.className ? props.attributes.className : '';
+
+														// Remove all the existing classes
+														all_classes.forEach((cls) => {
+															className = className.replace(cls, '');
+														});
+
+														// Trim whitespace
+														className = className.trim();
+
+														// Update the block's className attribute
+														props.setAttributes({ className: className });
+													}}
+													className={"style-none"}
+												>
+													None
+												</Button>
+
+												{styles.map((style) => (
+													<Button
+														title={style.altTitle}
+														isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(style.className)}
+														isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(style.className)}
+														onClick={() => {
+															// Create a copy of the className
+															let className = props.attributes.className ? props.attributes.className : '';
+
+															// Remove all the existing classes
+															all_classes.forEach((cls) => {
+																className = className.replace(cls, '');
+															});
+
+															// Trim whitespace
+															className = className.trim();
+
+															// Add the selected class if it exists
+															className = `${className} ${style.className}`.trim();
+
+															// Update the block's className attribute
+															props.setAttributes({ className: className });
+														}}
+														className={"style-" + style.name}
+													>
+														{style.label}
+													</Button>
+												))}
+											</div>
+										</ButtonGroup>
+									</div>
+								</PanelBody>
+							</InspectorControls>
+						)}
+					</Fragment>
+				);
+			};
+		}, 'containerStyleSelect' );
+
+		addFilter( 'editor.BlockEdit', 'gcm/register_container_style_select', containerStyleSelect );
+	}
+
 	// ----------------------------
 	// Initialize styles and blocks
 	// ----------------------------
@@ -607,7 +1120,7 @@ domReady(function () {
 	// Styles
 	setup_button_styles();
 
-	// setup_group_styles();
+	setup_group_styles();
 
 	setup_rounded_styles();
 
@@ -625,6 +1138,13 @@ domReady(function () {
 
 	// Positioned blocks (position container + positioned element)
 	register_positioned_blocks();
+	
+	register_positioned_block_styles();
 
+	// Vertical margin, any block
+	register_vertical_margin_select();
+
+	// Container styles (blocks etc)
+	register_container_styles();
 
 });

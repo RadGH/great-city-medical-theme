@@ -5,6 +5,55 @@ body .editor-styles-wrapper {
 	@include editor_formats();
 	@include block_formats();
 	@include gutenberg_buttons();
+
+	@include vertical_margins();
+}
+
+// Section appearance, normally based off <article> tag
+// blocks-general.scss
+.container-style-section {
+	@extend .article-section;
+}
+
+.wp-block-post-content > .container-style-section {
+	&:first-child {
+		padding-top: 0 !important;
+	}
+
+	&:not(.alignfull) {
+		@extend .article-width;
+	}
+}
+
+// Gutenberg editor background
+body .editor-styles-wrapper {
+	background: $color_black_lightest;
+}
+
+// Gutenberg post title
+.edit-post-visual-editor__post-title-wrapper {
+	max-width: 764px;
+	margin-left: auto;
+	margin-right: auto;
+
+	h1 {
+		position: relative;
+	}
+
+	h1::before {
+		content: 'Page title is not displayed on the front-end.';
+		opacity: 0.5;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		font-size: 14px;
+		font-style: italic;
+	}
+
+	&:not(:focus-within) {
+		h1 { opacity: 0.5; }
+		h1::before { display: none; }
+	}
 }
 
 // Gutenberg editor: button groups

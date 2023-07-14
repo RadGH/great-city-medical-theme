@@ -94,8 +94,7 @@
 			"defaultPalette": false
 		},
 		"layout": {
-			"contentSize": "768px",
-			"wideSize": "1560px"
+			 "contentSize": "1560px"
 		},
 		"spacing": {
 			"margin": false,

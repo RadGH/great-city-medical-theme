@@ -1,12 +1,124 @@
 // Positioned container, which can contain other elements, but also contains "Positioned Elements"
-.wp-block-gcm-positioned-container {
+.wp-block-gcm-positioned-container,
+.positioned-container {
 	position: relative;
+}
 
-	// Positioned elements must be inside a positioned container in order to become absolute
-	.wp-block-gcm-positioned-element {
+// Positioned elements should be inside a positioned container in order to become absolute
+.wp-block-gcm-positioned-element,
+.positioned-element {
+	position: absolute;
+	z-index: 2;
+
+	// Target the last icon element in the card, make it overlap the bottom of the card
+	& > .gcm-icon-block:last-child,
+	& > *:last-child > .gcm-icon-block:last-child,
+	& > *:last-child > *:last-child > .gcm-icon-block:last-child {
+		margin-bottom: -32px;
+
+		// Lighten the icon fill color
+		path[fill="#E6C8FF"] { fill: #faf4ff; }
+	}
+}
+
+// Gutenberg editor only: remove positioning (it breaks the ability to edit content)
+.block-editor-block-list__layout {
+	.wp-block-gcm-positioned-element,
+	.positioned-element {
+		position: relative;
+	}
+
+	.block-editor-block-list__block:has( > [data-type="gcm/positioned-element"] ) {
+		position: relative;
+	}
+
+	.wp-block[data-type="gcm/positioned-element"] .positioned-element {
+		position: relative !important;
+		top: 0 !important;
+		left: 0 !important;
+		right: auto !important;
+		bottom: auto !important;
+		transform: none !important;
+		width: fit-content !important;
+	}
+}
+
+// Explain they are only positioned on the front-end
+.block-editor-block-list__layout .positioned-element {
+	margin-top: 20px;
+
+	&::before {
 		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 2;
+		bottom: 100%;
+		content: 'This block will be positioned on the front-end';
+		white-space: nowrap;
+		font-size: 11px;
+		font-style: italic;
+		opacity: 0.5;
+	}
+}
+
+// Position areas
+.position-area-outside-right {
+	top: 50%;
+
+	@media ( max-width: 1750px ) {
+		right: 10px;
+	}
+
+	@media ( min-width: 1750.1px ) {
+		right: -96px;
+	}
+}
+
+.position-area-outside-bottom-left {
+	top: 75%;
+	left: max( -115px, -8vw );
+
+	@media ( max-width: 780px ) {
+		top: auto;
+		bottom: 10px;
+		left: 10px;
+	}
+}
+
+.position-area-outside-top-left {
+	top: 50%;
+	left: max( -115px, -8vw );
+
+	@media ( max-width: 780px ) {
+		top: auto;
+		bottom: 10px;
+		left: 10px;
+	}
+}
+
+.position-area-inside-top {
+	top: 60px;
+	left: 60px;
+
+	@media ( max-width: 780px ) {
+		top: 30px;
+		left: 30px;
+	}
+}
+
+.position-area-inside-top-small {
+	top: 30px;
+	left: 30px;
+
+	@media ( max-width: 780px ) {
+		top: 20px;
+		left: 20px;
+	}
+}
+
+.position-area-inside-bottom-right {
+	bottom: 60px;
+	right: 60px;
+
+	@media ( max-width: 780px ) {
+			bottom: 20px;
+			right: 20px;
 	}
 }

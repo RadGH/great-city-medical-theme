@@ -1,4 +1,24 @@
 .gcm-patients-summary-block {
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: fit-content;
+	padding-right: 22px;
+
+	.patient {
+		display: block;
+		margin-right: -16px;
+	}
+
+	.patient img {
+		width: 40px;
+		height: 40px;
+		border-radius: 40px;
+		border: var(--border-1px-width, 1px) solid var(--color-purple, $color_purple);
+	}
+
+	/*
 	display: grid;
 	grid-template-columns: auto 1fr;
 	grid-gap: 14px;
@@ -8,6 +28,7 @@
 		grid-template-columns: repeat(5, 1fr);
 		padding-right: 16px;
 	}
+
 
 	.patient {
 		display: block;
@@ -25,15 +46,13 @@
 		line-height: 1.1;
 	}
 
-	/*
 	.patients-count .patients-count-number {
 		display: block;
 		font-size: $font_size_large;
 		font-weight: 500;
 		color: var(--color-blue, $color_blue);
-	}*/
+	}
 
-	/*
 	.patients-count .patients-count-label {
 		display: block;
 		text-transform: lowercase;

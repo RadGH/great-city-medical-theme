@@ -93,6 +93,16 @@ module.exports = window["wp"]["element"];
 
 /***/ }),
 
+/***/ "@wordpress/hooks":
+/*!*******************************!*\
+  !*** external ["wp","hooks"] ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["hooks"];
+
+/***/ }),
+
 /***/ "@wordpress/primitives":
 /*!************************************!*\
   !*** external ["wp","primitives"] ***!
@@ -202,7 +212,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/fullscreen.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/fullscreen.js");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__);
 // General
 
 
@@ -210,6 +222,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Used to create new blocks
+
 
 
 // Formatting Toolbar API
@@ -236,6 +249,14 @@ __webpack_require__.r(__webpack_exports__);
 // For using toggle fields within custom fields of blocks
 
 
+// For max width slider field
+
+
+
+
+// Add help text to positioned area field
+
+
 // import { BlockControls } from '@wordpress/block-editor';
 // import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 // import { edit } from '@wordpress/icons';
@@ -259,6 +280,20 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   }));
 
   // -------------
+  // Utilities
+  // -------------
+
+  // Check if a block name supports child blocks / nested blocks
+  const block_supports_child_blocks = name => {
+    if ((0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.getBlockType)(name).supports.hasOwnProperty('innerBlocks')) {
+      return true;
+    } else if (name === 'core/group' || name === 'core/columns') {
+      return true;
+    }
+    return false;
+  };
+
+  // -------------
   // Custom Styles
   // -------------
 
@@ -274,28 +309,29 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   };
 
   // Groups have some advanced formatting options for positioning and overlays (and rounding, that's separate)
-  /*
-  let setup_group_styles = function() {
-  	let settings = {
-  		'blocks': [ 'core/group' ],
-  		'styles': [
-  			{
-  				name: 'relative',
-  				label: 'Relative'
-  			},
-  			{
-  				name: 'overlay',
-  				label: 'Overlay'
-  			},
-  		]
-  	};
-  		settings.blocks.forEach( block_name => {
-  		settings.styles.forEach( style => {
-  			registerBlockStyle( block_name, style );
-  		});
-  	});
+  let setup_group_styles = function () {
+
+    /*
+    let settings = {
+    	'blocks': [ 'core/group' ],
+    	'styles': [
+    		{
+    			name: 'relative',
+    			label: 'Relative'
+    		},
+    		{
+    			name: 'overlay',
+    			label: 'Overlay'
+    		},
+    	]
+    };
+    	settings.blocks.forEach( block_name => {
+    	settings.styles.forEach( style => {
+    		registerBlockStyle( block_name, style );
+    	});
+    });
+    */
   };
-  */
 
   // Rounded corners can be applied to groups or images
   let setup_rounded_styles = function () {
@@ -312,6 +348,12 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
       }, {
         name: 'rounded-hero',
         label: 'Rounded (Hero)'
+      }, {
+        name: 'rounded-8px',
+        label: 'Rounded (8px)'
+      }, {
+        name: 'rounded-32px',
+        label: 'Rounded (32px)'
       }]
     };
     settings.blocks.forEach(block_name => {
@@ -328,33 +370,43 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   let register_text_formats = function () {
     let custom_formats = [{
       formatName: 'gcm/h1',
-      title: 'H1',
+      title: 'H1 (80px)',
       className: 'heading-h1'
     }, {
       formatName: 'gcm/h2',
-      title: 'H2',
+      title: 'H2 (60px)',
       className: 'heading-h2'
     }, {
       formatName: 'gcm/h3',
-      title: 'H3',
+      title: 'H3 (32px)',
       className: 'heading-h3'
     }, {
       formatName: 'gcm/h4',
-      title: 'H4',
+      title: 'H4 (28px)',
       className: 'heading-h4'
     }, {
       formatName: 'gcm/h5',
-      title: 'H5',
+      title: 'H5 (18px)',
       className: 'heading-h5'
     }, {
       formatName: 'gcm/h6',
-      title: 'H6',
+      title: 'H6 (14px)',
       className: 'heading-h6'
     }, {
-      formatName: 'gcm/eyebrow',
-      title: 'Eyebrow Text',
-      className: 'heading-eyebrow-text'
+      formatName: 'gcm/sans-serif',
+      title: 'Sans-Serif',
+      className: 'text-sans-serif'
     }, {
+      formatName: 'gcm/serif',
+      title: 'Serif',
+      className: 'text-serif'
+    },
+    // {
+    // 	formatName: 'gcm/eyebrow',
+    // 	title: 'Eyebrow Text',
+    // 	className: 'heading-eyebrow-text',
+    // },
+    {
       formatName: 'gcm/lowercase',
       title: 'Lower Case (abc)',
       className: 'text-lowercase'
@@ -482,13 +534,13 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ButtonGroup, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
           className: "gcm-editor--button-group--grid"
         }, styles.map(style => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
-          isPrimary: props.attributes.className && props.attributes.className.includes(style.className),
-          isSecondary: props.attributes.className && !props.attributes.className.includes(style.className),
+          isPrimary: props.attributes.className && props.attributes.className.split(' ').includes(style.className),
+          isSecondary: !props.attributes.className || !props.attributes.className.split(' ').includes(style.className),
           onClick: () => {
             // Create a copy of the className
             let className = props.attributes.className ? props.attributes.className : '';
 
-            // Remove all the existing button classes
+            // Remove all the existing classes
             all_classes.forEach(cls => {
               className = className.replace(cls, '');
             });
@@ -508,7 +560,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         }, style.label))))))));
       };
     }, 'buttonColorSelect');
-    wp.hooks.addFilter('editor.BlockEdit', 'gcm/register_button_color_select', buttonColorSelect);
+    (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_button_color_select', buttonColorSelect);
 
     // Add a custom field for button block to choose the button style
     const buttonStyleSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
@@ -564,13 +616,13 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
           className: "gcm-editor--button-group--grid"
         }, styles.map(style => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
           title: style.altTitle,
-          isPrimary: props.attributes.className && props.attributes.className.includes(style.className),
-          isSecondary: props.attributes.className && !props.attributes.className.includes(style.className),
+          isPrimary: props.attributes.className && props.attributes.className.split(' ').includes(style.className),
+          isSecondary: !props.attributes.className || !props.attributes.className.split(' ').includes(style.className),
           onClick: () => {
             // Create a copy of the className
             let className = props.attributes.className ? props.attributes.className : '';
 
-            // Remove all the existing button classes
+            // Remove all the existing classes
             all_classes.forEach(cls => {
               className = className.replace(cls, '');
             });
@@ -590,7 +642,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         }, style.label))))))));
       };
     }, 'buttonStyleSelect');
-    wp.hooks.addFilter('editor.BlockEdit', 'gcm/register_button_style_select', buttonStyleSelect);
+    (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_button_style_select', buttonStyleSelect);
   };
 
   // -------------
@@ -641,12 +693,12 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   											<div className="gcm-editor--button-group--grid">
   												{styles.map((style) => (
   													<Button
-  														isRelative={props.attributes.className && props.attributes.className.includes(style.className)}
-  														isPositioned={props.attributes.className && !props.attributes.className.includes(style.className)}
+  														isRelative={props.attributes.className && props.attributes.className.split(' ').includes(style.className)}
+  														isPositioned={!props.attributes.className || !props.attributes.className.split(' ').includes(style.className)}
   														onClick={() => {
   															// Create a copy of the className
   															let className = props.attributes.className ? props.attributes.className : '';
-  																// Remove all the existing button classes
+  																// Remove all the existing classes
   															all_classes.forEach((cls) => {
   																className = className.replace(cls, '');
   															});
@@ -673,7 +725,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   			);
   		};
   	}, 'groupDisplaySelect' );
-  		wp.hooks.addFilter( 'editor.BlockEdit', 'gcm/register_group_display_select', groupDisplaySelect );
+  		addFilter( 'editor.BlockEdit', 'gcm/register_group_display_select', groupDisplaySelect );
   	};
    */
 
@@ -686,7 +738,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.registerBlockType)('gcm/positioned-container', {
       title: 'Positioned Container',
       description: '"Positioned Element" blocks are attached relative to this container, overlapping any other blocks within the container.',
-      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
+      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"],
       //'grid-view',
       category: 'layout',
       attributes: {
@@ -694,6 +746,9 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
           type: 'string',
           default: ''
         }
+      },
+      supports: {
+        innerBlocks: true
       },
       edit: props => {
         const {
@@ -728,6 +783,9 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
           default: ''
         }
       },
+      supports: {
+        innerBlocks: true
+      },
       edit: props => {
         const {
           className
@@ -751,6 +809,396 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
       }
     });
   };
+  let register_positioned_block_styles = function () {
+    // Add a custom field for button block to choose the button style
+    const positionAreaSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
+      const styles = [{
+        name: 'inside-top',
+        className: 'position-area-inside-top',
+        label: 'Inside Top'
+      }, {
+        name: 'inside-top-small',
+        className: 'position-area-inside-top-small',
+        label: 'Inside Top Small'
+      }, {
+        name: 'inside-bottom-right',
+        className: 'position-area-inside-bottom-right',
+        label: 'Inside Bottom Right'
+      }, {
+        name: 'outside-top-left',
+        className: 'position-area-outside-top-left',
+        label: 'Outside Top Left'
+      }, {
+        name: 'outside-bottom-left',
+        className: 'position-area-outside-bottom-left',
+        label: 'Outside Bottom Left'
+      }, {
+        name: 'outside-right',
+        className: 'position-area-outside-right',
+        label: 'Outside Right'
+      }];
+
+      // Get all classes so that we can easily remove them all when the selection changes
+      let all_classes = styles.map(style => style.className).filter(val => val !== '');
+      return props => {
+        const {
+          name,
+          attributes,
+          setAttributes,
+          isSelected
+        } = props;
+        const {
+          myAttribute
+        } = attributes;
+
+        // Only enable for positioned element
+        if (name !== 'gcm/positioned-element') {
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+            ...props
+          });
+        }
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+          ...props
+        }), isSelected && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+          title: "Position Area",
+          initialOpen: true
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor-position-areas gcm-editor--button-group"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ButtonGroup, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor--button-group--grid"
+        }, styles.map(style => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+          title: style.altTitle,
+          isPrimary: props.attributes.className && props.attributes.className.split(' ').includes(style.className),
+          isSecondary: !props.attributes.className || !props.attributes.className.split(' ').includes(style.className),
+          onClick: () => {
+            // Create a copy of the className
+            let className = props.attributes.className ? props.attributes.className : '';
+
+            // Remove all the existing classes
+            all_classes.forEach(cls => {
+              className = className.replace(cls, '');
+            });
+
+            // Trim whitespace
+            className = className.trim();
+
+            // Add the selected class if it exists
+            className = `${className} ${style.className}`.trim();
+
+            // Update the block's className attribute
+            props.setAttributes({
+              className: className
+            });
+          },
+          className: "style-" + style.name
+        }, style.label))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.BaseControl, {
+          help: "The positioning is only applied on the front-end."
+        }))));
+      };
+    }, 'positionAreaSelect');
+    (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_position_area_select', positionAreaSelect);
+  };
+  let register_vertical_margin_select = function () {
+    // Add a custom field for verticals to choose a style
+    const verticalMarginSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
+      const classPrefix = 'vertical-margin-';
+      const styles = [{
+        name: 'none',
+        label: 'None (0px)',
+        className: 'vertical-margin-none'
+      }, {
+        name: 'tiny',
+        label: 'Tiny (16px)',
+        className: 'vertical-margin-tiny'
+      }, {
+        name: 'small',
+        label: 'Small (24px)',
+        className: 'vertical-margin-small'
+      }, {
+        name: 'medium',
+        label: 'Medium (40px)',
+        className: 'vertical-margin-medium'
+      }, {
+        name: 'large',
+        label: 'Large (80px)',
+        className: 'vertical-margin-large'
+      }, {
+        name: 'huge',
+        label: 'Huge (150px)',
+        className: 'vertical-margin-huge'
+      }];
+
+      // Get all classes so that we can easily remove them all when the selection changes
+      let all_classes = styles.map(style => style.className).filter(val => val !== '');
+      return props => {
+        const {
+          name,
+          attributes,
+          setAttributes,
+          isSelected
+        } = props;
+        const {
+          myAttribute
+        } = attributes;
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+          ...props
+        }), isSelected && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+          title: "Vertical Margin",
+          initialOpen: true
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor-vertical-margins gcm-editor--button-group"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ButtonGroup, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor--button-group--grid"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+          title: "None",
+          isPrimary: !props.attributes.className || !props.attributes.className.includes("vertical-margin-"),
+          isSecondary: props.attributes.className && props.attributes.className.includes("vertical-margin-"),
+          onClick: () => {
+            // Create a copy of the className
+            let className = props.attributes.className ? props.attributes.className : '';
+
+            // Remove all the existing classes
+            all_classes.forEach(cls => {
+              className = className.replace(cls, '');
+            });
+
+            // Trim whitespace
+            className = className.trim();
+
+            // Update the block's className attribute
+            props.setAttributes({
+              className: className
+            });
+          },
+          className: "style-default"
+        }, "Default"), styles.map(style => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+          title: style.altTitle,
+          isPrimary: props.attributes.className && props.attributes.className.split(' ').includes(style.className),
+          isSecondary: !props.attributes.className || !props.attributes.className.split(' ').includes(style.className),
+          onClick: () => {
+            // Create a copy of the className
+            let className = props.attributes.className ? props.attributes.className : '';
+
+            // Remove all the existing classes
+            all_classes.forEach(cls => {
+              className = className.replace(cls, '');
+            });
+
+            // Trim whitespace
+            className = className.trim();
+
+            // Add the selected class if it exists
+            className = `${className} ${style.className}`.trim();
+
+            // Update the block's className attribute
+            props.setAttributes({
+              className: className
+            });
+          },
+          className: "style-" + style.name
+        }, style.label))))))));
+      };
+    }, 'verticalMarginSelect');
+    (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_vertical_margin_select', verticalMarginSelect);
+  };
+  let register_container_styles = function () {
+    /*
+    // Add a custom field for top level container to choose a width. Uses align classes from default blocke ditor
+    const containerWidthSelect = createHigherOrderComponent( ( BlockEdit ) => {
+    	const widths = [
+    		{
+    			name: 'wide',
+    			className: 'alignwide',
+    			label: 'Normal (1560px)'
+    		},
+    		{
+    			name: 'full',
+    			className: 'alignfull',
+    			label: 'Full (100%)'
+    		},
+    	];
+    		// Get all classes so that we can easily remove them all when the selection changes
+    	let all_classes = widths.map( width => width.className ).filter(val => val !== '');
+    		return (props) => {
+    		const { name, attributes, setAttributes, isSelected } = props;
+    		const { myAttribute } = attributes;
+    			// Only applies to group elements
+    		let is_top_level_group = true;
+    			if ( name !== 'core/group' ) {
+    			is_top_level_group = false;
+    		}
+    			// Check if the block has any parent blocks
+    		console.log( 'child blocks: ', wp.data.select( 'core/block-editor' ).getBlockParents( props.clientId ) );
+    		if ( wp.data.select( 'core/block-editor' ).getBlockParents( props.clientId ).length > 0 ) {
+    			is_top_level_group = false;
+    		}
+    			if ( ! is_top_level_group ) {
+    			return (
+    				<BlockEdit {...props} />
+    			);
+    		}
+    			return (
+    			<Fragment>
+    				<BlockEdit {...props} />
+    				{isSelected && (
+    					<InspectorControls>
+    						<PanelBody title="Container Width" initialOpen={true}>
+    							<div className="gcm-editor-container-widths gcm-editor--button-group">
+    								<ButtonGroup>
+    									<div className="gcm-editor--button-group--grid">
+    											<Button
+    											title="None"
+    											isPrimary={!props.attributes.className || !props.attributes.className.includes("align")}
+    											isSecondary={props.attributes.className && props.attributes.className.includes("align")}
+    											onClick={() => {
+    												// Create a copy of the className
+    												let className = props.attributes.className ? props.attributes.className : '';
+    													// Remove all the existing classes
+    												all_classes.forEach((cls) => {
+    													className = className.replace(cls, '');
+    												});
+    													// Trim whitespace
+    												className = className.trim();
+    													// Update the block's className attribute
+    												props.setAttributes({ className: className });
+    											}}
+    											className={"width-none"}
+    										>
+    											None
+    										</Button>
+    											{widths.map((width) => (
+    											<Button
+    												title={width.altTitle}
+    												isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(width.className)}
+    												isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(width.className)}
+    												onClick={() => {
+    													// Create a copy of the className
+    													let className = props.attributes.className ? props.attributes.className : '';
+    														// Remove all the existing classes
+    													all_classes.forEach((cls) => {
+    														className = className.replace(cls, '');
+    													});
+    														// Trim whitespace
+    													className = className.trim();
+    														// Add the selected class if it exists
+    													className = `${className} ${width.className}`.trim();
+    														// Update the block's className attribute
+    													props.setAttributes({ className: className });
+    												}}
+    												className={"width-" + width.name}
+    											>
+    												{width.label}
+    											</Button>
+    										))}
+    									</div>
+    								</ButtonGroup>
+    							</div>
+    						</PanelBody>
+    					</InspectorControls>
+    				)}
+    			</Fragment>
+    		);
+    	};
+    }, 'containerWidthSelect' );
+    	addFilter( 'editor.BlockEdit', 'gcm/register_container_width_select', containerWidthSelect );
+    */
+
+    // Add a custom field for containers to choose a style
+    const containerStyleSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
+      const styles = [{
+        name: 'section',
+        className: 'container-style-section',
+        label: 'Section'
+      }, {
+        name: 'card',
+        className: 'container-style-card',
+        label: 'Card'
+      }, {
+        name: 'card-small',
+        className: 'container-style-card-small',
+        label: 'Card (Small)'
+      }];
+
+      // Get all classes so that we can easily remove them all when the selection changes
+      let all_classes = styles.map(style => style.className).filter(val => val !== '');
+      return props => {
+        const {
+          name,
+          attributes,
+          setAttributes,
+          isSelected
+        } = props;
+        const {
+          myAttribute
+        } = attributes;
+
+        // Only enable for blocks which can contain other blocks
+        if (!block_supports_child_blocks(name)) {
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+            ...props
+          });
+        }
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+          ...props
+        }), isSelected && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+          title: "Container Style",
+          initialOpen: true
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor-container-styles gcm-editor--button-group"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ButtonGroup, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor--button-group--grid"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+          title: "None",
+          isPrimary: !props.attributes.className || !props.attributes.className.includes("container-style-"),
+          isSecondary: props.attributes.className && props.attributes.className.includes("container-style-"),
+          onClick: () => {
+            // Create a copy of the className
+            let className = props.attributes.className ? props.attributes.className : '';
+
+            // Remove all the existing classes
+            all_classes.forEach(cls => {
+              className = className.replace(cls, '');
+            });
+
+            // Trim whitespace
+            className = className.trim();
+
+            // Update the block's className attribute
+            props.setAttributes({
+              className: className
+            });
+          },
+          className: "style-none"
+        }, "None"), styles.map(style => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+          title: style.altTitle,
+          isPrimary: props.attributes.className && props.attributes.className.split(' ').includes(style.className),
+          isSecondary: !props.attributes.className || !props.attributes.className.split(' ').includes(style.className),
+          onClick: () => {
+            // Create a copy of the className
+            let className = props.attributes.className ? props.attributes.className : '';
+
+            // Remove all the existing classes
+            all_classes.forEach(cls => {
+              className = className.replace(cls, '');
+            });
+
+            // Trim whitespace
+            className = className.trim();
+
+            // Add the selected class if it exists
+            className = `${className} ${style.className}`.trim();
+
+            // Update the block's className attribute
+            props.setAttributes({
+              className: className
+            });
+          },
+          className: "style-" + style.name
+        }, style.label))))))));
+      };
+    }, 'containerStyleSelect');
+    (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_container_style_select', containerStyleSelect);
+  };
 
   // ----------------------------
   // Initialize styles and blocks
@@ -758,9 +1206,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
 
   // Styles
   setup_button_styles();
-
-  // setup_group_styles();
-
+  setup_group_styles();
   setup_rounded_styles();
 
   // Text formats (used in paragraph dropdown, etc)
@@ -777,6 +1223,13 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
 
   // Positioned blocks (position container + positioned element)
   register_positioned_blocks();
+  register_positioned_block_styles();
+
+  // Vertical margin, any block
+  register_vertical_margin_select();
+
+  // Container styles (blocks etc)
+  register_container_styles();
 });
 })();
 

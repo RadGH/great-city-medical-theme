@@ -24,7 +24,9 @@ Text Domain: gcm
 // @import "assets/styles/admin/editor-gutenberg.scss";
 
 // Blocks
+@import "assets/styles/blocks/blocks-general.scss";
 @import "assets/styles/blocks/card.scss";
+@import "assets/styles/blocks/icons.scss";
 @import "assets/styles/blocks/patients-summary.scss";
 @import "assets/styles/blocks/positioned-elements.scss";
 
