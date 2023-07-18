@@ -56,12 +56,16 @@ foreach( $locations as $i => $l ) {
 				
 				// monday -> Monday
 				$day_text = __( ucwords( $day ), 'gcm' );
+				
+				$classes = ( 'day-' . $day ) . ( $hour_text ? '' : ' hours-none' );
+				
+				/* <div class="hours-item day-<?php echo esc_attr($day); ?> <?php if ( ! $hour_text ) echo 'closed'; ?>"> */
 				?>
-				<div class="hours-item day-<?php echo esc_attr($day); ?> <?php if ( ! $hour_text ) echo 'closed'; ?>">
-					<span class="day"><?php echo esc_html($day_text); ?></span>
-					<span class="hours"><?php echo esc_html($hour_text ?: __('Closed', 'gcm') ); ?></span>
-				</div>
+					<span class="day <?php echo esc_attr($classes); ?>"><?php echo esc_html($day_text); ?></span>
+					<span class="hours <?php echo esc_attr($classes); ?>"><?php echo esc_html($hour_text ?: __('Closed', 'gcm') ); ?></span>
 				<?php
+				/* </div> */
+				
 			}
 		?></div>
 		<?php } ?>

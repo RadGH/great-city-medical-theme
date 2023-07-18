@@ -2,7 +2,7 @@
 	"name": "gcm/testimonial",
 	"title": "Testimonial",
 	"description": "Configurable testimonial block",
-	"style": [ "file:./testimonial.css" ],
+	"style": [],
 	"category": "great-city-medical",
 	"icon": "admin-gcm-icon",
 	"keywords": ["content", "testimonial"],

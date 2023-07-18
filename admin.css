@@ -1,81 +1,103 @@
+/*
 body {
-  --font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
-  --font-abhaya-libre: Abhaya Libre, serif;
-  --color-purple: #9069ac;
-  --color-purple-light: #e6c8ff;
-  --color-purple-lightest: #faf4ff;
-  --color-blue: #0957de;
-  --color-blue-light: #c9dcfd;
-  --color-blue-lightest: #f4f8ff;
-  --color-white: #ffffff;
-  --color-dark-purple: #68626e;
-  --color-black: #0e0d0d;
-  --color-gray-10: #fafafa;
-  --color-gray-8: #f1f1f1;
-  --color-gray-6: #e7e7e7;
-  --color-gray-4: #e3e3e3;
-  --color-gray-2: #3e3e3e;
-  --color-text-primary: #0e0d0d;
-  --color-text-secondary: #68626e;
-  --color-text-purple: #9069ac;
-  --color-text-blue: #0957de;
-  --color-black-light: #e3e3e3;
-  --color-black-lightest: #fafafa;
-  --font-size-body: 16px;
-  --font-size-body-mobile: 18px;
-  --font-size-large: 18px;
-  --font-size-regular: 16px;
-  --font-size-small: 14px;
-  --font-size-x-small: 12px;
-  --font-size-h1: 80px;
-  --font-size-h2: 60px;
-  --font-size-h3: 32px;
-  --font-size-h4: 28px;
-  --font-size-h5: 18px;
-  --font-size-h6: 18px;
-  --font-size-h1-mobile: 36px;
-  --font-size-h2-mobile: 32px;
-  --font-size-h3-mobile: 24px;
-  --font-size-h4-mobile: 18px;
-  --font-size-h5-mobile: 18px;
-  --font-size-h6-mobile: 18px;
-  --font-size-button: 16px;
-  --font-size-button-mobile: 16px;
+	// Font Families
+	--font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
+	--font-abhaya-libre: Abhaya Libre, serif;
+
+	// Colors
+	--color-purple: #9069ac;
+	--color-purple-light: #e6c8ff;
+	--color-purple-lightest: #faf4ff;
+
+	--color-blue: #0957de;
+	--color-blue-light: #c9dcfd;
+	--color-blue-lightest: #f4f8ff;
+
+	--color-white: #ffffff;
+	--color-dark-purple: #68626e;
+	--color-black: #0e0d0d;
+
+	--color-gray-10: #fafafa;
+	--color-gray-8: #f1f1f1;
+	--color-gray-6: #e7e7e7;
+	--color-gray-4: #e3e3e3;
+	--color-gray-2: #3e3e3e;
+
+	--color-text-primary: #0e0d0d;
+	--color-text-secondary: #68626e;
+
+	--color-text-purple: #9069ac;
+	--color-text-blue: #0957de;
+	--color-black-light: #e3e3e3;
+	--color-black-lightest: #fafafa;
+
+	// Font Sizes
+	--font-size-body: 16px;
+	--font-size-body-mobile: 18px;
+
+	--font-size-large: 18px;
+	--font-size-regular: 16px;
+	--font-size-small: 14px;
+	--font-size-x-small: 12px;
+
+	--font-size-h1: 80px;
+	--font-size-h2: 60px;
+	--font-size-h3: 32px;
+	--font-size-h4: 28px;
+	--font-size-h5: 18px;
+	--font-size-h6: 14px;
+
+	--font-size-h1-mobile: 36px;
+	--font-size-h2-mobile: 32px;
+	--font-size-h3-mobile: 24px;
+	--font-size-h4-mobile: 18px;
+	--font-size-h5-mobile: 18px;
+	--font-size-h6-mobile: 14px;
+
+	--font-size-button: 16px;
+	--font-size-button-mobile: 16px;
 }
 
+// Figma Variables -- Do not use!
+// If any of these variables are used in another SCSS file, replace it as dictated below.
 body.figma-variables {
-  --grey: var( --color-gray_4 );
-  --white: var( --color-white );
-  --black: var( --color-black );
-  --secondary-text: var( --color-dark-purple );
-  --bg: var( --color-gray-10 );
-  --primary-violet: var( --color-purple );
-  --primary-blue: var( --color-blue );
-  --button: var( --font-size-button );
-  --h1: var( --font-size-h1 );
-  --h2: var( --font-size-h2 );
-  --h3: var( --font-size-h3 );
-  --h4: var( --font-size-h4 );
-  --h5: var( --font-size-h5 );
-  --mobile---h1: var( --font-size-h1-mobile );
-  --mobile---h2: var( --font-size-h2-mobile );
-  --mobile---h3: var( --font-size-h3-mobile );
-  --mobile---h4: var( --font-size-h4-mobile );
-  --mobile---h4-light: var( --font-size-h4-mobile );
-  --mobile---h3-light--uppercase: var( --font-size-h3-mobile );
-  --body--light: var( --font-size-body );
-  --body--light--uppercase: var( --font-size-body );
-  --body--medium: var( --font-size-body );
-  --small--light--uppercase: var( --font-size-small );
-  --small--light: var( --font-size-small );
-  --small-2--medium: var( --font-size-x-small );
-  --small-2--light: var( --font-size-x-small );
-  --h6: var( --font-size-h6 );
-  --body--mobile: var( --font-size-large );
-  --mobile---h5: var( --font-size-h5-mobile );
-  --mobile---h6: var( --font-size-h6-mobile );
-}
+	// Colors - Figma variables (aliases)
+	--grey: var( --color-gray_4 );
+	--white: var( --color-white );
+	--black: var( --color-black );
+	--secondary-text: var( --color-dark-purple );
+	--bg: var( --color-gray-10 );
+	--primary-violet: var( --color-purple );
+	--primary-blue: var( --color-blue );
 
+	// Font Sizes - Figma variables (aliases)
+	--button: var( --font-size-button );
+	--h1: var( --font-size-h1 );
+	--h2: var( --font-size-h2 );
+	--h3: var( --font-size-h3 );
+	--h4: var( --font-size-h4 );
+	--h5: var( --font-size-h5 );
+	--mobile---h1: var( --font-size-h1-mobile );
+	--mobile---h2: var( --font-size-h2-mobile );
+	--mobile---h3: var( --font-size-h3-mobile );
+	--mobile---h4: var( --font-size-h4-mobile );
+	--mobile---h4-light: var( --font-size-h4-mobile );
+	--mobile---h3-light--uppercase: var( --font-size-h3-mobile );
+	--body--light: var( --font-size-body );
+	--body--light--uppercase: var( --font-size-body );
+	--body--medium: var( --font-size-body );
+	--small--light--uppercase: var( --font-size-small );
+	--small--light: var( --font-size-small );
+	--small-2--medium: var( --font-size-x-small );
+	--small-2--light: var( --font-size-x-small );
+
+	// (These didn't exist in Figma. I added them for consistency.)
+	--h6: var( --font-size-h6 );
+	--body--mobile: var( --font-size-large );
+	--mobile---h5: var( --font-size-h5-mobile );
+	--mobile---h6: var( --font-size-h6-mobile );
+}
+*/
 body {
   --border-1px-width: 1px;
   --border-2px-width: 2px;

@@ -34,4 +34,5 @@ require_once( __DIR__ . '/includes/plugin-woocommerce.php' );
 require_once( __DIR__ . '/includes/plugin-translatepress.php' );
 
 // Shortcodes
+require_once( __DIR__ . '/shortcodes/gcm_accordion.php' );
 require_once( __DIR__ . '/shortcodes/gcm_icon.php' );

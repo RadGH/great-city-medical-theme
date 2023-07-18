@@ -257,6 +257,9 @@ __webpack_require__.r(__webpack_exports__);
 // Add help text to positioned area field
 
 
+// Check if blocks support features
+
+
 // import { BlockControls } from '@wordpress/block-editor';
 // import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 // import { edit } from '@wordpress/icons';
@@ -291,6 +294,56 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
       return true;
     }
     return false;
+  };
+
+  // Check if a block supports gaps
+  const block_supports_gaps = name => {
+    return name === 'core/group' || name === 'core/columns';
+  };
+
+  // Functions to use with class strings
+  let has_class_prefix = function (classes, prefix) {
+    return get_class_by_prefix(classes, prefix) !== false;
+  };
+  let get_class_by_prefix = function (classes, prefix) {
+    let found_class = false;
+    let classList = classes.split(' ');
+    for (let i in classList) {
+      if (!classList.hasOwnProperty(i)) continue;
+      let class_name = classList[i];
+      if (class_name.indexOf(prefix) === 0) {
+        return class_name;
+      }
+    }
+    return false;
+  };
+  let has_class = function (classes, new_class) {
+    return get_class(classes, new_class) !== false;
+  };
+  let get_class = function (classes, new_class, get_position = false) {
+    let found_class = false;
+    let classList = classes.split(' ');
+    for (let i in classList) {
+      if (!classList.hasOwnProperty(i)) continue;
+      let class_name = classList[i];
+      if (class_name === new_class) {
+        return class_name;
+      }
+    }
+    return false;
+  };
+  let add_class = function (classes, new_class) {
+    if (!get_class(classes, new_class)) {
+      if (classes) classes += ' ';
+      classes += new_class;
+    }
+    return classes;
+  };
+  let remove_class = function (classes, new_class) {
+    while (get_class(classes, new_class)) {
+      classes = classes.replace(new_class, '');
+    }
+    return classes.trim();
   };
 
   // -------------
@@ -898,6 +951,244 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     }, 'positionAreaSelect');
     (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_position_area_select', positionAreaSelect);
   };
+  let register_container_gaps = function () {
+    // Add a custom field for containers to choose a gap
+    const containerGapSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
+      // classes:
+      // gap-none
+      // gap-10 = 10px
+
+      const stepsList = [{
+        value: '',
+        label: 'Default'
+      }, {
+        value: 'none',
+        label: 'None (0px)'
+      }, {
+        value: '2',
+        label: '2px'
+      }, {
+        value: '4',
+        label: '4px'
+      }, {
+        value: '6',
+        label: '6px'
+      }, {
+        value: '8',
+        label: '8px (Default)'
+      }, {
+        value: '12',
+        label: '12px'
+      }, {
+        value: '16',
+        label: '16px'
+      }, {
+        value: '20',
+        label: '20px'
+      }, {
+        value: '24',
+        label: '24px'
+      }, {
+        value: '40',
+        label: '40px'
+      }, {
+        value: '60',
+        label: '60px'
+      }, {
+        value: '80',
+        label: '80px'
+      }];
+      return props => {
+        const {
+          name,
+          attributes,
+          setAttributes,
+          isSelected
+        } = props;
+        // const { reverseOrderOnMobile, stackOnTablet } = attributes;
+
+        // Only enable for blocks which can contain other blocks
+        if (!block_supports_gaps(name)) {
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+            ...props
+          });
+        }
+
+        // const [initialValue, setInitialValue] = useState('default');
+        // const [initialMobileValue, setInitialMobileValue] = useState('default');
+
+        let initialClassName = attributes.className || '';
+        let initialValue = '';
+        let initialMobileValue = '';
+
+        // add extra space
+        initialClassName = " " + initialClassName;
+        if (initialClassName.includes(' gap-')) {
+          initialValue = initialClassName.match(/ gap-(\d+|none)/)[1];
+        }
+        if (initialClassName.includes(' mobile-gap-')) {
+          initialMobileValue = initialClassName.match(/ mobile-gap-(\d+|none)/)[1];
+        }
+
+        // Gap changed
+        const stepsChanged = value => {
+          let classes = ' ' + (attributes.className || '');
+          let temp_class, new_class;
+
+          // Remove existing desktop gap classes
+          while (temp_class = get_class_by_prefix('gap-')) {
+            classes = classes.replace(temp_class, '');
+          }
+
+          // Add new class
+          if (value !== '') {
+            if (value === '0') {
+              new_class = 'gap-none';
+            } else {
+              new_class = 'gap-' + value;
+            }
+            classes = add_class(classes, new_class);
+          }
+
+          // Update the block's classes
+          setAttributes({
+            className: classes
+          });
+        };
+
+        // Gap mobile changed
+        const mobileStepsChanged = value => {
+          let classes = ' ' + (attributes.className || '');
+          let temp_class, new_class;
+
+          // Remove existing desktop gap classes
+          while (temp_class = get_class_by_prefix('mobile-gap-')) {
+            classes = classes.replace(temp_class, '');
+          }
+
+          // Add new class
+          if (value !== '') {
+            if (value === '0') {
+              new_class = 'mobile-gap-none';
+            } else {
+              new_class = 'mobile-gap-' + value;
+            }
+            classes = add_class(classes, new_class);
+          }
+
+          // Update the block's classes
+          setAttributes({
+            className: classes
+          });
+        };
+
+        // Reverse order changed
+        const reverseOrderChanged = value => {
+          // Get classes
+          let updatedClassName = attributes.className || '';
+
+          // Remove existing "gap-" classes
+          if (updatedClassName) {
+            updatedClassName = updatedClassName.replace(/(mobile-reverse-order)/, '');
+          }
+
+          // Trim whitespace
+          if (updatedClassName) {
+            updatedClassName = updatedClassName.trim();
+          }
+
+          // Add new "gap-" class
+          if (value) {
+            updatedClassName += ` mobile-reverse-order`;
+          }
+
+          // Update the block's attributes
+          setAttributes({
+            className: updatedClassName,
+            reverseOrderOnMobile: value
+          });
+        };
+        const handleClassChange = (value, target_class) => {
+          // Get classes
+          let updatedClassName = attributes.className || '';
+
+          // Remove existing class
+          if (updatedClassName) {
+            updatedClassName = updatedClassName.replace(target_class, '');
+          }
+
+          // Trim whitespace
+          if (updatedClassName) {
+            updatedClassName = updatedClassName.trim();
+          }
+
+          // Add new class
+          if (value) {
+            updatedClassName += ' ' + target_class;
+          }
+
+          // Update the block's classes
+          setAttributes({
+            className: updatedClassName
+          });
+        };
+        const change_prefixed_class_name = (value, prefix) => {
+          let classes = attributes.className || '';
+          let temp_class;
+
+          // remove other classes with matching prefix
+          if (prefix) while (temp_class = get_class_by_prefix(classes, prefix)) {
+            classes = classes.replace(temp_class, '');
+          }
+
+          // add new class if value is given.
+          if (value === '0') {
+            classes = add_class(classes, prefix + 'none');
+          } else if (value) {
+            classes = add_class(classes, prefix + value);
+          }
+
+          // Update the block's classes
+          setAttributes({
+            className: classes
+          });
+        };
+        const hasClassName = class_name => {
+          let classes = attributes.className || '';
+          return has_class(classes, class_name);
+        };
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+          ...props
+        }), isSelected && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+          title: "Container Settings",
+          initialOpen: true
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-item-gap"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+          label: "Item Gap",
+          value: initialValue,
+          options: stepsList,
+          onChange: value => {
+            change_prefixed_class_name(value, 'gap-');
+            initialValue = value;
+          }
+        }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+          label: "Mobile",
+          value: initialMobileValue,
+          options: stepsList,
+          onChange: value => {
+            change_prefixed_class_name(value, 'mobile-gap-');
+            initialMobileValue = value;
+          }
+        })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ToggleControl, {
+          label: "Reverse order on mobile",
+          checked: hasClassName('mobile-reverse-order'),
+          onChange: value => handleClassChange(value, 'mobile-reverse-order')
+        }))));
+      };
+    }, 'containerGapSelect');
+    (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_container_gap_select', containerGapSelect);
+  };
   let register_vertical_margin_select = function () {
     // Add a custom field for verticals to choose a style
     const verticalMarginSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
@@ -1002,113 +1293,16 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_vertical_margin_select', verticalMarginSelect);
   };
   let register_container_styles = function () {
-    /*
-    // Add a custom field for top level container to choose a width. Uses align classes from default blocke ditor
-    const containerWidthSelect = createHigherOrderComponent( ( BlockEdit ) => {
-    	const widths = [
-    		{
-    			name: 'wide',
-    			className: 'alignwide',
-    			label: 'Normal (1560px)'
-    		},
-    		{
-    			name: 'full',
-    			className: 'alignfull',
-    			label: 'Full (100%)'
-    		},
-    	];
-    		// Get all classes so that we can easily remove them all when the selection changes
-    	let all_classes = widths.map( width => width.className ).filter(val => val !== '');
-    		return (props) => {
-    		const { name, attributes, setAttributes, isSelected } = props;
-    		const { myAttribute } = attributes;
-    			// Only applies to group elements
-    		let is_top_level_group = true;
-    			if ( name !== 'core/group' ) {
-    			is_top_level_group = false;
-    		}
-    			// Check if the block has any parent blocks
-    		console.log( 'child blocks: ', wp.data.select( 'core/block-editor' ).getBlockParents( props.clientId ) );
-    		if ( wp.data.select( 'core/block-editor' ).getBlockParents( props.clientId ).length > 0 ) {
-    			is_top_level_group = false;
-    		}
-    			if ( ! is_top_level_group ) {
-    			return (
-    				<BlockEdit {...props} />
-    			);
-    		}
-    			return (
-    			<Fragment>
-    				<BlockEdit {...props} />
-    				{isSelected && (
-    					<InspectorControls>
-    						<PanelBody title="Container Width" initialOpen={true}>
-    							<div className="gcm-editor-container-widths gcm-editor--button-group">
-    								<ButtonGroup>
-    									<div className="gcm-editor--button-group--grid">
-    											<Button
-    											title="None"
-    											isPrimary={!props.attributes.className || !props.attributes.className.includes("align")}
-    											isSecondary={props.attributes.className && props.attributes.className.includes("align")}
-    											onClick={() => {
-    												// Create a copy of the className
-    												let className = props.attributes.className ? props.attributes.className : '';
-    													// Remove all the existing classes
-    												all_classes.forEach((cls) => {
-    													className = className.replace(cls, '');
-    												});
-    													// Trim whitespace
-    												className = className.trim();
-    													// Update the block's className attribute
-    												props.setAttributes({ className: className });
-    											}}
-    											className={"width-none"}
-    										>
-    											None
-    										</Button>
-    											{widths.map((width) => (
-    											<Button
-    												title={width.altTitle}
-    												isPrimary={props.attributes.className && props.attributes.className.split(' ').includes(width.className)}
-    												isSecondary={!props.attributes.className || !props.attributes.className.split(' ').includes(width.className)}
-    												onClick={() => {
-    													// Create a copy of the className
-    													let className = props.attributes.className ? props.attributes.className : '';
-    														// Remove all the existing classes
-    													all_classes.forEach((cls) => {
-    														className = className.replace(cls, '');
-    													});
-    														// Trim whitespace
-    													className = className.trim();
-    														// Add the selected class if it exists
-    													className = `${className} ${width.className}`.trim();
-    														// Update the block's className attribute
-    													props.setAttributes({ className: className });
-    												}}
-    												className={"width-" + width.name}
-    											>
-    												{width.label}
-    											</Button>
-    										))}
-    									</div>
-    								</ButtonGroup>
-    							</div>
-    						</PanelBody>
-    					</InspectorControls>
-    				)}
-    			</Fragment>
-    		);
-    	};
-    }, 'containerWidthSelect' );
-    	addFilter( 'editor.BlockEdit', 'gcm/register_container_width_select', containerWidthSelect );
-    */
-
     // Add a custom field for containers to choose a style
     const containerStyleSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
       const styles = [{
         name: 'section',
         className: 'container-style-section',
         label: 'Section'
+      }, {
+        name: 'section-width',
+        className: 'container-style-section-width',
+        label: 'Section (Width Only)'
       }, {
         name: 'card',
         className: 'container-style-card',
@@ -1117,6 +1311,18 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         name: 'card-small',
         className: 'container-style-card-small',
         label: 'Card (Small)'
+      }, {
+        name: 'floating-bg',
+        className: 'container-style-floating-bg',
+        label: 'Floating BG'
+      }, {
+        name: 'button-row',
+        className: 'container-style-button-row',
+        label: 'Button Row'
+      }, {
+        name: 'center-text',
+        className: 'container-style-center-text',
+        label: 'Center Text'
       }];
 
       // Get all classes so that we can easily remove them all when the selection changes
@@ -1224,6 +1430,9 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   // Positioned blocks (position container + positioned element)
   register_positioned_blocks();
   register_positioned_block_styles();
+
+  // Allow changing gap
+  register_container_gaps();
 
   // Vertical margin, any block
   register_vertical_margin_select();

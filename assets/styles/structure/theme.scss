@@ -1,3 +1,7 @@
+body {
+	@include body_styles( true );
+}
+
 .inside {
 	@include site-content-width();
 	@include site-gutters();
@@ -6,4 +10,26 @@
 .site-content {
 	background: $color_gray_10;
 	// padding: 90px 0;
+}
+
+p {
+	color: $color_dark_purple;
+}
+
+// Admin bar on front-end
+#wpadminbar .quicklinks {
+	display: grid;
+	grid-template-columns: auto auto;
+	height: 100%;
+}
+
+#wpadminbar .quicklinks ul {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+
+#wpadminbar .quicklinks ul:last-child {
+	margin: 0 0 0 auto;
 }

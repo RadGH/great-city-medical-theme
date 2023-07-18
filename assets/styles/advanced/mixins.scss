@@ -15,72 +15,67 @@
 	background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.26953 1.22157L5.8507 5.66602L10.6029 1.22157' stroke='" + $color + "' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
 }
 
+// Font size for headings
+// <h1> -> <h6>
 
-// Font size base
-// <html>
-@mixin font_size_base( $responsive: true ) {
-	font-size: var( --font-size-body, 16px );
-	@if $responsive {
+// Calculate a responsive font size based on original pixel values and screen width
+@mixin respond_font_size( $desktop_px, $mobile_px, $responsive: true ) {
+
+	font-size: $desktop_px;
+
+
+	@if ( $responsive ) {
+		// Scale fonts between 1920px and 1200px
+		@media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+			// 80px font size = 4.16vw on desktop
+			// (80 / 1920) * 100 = 4.16vw
+			$desktop_vw: round( ($desktop_px / $design_width) * 10000vw ) / 100;
+			font-size: min( $desktop_px, $desktop_vw );
+		}
+
+		// Scale mobile fonts between 1200px and 375px
 		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --font-size-body-mobile, 18px );
+			// Similar calculation for mobile, but width based on design width (375px)
+
+			// Designed <h1> is 36px on mobile
+			// (36 / 375) * 100 = 9.6vw
+			// $mobile_vw: round( ($mobile_px / $design_mobile_width) * 10000vw ) / 100;
+			// font-size: min( $mobile_px, $mobile_vw );
+
+			// On second thought, just use regular px for mobile.
+			font-size: $mobile_px;
 		}
 	}
 }
 
-// Font size for headings
-// <h1> -> <h6>
 @mixin font_size_h1( $responsive: true ) {
-	font-size: var( --font-size-h1, 80px );
-	@if $responsive {
-		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --font-size-h1-mobile, 36px );
-		}
-	}
+	// 80px desktop, 36px mobile
+	@include respond_font_size( $font_size_h1, $font_size_h1_mobile, $responsive );
 }
 
 @mixin font_size_h2( $responsive: true ) {
-	font-size: var( --font-size-h2, 60px );
-	@if $responsive {
-		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --font-size-h2-mobile, 32px );
-		}
-	}
+	// 60px desktop, 32px mobile
+	@include respond_font_size( $font_size_h2, $font_size_h2_mobile, $responsive );
 }
 
 @mixin font_size_h3( $responsive: true ) {
-	font-size: var( --font-size-h3, 32px );
-	@if $responsive {
-		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --font-size-h3-mobile, 24px );
-		}
-	}
+	// 32px desktop, 24px mobile
+	@include respond_font_size( $font_size_h3, $font_size_h3_mobile, $responsive );
 }
 
 @mixin font_size_h4( $responsive: true ) {
-	font-size: var( --font-size-h4, 28px );
-	@if $responsive {
-		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --font-size-h4-mobile, 18px );
-		}
-	}
+	// 28px desktop, 18px mobile
+	@include respond_font_size( $font_size_h4, $font_size_h4_mobile, $responsive );
 }
 
 @mixin font_size_h5( $responsive: true ) {
-	font-size: var( --font-size-h5, 18px );
-	@if $responsive {
-		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --font-size-h5-mobile, 18px );
-		}
-	}
+	// 18px desktop, 18px mobile
+	@include respond_font_size( $font_size_h5, $font_size_h5_mobile, $responsive );
 }
 
 @mixin font_size_h6( $responsive: true ) {
-	font-size: var( --font-size-h6, 14px );
-	@if $responsive {
-		@media ( max-width: $break_at_desktop ) {
-			font-size: var( --font-size-h6-mobile, 16px );
-		}
-	}
+	// 14px desktop, 14px mobile
+	@include respond_font_size( $font_size_h6, $font_size_h6_mobile, $responsive );
 }
 
 
@@ -213,6 +208,10 @@
 	// 83.33% = 1600px / 1920px
 	@media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
 		width: clamp( $break_above_desktop, 83.333%, $design_width );
+
+		body .editor-styles-wrapper & {
+			width: auto !important; /* Do not clamp in editor */
+		}
 	}
 }
 
@@ -247,8 +246,6 @@
 // With Gutenberg, this is applied to the "body .editor-styles-wrapper" selector instead.
 // The classic editor uses $responsive = false
 @mixin body_styles( $responsive: true ) {
-	@include font_size_base( $responsive );
-
 	font-family: $font_family_body;
 	font-weight: 300;
 	line-height: 1.4;
@@ -258,6 +255,14 @@
 	@media ( max-width: $break_above_mobile ) {
 		line-height: 1.5;
 	}
+
+	// Desktop
+	font-size: $font_size_body;
+
+	// Phone
+	// @media ( max-width: $break_at_desktop ) {
+	// 	font-size: $font_size_body_mobile;
+	// }
 }
 
 // Theme styles
@@ -283,8 +288,12 @@
 		margin: 0 0 15px;
 	}
 
-	p {
+	p, ul, ol {
 		margin: 0 0 15px;
+
+		@media ( max-width: $break_at_desktop ) {
+			margin-bottom: 12px;
+		}
 	}
 
 	strong {
@@ -296,7 +305,37 @@
 		text-decoration: underline;
 
 		&:hover {
-			color: var( --color-purple, $color_purple );
+			color: $color_purple;
+		}
+	}
+
+	// Links with icons
+	a:has(.gcm-icon) {
+		display: inline-grid;
+		grid-template-columns: 1fr auto;
+		gap: 12px;
+		text-decoration: none;
+
+		&:hover {
+			color: $color_blue;
+			text-decoration: underline;
+		}
+
+		& .gcm-icon {
+			display: block;
+			height: 24px;
+		}
+
+		& .gcm-icon .icon-frame {
+			width: 14px;
+			height: 14px;
+			padding: 5px;
+		}
+
+		& .gcm-icon .icon-frame svg {
+			width: 20px;
+			height: 20px;
+			margin: -3px;
 		}
 	}
 

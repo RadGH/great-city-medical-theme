@@ -1,81 +1,103 @@
+/*
 body {
-  --font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
-  --font-abhaya-libre: Abhaya Libre, serif;
-  --color-purple: #9069ac;
-  --color-purple-light: #e6c8ff;
-  --color-purple-lightest: #faf4ff;
-  --color-blue: #0957de;
-  --color-blue-light: #c9dcfd;
-  --color-blue-lightest: #f4f8ff;
-  --color-white: #ffffff;
-  --color-dark-purple: #68626e;
-  --color-black: #0e0d0d;
-  --color-gray-10: #fafafa;
-  --color-gray-8: #f1f1f1;
-  --color-gray-6: #e7e7e7;
-  --color-gray-4: #e3e3e3;
-  --color-gray-2: #3e3e3e;
-  --color-text-primary: #0e0d0d;
-  --color-text-secondary: #68626e;
-  --color-text-purple: #9069ac;
-  --color-text-blue: #0957de;
-  --color-black-light: #e3e3e3;
-  --color-black-lightest: #fafafa;
-  --font-size-body: 16px;
-  --font-size-body-mobile: 18px;
-  --font-size-large: 18px;
-  --font-size-regular: 16px;
-  --font-size-small: 14px;
-  --font-size-x-small: 12px;
-  --font-size-h1: 80px;
-  --font-size-h2: 60px;
-  --font-size-h3: 32px;
-  --font-size-h4: 28px;
-  --font-size-h5: 18px;
-  --font-size-h6: 18px;
-  --font-size-h1-mobile: 36px;
-  --font-size-h2-mobile: 32px;
-  --font-size-h3-mobile: 24px;
-  --font-size-h4-mobile: 18px;
-  --font-size-h5-mobile: 18px;
-  --font-size-h6-mobile: 18px;
-  --font-size-button: 16px;
-  --font-size-button-mobile: 16px;
+	// Font Families
+	--font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
+	--font-abhaya-libre: Abhaya Libre, serif;
+
+	// Colors
+	--color-purple: #9069ac;
+	--color-purple-light: #e6c8ff;
+	--color-purple-lightest: #faf4ff;
+
+	--color-blue: #0957de;
+	--color-blue-light: #c9dcfd;
+	--color-blue-lightest: #f4f8ff;
+
+	--color-white: #ffffff;
+	--color-dark-purple: #68626e;
+	--color-black: #0e0d0d;
+
+	--color-gray-10: #fafafa;
+	--color-gray-8: #f1f1f1;
+	--color-gray-6: #e7e7e7;
+	--color-gray-4: #e3e3e3;
+	--color-gray-2: #3e3e3e;
+
+	--color-text-primary: #0e0d0d;
+	--color-text-secondary: #68626e;
+
+	--color-text-purple: #9069ac;
+	--color-text-blue: #0957de;
+	--color-black-light: #e3e3e3;
+	--color-black-lightest: #fafafa;
+
+	// Font Sizes
+	--font-size-body: 16px;
+	--font-size-body-mobile: 18px;
+
+	--font-size-large: 18px;
+	--font-size-regular: 16px;
+	--font-size-small: 14px;
+	--font-size-x-small: 12px;
+
+	--font-size-h1: 80px;
+	--font-size-h2: 60px;
+	--font-size-h3: 32px;
+	--font-size-h4: 28px;
+	--font-size-h5: 18px;
+	--font-size-h6: 14px;
+
+	--font-size-h1-mobile: 36px;
+	--font-size-h2-mobile: 32px;
+	--font-size-h3-mobile: 24px;
+	--font-size-h4-mobile: 18px;
+	--font-size-h5-mobile: 18px;
+	--font-size-h6-mobile: 14px;
+
+	--font-size-button: 16px;
+	--font-size-button-mobile: 16px;
 }
 
+// Figma Variables -- Do not use!
+// If any of these variables are used in another SCSS file, replace it as dictated below.
 body.figma-variables {
-  --grey: var( --color-gray_4 );
-  --white: var( --color-white );
-  --black: var( --color-black );
-  --secondary-text: var( --color-dark-purple );
-  --bg: var( --color-gray-10 );
-  --primary-violet: var( --color-purple );
-  --primary-blue: var( --color-blue );
-  --button: var( --font-size-button );
-  --h1: var( --font-size-h1 );
-  --h2: var( --font-size-h2 );
-  --h3: var( --font-size-h3 );
-  --h4: var( --font-size-h4 );
-  --h5: var( --font-size-h5 );
-  --mobile---h1: var( --font-size-h1-mobile );
-  --mobile---h2: var( --font-size-h2-mobile );
-  --mobile---h3: var( --font-size-h3-mobile );
-  --mobile---h4: var( --font-size-h4-mobile );
-  --mobile---h4-light: var( --font-size-h4-mobile );
-  --mobile---h3-light--uppercase: var( --font-size-h3-mobile );
-  --body--light: var( --font-size-body );
-  --body--light--uppercase: var( --font-size-body );
-  --body--medium: var( --font-size-body );
-  --small--light--uppercase: var( --font-size-small );
-  --small--light: var( --font-size-small );
-  --small-2--medium: var( --font-size-x-small );
-  --small-2--light: var( --font-size-x-small );
-  --h6: var( --font-size-h6 );
-  --body--mobile: var( --font-size-large );
-  --mobile---h5: var( --font-size-h5-mobile );
-  --mobile---h6: var( --font-size-h6-mobile );
-}
+	// Colors - Figma variables (aliases)
+	--grey: var( --color-gray_4 );
+	--white: var( --color-white );
+	--black: var( --color-black );
+	--secondary-text: var( --color-dark-purple );
+	--bg: var( --color-gray-10 );
+	--primary-violet: var( --color-purple );
+	--primary-blue: var( --color-blue );
 
+	// Font Sizes - Figma variables (aliases)
+	--button: var( --font-size-button );
+	--h1: var( --font-size-h1 );
+	--h2: var( --font-size-h2 );
+	--h3: var( --font-size-h3 );
+	--h4: var( --font-size-h4 );
+	--h5: var( --font-size-h5 );
+	--mobile---h1: var( --font-size-h1-mobile );
+	--mobile---h2: var( --font-size-h2-mobile );
+	--mobile---h3: var( --font-size-h3-mobile );
+	--mobile---h4: var( --font-size-h4-mobile );
+	--mobile---h4-light: var( --font-size-h4-mobile );
+	--mobile---h3-light--uppercase: var( --font-size-h3-mobile );
+	--body--light: var( --font-size-body );
+	--body--light--uppercase: var( --font-size-body );
+	--body--medium: var( --font-size-body );
+	--small--light--uppercase: var( --font-size-small );
+	--small--light: var( --font-size-small );
+	--small-2--medium: var( --font-size-x-small );
+	--small-2--light: var( --font-size-x-small );
+
+	// (These didn't exist in Figma. I added them for consistency.)
+	--h6: var( --font-size-h6 );
+	--body--mobile: var( --font-size-large );
+	--mobile---h5: var( --font-size-h5-mobile );
+	--mobile---h6: var( --font-size-h6-mobile );
+}
+*/
 body {
   --border-1px-width: 1px;
   --border-2px-width: 2px;
@@ -137,12 +159,13 @@ input, button, textarea, select {
 Reusable formats
 */
 body.mce-content-body {
-  font-size: var(--font-size-body, 16px);
   font-family: sofia-pro, Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.4;
   -webkit-font-smoothing: subpixel-antialiased;
   text-wrap: balance;
+  font-size: 16px;
+  margin: 10px !important;
 }
 @media (max-width: 480.1px) {
   body.mce-content-body {
@@ -150,22 +173,22 @@ body.mce-content-body {
   }
 }
 body.mce-content-body h1 {
-  font-size: var(--font-size-h1, 80px);
+  font-size: 80px;
 }
 body.mce-content-body h2 {
-  font-size: var(--font-size-h2, 60px);
+  font-size: 60px;
 }
 body.mce-content-body h3 {
-  font-size: var(--font-size-h3, 32px);
+  font-size: 32px;
 }
 body.mce-content-body h4 {
-  font-size: var(--font-size-h4, 28px);
+  font-size: 28px;
 }
 body.mce-content-body h5 {
-  font-size: var(--font-size-h5, 18px);
+  font-size: 18px;
 }
 body.mce-content-body h6 {
-  font-size: var(--font-size-h6, 14px);
+  font-size: 14px;
 }
 body.mce-content-body h1,
 body.mce-content-body h2,
@@ -176,8 +199,13 @@ body.mce-content-body h6 {
   font-weight: 500;
   margin: 0 0 15px;
 }
-body.mce-content-body p {
+body.mce-content-body p, body.mce-content-body ul, body.mce-content-body ol {
   margin: 0 0 15px;
+}
+@media (max-width: 1200px) {
+  body.mce-content-body p, body.mce-content-body ul, body.mce-content-body ol {
+    margin-bottom: 12px;
+  }
 }
 body.mce-content-body strong {
   font-weight: 500;
@@ -187,7 +215,31 @@ body.mce-content-body a {
   text-decoration: underline;
 }
 body.mce-content-body a:hover {
-  color: var(--color-purple, #9069ac);
+  color: #9069ac;
+}
+body.mce-content-body a:has(.gcm-icon) {
+  display: inline-grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  text-decoration: none;
+}
+body.mce-content-body a:has(.gcm-icon):hover {
+  color: #0957de;
+  text-decoration: underline;
+}
+body.mce-content-body a:has(.gcm-icon) .gcm-icon {
+  display: block;
+  height: 24px;
+}
+body.mce-content-body a:has(.gcm-icon) .gcm-icon .icon-frame {
+  width: 14px;
+  height: 14px;
+  padding: 5px;
+}
+body.mce-content-body a:has(.gcm-icon) .gcm-icon .icon-frame svg {
+  width: 20px;
+  height: 20px;
+  margin: -3px;
 }
 body.mce-content-body .font-sofia-pro {
   font-family: sofia-pro, Helvetica, Arial, sans-serif;
@@ -240,51 +292,81 @@ body.mce-content-body .heading-eyebrow-text {
   text-transform: uppercase;
 }
 body.mce-content-body .heading-h1 {
-  font-size: var(--font-size-h1, 80px);
+  font-size: 80px;
+}
+@media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-h1 {
+    font-size: min(80px, 4.17vw);
+  }
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h1 {
-    font-size: var(--font-size-h1-mobile, 36px);
+    font-size: 36px;
   }
 }
 body.mce-content-body .heading-h2 {
-  font-size: var(--font-size-h2, 60px);
+  font-size: 60px;
+}
+@media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-h2 {
+    font-size: min(60px, 3.13vw);
+  }
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h2 {
-    font-size: var(--font-size-h2-mobile, 32px);
+    font-size: 32px;
   }
 }
 body.mce-content-body .heading-h3 {
-  font-size: var(--font-size-h3, 32px);
+  font-size: 32px;
+}
+@media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-h3 {
+    font-size: min(32px, 1.67vw);
+  }
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h3 {
-    font-size: var(--font-size-h3-mobile, 24px);
+    font-size: 24px;
   }
 }
 body.mce-content-body .heading-h4 {
-  font-size: var(--font-size-h4, 28px);
+  font-size: 28px;
+}
+@media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-h4 {
+    font-size: min(28px, 1.46vw);
+  }
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h4 {
-    font-size: var(--font-size-h4-mobile, 18px);
+    font-size: 18px;
   }
 }
 body.mce-content-body .heading-h5 {
-  font-size: var(--font-size-h5, 18px);
+  font-size: 18px;
+}
+@media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-h5 {
+    font-size: min(18px, 0.94vw);
+  }
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h5 {
-    font-size: var(--font-size-h5-mobile, 18px);
+    font-size: 18px;
   }
 }
 body.mce-content-body .heading-h6 {
-  font-size: var(--font-size-h6, 14px);
+  font-size: 14px;
+}
+@media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-h6 {
+    font-size: min(14px, 0.73vw);
+  }
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h6 {
-    font-size: var(--font-size-h6-mobile, 16px);
+    font-size: 14px;
   }
 }
 

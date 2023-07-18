@@ -2,4 +2,6 @@ body.mce-content-body {
 	@include body_styles( false );
 	@include theme_styles( false );
 	@include editor_formats();
+
+	margin: 10px !important;
 }

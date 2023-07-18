@@ -1,0 +1,14 @@
+{
+	"name": "gcm/accordion",
+	"title": "Accordion",
+	"description": "Expand and collapse the content in this accordion block.",
+	"style": [],
+	"category": "great-city-medical",
+	"icon": "admin-gcm-icon",
+	"keywords": ["content", "accordion"],
+	"align": "full",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "accordion.php"
+	}
+}

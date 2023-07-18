@@ -25,9 +25,9 @@ Text Domain: gcm
 
 // Blocks
 @import "assets/styles/blocks/blocks-general.scss";
+@import "assets/styles/blocks/accordion.scss";
 @import "assets/styles/blocks/card.scss";
 @import "assets/styles/blocks/icons.scss";
-@import "assets/styles/blocks/patients-summary.scss";
 @import "assets/styles/blocks/positioned-elements.scss";
 
 // Structure
@@ -48,6 +48,9 @@ Text Domain: gcm
 // Plugins
 @import "assets/styles/plugins/_all_plugins.scss";
 
+// Pages
+@import "assets/styles/pages/contact-us.scss";
+
 /*
 Breakpoints. Uses 0.1px for minimum width to avoid clashing breakpoints and support high density displays.
 
@@ -55,8 +58,8 @@ mobile
 	@media ( max-width: 480px )
 	@media ( min-width: 480.1px )
 tablet
-	@media ( max-width: 768px )
-	@media ( min-width: 768.1px )
+	@media ( max-width: 780px )
+	@media ( min-width: 780.1px )
 laptop
 	@media ( max-width: 1200px )
 	@media ( min-width: 1200.1px )

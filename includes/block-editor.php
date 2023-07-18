@@ -8,12 +8,9 @@
 function gcm_register_acf_blocks() {
 	
 	// In use
-	register_block_type( __DIR__ . '/../blocks/patients-summary/' );
-	
-	// Not in used / incomplete
-	register_block_type( __DIR__ . '/../blocks/card/' );
-	register_block_type( __DIR__ . '/../blocks/icon/' );
+	register_block_type( __DIR__ . '/../blocks/accordion/' );
 	register_block_type( __DIR__ . '/../blocks/testimonial/' );
+	register_block_type( __DIR__ . '/../blocks/icon/' );
 	
 	// The parameters passed to the block type templates:
 	/**

@@ -1,0 +1,193 @@
+// Business Reviews Bundle plugin
+// by Rich Plugins (hence rp)
+#rp-star path {
+	fill: $color_blue;
+}
+
+#rp-star-half path {
+	fill: $color_blue;
+}
+
+#rp-star-o path {}
+
+.rplg {
+
+	.rplg-slider .rplg-box .rplg-box-content:before {
+		content: '';
+		background-image: url(/wp-content/themes/great-city-medical/assets/images/testimonial.svg);
+	}
+
+	/* Give room for testimonial icon overhang */
+	.rplg-slider .rplg-slider-review {
+		margin: 20px 0 0 !important;
+	}
+
+	/* Custom quote icon */
+	.rplg-slider .rplg-box .rplg-box-content:before {
+		content: "" !important;
+		top: 0% !important;
+		left: 50% !important;
+
+		width: 56px !important;
+		height: 38px !important;
+		margin: -20px 0 0 -28px !important;
+
+		background-image: url(/wp-content/themes/great-city-medical/assets/images/testimonial.svg) !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;
+		background-size: contain !important;
+	}
+
+	/* Padding around comment text */
+	.rplg-slider .rplg-box .rplg-box-content {
+		margin: 46px 24px 26px !important;
+		margin-bottom: 92px !important; /* room for author box too */
+		height: 100px !important;
+	}
+
+
+	/* Stars */
+	.rplg-slider .rplg-stars {
+		position: absolute;
+		bottom: 43px;
+		right: 14px;
+	}
+
+	/* Hide google icon */
+	.rplg-review-badge {
+		display: none;
+	}
+
+	/* Position author box */
+	.rplg-slider .rplg-row {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		margin: 0 0 22px 24px !important;
+		padding: 0 !important;
+		gap: 6px !important;
+	}
+
+	.rplg-review-name {
+		color: #0e0d0d !important;
+	}
+
+	.rplg-box {
+		border-radius: 24px !important;
+		border: 1px solid #E7E7E7 !important;
+		background: #FBFBFB !important;
+	}
+
+	// Comment box scrollbar
+	.rplg-box .rplg-box-content::-webkit-scrollbar {
+		width: 3px !important;
+	}
+
+	.rplg-box .rplg-box-content::-webkit-scrollbar-track {
+		-webkit-box-shadow: none !important;
+		-webkit-border-radius: 4px !important;
+		border-radius: 4px !important;
+		background: none;
+	}
+
+	.rplg-box .rplg-box-content::-webkit-scrollbar-thumb {
+		background: #afafaf !important;
+		-webkit-box-shadow: none !important;
+	}
+
+	.rplg-box .rplg-box-content::-webkit-scrollbar-thumb:window-inactive {
+		background: none !important;
+	}
+
+	// Avatar
+	.rplg-review-avatar {
+		width: 60px !important;
+		height: 60px !important;
+		box-shadow: none !important;
+	}
+
+
+	// Arrows
+	.rplg-slider-prev,
+	.rplg-slider-next {
+		background-color: #FAF4FF !important;
+		border: 1px solid #9069AC !important;
+		padding: 8px !important;
+
+		width: auto !important;
+		height: auto !important;
+
+		span { display: none !important; }
+	}
+
+	.rplg-slider-prev {
+		left: -80px !important;
+	}
+	.rplg-slider-next {
+		right: -80px !important;
+	}
+
+	.rplg-slider-prev::before,
+	.rplg-slider-next::before {
+		content: "";
+		top: 0;
+		left: 0;
+
+		display: block;
+		width: 24px;
+		height: 24px;
+
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 24px;
+	}
+
+	.rplg-slider-prev::before {
+		background-image: url(/wp-content/themes/great-city-medical/assets/images/arrow-left.svg);
+	}
+
+	.rplg-slider-next::before {
+		background-image: url(/wp-content/themes/great-city-medical/assets/images/arrow-right.svg);
+	}
+
+	// at 1920px, reduce width to contain arrows
+	@media ( max-width: $break_at_large_desktop ) {
+		.rplg-slider {
+			max-width: calc(100vw - 200px);
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.rplg-slider-prev {
+			left: -70px !important;
+		}
+		.rplg-slider-next {
+			right: -70px !important;
+		}
+	}
+
+	// at 1200px, collapse reviews
+	@media ( max-width: $break_at_desktop ) {
+		.rplg-slider .rplg-box .rplg-box-content {
+			margin-bottom: 120px !important;
+		}
+
+		.rplg-slider .rplg-stars {
+			bottom: 88px;
+			left: 22px;
+		}
+	}
+
+	// at about 800px, only two reviews show, hide left arrow
+	@media ( max-width: $break_at_tablet ) {
+		.rplg-slider-prev {
+			display: none !important;
+		}
+
+		.rplg-slider {
+			max-width: calc(100vw - 120px);
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+}

@@ -9,22 +9,6 @@ body .editor-styles-wrapper {
 	@include vertical_margins();
 }
 
-// Section appearance, normally based off <article> tag
-// blocks-general.scss
-.container-style-section {
-	@extend .article-section;
-}
-
-.wp-block-post-content > .container-style-section {
-	&:first-child {
-		padding-top: 0 !important;
-	}
-
-	&:not(.alignfull) {
-		@extend .article-width;
-	}
-}
-
 // Gutenberg editor background
 body .editor-styles-wrapper {
 	background: $color_black_lightest;
@@ -144,4 +128,11 @@ body .editor-styles-wrapper {
 			opacity: 0.5;
 		}
 	}
+}
+
+// Columns etc, customizable gaps
+.gcm-item-gap {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
 }

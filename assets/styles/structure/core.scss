@@ -2,10 +2,6 @@
 Global structure
 */
 
-body {
-	@include body_styles( true );
-}
-
 @include theme_styles( true );
 @include editor_formats();
 @include block_formats();

@@ -1,0 +1,23 @@
+body.slug-contact-us {
+	.footer-content {
+		display: none;
+	}
+
+	article > .container-style-section:last-child {
+		margin-bottom: 0;
+		padding-bottom: 60px;
+	}
+
+	.site-footer {
+		padding-top: 0;
+		background-color: #fafafa;
+	}
+
+	.footer-locations {
+		margin-top: 0;
+	}
+
+	.footer-locations {
+		z-index: 1;
+	}
+}

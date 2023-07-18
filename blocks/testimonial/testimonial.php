@@ -18,19 +18,17 @@ if ( ! isset($block) ) {
 $id = gcm_get_block_id( $block );
 $classes = gcm_get_block_classes( $block );
 
-// Load values and assign defaults.
-$image   = get_field( 'image' );
-
 $classes[] = 'gcm-testimonial-block';
-$classes[] = $image ? 'has-image' : 'no-image';
 
 ?>
 <div <?php echo ($id ? 'id="'. esc_attr($id) .'" ' : ''); ?> class="<?php echo esc_attr( implode(' ', $classes) ); ?>">
 	
-	<h2>todo: testimonial block</h2>
-	
-	<pre><?php
-		echo esc_html(print_r(compact('image'), true));
-	?></pre>
+	<?php
+	if ( is_admin() || acf_is_block_editor() ) {
+		echo '<img src="'. get_theme_file_uri('/assets/images/testimonial-preview.png' ) .'" alt="Testimonial widget will be displayed here" style="width: 100%; margin: 0 auto;" />';
+	}else{
+		echo do_shortcode('[brb_collection id="3269"]');
+	}
+	?>
 	
 </div>

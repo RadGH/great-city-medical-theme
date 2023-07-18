@@ -1,45 +1,41 @@
+// Block sections
+// HORIZONTAL
+.container-style-section {
+	@extend .article-section;
 
-// Block widths
+	&:not(.alignfull) {
+		@extend .article-width;
+	}
+}
 
-// none:              is-selected wp-block-group is-style-section container-style-section block-editor-block-list__layout is-layout-constrained is-content-justification-center
-// default: alignwide is-selected wp-block-group is-style-section container-style-section block-editor-block-list__layout is-layout-constrained is-content-justification-center
-// full:    alignfull is-selected wp-block-group is-style-section container-style-section block-editor-block-list__layout is-layout-constrained is-content-justification-center
-
-// Default section width
-article > .wp-block-group:not(.alignfull) {
+.container-style-section-width {
 	@extend .article-width;
 }
 
-.article-width {
+article > .container-style-section:first-child {
+	// First section has less top padding
+	&:first-child {
+		padding-top: respond_vw( 92px );
 
-	@include site-content-width();
-	@include site-gutters();
-
+		@media ( max-width: $break_at_desktop ) {
+			padding-top: 60px;
+		}
+	}
 }
 
-// Container style: Section
-// Padding is provided between sections and can be given a background color
-article > .wp-block-group {
-	@extend .article-section;
+.article-width {
+	@include site-content-width();
+	@include site-gutters();
 }
 
 .article-section {
 	// Top padding
 	// padding-top: 75px;
-	padding-top: respond_vw( 75px ); // 75px / 1920px = 0.0390625
+	// padding-top: respond_vw( 75px ); // 75px / 1920px = 0.0390625
+	padding-top: respond_vw( 150px ); // 75px / 1920px = 0.0390625
 
 	@media ( max-width: $break_at_desktop ) {
 		padding-top: 80px;
-	}
-
-	// Top padding, first element only
-	&:first-child {
-		// padding-top: 92px;
-		padding-top: respond_vw( 92px );
-	}
-
-	@media ( max-width: $break_at_desktop ) {
-		&:first-child { padding-top: 60px; }
 	}
 
 	// Bottom padding
@@ -60,15 +56,201 @@ article > .wp-block-group {
 	border-radius: 18px;
 	border: 0.859px solid $color_gray_6; // #ECEAEA
 	background: $color_white;
-	padding: 10px 32px;
+}
+
+.container-style-card {
+	padding: 24px;
 }
 
 .container-style-card-small {
-	padding: 12px;
+	padding: 20px;
+
+	@media ( max-width: $break_at_tablet ) {
+		padding: 14px;
+	}
 }
 
-// Custom classes
-.no-gap,
-.editor-styles-wrapper .no-gap:where(.is-layout-flex) { gap: 0; }
-.gap-,
-.editor-styles-wrapper .gap-:where(.is-layout-flex) { gap: 0; }
+.container-style-floating-bg {
+	position: relative;
+}
+
+.container-style-floating-bg * {
+	z-index: 2;
+}
+
+// Card style inside a block, equal heights, aligned the last gap item on bottom
+// See 3 cards on front page, link is aligned bottom
+@media ( min-width: $break_above_desktop ) {
+	.wp-block-columns:has(.container-style-card) {
+		align-items: stretch !important;
+
+		& > .wp-block-column > .wp-block-group {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+
+		.wp-block-group[class*="gap-"] {
+			height: 100%;
+
+			& > :last-child {
+				margin-top: auto;
+			}
+		}
+	}
+}
+
+// Container style: Floating background (for use on 3 column grid, front page, About Us section)
+@media ( max-width: $break_at_tablet ) {
+	.container-style-floating-bg {
+		background: #fff;
+	}
+}
+
+@media ( min-width: $break_above_tablet ) {
+	.container-style-floating-bg::before {
+		content: '';
+		display: block;
+		position: absolute;
+		z-index: 1;
+
+		background: #fff;
+		left: 23%;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		border-radius: 100px 0 0 100px;
+	}
+}
+
+// Mobile items centered
+.mobile-items-center {
+	@media ( max-width: $break_at_tablet ) {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+
+		& > .vertical-margin-none,
+		& > .vertical-margin-x-small,
+		& > .vertical-margin-small,
+		& > .vertical-margin-medium,
+		& > .vertical-margin-large,
+		& > .vertical-margin-huge {
+			margin-top: 12px;
+			margin-bottom: 12px;
+		}
+	}
+}
+
+// Center Text
+.container-style-center-text {
+	text-align: center;
+
+	.yoast-breadcrumbs > span {
+		justify-content: center;
+	}
+}
+
+// Button row (Centered on mobile, equal widths, min 335px width)
+@media ( max-width: $break_at_tablet ) {
+	.container-style-button-row {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: 20px;
+
+		.button,
+		.wp-block-buttons,
+		.wp-block-button,
+		.wp-block-button .wp-block-button__link {
+			width: 100%;
+		}
+
+		// min width unless screen is too small
+		width: min( 335px, 100% );
+
+	}
+}
+
+// Custom gaps for columns, grids, etc
+@mixin gapClassDesktop( $className, $pixels ) {
+	#{$className},
+	.editor-styles-wrapper #{$className} {
+
+		// Scale based on screen size
+		$vw: ($pixels / $design_width) * 100vw;
+		gap: min( $pixels, $vw );
+
+		// Half size for mobile, for 20px or larger gaps
+		@if ( $pixels >= 20px ) {
+			@media ( max-width: $break_at_tablet ) {
+				gap: $pixels / 2;
+			}
+		}
+
+	}
+}
+
+@mixin gapClassMobile( $className, $pixels ) {
+	#{$className},
+	.editor-styles-wrapper #{$className} {
+
+		// No scaling for mobile gap sizes
+		@media ( max-width: $break_at_tablet ) {
+			gap: $pixels;
+		}
+
+	}
+}
+
+// Gap spacing (with scaling for large sizes)
+// must match blocks.js -> register_container_gaps() -> stepsList
+@include gapClassDesktop( '.gap-none', 0px );
+@include gapClassDesktop( '.gap-2',    2px );
+@include gapClassDesktop( '.gap-4',    4px );
+@include gapClassDesktop( '.gap-6',    6px );
+@include gapClassDesktop( '.gap-8',    8px );
+@include gapClassDesktop( '.gap-12',  12px );
+@include gapClassDesktop( '.gap-16',  16px );
+@include gapClassDesktop( '.gap-20',  20px );
+@include gapClassDesktop( '.gap-24',  24px );
+@include gapClassDesktop( '.gap-40',  40px );
+@include gapClassDesktop( '.gap-60',  60px );
+@include gapClassDesktop( '.gap-80',  80px );
+
+
+// Mobile gaps (non-scaling)
+@include gapClassMobile( '.mobile-gap-none', 0px );
+@include gapClassMobile( '.mobile-gap-2',    2px );
+@include gapClassMobile( '.mobile-gap-4',    4px );
+@include gapClassMobile( '.mobile-gap-6',    6px );
+@include gapClassMobile( '.mobile-gap-8',    8px );
+@include gapClassMobile( '.mobile-gap-12',  12px );
+@include gapClassMobile( '.mobile-gap-16',  16px );
+@include gapClassMobile( '.mobile-gap-20',  20px );
+@include gapClassMobile( '.mobile-gap-24',  24px );
+@include gapClassMobile( '.mobile-gap-40',  40px );
+@include gapClassMobile( '.mobile-gap-60',  60px );
+@include gapClassMobile( '.mobile-gap-80',  80px );
+
+// Reverse order mobile
+@media ( max-width: $break_at_tablet ) {
+	.mobile-reverse-order {
+		flex-direction: column-reverse;
+	}
+}
+
+// Clear some default block styles
+.wp-block-columns {
+	margin-bottom: 0;
+}
+
+.wp-block-group,
+.wp-block-column {
+	> p:first-child {
+		margin-top: 0;
+	}
+	> p:last-child {
+		margin-bottom: 0;
+	}
+}

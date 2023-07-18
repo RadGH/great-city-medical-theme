@@ -49,8 +49,8 @@
 }
 
 // Hide weekends if they are closed
-.footer-locations .hours-list .hours-item.day-sunday.closed,
-.footer-locations .hours-list .hours-item.day-saturday.closed {
+.footer-locations .hours-list .day-sunday.hours-none,
+.footer-locations .hours-list .day-saturday.hours-none {
 	display: none;
 }
 
@@ -85,16 +85,24 @@
 // Hours
 .footer-locations .location .hours-list {
 	display: grid;
+	grid-template-columns: auto auto;
 	align-items: center;
-	gap: 12px;
+
+	row-gap: respond_vw( 12px );
+	column-gap: respond_vw( 24px );
 }
 
+/*
 .footer-locations .hours-item {
 	display: grid;
 	grid-template-columns: auto auto;
+	white-space: nowrap;
+	gap: 12px 24px;
 }
+*/
 
-.footer-locations .hours-item .hours {
+.footer-locations .hours-list .hours {
+	white-space: nowrap;
 	text-align: right;
 }
 

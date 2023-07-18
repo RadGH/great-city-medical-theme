@@ -1,9 +1,10 @@
 $design_width: 1920px;
+$design_mobile_width: 375px;
 
 // Breakpoints
 // 1. Use with @media (max-width)
 $break_at_mobile: 480px;
-$break_at_tablet: 768px;
+$break_at_tablet: 782px;
 $break_at_desktop: 1200px; // or 1560?
 $break_at_large_desktop: 1920px; // the site was originally designed at this resolution
 
@@ -68,6 +69,13 @@ $color_black_light: $color_gray_4;
 $color_black_lightest: #fafafa; // old: #fafaff
 
 // Font Sizes
+$font_size_base: 16px; // must be in px
+
+@function font_size_to_em( $pixels ) {
+	@return $pixels / $font_size_base * 1em;
+}
+
+// px converted to ems:
 $font_size_body: 16px;
 $font_size_body_mobile: 18px;
 
@@ -81,17 +89,18 @@ $font_size_h2: 60px;
 $font_size_h3: 32px;
 $font_size_h4: 28px;
 $font_size_h5: 18px;
-$font_size_h6: 18px;
+$font_size_h6: 14px;
 $font_size_h1_mobile: 36px;
 $font_size_h2_mobile: 32px;
 $font_size_h3_mobile: 24px;
 $font_size_h4_mobile: 18px;
 $font_size_h5_mobile: 18px;
-$font_size_h6_mobile: 18px;
+$font_size_h6_mobile: 14px;
 
 $font_size_button: 16px;
 $font_size_button_mobile: 16px;
 
+/*
 body {
 	// Font Families
 	--font-sofia-pro: #{$font_family_body};
@@ -190,6 +199,7 @@ body.figma-variables {
 	--mobile---h5: var( --font-size-h5-mobile );
 	--mobile---h6: var( --font-size-h6-mobile );
 }
+*/
 
 // Border width based on pixel ratio
 // 1.5x pixel ratio = 1.5px border width

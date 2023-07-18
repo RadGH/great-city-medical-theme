@@ -14,7 +14,9 @@
 	& > .gcm-icon-block:last-child,
 	& > *:last-child > .gcm-icon-block:last-child,
 	& > *:last-child > *:last-child > .gcm-icon-block:last-child {
-		margin-bottom: -32px;
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
 
 		// Lighten the icon fill color
 		path[fill="#E6C8FF"] { fill: #faf4ff; }
@@ -63,62 +65,91 @@
 	top: 50%;
 
 	@media ( max-width: 1750px ) {
-		right: 10px;
+		right: respond_vw( 10px );
 	}
 
 	@media ( min-width: 1750.1px ) {
-		right: -96px;
+		right: respond_vw( -96px );
 	}
 }
 
 .position-area-outside-bottom-left {
 	top: 75%;
-	left: max( -115px, -8vw );
+	left: respond_vw( -115px );
 
-	@media ( max-width: 780px ) {
+	@media ( max-width: $break_at_tablet ) {
 		top: auto;
 		bottom: 10px;
 		left: 10px;
+	}
+
+	@media ( max-width: $break_at_mobile ) {
+		left: 20px;
+		max-width: calc( 100% - 40px );
 	}
 }
 
 .position-area-outside-top-left {
 	top: 50%;
-	left: max( -115px, -8vw );
+	left: respond_vw( -115px );
 
-	@media ( max-width: 780px ) {
+	@media ( max-width: $break_at_tablet ) {
 		top: auto;
 		bottom: 10px;
 		left: 10px;
 	}
+
+	@media ( max-width: $break_at_mobile ) {
+		left: 20px;
+		max-width: calc( 100% - 40px );
+	}
 }
 
 .position-area-inside-top {
-	top: 60px;
-	left: 60px;
+	top: respond_vw( 60px );
+	left: respond_vw( 60px );
 
-	@media ( max-width: 780px ) {
+	@media ( max-width: $break_at_tablet ) {
 		top: 30px;
 		left: 30px;
+	}
+
+	@media ( max-width: $break_at_mobile ) {
+		left: 20px;
+		max-width: calc( 100% - 40px );
 	}
 }
 
 .position-area-inside-top-small {
-	top: 30px;
-	left: 30px;
+	top: respond_vw( 30px );
+	left: respond_vw( 30px );
 
-	@media ( max-width: 780px ) {
+	@media ( max-width: $break_at_tablet ) {
 		top: 20px;
 		left: 20px;
+	}
+
+	@media ( max-width: $break_at_mobile ) {
+		max-width: calc( 100% - 40px );
 	}
 }
 
 .position-area-inside-bottom-right {
-	bottom: 60px;
-	right: 60px;
+	bottom: respond_vw( 60px );
+	right: respond_vw( 60px );
 
-	@media ( max-width: 780px ) {
-			bottom: 20px;
-			right: 20px;
+	@media ( max-width: $break_at_tablet ) {
+		bottom: 20px;
+		right: 20px;
+	}
+
+	@media ( max-width: $break_at_mobile ) {
+		max-width: calc( 100% - 40px );
+	}
+}
+
+@media ( max-width: $break_at_desktop ) {
+	.positioned-element {
+		font-size: $font_size_small;
 	}
 }

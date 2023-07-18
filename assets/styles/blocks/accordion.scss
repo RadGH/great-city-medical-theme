@@ -1,0 +1,152 @@
+// Accordions [gcm_accordion]
+// See shortcodes/gcm_accordion.php and global.js for details
+.gcm-accordion {
+	margin: 10px 0 0;
+	border: 1px solid #dfdfdf;
+}
+
+.gcm-accordion + .gcm-accordion {
+	margin-top: 0;
+	border-top: none;
+}
+
+.gcm-accordion .gcm-handle {
+	position: relative;
+}
+
+.gcm-accordion .gcm-handle a,
+.gcm-accordion .gcm-handle button {
+	position: relative;
+	display: block;
+	padding: 10px 12px;
+	color: inherit;
+	text-decoration: none;
+
+	&:focus-within {
+		outline-color: $color_blue;
+	}
+}
+
+.gcm-accordion .gcm-handle .gcm-arrow {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+
+	padding: 6px;
+	width: 33px;
+	height: 33px;
+	border-radius: 100%;
+	border: 1px solid $color_blue;
+	background-color: $color_blue_lightest;
+	box-sizing: border-box;
+}
+
+.gcm-accordion .gcm-handle .gcm-arrow::before {
+	content: '';
+	position: absolute;
+	top: 7px;
+	right: 7px;
+
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+
+	background-image: url(/wp-content/themes/great-city-medical/assets/images/arrow-blue-down.svg);
+	background-size: 18px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.gcm-accordion.gcm-collapsed .gcm-handle .gcm-arrow::before {
+	background-image: url(/wp-content/themes/great-city-medical/assets/images/arrow-blue-up.svg);
+}
+
+.gcm-accordion.gcm-collapsed .gcm-content {
+	display: none;
+}
+
+.gcm-accordion-block .gcm-accordion {
+	max-width: 1030px;
+	margin: 0 auto;
+
+	@media ( max-width: 1070px ) {
+		margin: 0 20px;
+	}
+}
+
+
+// Content inside the accordion
+.gcm-accordion .gcm-content ul,
+.gcm-accordion .gcm-content ol {
+	margin-left: 20px;
+}
+
+
+
+// Large theme, used on front page
+.gcm-accordion-block.testimonial-size-large {
+	.gcm-accordion + .gcm-accordion {
+		margin-top: 24px;
+	}
+
+	.gcm-accordion {
+		border: 1px solid #ECEAEA;
+		border-radius: 50px;
+		background: #fff;
+	}
+
+	.gcm-accordion .gcm-handle {
+		// 32px desktop, 18px mobile
+		font-size: $font_size_h3;
+		line-height: 1.3;
+		font-weight: 500;
+	}
+
+	.gcm-accordion .gcm-content {
+		font-size: $font_size_regular;
+	}
+
+	.gcm-handle > a {
+		padding: 30px 80px 30px 40px;
+		border-radius: 50px;
+	}
+
+	.gcm-accordion .gcm-handle .gcm-arrow {
+		top: 34px;
+		right: 40px;
+	}
+
+	.gcm-accordion .gcm-content {
+		margin: 20px 40px 32px;
+		padding-left: 16px;
+		border-left: 1px solid #0957de;
+	}
+
+	@media ( max-width: $break_at_desktop ) {
+		.gcm-accordion {
+			border-radius: 36px;
+		}
+
+		.gcm-handle > a {
+			padding: 24px 60px 24px 20px;
+			border-radius: 36px;
+		}
+
+		.gcm-accordion .gcm-handle {
+			font-size: $font_size_h4_mobile;
+		}
+
+		.gcm-accordion .gcm-handle .gcm-arrow {
+			top: 24px;
+			right: 20px;
+
+			width: 24px;
+			height: 24px;
+		}
+
+		.gcm-accordion .gcm-handle .gcm-arrow::before {
+			width: 10px;
+			height: 10px;
+		}
+	}
+}
