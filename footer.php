@@ -67,6 +67,8 @@
 // WordPress footer content
 wp_footer();
 
+// todo: replace with direct html
+
 // Custom footer CSS
 if ( $css = get_field( 'custom_css_footer', 'option' ) ) {
 	echo "\n<style id=\"custom-footer-css\">\n". esc_html( $css ) . "\n</style>\n";
