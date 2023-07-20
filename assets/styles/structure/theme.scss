@@ -12,8 +12,20 @@ body {
 	// padding: 90px 0;
 }
 
-p {
+.wp-block-group p,
+.wp-block-group ul,
+.wp-block-group ol {
 	color: $color_dark_purple;
+}
+
+
+ul,
+ol {
+	padding-left: 2ch;
+}
+
+li {
+	margin-bottom: 5px;
 }
 
 // Admin bar on front-end

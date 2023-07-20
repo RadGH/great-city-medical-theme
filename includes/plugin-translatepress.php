@@ -19,13 +19,14 @@ function gcm_tp_get_current_language() {
 	return $TRP_LANGUAGE ?? 'en_US';
 }
 
-/**
- * Prevents TranslatePress from converting a URL by adding a code to the end. The code is removed after being checked.
+/*
+ * (NO LONGER USED) Prevents TranslatePress from converting a URL by adding a code to the end. The code is removed after being checked.
  *
  * @param $url
  *
  * @return mixed|string
  */
+/*
 function gcm_tp_prevent_translating_url( $url ) {
 	
 	// Do not modify URLs when showing the default language
@@ -41,3 +42,4 @@ function gcm_tp_prevent_translating_url( $url ) {
 	
 	return $url;
 }
+*/

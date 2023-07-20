@@ -497,41 +497,39 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   // -------------
 
   // Custom formats for headings
-  let register_heading_blocks = function () {
-    // Heading (Eyebrow)
-    (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.registerBlockType)('gcm/heading-eyebrow', {
-      title: 'Heading (Eyebrow)',
-      icon: 'gcm',
-      category: 'great-city-medical',
-      attributes: {
-        content: {
-          type: 'string',
-          source: 'html',
-          selector: 'div'
-        }
-      },
-      edit: function (props) {
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(wp.blockEditor.RichText, {
-          className: 'heading-eyebrow-title',
-          tagName: 'div',
-          onChange: c => {
-            props.setAttributes({
-              content: c
-            });
-          },
-          value: props.attributes.content,
-          placeholder: 'Enter text...'
-        });
-      },
-      save: function (props) {
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(wp.blockEditor.RichText.Content, {
-          className: 'heading-eyebrow-title',
-          tagName: 'div',
-          value: props.attributes.content
-        });
-      }
-    });
-  };
+  /*
+  let register_heading_blocks = function() {
+  	// Heading (Eyebrow)
+  	registerBlockType('gcm/heading-eyebrow', {
+  		title: 'Heading (Eyebrow)',
+  		icon: 'gcm',
+  		category: 'great-city-medical',
+  		attributes: {
+  			content: {
+  				type: 'string',
+  				source: 'html',
+  				selector: 'div',
+  			},
+  		},
+  		edit: function (props) {
+  			return createElement(wp.blockEditor.RichText, {
+  				className: 'heading-eyebrow-title',
+  				tagName: 'div',
+  				onChange: (c) => { props.setAttributes({ content: c }) },
+  				value: props.attributes.content,
+  				placeholder: 'Enter text...'
+  			});
+  		},
+  		save: function (props) {
+  			return createElement(wp.blockEditor.RichText.Content, {
+  				className: 'heading-eyebrow-title',
+  				tagName: 'div',
+  				value: props.attributes.content
+  			});
+  		},
+  	});
+  }
+  */
 
   // -------------
   // Custom fields (for use within custom blocks)
@@ -874,21 +872,49 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         className: 'position-area-inside-top-small',
         label: 'Inside Top Small'
       }, {
+        name: 'inside-top-left',
+        className: 'position-area-inside-top-left',
+        label: 'Inside Top Left'
+      }, {
+        name: 'inside-top-right',
+        className: 'position-area-inside-top-right',
+        label: 'Inside Top Right'
+      }, {
         name: 'inside-bottom-right',
         className: 'position-area-inside-bottom-right',
         label: 'Inside Bottom Right'
+      }, {
+        name: 'inside-bottom-left',
+        className: 'position-area-inside-bottom-left',
+        label: 'Inside Bottom Left'
       }, {
         name: 'outside-top-left',
         className: 'position-area-outside-top-left',
         label: 'Outside Top Left'
       }, {
+        name: 'outside-top-right',
+        className: 'position-area-outside-top-right',
+        label: 'Outside Top Right'
+      }, {
         name: 'outside-bottom-left',
         className: 'position-area-outside-bottom-left',
         label: 'Outside Bottom Left'
       }, {
+        name: 'outside-bottom-right',
+        className: 'position-area-outside-bottom-right',
+        label: 'Outside Bottom Right'
+      }, {
+        name: 'outside-left',
+        className: 'position-area-outside-left',
+        label: 'Outside Left'
+      }, {
         name: 'outside-right',
         className: 'position-area-outside-right',
         label: 'Outside Right'
+      }, {
+        name: 'extended-bottom-left',
+        className: 'position-area-extended-bottom-left',
+        label: 'Extended Bottom Left'
       }];
 
       // Get all classes so that we can easily remove them all when the selection changes
@@ -1323,6 +1349,14 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         name: 'center-text',
         className: 'container-style-center-text',
         label: 'Center Text'
+      }, {
+        name: 'stretch-columns',
+        className: 'container-style-stretch-columns',
+        label: 'Stretch Columns'
+      }, {
+        name: 'space-between',
+        className: 'container-style-space-between',
+        label: 'Space Between'
       }];
 
       // Get all classes so that we can easily remove them all when the selection changes
@@ -1383,16 +1417,12 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
             // Create a copy of the className
             let className = props.attributes.className ? props.attributes.className : '';
 
-            // Remove all the existing classes
-            all_classes.forEach(cls => {
-              className = className.replace(cls, '');
-            });
-
-            // Trim whitespace
-            className = className.trim();
-
-            // Add the selected class if it exists
-            className = `${className} ${style.className}`.trim();
+            // If the class already exists, remove it, otherwise add it
+            if (className.split(' ').includes(style.className)) {
+              className = className.replace(style.className, '').trim(); // Remove the class
+            } else {
+              className = `${className} ${style.className}`.trim(); // Add the class
+            }
 
             // Update the block's className attribute
             props.setAttributes({
@@ -1404,6 +1434,91 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
       };
     }, 'containerStyleSelect');
     (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_container_style_select', containerStyleSelect);
+  };
+  let register_heading_styles = function () {
+    // Add a custom field for headings to choose a style
+    const headingStyleSelect = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_5__.createHigherOrderComponent)(BlockEdit => {
+      const styles = [{
+        name: 'heading-page-title',
+        className: 'heading-page-title',
+        label: 'Page Title (80px)'
+      }];
+
+      // Get all classes so that we can easily remove them all when the selection changes
+      let all_classes = styles.map(style => style.className).filter(val => val !== '');
+      return props => {
+        const {
+          name,
+          attributes,
+          setAttributes,
+          isSelected
+        } = props;
+        const {
+          myAttribute
+        } = attributes;
+
+        // Only enable for blocks which can contain other blocks
+        if (name !== 'core/heading') {
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+            ...props
+          });
+        }
+        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(BlockEdit, {
+          ...props
+        }), isSelected && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+          title: "Heading Style",
+          initialOpen: true
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor-heading-styles gcm-editor--button-group"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.ButtonGroup, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+          className: "gcm-editor--button-group--grid"
+        }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+          title: "None",
+          isPrimary: !props.attributes.className || !styles.some(style => props.attributes.className.split(' ').includes(style.className)),
+          isSecondary: props.attributes.className && styles.some(style => props.attributes.className.split(' ').includes(style.className)),
+          onClick: () => {
+            // Create a copy of the className
+            let className = props.attributes.className ? props.attributes.className : '';
+
+            // Remove all the existing classes
+            all_classes.forEach(cls => {
+              className = className.replace(cls, '');
+            });
+
+            // Trim whitespace
+            className = className.trim();
+
+            // Update the block's className attribute
+            props.setAttributes({
+              className: className
+            });
+          },
+          className: "heading-none"
+        }, "None"), styles.map(style => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+          title: style.altTitle,
+          isPrimary: props.attributes.className && props.attributes.className.split(' ').includes(style.className),
+          isSecondary: !props.attributes.className || !props.attributes.className.split(' ').includes(style.className),
+          onClick: () => {
+            // Create a copy of the className
+            let className = props.attributes.className ? props.attributes.className : '';
+
+            // If the class already exists, remove it, otherwise add it
+            if (className.split(' ').includes(style.className)) {
+              className = className.replace(style.className, '').trim(); // Remove the class
+            } else {
+              className = `${className} ${style.className}`.trim(); // Add the class
+            }
+
+            // Update the block's className attribute
+            props.setAttributes({
+              className: className
+            });
+          },
+          className: "heading-" + style.name
+        }, style.label))))))));
+      };
+    }, 'headingStyleSelect');
+    (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'gcm/register_heading_style_select', headingStyleSelect);
   };
 
   // ----------------------------
@@ -1419,7 +1534,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   register_text_formats();
 
   // Custom blocks
-  register_heading_blocks();
+  // register_heading_blocks();
 
   // Custom button theme fields
   register_button_theme_select();
@@ -1439,6 +1554,9 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
 
   // Container styles (blocks etc)
   register_container_styles();
+
+  // Heading styles
+  register_heading_styles();
 });
 })();
 

@@ -172,9 +172,7 @@ body.mce-content-body {
     line-height: 1.5;
   }
 }
-body.mce-content-body h1 {
-  font-size: 80px;
-}
+body.mce-content-body h1,
 body.mce-content-body h2 {
   font-size: 60px;
 }
@@ -291,28 +289,18 @@ body.mce-content-body .heading-eyebrow-text {
   font-weight: 300;
   text-transform: uppercase;
 }
-body.mce-content-body .heading-h1 {
-  font-size: 80px;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body.mce-content-body .heading-h1 {
-    font-size: min(80px, 4.17vw);
-  }
-}
-@media (max-width: 1200px) {
-  body.mce-content-body .heading-h1 {
-    font-size: 36px;
-  }
-}
+body.mce-content-body .heading-h1,
 body.mce-content-body .heading-h2 {
   font-size: 60px;
 }
 @media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-h1,
   body.mce-content-body .heading-h2 {
     font-size: min(60px, 3.13vw);
   }
 }
 @media (max-width: 1200px) {
+  body.mce-content-body .heading-h1,
   body.mce-content-body .heading-h2 {
     font-size: 32px;
   }
@@ -367,6 +355,19 @@ body.mce-content-body .heading-h6 {
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h6 {
     font-size: 14px;
+  }
+}
+body.mce-content-body .heading-page-title {
+  font-size: 80px;
+}
+@media (min-width: 1200.1px) and (max-width: 1920px) {
+  body.mce-content-body .heading-page-title {
+    font-size: min(80px, 4.17vw);
+  }
+}
+@media (max-width: 1200px) {
+  body.mce-content-body .heading-page-title {
+    font-size: 36px;
   }
 }
 

@@ -10,6 +10,23 @@
 
 	};
 
+	// ------------------------------------------------------------
+	// Shared functions
+
+	// Return true if browser is desktop size, by using the same media query as css.
+	const is_browser_desktop = function() {
+		return matchMedia('(min-width: 1200.1px)').matches;
+	};
+
+	// Return true if the browser uses a touch screen, by checking pointer accuracy.
+	// (coarse = touchscreen, fine = mouse)
+	const is_browser_touchscreen = function() {
+		return matchMedia('(pointer:coarse)').matches;
+	}
+
+	// ------------------------------------------------------------
+	// Core functions
+
 	const setup_mobile_menu_button = function() {
 		// Click the three lines on mobile to open the menu
 		const menu_button = document.querySelector('#menu-button');
@@ -30,11 +47,17 @@
 
 		// Check if you should use click menus (coarse [touch]) or hover menus (fine [mouse])
 		const use_click_menus = function() {
-			return matchMedia('(pointer:coarse)').matches;
+			let use_click_menus = is_browser_touchscreen();
+
+			document.body.classList.toggle( 'menu-use-clicks', use_click_menus );
+
+			return use_click_menus;
 		};
 
 		// When a menu is opened, check if you clicked out of the menu. if so, close the menu instead
 		const clicked_unknown_item = function(e) {
+			// on second thought, do nothing
+			/*
 			if ( ! monitor_unknown_clicks ) return;
 
 			// Only run once, re-hooked when each menu is opened
@@ -52,6 +75,7 @@
 			// Because a menu was closed instead of clicking on a link, block the click
 			e.preventDefault();
 			e.stopPropagation();
+			*/
 		};
 
 		// Whenever a menu item containing a sub menu is clicked, open the sub menu first
@@ -63,21 +87,37 @@
 			let menu = e.target.parentNode;
 
 			// Must click on a link
-			if ( link.nodeName !== 'A' ) return clicked_unknown_item(e);
+			if ( link.nodeName !== 'A' ) {
+				return clicked_unknown_item(e);
+			}
+
+			// Clicking the link again should close the menu
+			if ( menu.matches('.sub-menu-open') ) {
+				menu.classList.remove('sub-menu-open');
+				monitor_unknown_clicks = false;
+				e.preventDefault();
+				e.stopPropagation();
+				return;
+			}
 
 			// Allow the click if it is within an open sub menu
-			if ( menu.matches('.sub-menu-open') || menu.closest('.sub-menu-open') ) return;
+			if ( menu.closest('.sub-menu-open') ) {
+				return;
+			}
 
 			// The link must be in a menu item containing a sub menu
-			if ( ! menu.classList.contains('menu-item-has-children') ) return clicked_unknown_item(e);
+			if ( ! menu.classList.contains('menu-item-has-children') ) {
+				return clicked_unknown_item(e);
+			}
 
-			// Close any open sub menus
-			let other_menus = document.querySelectorAll('.sub-menu-open');
-			other_menus.forEach(function(m) {
-				m.classList.remove('sub-menu-open');
-			});
+			// Close other sub menus that are still open (desktop only)
+			if ( is_browser_desktop() ) {
+				document.querySelectorAll('.sub-menu-open').forEach(function(m) {
+					m.classList.remove('sub-menu-open');
+				});
+			}
 
-			// Open the new sub menu
+			// Open the target sub menu
 			menu.classList.add('sub-menu-open');
 
 			// Monitor clicks outside the menu in order to automatically close the menu

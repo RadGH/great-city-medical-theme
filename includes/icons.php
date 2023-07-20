@@ -159,7 +159,7 @@ function gcm_icon_config() {
 		),
 		'dermal-filler' => array(
 			'filename' => 'dermal-filler.svg',
-			'tags' => 'dermal filler',
+			'tags' => 'dermal filler face',
 		),
 		'documents' => array(
 			'filename' => 'documents.svg',
@@ -187,7 +187,7 @@ function gcm_icon_config() {
 		),
 		'map' => array(
 			'filename' => 'map.svg',
-			'tags' => 'map',
+			'tags' => 'map wrinkle dermal filler',
 		),
 		'map-pin' => array(
 			'filename' => 'map-pin.svg',
@@ -215,7 +215,7 @@ function gcm_icon_config() {
 		),
 		'ovary' => array(
 			'filename' => 'ovary.svg',
-			'tags' => 'ovary',
+			'tags' => 'ovary uterus gynecologist',
 		),
 		'paperwork' => array(
 			'filename' => 'paperwork.svg',

@@ -78,6 +78,29 @@ function gcm_get_languages( $language_code = null ) {
  * @param null|string $url            Permalink to use. Overrides $post_id if provided.
  */
 function gcm_get_language_url( $url, $language_code = 'en_us' ) {
+	if ( ! class_exists('TRP_Translate_Press') ) return false;
+	
+	$trp = TRP_Translate_Press::get_trp_instance();
+	$url_converter = $trp->get_component( 'url_converter' );
+	
+	// TranslatePress requires "en_US" capitalization
+	if ( $language_code == 'en_us' ) $language_code = 'en_US';
+	if ( $language_code == 'es_mx' ) $language_code = 'es_MX';
+	
+	// third parameter defaults to "#TRPLINKPROCESSED", meaning the link will not be translated again
+	// to disable, you could pass an empty string as third parameter.
+	// it's the same effect as using: gcm_tp_prevent_translating_url( url );
+	return $url_converter->get_url_for_language( $language_code, $url );
+}
+
+/*
+ * (OLD VERSION) Get the page url converted to a specific language. Also prevents TranslatePress from converting that URL again.
+ *
+ * @param string      $language_code  "en_us" or "es_mx" matching a key from gcm_get_languages()
+ * @param null|string $url            Permalink to use. Overrides $post_id if provided.
+ */
+/*
+function gcm_get_language_url( $url, $language_code = 'en_us' ) {
 	// Convert url to relative, starting with a slash
 	$relative_url = wp_make_link_relative( $url );
 	if ( ! $relative_url ) return $url;
@@ -104,6 +127,7 @@ function gcm_get_language_url( $url, $language_code = 'en_us' ) {
 	
 	return $full_url;
 }
+*/
 
 
 /**

@@ -27,17 +27,32 @@ if ( in_array('large', $settings) ) {
 	$classes[] = 'testimonial-size-large';
 }
 
+// Remove any blank accordion items
+if ( $items ) foreach( $items as $i => $item ) {
+	if ( ! $item['title'] && ! $item['content'] ) {
+		unset( $items[$i] );
+	}
+}
+
 ?>
 <div <?php echo ($id ? 'id="'. esc_attr($id) .'" ' : ''); ?> class="<?php echo esc_attr( implode(' ', $classes) ); ?>">
 	
 	<?php
-	foreach( $items as $item ) {
-		$title = $item['title'];
-		$content = wpautop($item['content']);
+	if ( ! $items ) {
 		
-		echo do_shortcode(
-			'[gcm_accordion title="'. esc_attr($title) .'"]'. $content .'[/gcm_accordion]'
-		);
+		if ( current_user_can( 'edit_posts' ) ) {
+			echo '<p>Use edit mode to add accordion items.</p>';
+		}
+		
+	}else{
+		foreach( $items as $item ) {
+			$title = $item['title'];
+			$content = wpautop($item['content']);
+			
+			echo do_shortcode(
+				'[gcm_accordion title="'. esc_attr($title) .'"]'. $content .'[/gcm_accordion]'
+			);
+		}
 	}
 	?>
 

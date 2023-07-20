@@ -172,26 +172,32 @@
 	.vertical-margin-none {
 		margin-top: 0;
 		margin-bottom: 0;
+		:last-child > &:last-child { margin-bottom: 0; }
 	}
 	.vertical-margin-x-small {
 		margin-top: 16px;
 		margin-bottom: 16px;
+		:last-child > &:last-child { margin-bottom: 0; }
 	}
 	.vertical-margin-small {
 		margin-top: 24px;
 		margin-bottom: 24px;
+		:last-child > &:last-child { margin-bottom: 0; }
 	}
 	.vertical-margin-medium {
 		margin-top: 40px;
 		margin-bottom: 40px;
+		:last-child > &:last-child { margin-bottom: 0; }
 	}
 	.vertical-margin-large {
 		margin-top: 80px;
 		margin-bottom: 80px;
+		:last-child > &:last-child { margin-bottom: 0; }
 	}
 	.vertical-margin-huge {
 		margin-top: 150px;
 		margin-bottom: 150px;
+		:last-child > &:last-child { margin-bottom: 0; }
 	}
 }
 
@@ -270,7 +276,7 @@
 @mixin theme_styles( $responsive: true ) {
 
 	// Font sizes
-	h1 { @include font_size_h1( $responsive ); }
+	h1, // h1 too big, use h2 size. consider adding heading-page-title class
 	h2 { @include font_size_h2( $responsive ); }
 	h3 { @include font_size_h3( $responsive ); }
 	h4 { @include font_size_h4( $responsive ); }
@@ -376,12 +382,14 @@
 		text-transform: uppercase;
 	}
 
-	.heading-h1 { @include font_size_h1(); }
+	.heading-h1, // h1 too big, use h2 size. consider adding heading-page-title class
 	.heading-h2 { @include font_size_h2(); }
 	.heading-h3 { @include font_size_h3(); }
 	.heading-h4 { @include font_size_h4(); }
 	.heading-h5 { @include font_size_h5(); }
 	.heading-h6 { @include font_size_h6(); }
+
+	.heading-page-title { @include font_size_h1(); }
 
 }
 

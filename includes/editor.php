@@ -29,9 +29,9 @@ function gcm_insert_editor_formats( $init_array ) {
 				// 	'classes'  => 'heading-eyebrow-text',
 				// ),
 				array(
-					'title'   => 'H1 (80px)',
-					'inline' => 'span',
-					'classes'  => 'heading-h1',
+				 	'title'   => 'H1 (80px)',
+				 	'inline' => 'span',
+				 	'classes'  => 'heading-h1',
 				),
 				array(
 					'title'   => 'H2 (60px)',
