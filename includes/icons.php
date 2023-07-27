@@ -167,7 +167,7 @@ function gcm_icon_config() {
 		),
 		'empire-state-building' => array(
 			'filename' => 'empire-state-building.svg',
-			'tags' => 'empire state building',
+			'tags' => 'empire state building city new york',
 		),
 		'infant-footprints' => array(
 			'filename' => 'infant-footprints.svg',
@@ -470,3 +470,20 @@ function gcm_load_icon_field( $field ) {
 	return $field;
 }
 add_filter('acf/load_field/key=field_649c97ef3f394', 'gcm_load_icon_field', 10, 1); // field group "Block - Icon" -> field "Icon"
+
+/**
+ * Gets the full HTML of an icon. This is an alias of gcm_icon_get_styled_html(), and should probably replace it.
+ *
+ * @see gcm_icon_get_styled_html()
+ *
+ * @param string $icon_name
+ * @param string $color
+ * @param string $type
+ * @param string $size
+ *
+ * @return string
+ */
+function gcm_get_icon_html( $icon_name, $color = null, $type = null, $size = null ) {
+	// return do_shortcode( '[gcm_icon name="' . $icon_name . '" color="' . $color . '" type="' . $type . '" size="' . $size . '"]' );
+	return gcm_icon_get_styled_html( $icon_name, $color, $type, $size );
+}

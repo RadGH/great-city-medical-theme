@@ -19,17 +19,12 @@ $id = gcm_get_block_id( $block );
 $classes = gcm_get_block_classes( $block );
 
 $items = get_field( 'items' );
-$settings = get_field( 'settings' );
 
-$classes[] = 'gcm-accordion-block';
+$classes[] = 'gcm-before-after-gallery-block';
 
-if ( in_array('large', $settings) ) {
-	$classes[] = 'size-large';
-}
-
-// Remove any blank accordion items
+// Remove any blank gallery items
 if ( $items ) foreach( $items as $i => $item ) {
-	if ( ! $item['title'] && ! $item['content'] ) {
+	if ( ! $item['before_image_id'] && ! $item['after_image_id'] ) {
 		unset( $items[$i] );
 	}
 }
@@ -41,18 +36,39 @@ if ( $items ) foreach( $items as $i => $item ) {
 	if ( ! $items ) {
 		
 		if ( current_user_can( 'edit_posts' ) ) {
-			echo '<p><strong>[Accordion Block]</strong> Use edit mode to add accordion items.</p>';
+			echo '<p><strong>[Gallery Block]</strong> Use edit mode to add gallery items.</p>';
 		}
 		
 	}else{
+		
+		// This div becomes the slider using Flickity, see public.js -> setup_flickity_sliders()
+		echo '<div class="gcm-slider">';
+		
 		foreach( $items as $item ) {
-			$title = $item['title'];
-			$content = wpautop($item['content']);
+			$before_image_id = $item['before_image_id'];
+			$after_image_id = $item['after_image_id'];
 			
-			echo do_shortcode(
-				'[gcm_accordion title="'. esc_attr($title) .'"]'. $content .'[/gcm_accordion]'
-			);
+			echo '<div class="slider-item">';
+			
+				echo '<div class="both-images">';
+				
+					echo '<div class="image before">';
+						echo wp_get_attachment_image( $before_image_id, 'large' );
+						echo '<div class="label">Before</div>';
+					echo '</div>';
+					
+					echo '<div class="image after">';
+						echo wp_get_attachment_image( $after_image_id, 'large' );
+						echo '<div class="label">After</div>';
+					echo '</div>';
+				
+				echo '</div>';
+			
+			echo '</div>';
 		}
+		
+		echo '</div>';
+		
 	}
 	?>
 

@@ -9,8 +9,10 @@ function gcm_register_acf_blocks() {
 	
 	// In use
 	register_block_type( __DIR__ . '/../blocks/accordion/' );
-	register_block_type( __DIR__ . '/../blocks/testimonial/' );
+	register_block_type( __DIR__ . '/../blocks/before-after-gallery/' );
 	register_block_type( __DIR__ . '/../blocks/icon/' );
+	register_block_type( __DIR__ . '/../blocks/steps/' );
+	register_block_type( __DIR__ . '/../blocks/testimonial/' );
 	
 	// The parameters passed to the block type templates:
 	/**

@@ -40,13 +40,17 @@
 	top: 5px;
 	right: 5px;
 
-	padding: 6px;
 	width: 33px;
 	height: 33px;
 	border-radius: 100%;
 	border: 1px solid $color_blue;
 	background-color: $color_blue_lightest;
 	box-sizing: border-box;
+
+	@media ( max-width: $break_at_mobile ) {
+		width: 25px;
+		height: 25px;
+	}
 }
 
 .gcm-accordion .gcm-handle .gcm-arrow::before {
@@ -63,6 +67,13 @@
 	background-size: 18px;
 	background-repeat: no-repeat;
 	background-position: center;
+
+	@media ( max-width: $break_at_mobile ) {
+		top: 5px;
+		right: 5px;
+		width: 14px;
+		height: 14px;
+	}
 }
 
 .gcm-accordion.gcm-collapsed .gcm-handle .gcm-arrow::before {
@@ -88,7 +99,7 @@
 
 
 // Large theme, used on front page
-.gcm-accordion-block.testimonial-size-large {
+.gcm-accordion-block.size-large { //
 	.gcm-accordion + .gcm-accordion {
 		margin-top: 24px;
 	}
@@ -195,7 +206,7 @@
 	}
 }
 
-.gcm-accordion-block:not(.testimonial-size-large) {
+.gcm-accordion-block:not(.size-large) {
 	.gcm-accordion .gcm-handle > a {
 		@include font_size_h3();
 		font-weight: 500;

@@ -8,6 +8,10 @@
 	}
 }
 
+.container-style-section-height {
+	@extend .article-section;
+}
+
 .container-style-section-width {
 	@extend .article-width;
 }

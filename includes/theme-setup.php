@@ -201,6 +201,23 @@ function gcm_enqueue_editor_scripts() {
 add_action( 'after_setup_theme', 'gcm_enqueue_editor_scripts', 20 );
 
 /**
+ * Register (but do not enqueue) assets that are used by blocks
+ *
+ * @return void
+ */
+function gcm_register_block_assets() {
+	
+	// REMINDER: These scripts are only registered -- they are not enqueued and do not load on pages by default.
+	
+	// Flickity image slider / carousel
+	// Used by the before-after-gallery acf block
+	wp_register_script( 'flickity', get_theme_file_uri('/assets/third-party/flickity/2.3.0_flickity.min.js'), array(), '2.3.0' );
+	wp_register_style( 'flickity', get_theme_file_uri('/assets/third-party/flickity/2.3.0_flickity.min.css'), array(), '2.3.0' );
+	
+}
+add_action( 'wp_enqueue_scripts', 'gcm_register_block_assets', 20 );
+
+/**
  * Add CSS/JS to the frontend and backend
  *
  * @return void

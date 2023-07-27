@@ -74,6 +74,10 @@
 	border: 1px solid $color_gray_6;
 	border-radius: 24px;
 	padding: 32px 32px 32px 40px;
+
+	@media ( max-width: $break_at_mobile ) {
+		padding: 15px;
+	}
 }
 
 // Address and Phone
@@ -84,12 +88,14 @@
 
 // Hours
 .footer-locations .location .hours-list {
-	display: grid;
-	grid-template-columns: auto auto;
-	align-items: center;
+	@media ( min-width: $break_above_small_mobile ) {
+		display: grid;
+		grid-template-columns: auto auto;
+		align-items: center;
 
-	row-gap: respond_vw( 12px );
-	column-gap: respond_vw( 24px );
+		row-gap: respond_vw( 12px );
+		column-gap: respond_vw( 24px );
+	}
 }
 
 /*
@@ -321,7 +327,7 @@
 }
 
 // Mobile shows one column location with one column of content
-@media ( max-width: $break_at_desktop ) {
+@media ( min-width: $break_above_small_mobile ) and ( max-width: $break_at_desktop ) {
 	.footer-locations {
 		padding-bottom: 150px;
 	}

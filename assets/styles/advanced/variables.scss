@@ -3,12 +3,14 @@ $design_mobile_width: 375px;
 
 // Breakpoints
 // 1. Use with @media (max-width)
+$break_at_small_mobile: 320px;
 $break_at_mobile: 480px;
 $break_at_tablet: 782px;
 $break_at_desktop: 1200px; // or 1560?
 $break_at_large_desktop: 1920px; // the site was originally designed at this resolution
 
 // 2. Use with @media (min-width)
+$break_above_small_mobile: $break_at_small_mobile + 0.1px;
 $break_above_mobile: $break_at_mobile + 0.1px;
 $break_above_tablet: $break_at_tablet + 0.1px;
 $break_above_desktop: $break_at_desktop + 0.1px;

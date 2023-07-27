@@ -6,6 +6,8 @@
 
 		setup_click_menus();
 
+		setup_image_sliders();
+
 		prevent_language_preview_click();
 
 	};
@@ -127,6 +129,56 @@
 			e.preventDefault();
 			e.stopPropagation();
 		});
+	};
+
+	const setup_image_sliders = function() {
+		const create_slider = function( slider ) {
+
+			// Only set up the slider once
+			if ( slider.classList.contains('init') ) {
+				return;
+			}else{
+				slider.classList.add('init');
+			}
+
+			slider.classList.add('slider-flickity');
+
+			// Require Flickity to be loaded
+			if ( typeof Flickity === 'undefined' ) {
+				console.log('[GCM Slider] Flickity is not defined, slider will not be functional.');
+				slider.classList.add('no-flickity');
+				return;
+			}
+
+			// Default slider options
+			let options = {
+				cellSelector: '.slider-item',
+				imagesLoaded: true,
+				cellAlign: 'center',
+				contain: true,
+				pageDots: true,
+				prevNextButtons: true,
+				wrapAround: true,
+				adaptiveHeight: true,
+				groupCells: false,
+				accessibility: false,
+				selectedAttraction: 0.01,
+
+				// see: /assets/third-party/flickity/arrow.svg
+				arrowShape: "M73 .5a4.6 4.6 0 0 0-3.2 1.2l-46 45a4.6 4.6 0 0 0 0 6.6l46 45a4.6 4.6 0 0 0 6.5-.1 4.6 4.6 0 0 0-.1-6.5L33.5 50 76.2 8.3a4.6 4.6 0 0 0 0-6.5A4.6 4.6 0 0 0 73.2.5z",
+			};
+
+			// Initialize the slider
+			let f = new Flickity( slider, options );
+
+			// Add a class to the slider when it is ready
+			f.on( 'ready', function() {
+				slider.classList.add('ready');
+			});
+		};
+
+		// Prepare all sliders
+		document.querySelectorAll('.gcm-slider').forEach( create_slider );
 	};
 
 	const prevent_language_preview_click = function() {

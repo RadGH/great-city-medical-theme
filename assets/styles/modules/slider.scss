@@ -1,0 +1,97 @@
+// class="gcm-slider"
+
+.gcm-slider {
+	display: block;
+
+	.slider-item {
+		display: inline-block;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+}
+
+
+
+// Flickity
+.gcm-slider.slider-flickity {
+
+	// Hide arrows if both are disabled
+	&:has(.flickity-button.previous:disabled):has(.flickity-button.next:disabled) {
+		.flickity-button.next, .flickity-button.previous {
+			display: none;
+		}
+	}
+
+	// Hide dots if less than two dots.
+	ol.flickity-page-dots:not(:has(.dot:nth-child(2))) {
+		display: none;
+	}
+
+	// Button style
+	.flickity-button {
+		color: $color_blue;
+		border: none;
+
+		outline: 2px solid $color_blue;
+		background: $color_blue_lightest;
+		box-shadow: none;
+
+		@media ( min-width: $break_at_desktop ) {
+			width: 48px;
+			height: 48px;
+		}
+
+		&:focus {
+			outline: 4px solid $color_blue;
+			background: $color_blue_lightest;
+		}
+
+		&:focus:active {
+			background: $color_blue_light;
+			opacity: 1;
+		}
+	}
+
+	// SVG icon inside the arrow button, slightly smaller than default
+	.flickity-prev-next-button .flickity-button-icon {
+		left: 25%;
+		top: 25%;
+		width: 50%;
+		height: 50%;
+	}
+
+	// Hide arrows on mobile and tablet
+	@media ( max-width: $break_at_tablet ) {
+		.flickity-button.next, .flickity-button.previous {
+			display: none;
+		}
+	}
+
+	// Give space for arrows, on large enough screens
+	@media ( min-width: $break_above_tablet ) {
+		// Condition: At least one button must be enabled
+		&:has( .flickity-button.previous:not(:disabled) ) {
+			margin-left: 88px;
+			.flickity-button.previous { left: -64px; }
+		}
+
+		&:has( .flickity-button.next:not(:disabled) ) {
+			margin-right: 88px;
+			.flickity-button.next { right: -64px; }
+		}
+	}
+
+	// Dots
+	.flickity-page-dots {
+		.dot {
+			opacity: 1;
+			background-color: #c6b2d4;
+			transform: scale(1);
+			transition: transform 0.3s linear;
+
+			&.is-selected {
+				transform: scale(1.5);
+			}
+		}
+	}
+}

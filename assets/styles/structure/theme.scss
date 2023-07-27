@@ -29,19 +29,67 @@ li {
 }
 
 // Admin bar on front-end
-#wpadminbar .quicklinks {
-	display: grid;
-	grid-template-columns: auto auto;
-	height: 100%;
-}
+#wpadminbar {
 
-#wpadminbar .quicklinks ul {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	overflow: hidden;
-}
+	overflow-x: hidden;
 
-#wpadminbar .quicklinks ul:last-child {
-	margin: 0 0 0 auto;
+	#wp-toolbar,
+	#wp-admin-bar-root-default,
+	#wp-admin-bar-top-secondary {
+		height: 32px;
+		background: #1d2327;
+
+		@media screen and (max-width: 782px) {
+			height: 46px;
+		}
+	}
+
+	#wp-toolbar {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	#wp-admin-bar-root-default {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		min-width: 0;
+		margin-right: -50vw;
+		overflow-x: hidden;
+
+		& > li {
+			flex-shrink: 0;
+			& > a { white-space: nowrap; }
+		}
+	}
+
+	#wp-admin-bar-top-secondary {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		white-space: nowrap;
+
+		margin-left: auto;
+
+		#wp-admin-bar-my-account  > .ab-item {
+			padding: 0 8px;
+
+			@media screen and (max-width: 782px) {
+				padding: 0;
+			}
+		}
+
+		position: relative;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 100%;
+			bottom: 0;
+			width: 30px;
+			background: linear-gradient( -90deg, #1d2327 0%, #1d232700 100% );
+		}
+	}
 }

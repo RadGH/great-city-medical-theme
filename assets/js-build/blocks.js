@@ -880,13 +880,13 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         className: 'position-area-inside-top-right',
         label: 'Inside Top Right'
       }, {
-        name: 'inside-bottom-right',
-        className: 'position-area-inside-bottom-right',
-        label: 'Inside Bottom Right'
-      }, {
         name: 'inside-bottom-left',
         className: 'position-area-inside-bottom-left',
         label: 'Inside Bottom Left'
+      }, {
+        name: 'inside-bottom-right',
+        className: 'position-area-inside-bottom-right',
+        label: 'Inside Bottom Right'
       }, {
         name: 'outside-top-left',
         className: 'position-area-outside-top-left',
@@ -1329,6 +1329,10 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
         name: 'section-width',
         className: 'container-style-section-width',
         label: 'Section (Width Only)'
+      }, {
+        name: 'section-height',
+        className: 'container-style-section-height',
+        label: 'Section (Height Only)'
       }, {
         name: 'card',
         className: 'container-style-card',

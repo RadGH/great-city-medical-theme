@@ -1,0 +1,14 @@
+{
+	"name": "gcm/steps",
+	"title": "Steps",
+	"description": "Add multiple steps which are decorated with a wavy line and a number.",
+	"style": [],
+	"category": "great-city-medical",
+	"icon": "admin-gcm-icon",
+	"keywords": ["content", "steps"],
+	"align": "full",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "steps.php"
+	}
+}

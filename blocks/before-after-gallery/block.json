@@ -1,0 +1,15 @@
+{
+	"name": "gcm/gallery",
+	"title": "Before/After Gallery",
+	"description": "A horizontal slider of before and after photos.",
+	"style": [ "flickity" ],
+	"script": [ "flickity" ],
+	"category": "great-city-medical",
+	"icon": "admin-gcm-icon",
+	"keywords": ["content", "gallery", "image", "photo", "slider"],
+	"align": "full",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "before-after-gallery.php"
+	}
+}

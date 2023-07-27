@@ -1,0 +1,66 @@
+.gcm-before-after-gallery-block {
+	display: block;
+	width: 100%;
+
+	margin-top: 40px;
+
+	body .is-layout-constrained > & {
+		max-width: 1740px;
+	}
+
+	.gcm-slider {
+	}
+
+	.both-images {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		margin-bottom: 26px;
+		width: 100%;
+	}
+
+	.slider-item {
+		@media ( min-width: 500px ) {
+			width: 500px;
+		}
+	}
+
+	.image {
+		position: relative;
+	}
+
+	.image img {
+		border-radius: 16px;
+	}
+
+	.image .label {
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		transform: translateX(-50%) translateY(-50%);
+
+		display: block;
+		padding: 8px 40px;
+
+		font-size: 24px;
+		line-height: 1.4;
+		font-weight: 500;
+
+		border-radius: 100px;
+
+		color: #0957DE;
+		border: 1px solid #0957DE;
+		background: #F4F9FF;
+
+		@media ( max-width: $break_at_mobile ) {
+			padding: 8px 20px;
+			font-size: 18px;
+		}
+	}
+
+	.image.after .label {
+		color: #9069AC;
+		border-color: #9069AC;
+		background: #FAF4FF;
+	}
+}

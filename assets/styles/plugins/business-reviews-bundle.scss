@@ -194,4 +194,18 @@
 			margin-right: 0;
 		}
 	}
+
+	// disable arrows on very small screens
+	@media ( max-width: $break_at_small_mobile ) {
+		.rplg-slider-prev,
+		.rplg-slider-next {
+			display: none !important;
+		}
+
+		.rplg-slider {
+			max-width: none;
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
 }

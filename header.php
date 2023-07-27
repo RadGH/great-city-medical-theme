@@ -17,15 +17,6 @@
 	-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	
-	<?php
-	foreach( gcm_get_web_font_urls() as $key => $url ) {
-		?>
-		<link rel="stylesheet" id="gcm-font-<?php echo esc_attr($key); ?>" href="<?php echo esc_attr( $url ); ?>">
-		<?php
-	}
-	?>
-	
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	
 	<?php
