@@ -36,14 +36,14 @@ foreach( $locations as $i => $l ) {
 		
 		<?php if ( $address && $display_address ) { ?>
 		<div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-			<?php echo gcm_icon_get_styled_html( 'map-pin', $icon_color, $icon_type, $icon_size ); ?>
+			<?php echo gcm_get_icon_html( 'map-pin', $icon_color, $icon_type, $icon_size ); ?>
 			<span class="address-text"><?php echo esc_html( $address ); ?></span>
 		</div>
 		<?php } ?>
 		
 		<?php if ( $phone && $display_phone ) { ?>
 		<div class="phone" itemprop="telephone">
-			<?php echo gcm_icon_get_styled_html( 'phone', $icon_color, $icon_type, $icon_size ); ?>
+			<?php echo gcm_get_icon_html( 'phone', $icon_color, $icon_type, $icon_size ); ?>
 			<span class="phone-text"><?php echo gcm_format_phone( $phone ); ?></span>
 		</div>
 		<?php } ?>

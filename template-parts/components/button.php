@@ -22,7 +22,7 @@ echo $text;
 if ( $icon ) {
 	$icon = gcm_get_icon($icon);
 	
-	echo gcm_icon_get_styled_html( $icon, $color, 'circle', 'tiny' );
+	echo gcm_get_icon_html( $icon, $color, 'circle', 'tiny' );
 }
 
 echo '</a>';

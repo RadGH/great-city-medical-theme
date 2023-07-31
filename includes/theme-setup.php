@@ -268,7 +268,7 @@ function gcm_enqueue_gutenberg_styles() {
 	wp_enqueue_script(
 		'gcm-blocks',
 		get_template_directory_uri() . '/assets/js-build/blocks.js',
-		array(), //$block_asset_path['dependencies'],
+		$block_asset_path['dependencies'],
 		$block_asset_path['version']
 	);
 }

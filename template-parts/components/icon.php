@@ -6,4 +6,4 @@ $size = $args['size'] ?? false;
 
 if ( ! $name ) return;
 
-echo do_shortcode( '[gcm_icon name="' . $name . '" color="' . $color . '" type="' . $type . '" size="' . $size . '"]' );
+echo gcm_get_icon_html( $name, $color, $type, $size );

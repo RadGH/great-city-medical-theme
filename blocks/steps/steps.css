@@ -1,0 +1,237 @@
+.gcm-steps-list .step .node {
+	width: 1px;
+	height: 1px;
+	margin: auto;
+}
+
+/* USEFUL FOR DEBUGGING */
+/*
+.gcm-steps-list .step .node {
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+	background: #9069ac;
+}
+*/
+
+/* Tablet and larger */
+@media ( min-width: 1000.1px ) { /* break above tablet */
+
+	.gcm-steps-list {
+		display: grid;
+		grid-template-columns: repeat( 7, 1fr );
+		text-align: center;
+	}
+
+	.gcm-steps-list .step {
+		display: contents;
+	}
+
+	/* Number of columns = steps + 2 */
+	.gcm-steps-list.count-1 { grid-template-columns: 1fr repeat( 1, 1fr ) 1fr; }
+	.gcm-steps-list.count-2 { grid-template-columns: 1fr repeat( 2, 1fr ) 1fr; }
+	.gcm-steps-list.count-3 { grid-template-columns: 1fr repeat( 3, 1fr ) 1fr; }
+	.gcm-steps-list.count-4 { grid-template-columns: 1fr repeat( 4, 1fr ) 1fr; }
+	.gcm-steps-list.count-5 { grid-template-columns: 1fr repeat( 5, 1fr ) 1fr; }
+	.gcm-steps-list.count-6 { grid-template-columns: 1fr repeat( 6, 1fr ) 1fr; }
+	.gcm-steps-list.count-7 { grid-template-columns: 1fr repeat( 7, 1fr ) 1fr; }
+	.gcm-steps-list.count-8 { grid-template-columns: 1fr repeat( 8, 1fr ) 1fr; }
+	.gcm-steps-list.count-9 { grid-template-columns: 1fr repeat( 9, 1fr ) 1fr; }
+	.gcm-steps-list.count-10 { grid-template-columns: 1fr repeat( 10, 1fr ) 1fr; }
+
+	/* Each step is placed in the column position + 1, so that the left column is blank */
+	.gcm-steps-list .step:nth-child(2) * { grid-column: 1 / 4; }
+	.gcm-steps-list .step:nth-child(3) * { grid-column: 2 / 5; }
+	.gcm-steps-list .step:nth-child(4) * { grid-column: 3 / 6; }
+	.gcm-steps-list .step:nth-child(5) * { grid-column: 4 / 7; }
+	.gcm-steps-list .step:nth-child(6) * { grid-column: 5 / 8; }
+	.gcm-steps-list .step:nth-child(7) * { grid-column: 6 / 9; }
+	.gcm-steps-list .step:nth-child(8) * { grid-column: 7 / 10; }
+	.gcm-steps-list .step:nth-child(9) * { grid-column: 8 / 11; }
+	.gcm-steps-list .step:nth-child(10) * { grid-column: 9 / 12; }
+	.gcm-steps-list .step:nth-child(11) * { grid-column: 10 / 13; }
+	.gcm-steps-list .step:nth-child(12) * { grid-column: 11 / 14; }
+
+	.gcm-steps-list .step .text {
+		width: 58%; /* 50% -> 66% */
+		margin: 0 auto;
+	}
+
+	.gcm-steps-list .step:nth-child(even) .text { grid-row: 1; display: inline-grid; align-content: end;; }
+	.gcm-steps-list .step:nth-child(odd) .text { grid-row: 3; }
+
+	.gcm-steps-list .step .icon { grid-row: 2; }
+
+	.gcm-steps-list .step:nth-child(odd) .icon::before,
+	.gcm-steps-list .step:nth-child(even) .icon::after {
+		content: '';
+		display: block;
+		height: 20px;
+	}
+
+	.gcm-steps-list .step:nth-child(even) .icon::before,
+	.gcm-steps-list .step:nth-child(odd) .icon::after {
+		content: '';
+		display: block;
+		margin: 16px auto;
+		width: 2px;
+		height: 64px;
+		background: #9bbaf0; /* #0957DE 40% */
+	}
+
+	.gcm-steps-list .step .icon {
+		/*position: relative;*/
+		display: flex;
+		flex-direction: column;
+	}
+
+	.gcm-steps-list .step .node {
+		margin: 0 auto;
+	}
+
+	/* Arrange the spacers, text, and icon */
+	.gcm-steps-list .step .icon::before { order: 0; }
+	.gcm-steps-list .step .icon .gcm-icon { order: 1; }
+	.gcm-steps-list .step .icon .node { order: 2; margin: 20px auto 0; }
+	.gcm-steps-list .step .icon::after { order: 3; }
+
+	/* Alternate the order of text/icons */
+	.gcm-steps-list .step:nth-child(odd) .icon .gcm-icon { order: 2; } /* reversed */
+	.gcm-steps-list .step:nth-child(odd) .icon .node { order: 1; margin: 0 auto 20px; } /* reversed */
+
+
+	/* Node position on desktop */
+	.gcm-steps-list .step .node {
+		grid-row: 2;
+		margin: auto auto 0;
+	}
+
+	.gcm-steps-list .step:nth-child(odd) .node {
+		margin: 0 auto auto;
+	}
+
+
+	/*
+	negative margins reduce the unoccupied space of the left/right spacer columns
+	where n = number of steps
+	columns = n + 2;
+	column_width = 100 / columns;
+
+	so for 7 steps:
+	columns = 9;
+	column_width = 100 / 9 = 11.11%
+
+	for each amount:
+	10 steps = 12 columns = 8.33%
+	9 steps = 11 columns = 9.09%
+	8 steps = 10 columns = 10%
+	7 steps = 9 columns = 11.11%
+	6 steps = 8 columns = 12.5%
+	5 steps = 7 columns = 14.28%
+	4 steps = 6 columns = 16.66%
+	3 steps = 5 columns = 20%
+	2 steps = 4 columns = 25%
+	1 step = 3 columns = 33.33%
+	 */
+
+	/* Hide overlap caused by negative margins (the overlap should be blank anyway) */
+	.gcm-steps-block {
+		overflow: hidden;
+	}
+
+	/* half negative margins instead */
+	.gcm-steps-list.count-10 { margin: 0 -4%; }
+	.gcm-steps-list.count-9 { margin: 0 -4.5%; }
+	.gcm-steps-list.count-8 { margin: 0 -5%; }
+	.gcm-steps-list.count-7 { margin: 0 -5.5%; }
+	.gcm-steps-list.count-6 { margin: 0 -6%; }
+	.gcm-steps-list.count-5 { margin: 0 -7%; }
+	.gcm-steps-list.count-4 { margin: 0 -8%; }
+	.gcm-steps-list.count-3 { margin: 0 -10%; }
+	.gcm-steps-list.count-2 { margin: 0 -12.5%; }
+	.gcm-steps-list.count-1 { margin: 0 -16.5%; }
+
+	/*
+	When adding wavy line, position nodes at the center of this element:
+	.gcm-steps-list .node {
+	    background: #ffcc00;
+	}
+	*/
+
+}
+
+/* Smaller than tablets */
+@media ( max-width: 1000px ) {
+	.gcm-steps-list {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 50px;
+		margin: 0 20px;
+		text-wrap: wrap;
+	}
+
+	.gcm-steps-list .step.placeholder {
+		display: none;
+	}
+
+	.gcm-steps-list .gcm-icon svg {
+		max-width: 100%;
+		height: auto;
+		aspect-ratio: 1 / 1;
+	}
+
+	.gcm-steps-list .step {
+		display: grid;
+		gap: 20px;
+		align-items: center;
+	}
+
+	.gcm-steps-list .step {
+		grid-template-columns: auto 1fr auto;
+	}
+
+	.gcm-steps-list .gcm-icon.size-x-large.type-circle .icon-frame {
+		padding: 9px;
+	}
+
+	.gcm-steps-list .gcm-icon.size-x-large.type-circle .icon-frame svg {
+		width: 32px;
+	}
+}
+
+@media ( max-width: 400px ) {
+	.gcm-steps-list .step .text { order: 2; }
+	.gcm-steps-list .step .icon { order: 1; }
+	.gcm-steps-list .step .node { order: 3; }
+}
+
+@media ( min-width: 400.1px ) and ( max-width: 1000px ) {
+	.gcm-steps-list {
+	}
+
+	.gcm-steps-list .step:nth-child(even) .text {
+		margin-right: 40px;
+	}
+
+	.gcm-steps-list .step:nth-child(odd) .text {
+		margin-left: 40px;
+	}
+
+	/* Even rows - put text on the right of the icon */
+	.gcm-steps-list .step:nth-child(even) .icon { order: 1; }
+	.gcm-steps-list .step:nth-child(even) .text { order: 2; }
+	.gcm-steps-list .step:nth-child(even) .node { order: 3; }
+
+	.gcm-steps-list .step:nth-child(odd) .node { order: 1; }
+	.gcm-steps-list .step:nth-child(odd) .text { order: 2; }
+	.gcm-steps-list .step:nth-child(odd) .icon { order: 3; }
+
+	/* Odd rows - text on the left, right-aligned */
+	.gcm-steps-list .step:nth-child(odd) {
+		grid-template-columns: 1fr auto 1fr;
+	}
+
+	.gcm-steps-list .step:nth-child(odd) .text {
+		text-align: right;
+	}
+}

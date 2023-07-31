@@ -36,22 +36,36 @@ $classes[] = 'gcm-steps-block';
 		
 		$step_number = 1;
 		
+		// Icon settings
+		$color = 'purple';
+		$type = 'circle';
+		$size = 'x-large';
+		
+		echo '<div class="step i-0 placeholder"></div>';
+		
 		foreach( $steps as $s ) {
 			$text = $s['text'];
-			$icon = gcm_get_icon_html( $step_number, 'purple', 'circle', 'large' );
-			// [gcm_icon name="1" type="circle"]
-			$icon = do_shortcode( '[gcm_icon name="' . $name . '" color="' . $color . '" type="' . $type . '" size="' . $size . '"]' );
+			$icon = gcm_get_icon_html( $step_number, $color, $type, $size );
 			?>
 			<div class="step step-<?php echo $step_number; ?>">
-				<div class="number"><?php echo $step_number; ?></div>
-				<div class="icon"><?php echo $text; ?></div>
-				<div class="line"></div>
-				<div class="curve"></div>
+				
+				<div class="text">
+					<?php echo $text; ?>
+				</div>
+				
+				<div class="icon">
+					<?php echo $icon; ?>
+				</div>
+				
+				<div class="node"></div>
+				
 			</div>
 			<?php
 			
 			$step_number += 1;
 		}
+		
+		echo '<div class="step placeholder"></div>';
 		
 		echo '</div>';
 	}

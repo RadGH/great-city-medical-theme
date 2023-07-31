@@ -21,7 +21,7 @@ function shortcode_gcm_icon( $atts, $content = '', $shortcode_name = 'gcm_icon' 
 	}
 	
 	// Get icon filename and data
-	return gcm_icon_get_styled_html( $icon, $color, $type, $size );
+	return gcm_get_icon_html( $icon, $color, $type, $size );
 }
 add_shortcode( 'gcm_icon', 'shortcode_gcm_icon' );
 
@@ -98,7 +98,7 @@ function shortcode_gcm_icon_list( $atts, $content = '', $shortcode_name = 'gcm_i
 			$type = $t['type'];
 			$color = $t['color'];
 			$icon = gcm_get_icon( $name );
-			$svg = gcm_icon_get_styled_html( $icon, $color, $type );
+			$svg = gcm_get_icon_html( $icon, $color, $type );
 			
 			$shortcode = '[gcm_icon name="'. $name .'"';
 			if ( $color && $color != 'purple' ) $shortcode.= ' color="'. $color .'"';

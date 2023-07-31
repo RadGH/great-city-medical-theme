@@ -289,6 +289,10 @@ function gcm_icon_config() {
 			'filename' => 'visa.svg',
 			'tags' => 'visa',
 		),
+		'question-mark' => array(
+			'filename' => 'question-mark.svg',
+			'tags' => 'question mark ?',
+		),
 	);
 	
 	return apply_filters( 'gcm/icons', $icons );
@@ -324,12 +328,34 @@ function gcm_get_icon_colors() {
 }
 
 /**
+ * Flush the icon cache by visiting ?gcm_flush_icon_cache (as an admin)
+ *
+ * @return void
+ */
+function gcm_flush_icon_cache_by_url() {
+	if ( ! current_user_can('administrator') ) wp_die('Only admins can flush the icon cache');
+	
+	$cache_key = 'gcm_icon_settings';
+	delete_transient( $cache_key );
+	
+	$url = remove_query_arg('gcm_flush_icon_cache');
+	$url = add_query_arg(array('gcm_icon_cache_cleared' => 1), $url);
+	wp_redirect( $url );
+	exit;
+}
+if ( isset($_GET['gcm_flush_icon_cache']) ) {
+	add_action( 'template_redirect', 'gcm_flush_icon_cache_by_url' );
+	add_action( 'admin_init', 'gcm_flush_icon_cache_by_url' );
+}
+
+/**
  * Load icon settings and import svg files. Results are cached to improve performance.
  *
  * @return array
  */
 function gcm_load_icon_settings() {
 	$cache_key = 'gcm_icon_settings';
+	
 	$settings = get_transient( $cache_key );
 	if ( $settings !== false ) return $settings;
 	
@@ -370,27 +396,41 @@ function gcm_load_icon_settings() {
 /**
  * Get the SVG element with appropriate classes for a given icon.
  *
- * @param array|string $icon    Icon settings from gcm_get_icon_settings()
+ * @param array|string $name    Icon settings from gcm_get_icon_settings()
  * @param string|null $color    Optional. Choices: purple, blue, black
  * @param string|null $type     Optional. Choices: none, flat, circle
  * @param string|null $size     Optional. Choices: none, tiny, x-small, small, medium, large, x-large
  *
  * @return string
  */
-function gcm_icon_get_styled_html( $icon, $color = null, $type = null, $size = null ) {
+function gcm_get_icon_html( $name, $color = null, $type = null, $size = null ) {
 	// Allowed color and types
 	if ( ! in_array( $color, array('purple', 'blue', 'black') ) ) $color = 'purple';
 	if ( ! in_array( $type, array( 'circle', 'flat' ) ) ) $type = '';
 	if ( ! in_array( $size, array( 'tiny', 'x-small', 'small', 'medium', 'large', 'x-large' ) ) ) $size = '';
 	
 	// Icon can be name or array
-	if ( is_string($icon) ) $icon = gcm_get_icon($icon);
+	if ( is_array( $name ) ) {
+		$icon = $name;
+	}else{
+		$icon = gcm_get_icon( $name );
+	}
+	
+	// Check if the icon is valid
+	if ( ! $icon ) {
+		$icon = gcm_get_icon( 'question-mark' );
+		$title_attr = 'Icon not found: '. print_r($name, true);
+	}else{
+		$title_attr = '';
+	}
+	
+	$name = $icon['title'];
 	
 	// Get html classes
 	$classes = array();
 	$classes[] = 'gcm-icon';
 	$classes[] = 'has-svg';
-	$classes[] = 'icon-'  . $icon['name'];
+	$classes[] = 'icon-'  . $name;
 	$classes[] = 'color-' . ($color ?: 'none');
 	$classes[] = 'type-'  . ($type ?: 'none');
 	$classes[] = 'size-'  . ($size ?: 'none');
@@ -398,8 +438,12 @@ function gcm_icon_get_styled_html( $icon, $color = null, $type = null, $size = n
 	// Apply color and type adjustments to the svg
 	$svg = gcm_icon_set_style( $icon['svg'], $color, $type, $size );
 	
-	// Return all the data
-	return '<span class="'. esc_attr(implode(' ', $classes)) .'"><span class="icon-frame">'. $svg .'</span></span>';
+	// Prepare attributes to add to the icon <span>
+	$attr = 'class="'. esc_attr(implode(' ', $classes)) .'"';
+	if ( $title_attr ) $attr .= ' title="'. esc_attr($title_attr) .'"';
+	
+	// Return the icon in HTML format
+	return '<span '. $attr .'><span class="icon-frame">'. $svg .'</span></span>';
 }
 
 /**
@@ -470,20 +514,3 @@ function gcm_load_icon_field( $field ) {
 	return $field;
 }
 add_filter('acf/load_field/key=field_649c97ef3f394', 'gcm_load_icon_field', 10, 1); // field group "Block - Icon" -> field "Icon"
-
-/**
- * Gets the full HTML of an icon. This is an alias of gcm_icon_get_styled_html(), and should probably replace it.
- *
- * @see gcm_icon_get_styled_html()
- *
- * @param string $icon_name
- * @param string $color
- * @param string $type
- * @param string $size
- *
- * @return string
- */
-function gcm_get_icon_html( $icon_name, $color = null, $type = null, $size = null ) {
-	// return do_shortcode( '[gcm_icon name="' . $icon_name . '" color="' . $color . '" type="' . $type . '" size="' . $size . '"]' );
-	return gcm_icon_get_styled_html( $icon_name, $color, $type, $size );
-}

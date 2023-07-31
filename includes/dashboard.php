@@ -107,6 +107,30 @@ function gcm_display_icons_settings_page() {
 						
 						<div class="inside">
 							
+							<p>
+								<a href="<?php echo add_query_arg(array('gcm_flush_icon_cache' => 1)); ?>" class="button button-secondary">Flush Icon Cache</a>
+								
+								<?php
+								if ( isset($_GET['gcm_icon_cache_cleared']) ) {
+									?>
+									<span id="icon-cache-cleared" style="margin-left: 5px;">
+										Icon cache has been cleared!
+									</span>
+									<script>
+										setTimeout(function() {
+											document.querySelector( '#icon-cache-cleared' ).remove();
+											
+											// Remove from the url: &gcm_icon_cache_cleared=1
+											let url = window.location.href;
+											url = url.replace( /[?&]gcm_icon_cache_cleared=1/g, '' );
+											window.history.replaceState({}, document.title, url);
+										}, 3000);
+									</script>
+									<?php
+								}
+								?>
+							</p>
+							
 							<div class="gcm-icons-admin-preview">
 								<?php echo do_shortcode('[gcm_icon_list]'); ?>
 							</div>

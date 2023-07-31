@@ -120,6 +120,7 @@ function gcm_get_block_classes( $block ) {
 	}
 	
 	if ( ! empty( $block['align'] ) ) {
+		// @TODO: I think this should not have a hyphen.
 		$classes[] = 'align-' . $block['align'];
 	}
 	
