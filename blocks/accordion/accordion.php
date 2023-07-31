@@ -45,13 +45,20 @@ if ( $items ) foreach( $items as $i => $item ) {
 		}
 		
 	}else{
+		$first = true;
+		
 		foreach( $items as $item ) {
 			$title = $item['title'];
 			$content = wpautop($item['content']);
 			
+			// Allow expanding the first item by default
+			$expanded_attr = $first && in_array('open_first', $settings) ? 'expanded="true"' : '';
+			
 			echo do_shortcode(
-				'[gcm_accordion title="'. esc_attr($title) .'"]'. $content .'[/gcm_accordion]'
+				'[gcm_accordion title="'. esc_attr($title) .'" '. $expanded_attr .']'. $content .'[/gcm_accordion]'
 			);
+			
+			$first = false;
 		}
 	}
 	?>

@@ -122,21 +122,23 @@ const Steps_Block = function( e ) {
 		let x1 = coord_1.x;
 		let y1 = coord_1.y;
 
-		// If the X distance exceeds the Y distance, adjust the control point on the Y axis
 		let c1x, c1y, c2x, c2y;
-		if ( Math.abs( coord_2.x - coord_1.x ) > Math.abs( coord_2.y - coord_1.y ) ) {
-			c1x = coord_1.x;
-			c1y = coord_1.y + y_mid;
 
-			c2x = coord_2.x;
-			c2y = coord_1.y + y_mid;
-		}else{
+		// Check if window >= 1000px, change the direction of curve accordingly
+		if ( window.innerWidth >= 1000 ) {
 			c1x = coord_1.x + x_mid;
 			c1y = coord_1.y;
 
 			c2x = coord_1.x + x_mid;
 			c2y = coord_2.y;
+		}else{
+			c1x = coord_1.x;
+			c1y = coord_1.y + y_mid;
+
+			c2x = coord_2.x;
+			c2y = coord_1.y + y_mid;
 		}
+
 
 		let x2 = coord_2.x;
 		let y2 = coord_2.y;
@@ -154,13 +156,11 @@ const Steps_Block = function( e ) {
 		path.setAttribute("stroke-dasharray", "14 14");
 
 		// USEFUL FOR DEBUGGING:
-		/*
 		// Create a circle at each end of the path
 		block.create_circle( block.svg, x1, y1, 5 );
 		block.create_circle( block.svg, c1x, c1y, 2 );
 		block.create_circle( block.svg, c2x, c2y, 2 );
 		block.create_circle( block.svg, x2, y2, 5 );
-		*/
 
 		return path;
 	};
@@ -170,6 +170,7 @@ const Steps_Block = function( e ) {
 		circle.setAttribute("cx", x);
 		circle.setAttribute("cy", y);
 		circle.setAttribute("r", r);
+		circle.setAttribute("fill", "none");
 		element.appendChild(circle);
 	};
 
@@ -179,98 +180,6 @@ const Steps_Block = function( e ) {
 		block.init();
 	};
 
-	// Create an SVG path element
-	/*
-	block.create_path = function( path_string ) {
-		const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-		path.setAttribute( "d", path_string );
-		return path;
-	};
-	*/
-
-	// Create an SVG path between two elements using a curve that goes up or down depending on the Y difference between the elements
-	/*
-	block.curve_between_elements = function( parent, element_1, element_2 ) {
-		// Get the position of the parent element
-		const px = parent.offsetLeft;
-		const py = parent.offsetTop;
-		const pw = parent.offsetWidth;
-		const ph = parent.offsetHeight;
-
-		// Get the bounding rectangles of the elements
-		const rect1 = element_1.getBoundingClientRect();
-		const rect2 = element_2.getBoundingClientRect();
-
-		// Get the X and Y coord of each element relative to the parent
-		const x1 = rect1.left - px;
-		const y1 = rect1.top - py;
-		const x2 = rect2.left - px;
-		const y2 = rect2.top - py;
-
-		// Calculate the Y difference between the elements
-		const yDiff = y2 - y1;
-
-		// Calculate the control points for the curve
-		let xControl = (x1 + x2) / 2;
-		let yControl = y1 + yDiff / 2;
-
-		// Bend the curve up or down depending on the Y difference
-		// if (yDiff > 0) {
-		// 	yControl -= Math.abs(yDiff) * 0.5;
-		// } else {
-		// 	yControl += Math.abs(yDiff) * 0.5;
-		// }
-
-		// Create the SVG path
-		const svgPath = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		svgPath.setAttribute("width", "100%");
-		svgPath.setAttribute("height", "100%");
-		svgPath.style.position = "absolute";
-		svgPath.style.left = px;
-		svgPath.style.top = py;
-
-		const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-		path.setAttribute(
-			"d",
-			`M ${x1} ${y1} Q ${xControl} ${yControl} ${x2} ${y2}`
-		);
-		svgPath.appendChild(path);
-
-		// Set SVG styles (you can customize these as needed)
-		path.setAttribute("stroke", "black");
-		path.setAttribute("fill", "none");
-		path.setAttribute("stroke-width", "2");
-
-		// Create a circle at each end of the path
-		const circle1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-		circle1.setAttribute("cx", x1);
-		circle1.setAttribute("cy", y1);
-		circle1.setAttribute("r", 5);
-		svgPath.appendChild(circle1);
-
-		const circle2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-		circle2.setAttribute("cx", x2);
-		circle2.setAttribute("cy", y2);
-		circle2.setAttribute("r", 5);
-		svgPath.appendChild(circle2);
-
-		// Create a circle at the control point
-		const circleControl = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-		circleControl.setAttribute("cx", xControl);
-		circleControl.setAttribute("cy", yControl);
-		circleControl.setAttribute("r", 5);
-		svgPath.appendChild(circleControl);
-
-		// Append the SVG path to the document body (you can change this to append to a different element)
-		document.body.appendChild(svgPath);
-
-		console.log( 'svg path:', svgPath );
-
-		parent.style.position = 'relative';
-		parent.style.zIndex = 2;
-		svgPath.style.zIndex = 1;
-	};
-	*/
 
 	setTimeout(function() {
 		block.init();
