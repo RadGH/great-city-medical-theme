@@ -53,6 +53,9 @@ function gcm_setup_theme() {
 	remove_image_size( '1536x1536' );
 	remove_image_size( '2048x2048' );
 	
+	// remove ajax load more thumbnail size
+	remove_image_size( 'alm-thumbnail' );
+	
 	// old theme settings:
 	// add_theme_support( 'post-formats', array( 'image', 'gallery', 'video', 'audio', 'link', 'quote' ) );
 	// add_post_type_support( 'page', 'excerpt' );

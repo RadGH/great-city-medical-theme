@@ -163,7 +163,6 @@ body.mce-content-body {
   font-weight: 300;
   line-height: 1.4;
   -webkit-font-smoothing: subpixel-antialiased;
-  text-wrap: balance;
   font-size: 16px;
   margin: 10px !important;
 }
@@ -175,18 +174,23 @@ body.mce-content-body {
 body.mce-content-body h1,
 body.mce-content-body h2 {
   font-size: 60px;
+  line-height: 1.4;
 }
 body.mce-content-body h3 {
   font-size: 32px;
+  line-height: 1.25;
 }
 body.mce-content-body h4 {
   font-size: 28px;
+  line-height: 1.25;
 }
 body.mce-content-body h5 {
   font-size: 18px;
+  line-height: 1.25;
 }
 body.mce-content-body h6 {
   font-size: 14px;
+  line-height: 1.25;
 }
 body.mce-content-body h1,
 body.mce-content-body h2,
@@ -292,6 +296,7 @@ body.mce-content-body .heading-eyebrow-text {
 body.mce-content-body .heading-h1,
 body.mce-content-body .heading-h2 {
   font-size: 60px;
+  line-height: 1.4;
 }
 @media (min-width: 1200.1px) and (max-width: 1920px) {
   body.mce-content-body .heading-h1,
@@ -307,6 +312,7 @@ body.mce-content-body .heading-h2 {
 }
 body.mce-content-body .heading-h3 {
   font-size: 32px;
+  line-height: 1.25;
 }
 @media (min-width: 1200.1px) and (max-width: 1920px) {
   body.mce-content-body .heading-h3 {
@@ -320,6 +326,7 @@ body.mce-content-body .heading-h3 {
 }
 body.mce-content-body .heading-h4 {
   font-size: 28px;
+  line-height: 1.25;
 }
 @media (min-width: 1200.1px) and (max-width: 1920px) {
   body.mce-content-body .heading-h4 {
@@ -333,6 +340,7 @@ body.mce-content-body .heading-h4 {
 }
 body.mce-content-body .heading-h5 {
   font-size: 18px;
+  line-height: 1.25;
 }
 @media (min-width: 1200.1px) and (max-width: 1920px) {
   body.mce-content-body .heading-h5 {
@@ -346,6 +354,7 @@ body.mce-content-body .heading-h5 {
 }
 body.mce-content-body .heading-h6 {
   font-size: 14px;
+  line-height: 1.25;
 }
 @media (min-width: 1200.1px) and (max-width: 1920px) {
   body.mce-content-body .heading-h6 {
@@ -359,6 +368,7 @@ body.mce-content-body .heading-h6 {
 }
 body.mce-content-body .heading-page-title {
   font-size: 80px;
+  line-height: 1.4;
 }
 @media (min-width: 1200.1px) and (max-width: 1920px) {
   body.mce-content-body .heading-page-title {
@@ -374,10 +384,10 @@ body.mce-content-body .heading-page-title {
 /* Buttons! */
 .button {
   display: inline-block;
-  padding: 18px 48px;
   line-height: 1;
   text-decoration: none;
   border-radius: 100px;
+  padding: 18px 48px;
 }
 .button:focus-within {
   outline: 3px solid #9069ac;
@@ -386,6 +396,10 @@ body.mce-content-body .heading-page-title {
 .button-text {
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.button-small {
+  padding: 4px 16px 7px;
 }
 
 .button {
@@ -553,6 +567,35 @@ body.mce-content-body .heading-page-title {
   color: #ffffff;
   border: 1px solid #ffffff;
   background: #0e0d0d;
+}
+
+.alm-btn-wrap .button.button-secondary.alm-load-more-btn {
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 100px;
+  padding: 18px 48px;
+  color: #9069ac;
+  border: 1px solid #9069ac;
+  background: #faf4ff;
+  box-sizing: content-box;
+  height: auto;
+}
+.alm-btn-wrap .button.button-secondary.alm-load-more-btn:hover {
+  color: #ffffff;
+  border: 1px solid #9069ac;
+  background: #9069ac;
+}
+.alm-btn-wrap .button.button-secondary.alm-load-more-btn.loading {
+  color: #ffffff;
+  border: 1px solid #9069ac;
+  background: #9069ac;
+}
+.alm-btn-wrap .button.button-secondary.alm-load-more-btn.loading::before {
+  display: none !important;
+}
+.alm-btn-wrap .button.button-secondary.alm-load-more-btn.done {
+  display: none !important;
 }
 
 /* form fields */ /*

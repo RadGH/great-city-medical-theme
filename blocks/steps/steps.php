@@ -20,13 +20,15 @@ $classes = gcm_get_block_classes( $block );
 
 $steps = get_field( 'steps' );
 
+if ( ! $id ) $id = uniqid('steps-block-');
+
 $classes[] = 'gcm-steps-block';
 
 ?>
 <div <?php echo ($id ? 'id="'. esc_attr($id) .'" ' : ''); ?> class="<?php echo esc_attr( implode(' ', $classes) ); ?>">
 	
 	<?php
-	if ( !$steps && (is_admin() || acf_is_block_editor()) ) {
+	if ( !$steps && (gcm_is_block_editor()) ) {
 		echo 'Add steps to this block using <span class="dashicons dashicons-edit"></span> Edit mode.';
 	}
 	
@@ -72,3 +74,12 @@ $classes[] = 'gcm-steps-block';
 	?>
 	
 </div>
+
+<script type="text/javascript">
+	(() => {
+		// Set up the steps element using the parent <div> as the selector, without using the ID
+		let id = '<?php echo $id; ?>';
+		let element = document.querySelector('#' + id);
+		if ( typeof window.gcm_setup_steps === 'function' ) window.gcm_setup_steps( element );
+	})();
+</script>

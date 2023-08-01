@@ -1,0 +1,13 @@
+{
+	"name": "gcm/blog-posts",
+	"title": "Blog Posts",
+	"description": "For use on the main blog page. Displays the blog posts depending on the current query.",
+	"category": "great-city-medical",
+	"icon": "admin-gcm-icon",
+	"keywords": ["blog", "posts"],
+	"align": "full",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "blog-posts.php"
+	}
+}

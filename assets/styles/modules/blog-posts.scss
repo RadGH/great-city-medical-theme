@@ -1,0 +1,172 @@
+.gcm-blog-posts-block {
+	@extend .article-section;
+}
+
+.archive-list {
+	display: grid;
+	gap: 32px;
+
+	&,
+	&.alm-listing {
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	@media ( min-width: $break_above_desktop ) {
+		grid-template-columns: repeat( 3, 1fr );
+		max-width: 1500px + 32px + 32px + 40px;
+	}
+
+	@media ( min-width: $break_above_tablet ) and ( max-width: $break_at_desktop ) {
+		grid-template-columns: repeat( 2, 1fr );
+		max-width: 1000px + 32px + 40px;
+	}
+
+	@media ( max-width: $break_at_tablet ) {
+		grid-template-columns: 1fr;
+		max-width: 500px + 40px;
+	}
+
+	// Fix ajax load more wrappers in the archive list causing alignment issues and gaps
+	.alm-reveal {
+		display: contents;
+	}
+
+	&.alm-listing .alm-reveal:after {
+		display: none;
+	}
+}
+
+.alm-btn-wrap {
+	margin-top: 50px !important;
+}
+
+.archive-item {
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.archive-item .post-thumbnail {
+    max-height: 280px;
+    overflow: hidden;
+}
+
+.archive-item .post-thumbnail img {
+    width: 100%;
+    height: auto;
+}
+
+@supports ( object-fit: cover ) and ( aspect-ratio: 3 / 2 ) {
+    .archive-item .post-thumbnail {
+        aspect-ratio: 3/2;
+        max-height: none;
+    }
+
+    .archive-item .post-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.archive-item .post-details {
+    display: grid;
+    gap: 12px;
+    padding: 24px 24px 12px;
+    border: 1px solid #E7E7E7;
+    border-radius: 24px;
+}
+
+.archive-item .post-details::after {
+    /* Fills the extra space at the bottom of the box */
+    content: '';
+    margin-top: auto;
+}
+
+.archive-item .post-thumbnail + .post-details {
+    border-top-width: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.archive-item .post-meta {
+    color: #68626E;
+    margin-bottom: 12px;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.archive-item .post-meta .post-category {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.archive-item .post-meta .post-time {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: right;
+	white-space: nowrap;
+
+	& > :not(:first-child) {
+		padding-left: 8px;
+		margin-left: 8px;
+		border-left: 1px solid #E3E3E3;
+	}
+}
+
+.archive-item h2 {
+    margin: 0;
+}
+
+.archive-item h2 a:not(:hover) {
+    text-decoration: none;
+}
+
+.archive-item .post-excerpt {
+    color: #68626E;
+    max-height: 2lh;
+    overflow: hidden;
+}
+
+.archive-item .post-excerpt > :first-child { margin-top: 0; }
+.archive-item .post-excerpt > :last-child { margin-bottom: 0; }
+
+@media ( max-width: $break_at_medium_desktop ) {
+	.archive-item .post-meta .post-category {
+		font-size: 14px;
+	}
+
+	.archive-item .post-meta .post-time {
+		font-size: 12px;
+	}
+}
+
+@media ( max-width: $break_at_desktop ) {
+	.archive-item .post-details {
+		padding: 12px;
+	}
+}
+
+/* Classic pagination (no ajax load more) */
+.archive-pagination {
+	margin: 60px auto 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+
+	.button {
+		min-width: 180px;
+		text-align: center;
+	}
+}

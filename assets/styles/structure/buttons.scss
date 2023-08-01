@@ -1,10 +1,6 @@
 /* Buttons! */
 .button {
-	display: inline-block;
-	padding: 18px 48px;
-	line-height: 1;
-	text-decoration: none;
-	border-radius: 100px;
+	@include button_structure();
 
 	&:focus-within {
 		@include focus_within;
@@ -14,6 +10,12 @@
 .button-text {
 	padding-left: 40px;
 	padding-right: 40px;
+}
+
+.button-small {
+	// Based on the button in the post archive cards used for the category
+	// Note: Added a few pixels to the bottom to properly align the font
+	@include button_padding('small');
 }
 
 // ----------
@@ -125,4 +127,19 @@
 			&:hover { @include button_outline( 'white' ); }
 		}
 	}
+}
+
+// Ajax Load More button is very specific
+.alm-btn-wrap .button.button-secondary.alm-load-more-btn {
+	@include button_structure();
+	@include button_secondary( 'purple' );
+	&:hover { @include button_primary( 'purple' ); }
+
+	box-sizing: content-box;
+	height: auto;
+
+	&.loading { @include button_primary( 'purple' ); }
+	&.loading::before { display: none !important; }
+
+	&.done { display: none !important; }
 }

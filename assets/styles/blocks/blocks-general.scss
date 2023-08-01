@@ -1,3 +1,25 @@
+// Default block editor classes
+.is-content-justification-center { justify-content: center; }
+.is-content-justification-left { justify-content: left; }
+.is-content-justification-right { justify-content: right; }
+.is-content-justification-stretch { justify-content: stretch; }
+
+.is-horizontal {
+	flex-direction: row;
+}
+
+.is-vertical {
+	flex-direction: column;
+
+	.is-content-justification-center { align-items: center; }
+}
+
+// Classic block (pre-gutenberg)
+.classic-block-content {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
 // Block sections
 // HORIZONTAL
 .container-style-section {

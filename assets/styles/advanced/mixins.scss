@@ -51,33 +51,55 @@
 @mixin font_size_h1( $responsive: true ) {
 	// 80px desktop, 36px mobile
 	@include respond_font_size( $font_size_h1, $font_size_h1_mobile, $responsive );
+	line-height: 1.4;
 }
 
 @mixin font_size_h2( $responsive: true ) {
 	// 60px desktop, 32px mobile
 	@include respond_font_size( $font_size_h2, $font_size_h2_mobile, $responsive );
+	line-height: 1.4;
 }
 
 @mixin font_size_h3( $responsive: true ) {
 	// 32px desktop, 24px mobile
 	@include respond_font_size( $font_size_h3, $font_size_h3_mobile, $responsive );
+	line-height: 1.25;
 }
 
 @mixin font_size_h4( $responsive: true ) {
 	// 28px desktop, 18px mobile
 	@include respond_font_size( $font_size_h4, $font_size_h4_mobile, $responsive );
+	line-height: 1.25;
 }
 
 @mixin font_size_h5( $responsive: true ) {
 	// 18px desktop, 18px mobile
 	@include respond_font_size( $font_size_h5, $font_size_h5_mobile, $responsive );
+	line-height: 1.25;
 }
 
 @mixin font_size_h6( $responsive: true ) {
 	// 14px desktop, 14px mobile
 	@include respond_font_size( $font_size_h6, $font_size_h6_mobile, $responsive );
+	line-height: 1.25;
 }
 
+@mixin button_structure( $include_padding: true ) {
+	display: inline-block;
+	line-height: 1;
+	text-decoration: none;
+	border-radius: 100px;
+	@include button_padding( 'normal' );
+}
+
+@mixin button_padding( $type: 'normal' ) {
+	@if $type == 'small' {
+		padding: 4px 16px 7px;
+	}
+	@else {
+		padding: 18px 48px;
+	}
+}
 
 @mixin button_primary($color) {
 	color: $color_white;
@@ -256,7 +278,7 @@
 	font-weight: 300;
 	line-height: 1.4;
 	-webkit-font-smoothing: subpixel-antialiased; // or: antialiased
-	text-wrap: balance;
+	// text-wrap: balance;
 
 	@media ( max-width: $break_above_mobile ) {
 		line-height: 1.5;

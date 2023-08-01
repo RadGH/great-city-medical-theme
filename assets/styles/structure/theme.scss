@@ -31,16 +31,22 @@ li {
 // Admin bar on front-end
 #wpadminbar {
 
-	overflow-x: hidden;
+	&:not(:hover):not(:focus-within) {
+		overflow-x: hidden;
 
-	#wp-toolbar,
-	#wp-admin-bar-root-default,
-	#wp-admin-bar-top-secondary {
-		height: 32px;
-		background: #1d2327;
+		#wp-toolbar,
+		#wp-admin-bar-root-default,
+		#wp-admin-bar-top-secondary {
+			height: 32px;
+			background: #1d2327;
 
-		@media screen and (max-width: 782px) {
-			height: 46px;
+			@media screen and (max-width: 782px) {
+				height: 46px;
+			}
+		}
+
+		#wp-admin-bar-root-default {
+			overflow-x: hidden;
 		}
 	}
 
@@ -55,7 +61,6 @@ li {
 		flex-wrap: nowrap;
 		min-width: 0;
 		margin-right: -50vw;
-		overflow-x: hidden;
 
 		& > li {
 			flex-shrink: 0;

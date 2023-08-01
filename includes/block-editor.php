@@ -7,11 +7,28 @@
  */
 function gcm_register_acf_blocks() {
 	
+	// args for register_block_type
+	/** @see WP_Block_Type::__construct() */
+	$full_width = array(
+		'align' => 'full',
+		'supports' => array(
+			'align' => false,
+		),
+	);
+	
+	$variable_width = array(
+		'align' => array( 'left', 'center', 'right', 'full' ),
+		'supports' => array(
+			'align' => true,
+		),
+	);
+	
 	// In use
 	register_block_type( __DIR__ . '/../blocks/accordion/' );
 	register_block_type( __DIR__ . '/../blocks/before-after-gallery/' );
-	register_block_type( __DIR__ . '/../blocks/icon/' );
-	register_block_type( __DIR__ . '/../blocks/steps/' );
+	register_block_type( __DIR__ . '/../blocks/blog-posts/' );
+	register_block_type( __DIR__ . '/../blocks/icon/', $variable_width );
+	register_block_type( __DIR__ . '/../blocks/steps/', $full_width );
 	register_block_type( __DIR__ . '/../blocks/testimonial/' );
 	
 	// The parameters passed to the block type templates:
@@ -120,8 +137,7 @@ function gcm_get_block_classes( $block ) {
 	}
 	
 	if ( ! empty( $block['align'] ) ) {
-		// @TODO: I think this should not have a hyphen.
-		$classes[] = 'align-' . $block['align'];
+		$classes[] = 'align' . $block['align'];
 	}
 	
 	return $classes;

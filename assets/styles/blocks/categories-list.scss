@@ -1,0 +1,47 @@
+ul.wp-block-categories-list.is-style-button-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 24px;
+
+	&, li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		display: inline-block;
+
+		@supports( display: contents ) {
+			display: contents;
+		}
+	}
+
+	a {
+		display: inline-block;
+		@include button_structure();
+		@include button_padding( 'small' );
+		border-radius: 100px !important;
+
+		@include button_secondary( 'purple' );
+		&:hover { @include button_primary( 'purple' ); }
+	}
+}
+
+@media ( max-width: $break_at_desktop ) {
+	.category-search-row {
+		flex-wrap: wrap !important;
+		overflow: auto;
+		max-width: 100%;
+	}
+
+	.category-search-row ul.wp-block-categories-list.is-style-button-list {
+		white-space: nowrap;
+		flex-wrap: nowrap;
+		position: relative;
+		overflow: auto;
+		width: 100%;
+		padding: 12px 0;
+	}
+}

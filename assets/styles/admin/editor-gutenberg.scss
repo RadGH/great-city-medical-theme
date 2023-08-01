@@ -14,29 +14,39 @@ body .editor-styles-wrapper {
 	background: $color_black_lightest;
 }
 
+// Reduced space on first section (allowing 2nd level in case wrapped in a group)
+.editor-styles-wrapper .is-root-container > .container-style-section:first-child,
+.editor-styles-wrapper .is-root-container > :first-child > .container-style-section:first-child {
+	padding-top: 0 !important;
+}
+
 // Gutenberg post title
 .edit-post-visual-editor__post-title-wrapper {
-	max-width: 764px;
+	max-width: $break_at_desktop;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 40px;
 
-	h1 {
-		position: relative;
-	}
+	// Pages do not show post title by default, emphasize that
+	body.post-type-page & {
+		h1 {
+			position: relative;
+		}
 
-	h1::before {
-		content: 'Page title is not displayed on the front-end.';
-		opacity: 0.5;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		font-size: 14px;
-		font-style: italic;
-	}
+		h1::before {
+			content: 'Page title is not displayed on the front-end.';
+			opacity: 0.5;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			font-size: 14px;
+			font-style: italic;
+		}
 
-	&:not(:focus-within) {
-		h1 { opacity: 0.5; }
-		h1::before { display: none; }
+		&:not(:focus-within) {
+			h1 { opacity: 0.5; }
+			h1::before { display: none; }
+		}
 	}
 }
 

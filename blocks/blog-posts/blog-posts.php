@@ -18,34 +18,41 @@ if ( ! isset($block) ) {
 $id = gcm_get_block_id( $block );
 $classes = gcm_get_block_classes( $block );
 
-// $id = $block['anchor'];
-// $classes = $block['className']
-// $classes = ' align' . $block['align']
+$classes[] = 'gcm-blog-posts-block';
 
-// Load values and assign defaults.
-$name  = get_field( 'name' );
-$color = get_field( 'color' );
-$type = get_field( 'type' );
-$size = get_field( 'size' );
-
-$classes[] = 'gcm-icon-block';
-$classes[] = 'name-' . ($name ?: 'none');
-$classes[] = 'color-' . ($color ?: 'none');
-$classes[] = 'type-' . ($type ?: 'none');
-$classes[] = 'size-' . ($size ?: 'none');
-
-// @todo: in this blocks block.json it declares align="full" but should probably be align=["left", "center", "right"]
+// $settings = get_field( 'settings' );
+// if ( in_array('large', $settings) ) $classes[] = 'size-large';
 
 ?>
 <div <?php echo ($id ? 'id="'. esc_attr($id) .'" ' : ''); ?> class="<?php echo esc_attr( implode(' ', $classes) ); ?>">
-
+	
 	<?php
-	get_template_part( 'template-parts/icon', null, array(
-		'name' => $name,
-		'color' => $color,
-		'type' => $type,
-		'size' => $size,
-	) );
+	if ( gcm_is_block_editor() ) {
+		
+		// Block editor: Show an example using the latest few posts
+		$q = new WP_Query(array(
+			'post_type' => 'post',
+			'posts_per_page' => 6,
+		));
+		
+		echo '<div class="archive-list">';
+		
+		if ( $q->have_posts() ) while( $q->have_posts() ): $q->the_post();
+			get_template_part( 'template-parts/blog-post' );
+		endwhile;
+		
+		echo '</div>';
+		
+		wp_reset_postdata();
+		
+	}else{
+		
+		// Front-end: Show the currently queried posts
+		wp_reset_query();
+		
+		get_template_part('/template-parts/archive-list');
+		
+	}
 	?>
-
+	
 </div>

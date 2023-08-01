@@ -350,6 +350,15 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   // Custom Styles
   // -------------
 
+  // Add general and one-off block styles
+  let setup_general_block_styles = function () {
+    // Add a block style for the Categories List block to display as a row of buttons
+    (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.registerBlockStyle)('core/categories', {
+      name: 'button-list',
+      label: 'Button List'
+    });
+  };
+
   // Add custom button styles
   // Also see classic editor versions in editor.php -> gcm_insert_editor_formats()
   let setup_button_styles = function () {
@@ -359,31 +368,6 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     // button styles were moved to separate button color / button style fields
     // @see register_button_theme_select()
     return;
-  };
-
-  // Groups have some advanced formatting options for positioning and overlays (and rounding, that's separate)
-  let setup_group_styles = function () {
-
-    /*
-    let settings = {
-    	'blocks': [ 'core/group' ],
-    	'styles': [
-    		{
-    			name: 'relative',
-    			label: 'Relative'
-    		},
-    		{
-    			name: 'overlay',
-    			label: 'Overlay'
-    		},
-    	]
-    };
-    	settings.blocks.forEach( block_name => {
-    	settings.styles.forEach( style => {
-    		registerBlockStyle( block_name, style );
-    	});
-    });
-    */
   };
 
   // Rounded corners can be applied to groups or images
@@ -495,6 +479,8 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   // -------------
   // Custom blocks
   // -------------
+
+  // Blog posts inserter for the blog page
 
   // Custom formats for headings
   /*
@@ -1530,8 +1516,8 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   // ----------------------------
 
   // Styles
+  setup_general_block_styles();
   setup_button_styles();
-  setup_group_styles();
   setup_rounded_styles();
 
   // Text formats (used in paragraph dropdown, etc)

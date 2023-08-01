@@ -7,7 +7,7 @@
 a:focus-within,
 input:focus-within {
 	@include focus_within;
-	&:not(.button):not(.screen-reader-shortcut) {
+	&:not(.button):not(.wp-block-button__link):not(.screen-reader-shortcut) {
 		border-radius: 4px;
 	}
 }
