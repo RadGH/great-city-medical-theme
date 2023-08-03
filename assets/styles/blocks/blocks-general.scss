@@ -4,6 +4,11 @@
 .is-content-justification-right { justify-content: right; }
 .is-content-justification-stretch { justify-content: stretch; }
 
+body .is-layout-flex.is-content-justification-center { align-items: center; }
+body .is-layout-flex.is-content-justification-left { align-items: start; }
+body .is-layout-flex.is-content-justification-right { align-items: end; }
+body .is-layout-flex.is-content-justification-stretch { align-items: stretch; }
+
 .is-horizontal {
 	flex-direction: row;
 }
@@ -12,12 +17,6 @@
 	flex-direction: column;
 
 	.is-content-justification-center { align-items: center; }
-}
-
-// Classic block (pre-gutenberg)
-.classic-block-content {
-	max-width: 800px;
-	margin: 0 auto;
 }
 
 // Block sections
@@ -46,6 +45,15 @@ article > .container-style-section:first-child {
 		@media ( max-width: $break_at_desktop ) {
 			padding-top: 60px;
 		}
+	}
+}
+
+@media ( min-width: $break_above_mobile ) {
+	.section-block:has(.positioned-element),
+	.container-style-section:has(.positioned-element) {
+		// Make text balanced to hopefully give more room for positioned elements
+		// for example: https://radleysustaire.com/s3/b88806/chrome
+		text-wrap: balance;
 	}
 }
 
@@ -189,7 +197,12 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 	.yoast-breadcrumbs > span {
 		justify-content: center;
+
 	}
+}
+
+.is-content-justification-center .yoast-breadcrumbs > span {
+	justify-content: center;
 }
 
 // Button row (Centered on mobile, equal widths, min 335px width)
@@ -213,19 +226,23 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 	}
 }
 
+.wp-block-buttons.is-content-justification-center.is-vertical {
+	width: 100%;
+}
+
 // Custom gaps for columns, grids, etc
 @mixin gapClassDesktop( $className, $pixels ) {
 	#{$className},
 	.editor-styles-wrapper #{$className} {
 
 		// Scale based on screen size
-		$vw: ($pixels / $design_width) * 100vw;
+		$vw: calc($pixels / $design_width) * 100vw;
 		gap: min( $pixels, $vw );
 
 		// Half size for mobile, for 20px or larger gaps
 		@if ( $pixels >= 20px ) {
 			@media ( max-width: $break_at_tablet ) {
-				gap: $pixels / 2;
+				gap: calc($pixels / 2);
 			}
 		}
 
@@ -297,6 +314,9 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 }
 
 // Custom classes (added manually, currently)
+.trim-margin > :first-child { margin-top: 0; }
+.trim-margin > :last-child { margin-bottom: 0; }
+
 // Used on (at least): About Us
 .bottom-padding-250 {
 	@media ( min-width: $break_at_desktop ) {

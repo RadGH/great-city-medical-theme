@@ -1,6 +1,6 @@
-.gcm-blog-posts-block {
-	@extend .article-section;
-}
+//.gcm-blog-posts-block {
+//	@extend .article-section;
+//}
 
 .archive-list {
 	display: grid;
@@ -9,7 +9,6 @@
 	&,
 	&.alm-listing {
 		margin: 0 auto;
-		padding: 0 20px;
 	}
 
 	@media ( min-width: $break_above_desktop ) {
@@ -35,6 +34,11 @@
 	&.alm-listing .alm-reveal:after {
 		display: none;
 	}
+}
+
+.gcm-related-posts .archive-list {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .alm-btn-wrap {
@@ -101,27 +105,16 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
+
+	@media ( max-width: 340px ) {
+		gap: 0 8px;
+	}
 }
 
 .archive-item .post-meta .post-category {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-}
-
-.archive-item .post-meta .post-time {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-items: center;
-	justify-content: right;
-	white-space: nowrap;
-
-	& > :not(:first-child) {
-		padding-left: 8px;
-		margin-left: 8px;
-		border-left: 1px solid #E3E3E3;
-	}
 }
 
 .archive-item h2 {
@@ -141,16 +134,6 @@
 .archive-item .post-excerpt > :first-child { margin-top: 0; }
 .archive-item .post-excerpt > :last-child { margin-bottom: 0; }
 
-@media ( max-width: $break_at_medium_desktop ) {
-	.archive-item .post-meta .post-category {
-		font-size: 14px;
-	}
-
-	.archive-item .post-meta .post-time {
-		font-size: 12px;
-	}
-}
-
 @media ( max-width: $break_at_desktop ) {
 	.archive-item .post-details {
 		padding: 12px;
@@ -168,5 +151,39 @@
 	.button {
 		min-width: 180px;
 		text-align: center;
+	}
+}
+
+/* Date and read time */
+.post-time {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: right;
+	white-space: nowrap;
+
+	& > :not(:first-child) {
+		padding-left: 8px;
+		margin-left: 8px;
+		border-left: 1px solid #E3E3E3;
+	}
+}
+
+.post-category,
+.post-time {
+	font-size: 14px;
+}
+
+@media ( max-width: $break_at_large_desktop ) and ( min-width: $break_above_desktop ) {
+	.post-category,
+	.post-time {
+		font-size: 13px;
+	}
+}
+@media ( max-width: $break_at_desktop ) {
+	.post-category,
+	.post-time {
+		font-size: 12px;
 	}
 }

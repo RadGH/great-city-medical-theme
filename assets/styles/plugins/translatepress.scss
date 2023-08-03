@@ -2,3 +2,8 @@
 	display: none !important; // we have our own language switcher buttons. we can disable this floating one
 	z-index: 5 !important;
 }
+
+// Main menu in spanish smaller font size so it fits
+body.translatepress-es_MX .primary-menu {
+	font-size: 13px;
+}

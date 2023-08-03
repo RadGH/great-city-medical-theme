@@ -38,3 +38,4 @@ require_once( __DIR__ . '/shortcodes/archive_title.php' );
 require_once( __DIR__ . '/shortcodes/bt_fallbacks.php' );
 require_once( __DIR__ . '/shortcodes/gcm_accordion.php' );
 require_once( __DIR__ . '/shortcodes/gcm_icon.php' );
+require_once( __DIR__ . '/shortcodes/legacy.php' );

@@ -78,7 +78,7 @@ domReady(function () {
 
 	// Check if a block supports gaps
 	const block_supports_gaps = ( name ) => {
-		return name === 'core/group' || name === 'core/columns';
+		return name === 'core/group' || name === 'core/columns' || name === 'core/buttons';
 	}
 
 

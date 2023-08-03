@@ -4,7 +4,6 @@
 	"settings": {
 		"appearanceTools": true,
 		"border": {
-			"radius": false,
 			"color": false,
 			"style": false,
 			"width": false

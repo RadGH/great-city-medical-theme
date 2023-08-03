@@ -6,7 +6,7 @@
 	<!--
 	Adobe font: Sofia Pro
 	Font family: sofia-pro, Helvetica, Arial, sans-serif;
-	Font styles: 300, 300i, 500, 500i
+	Font styles: 300, 300i, 500, 500i, 700, 700i
 	Used pretty much everywhere
 	
 	Google font: Abhaya Libre

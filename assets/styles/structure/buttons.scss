@@ -4,6 +4,7 @@
 
 	&:focus-within {
 		@include focus_within;
+		outline-color: inherit;
 	}
 }
 

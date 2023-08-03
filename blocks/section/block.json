@@ -1,0 +1,19 @@
+{
+  "name": "acf/section",
+  "title": "Section",
+  "description": "A section to contain any type of content with appropriate alignment and spacing.",
+  "style": [
+    "file:./section.css"
+  ],
+  "category": "common",
+  "icon": "excerpt-view",
+  "keywords": [
+    "general",
+    "content"
+  ],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "section.php"
+  },
+  "align": "full"
+}

@@ -23,6 +23,15 @@ function gcm_register_acf_blocks() {
 		),
 	);
 	
+	$section_args = array(
+		'align' => 'full',
+		'supports' => array(
+			'align' => false,
+			'innerBlocks' => true, // Enables container styles
+			'color' => true, // Enables text and background color
+		),
+	);
+	
 	// In use
 	register_block_type( __DIR__ . '/../blocks/accordion/' );
 	register_block_type( __DIR__ . '/../blocks/before-after-gallery/' );
@@ -30,6 +39,7 @@ function gcm_register_acf_blocks() {
 	register_block_type( __DIR__ . '/../blocks/icon/', $variable_width );
 	register_block_type( __DIR__ . '/../blocks/steps/', $full_width );
 	register_block_type( __DIR__ . '/../blocks/testimonial/' );
+	register_block_type( __DIR__ . '/../blocks/section/', $section_args );
 	
 	// The parameters passed to the block type templates:
 	/**
@@ -139,6 +149,21 @@ function gcm_get_block_classes( $block ) {
 	if ( ! empty( $block['align'] ) ) {
 		$classes[] = 'align' . $block['align'];
 	}
+	
+	if ( ! empty( $block['backgroundColor'] ) ) {
+		// Default classes, but acf block does not seem to apply them :/
+		$classes[] = 'has-background';
+		$classes[] = 'has-'. $block['backgroundColor'] .'-background-color';
+	}
+	
+	if ( ! empty( $block['textColor'] ) ) {
+		// Default classes, but acf block does not seem to apply them :/
+		$classes[] = 'has-text-color';
+		$classes[] = 'has-'. $block['textColor'] .'-color';
+	}
+
+	// Remove any duplicates just for fun
+	$classes = array_unique( $classes );
 	
 	return $classes;
 }

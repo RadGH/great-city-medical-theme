@@ -215,3 +215,48 @@ function gcm_format_phone( $phone, $html = true, $extension_prefix = 'ext. ', $d
 	
 	return $output;
 }
+
+/**
+ * Check if a block is a classic block, which has not been converted to new blocks yet
+ *
+ * @param $block
+ *
+ * @return bool
+ */
+// DISABLED: Unreliable, some blocks are just empty. /shrug
+/*
+function gcm_is_block_classic( $block ) {
+	// Classic blocks have a lot of HTML in their content, but the structure is basic:
+	// array(5) {
+	// 	"blockName"    => NULL
+	// 	"attrs"        => array(0) {}
+	// 	"innerBlocks"  => array(0) {}
+	// 	"innerHTML"    => string(6210) "(lots of text)"
+	// 	"innerContent" => array(1) { [0] => string(6210) "(lots of text)" }
+	// }
+	
+	// Check if the block has a blockName, and has no innerBlocks
+	return ( $block['blockName'] === null && empty($block['innerBlocks']) );
+}
+*/
+
+/**
+ * Get related posts for a post, based on the first category
+ *
+ * @param int $post_id
+ * @param int $limit
+ *
+ * @return WP_Query
+ */
+function gcm_get_related_posts_query( $post_id, $limit = 3 ) {
+	$args = array(
+		'category__in' => wp_get_post_categories( $post_id ),
+		'post__not_in' => array( $post_id ),
+		'posts_per_page' => $limit,
+		'orderby' => 'rand',
+		// 'orderby' => 'date',
+		// 'order' => 'DESC',
+	);
+	
+	return new WP_Query( $args );
+}

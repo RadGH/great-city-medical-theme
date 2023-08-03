@@ -11,6 +11,10 @@
 	padding: 8px;
 }
 
+.primary-menu > ul > li > a {
+	white-space: nowrap;
+}
+
 // body.menu-use-clicks .gcm-menu li.menu-item-has-children.sub-menu-open > a,
 body:not(.menu-use-clicks) .gcm-menu li:hover > a,
 .gcm-menu li:not(.menu-item-has-children):hover > a:hover {

@@ -26,28 +26,13 @@ if ( gcm_is_block_editor() ) $post_url = '#' . get_post_field( 'post_name' );
 			
 			<?php
 			// Display the first category
-			$categories = get_the_category();
-			if ( $categories ) {
-				$category = $categories[0];
-				$url = get_category_link( $category->term_id );
-				if ( gcm_is_block_editor() ) $url = '#' . $category->slug;
-				?>
-				<div class="post-category">
-					<a href="<?php echo esc_url( $url ); ?>" class="button button-purple button-secondary button-small"><?php echo esc_html( $category->name ); ?></a>
-				</div>
-				<?php
-			}
+			get_template_part('template-parts/post-category');
 			?>
 			
 			<?php
 			// Display the date and read time
-			$date = get_the_time( 'F d, Y' );
-			$read_time = gcm_get_read_time( get_the_content() );
+			get_template_part('template-parts/post-date-read-time');
 			?>
-			<div class="post-time">
-				<div class="post-date"><?php echo $date; ?></div>
-				<div class="read-time"><?php echo $read_time; ?></div>
-			</div>
 			
 		</div>
 	

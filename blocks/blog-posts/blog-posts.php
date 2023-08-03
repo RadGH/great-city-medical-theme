@@ -18,7 +18,7 @@ if ( ! isset($block) ) {
 $id = gcm_get_block_id( $block );
 $classes = gcm_get_block_classes( $block );
 
-$classes[] = 'gcm-blog-posts-block';
+$classes[] = 'gcm-blog-posts-block container-style-section';
 
 // $settings = get_field( 'settings' );
 // if ( in_array('large', $settings) ) $classes[] = 'size-large';

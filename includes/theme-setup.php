@@ -10,8 +10,13 @@ function gcm_setup_theme() {
 	// add theme features
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style','script' ) );
 	add_theme_support( 'title-tag' );
+	
+	// block theme features:
+	// add_theme_support( 'responsive-embeds' );
+	// add_theme_support( 'editor-styles' );
+	// add_theme_support( 'wp-block-styles' );
 	
 	// register navigation menus
 	register_nav_menus( array (

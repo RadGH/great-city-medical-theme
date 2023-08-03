@@ -23,7 +23,7 @@ function gcm_bt_register_shortcodes() {
 		'bt_column_inner' => 33,
 		'bt_icon' => 33,
 		'bt_icons' => 29,
-		'bt_button' => 26,
+		// 'bt_button' => 26,
 		'bt_row_inner' => 16,
 		'bt_service' => 15,
 		'bt_bb_content_slider_item' => 14,
@@ -46,3 +46,19 @@ function gcm_bt_register_shortcodes() {
 }
 add_action( 'init', 'gcm_bt_register_shortcodes' );
 
+// Button shortcode from old theme to easy copy/paste
+function gcm_shortcode_bt_button( $atts, $content = '', $shortcode_name = 'bt_button' ) {
+	// [bt_button text="i693 form" icon="" url="http://greatcitymedical.radgh.com/i693form/" target="_self"
+	// style="Filled" icon_position="Right"
+	// color="Accent" size="Big" width="Full" publish_datetime=""
+	// expiry_datetime="" el_class="" el_style="" responsive=""]
+	
+	$text = $atts['text'] ?? '';
+	$url = $atts['text'] ?? '';
+	$target = $atts['text'] ?? '';
+	
+	return '<a href="' . $url . '" target="' . $target . '" class="button bt_button_shortcode">' . $text . '</a>';
+}
+if ( ! shortcode_exists('bt_button') ) {
+	add_shortcode( 'bt_button', 'gcm_shortcode_bt_button' );
+}

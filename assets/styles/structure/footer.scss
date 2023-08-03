@@ -4,6 +4,17 @@
 
 .site-footer {
 	padding-top: 150px;
+	background: $color_gray_10;
+}
+
+// If the last section is not white, make the footer white
+body:not(:has(.site-content .is-root-container > .has-white-background-color:last-child)) .site-footer {
+	background: #fff;
+}
+
+// Single posts, white footer
+body.single-post .site-footer {
+	background: #fff;
 }
 
 // Mixed styles
@@ -122,7 +133,7 @@
 	content: '';
 	display: block;
 	position: absolute;
-	z-index: -1;
+	z-index: 1;
 	top: 115px;
 	left: 0;
 	right: 0;
@@ -139,6 +150,11 @@
 	@media ( max-width: $break_at_desktop ) {
 		background-image: url(/wp-content/themes/great-city-medical/assets/images/map-new-york-mobile.png);
 	}
+}
+
+.footer-locations .inside {
+	position: relative;
+	z-index: 2;
 }
 
 /*

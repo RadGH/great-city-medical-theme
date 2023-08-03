@@ -1,0 +1,39 @@
+.section-block .container {
+    max-width: var(--wp--style--global--content-size, 1560px);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    padding-top: min(150px, 7.8125vw);
+    padding-bottom: min(150px, 7.8125vw);
+}
+
+@media ( min-width: 1200.1px ) and ( max-width: 1920px ) {
+    .section-block .container {
+        max-width: clamp(1200.1px, 83.333%, 1920px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .section-block .container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+@media screen and (min-width: 768.1px ) {
+    .is-root-container > .section-block:first-child .container {
+        padding-top: 92px;
+    }
+}
+
+/* Editor only */
+.editor-styles-wrapper .section-block .container:empty[data-is-drop-zone="true"]::before {
+    content: 'Add blocks to this section';
+    opacity: 0.6;
+    position: relative;
+    top: 20px;
+}

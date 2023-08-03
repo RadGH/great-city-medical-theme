@@ -1,4 +1,6 @@
 <?php
+
+
 if ( ! have_posts() ) {
 	echo '<p class="no-posts">Sorry, there are no posts to display.</p>';
 	return;

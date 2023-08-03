@@ -73,40 +73,43 @@ add_filter( 'wpseo_breadcrumb_links', 'gcm_insert_yoast_parent_breadcrumb' );
  *
  * @return string
  */
+/*
 function gcm_classic_black_wrapper( $block_content, $block ) {
-	if ( $block['blockName'] === null  && ! empty( $block_content ) && ! ctype_space( $block_content ) ) {
-		// $block_content = '<div class="gcm-classic-block">' . $page_title . "\n\n" . $block_content . '</div>';
-		
-		$block_content =
-			'<div class="classic-block-container">' .
-				'<div class="wp-block wp-block-group container-style-section is-layout-flex is-vertical gap-60">' .
-					'<div class="wp-block wp-block-group is-layout-flex is-vertical is-content-justification-center">' .
+	
+	// Check if it is a classic block
+	if ( ! gcm_is_block_classic( $block ) ) return $block_content;
+	
+	// Do nothing if empty
+	if ( empty( $block_content ) ) return $block_content;
+	
+	// Wrap content in block markup manually
+	$block_content =
+		'<div class="classic-block-container">' .
+			'<div class="wp-block wp-block-group container-style-section is-layout-flex is-vertical gap-60">' .
+				'<div class="wp-block wp-block-group is-layout-flex is-vertical is-content-justification-center">' .
+			
+					// Yoast breadcrumbs
+					gcm_get_yoast_breadcrumb_html() .
+			
+					// Page title
+					'<h1>' . get_the_title() . '</h1>' .
+			
+				'</div>' .
+			
+				'<div class="wp-block wp-block-group">' .
 				
-						// Yoast breadcrumbs
-						gcm_get_yoast_breadcrumb_html() .
+					// Classic page content
+					'<div class="classic-block-content">' . $block_content . '</div>' .
 				
-						// Page title
-						'<h1>' . get_the_title() . '</h1>' .
-				
-					'</div>' .
-				
-					'<div class="wp-block wp-block-group">' .
-					
-						// Classic page content
-						'<div class="classic-block-content">' . $block_content . '</div>' .
-					
-					'</div>' .
 				'</div>' .
 			'</div>' .
-			
-			'';
-		
-	}
+		'</div>'
+	;
 	
 	return $block_content;
 }
-add_filter( 'render_block', 'gcm_classic_black_wrapper', 10, 2 );
-
+add_filter( 'render_block', 'gcm_classic_black_wrapper', 20, 2 );
+*/
 
 /**
  * Add the post type to the wrapper for block editor

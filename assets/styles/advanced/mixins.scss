@@ -29,7 +29,7 @@
 		@media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
 			// 80px font size = 4.16vw on desktop
 			// (80 / 1920) * 100 = 4.16vw
-			$desktop_vw: round( ($desktop_px / $design_width) * 10000vw ) / 100;
+			$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
 			font-size: min( $desktop_px, $desktop_vw );
 		}
 
@@ -57,7 +57,7 @@
 @mixin font_size_h2( $responsive: true ) {
 	// 60px desktop, 32px mobile
 	@include respond_font_size( $font_size_h2, $font_size_h2_mobile, $responsive );
-	line-height: 1.4;
+	line-height: 1.25;
 }
 
 @mixin font_size_h3( $responsive: true ) {
@@ -235,7 +235,7 @@
 	// 81.25% = 1560px / 1920px
 	// 83.33% = 1600px / 1920px
 	@media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
-		width: clamp( $break_above_desktop, 83.333%, $design_width );
+		width: clamp( $break_above_desktop, 85%, $design_width );
 
 		body .editor-styles-wrapper & {
 			width: auto !important; /* Do not clamp in editor */
@@ -258,7 +258,7 @@
 	// width: 1920px
 	// vw: 3.90625vw
 	// (75 / 1920 = 0.0390625)
-	$vw: ($px / $design_width) * 100vw;
+	$vw: calc($px / $design_width) * 100vw;
 
 	@return min( $px, $vw );
 }
@@ -325,7 +325,7 @@
 	}
 
 	strong {
-		font-weight: 500;
+		font-weight: 700;
 	}
 
 	a {
