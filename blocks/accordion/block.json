@@ -3,7 +3,7 @@
 	"title": "Accordion",
 	"description": "Expand and collapse the content in this accordion block.",
 	"category": "great-city-medical",
-	"icon": "admin-gcm-icon",
+	"icon": "editor-gcm-icon",
 	"keywords": ["content", "accordion"],
 	"align": "full",
 	"acf": {

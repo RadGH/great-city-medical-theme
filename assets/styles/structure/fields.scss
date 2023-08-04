@@ -1,1 +1,79 @@
 /* form fields */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="phone"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+	border-radius: 8px;
+	border: 1px solid #D3D3D3;
+	font-size: 18px;
+	line-height: 20px;
+	padding: 18px 16px;
+}
+
+select {
+	-webkit-appearance: none;
+	background: #fff no-repeat;
+	background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='%23d3d3d3' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	background-position: calc(100% - 12px) 50%;
+	padding-right: 40px;
+}
+
+select:hover,
+select:focus-within {
+	border-color: #000;
+	outline: 1px solid #000;
+	background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='black' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+}
+
+input[type="radio"] {
+	border-radius: 100% !important;
+	background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9.5' fill='white' stroke='%23D3D3D3'/%3E%3C/svg%3E%0A");
+
+	&:hover,
+	&:focus-visible {
+		background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+	}
+	&:checked {
+		background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3Ccircle cx='10' cy='10' r='5.5' fill='%239069AC' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+	}
+}
+
+input[type="checkbox"] {
+	border-radius: 5px !important;
+	background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='4.5' fill='white' stroke='%23D3D3D3'/%3E%3C/svg%3E%0A");
+
+	&:hover,
+	&:focus-visible {
+		background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='4.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+	}
+	&:checked {
+		background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='2.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3Crect x='4.5' y='4.5' width='11' height='11' rx='2.5' fill='%239069AC' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+	}
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+	@include button_structure();
+	border-radius: 100px !important;
+
+	&:focus-within {
+		@include focus_within;
+		outline-color: inherit;
+	}
+
+	@include button_secondary( 'purple' );
+	&:hover { @include button_primary( 'purple' ); }
+}

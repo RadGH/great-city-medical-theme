@@ -4,7 +4,7 @@
 	"description": "An icon provided by the theme.",
 	"style": [],
 	"category": "text",
-	"icon": "admin-gcm-icon",
+	"icon": "editor-gcm-icon",
 	"keywords": ["icon", "content"],
 	"align": "full",
 	"acf": {

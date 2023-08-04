@@ -2,7 +2,6 @@
 Global structure
 */
 
-@include theme_styles( true );
 @include editor_formats();
 @include block_formats();
 @include gutenberg_buttons();

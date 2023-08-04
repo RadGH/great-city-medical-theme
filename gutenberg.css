@@ -120,6 +120,27 @@ Custom search replace
 https://css-tricks.com/snippets/sass/str-replace-function/
 */
 /*
+// For the property "border-color", the border will inherit the background color of the current element.
+@mixin match_background_color( $property ) {
+	&.has-background {
+		&.has-purple-background-color          { $property: var( --wp--preset--color--purple          ); }
+		&.has-light-purple-background-color    { $property: var( --wp--preset--color--light-purple    ); }
+		&.has-lightest-purple-background-color { $property: var( --wp--preset--color--lightest-purple ); }
+		&.has-blue-background-color            { $property: var( --wp--preset--color--blue            ); }
+		&.has-light-blue-background-color      { $property: var( --wp--preset--color--light-blue      ); }
+		&.has-lightest-blue-background-color   { $property: var( --wp--preset--color--lightest-blue   ); }
+		&.has-gray-10-background-color         { $property: var( --wp--preset--color--gray-10         ); }
+		&.has-gray-8-background-color          { $property: var( --wp--preset--color--gray-8          ); }
+		&.has-gray-6-background-color          { $property: var( --wp--preset--color--gray-6          ); }
+		&.has-gray-4-background-color          { $property: var( --wp--preset--color--gray-4          ); }
+		&.has-gray-2-background-color          { $property: var( --wp--preset--color--gray-2          ); }
+		&.has-dark-purple-background-color     { $property: var( --wp--preset--color--dark-purple     ); }
+		&.has-white-background-color           { $property: var( --wp--preset--color--white           ); }
+		&.has-black-background-color           { $property: var( --wp--preset--color--black           ); }
+	}
+}
+*/
+/*
 Reusable formats
 */
 body .editor-styles-wrapper {
@@ -143,13 +164,16 @@ body .editor-styles-wrapper {
 body .editor-styles-wrapper h1,
 body .editor-styles-wrapper h2 {
   font-size: 60px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper h1,
-  body .editor-styles-wrapper h2 {
-    font-size: min(60px, 3.13vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper h1,
@@ -159,12 +183,16 @@ body .editor-styles-wrapper h2 {
 }
 body .editor-styles-wrapper h3 {
   font-size: 32px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper h3 {
-    font-size: min(32px, 1.67vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper h3 {
@@ -173,12 +201,16 @@ body .editor-styles-wrapper h3 {
 }
 body .editor-styles-wrapper h4 {
   font-size: 28px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper h4 {
-    font-size: min(28px, 1.46vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper h4 {
@@ -187,12 +219,16 @@ body .editor-styles-wrapper h4 {
 }
 body .editor-styles-wrapper h5 {
   font-size: 18px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper h5 {
-    font-size: min(18px, 0.94vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper h5 {
@@ -201,12 +237,16 @@ body .editor-styles-wrapper h5 {
 }
 body .editor-styles-wrapper h6 {
   font-size: 14px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper h6 {
-    font-size: min(14px, 0.73vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper h6 {
@@ -309,6 +349,18 @@ body .editor-styles-wrapper .text-sans-serif {
 body .editor-styles-wrapper .text-serif {
   font-family: "Abhaya Libre", serif;
 }
+body .editor-styles-wrapper .weight-light {
+  font-weight: 300;
+}
+body .editor-styles-wrapper .weight-regular {
+  font-weight: 400;
+}
+body .editor-styles-wrapper .weight-medium {
+  font-weight: 500;
+}
+body .editor-styles-wrapper .weight-bold {
+  font-weight: 700;
+}
 body .editor-styles-wrapper .heading-eyebrow-text {
   color: #0957de;
   font-weight: 300;
@@ -317,13 +369,16 @@ body .editor-styles-wrapper .heading-eyebrow-text {
 body .editor-styles-wrapper .heading-h1,
 body .editor-styles-wrapper .heading-h2 {
   font-size: 60px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper .heading-h1,
-  body .editor-styles-wrapper .heading-h2 {
-    font-size: min(60px, 3.13vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper .heading-h1,
@@ -333,12 +388,16 @@ body .editor-styles-wrapper .heading-h2 {
 }
 body .editor-styles-wrapper .heading-h3 {
   font-size: 32px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper .heading-h3 {
-    font-size: min(32px, 1.67vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper .heading-h3 {
@@ -347,12 +406,16 @@ body .editor-styles-wrapper .heading-h3 {
 }
 body .editor-styles-wrapper .heading-h4 {
   font-size: 28px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper .heading-h4 {
-    font-size: min(28px, 1.46vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper .heading-h4 {
@@ -363,38 +426,22 @@ body .editor-styles-wrapper .heading-h5 {
   font-size: 18px;
   line-height: 1.25;
 }
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper .heading-h5 {
-    font-size: min(18px, 0.94vw);
-  }
-}
-@media (max-width: 1200px) {
-  body .editor-styles-wrapper .heading-h5 {
-    font-size: 18px;
-  }
-}
 body .editor-styles-wrapper .heading-h6 {
   font-size: 14px;
   line-height: 1.25;
 }
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper .heading-h6 {
-    font-size: min(14px, 0.73vw);
-  }
-}
-@media (max-width: 1200px) {
-  body .editor-styles-wrapper .heading-h6 {
-    font-size: 14px;
-  }
-}
 body .editor-styles-wrapper .heading-page-title {
   font-size: 80px;
-  line-height: 1.4;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body .editor-styles-wrapper .heading-page-title {
-    font-size: min(80px, 4.17vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.4;
 }
 @media (max-width: 1200px) {
   body .editor-styles-wrapper .heading-page-title {
@@ -655,38 +702,95 @@ body .editor-styles-wrapper .vertical-margin-huge {
   margin-bottom: 0;
 }
 
+.edit-post-fullscreen-mode-close.components-button img.edit-post-fullscreen-mode-close_site-icon {
+  display: none;
+}
+.edit-post-fullscreen-mode-close.components-button::before {
+  content: "";
+  background: url(assets/images/svg/editor-default-icon.svg) center no-repeat;
+  background-size: 85%;
+}
+
 body .editor-styles-wrapper {
   background: #fafafa;
 }
 
 .editor-styles-wrapper .is-root-container > .container-style-section:first-child,
-.editor-styles-wrapper .is-root-container > :first-child > .container-style-section:first-child {
+.editor-styles-wrapper .is-root-container > :first-child > .container-style-section:first-child,
+.editor-styles-wrapper .is-root-container > .wp-block-acf-section:first-child > .section-block > .container,
+.editor-styles-wrapper .is-root-container > :first-child > .wp-block-acf-section:first-child > .section-block > .container {
   padding-top: 0 !important;
 }
 
 .edit-post-visual-editor__post-title-wrapper {
+  width: fit-content;
+  min-width: min(100vw, 800px);
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
+  /*
+  // Pages do not show post title by default, emphasize that
+  body.post-type-page & {
+  	h1 {
+  		position: relative;
+  	}
+
+  	h1::before {
+  		content: 'Page title is not displayed on the front-end for standard pages.';
+  		opacity: 0.5;
+  		position: absolute;
+  		top: 100%;
+  		left: 0;
+  		font-size: 14px;
+  		font-style: italic;
+  	}
+
+  	&:not(:focus-within) {
+  		h1 { opacity: 0.5; }
+  		h1::before { display: none; }
+  	}
+  }
+  */
 }
-body.post-type-page .edit-post-visual-editor__post-title-wrapper h1 {
+
+.block-editor-list-view-tree .block-editor-list-view-leaf .block-editor-list-view-block-select-button__label-wrapper {
+  min-width: 25px;
+}
+
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 30px !important;
+  padding: 40px 20px;
+  width: auto;
+  max-width: none;
+  background: #fff;
+  border-bottom: 2px solid #e9e9e9;
+}
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper h1 {
   position: relative;
+  text-align: center;
 }
-body.post-type-page .edit-post-visual-editor__post-title-wrapper h1::before {
-  content: "Page title is not displayed on the front-end.";
-  opacity: 0.5;
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper h1::after {
   position: absolute;
-  top: 100%;
-  left: 0;
+  width: 100%;
+  display: block;
   font-size: 14px;
-  font-style: italic;
+  opacity: 0;
+  font-weight: 300;
+  text-align: center;
+  content: "Post Title";
 }
-body.post-type-page .edit-post-visual-editor__post-title-wrapper:not(:focus-within) h1 {
-  opacity: 0.5;
+body.post-type-page .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper h1::after {
+  content: "Page Title";
 }
-body.post-type-page .edit-post-visual-editor__post-title-wrapper:not(:focus-within) h1::before {
-  display: none;
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper:hover h1::after {
+  opacity: 0.25;
+}
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper:focus-within h1::after {
+  opacity: 0.75;
 }
 
 .gcm-editor--button-group .components-button-group {
@@ -808,6 +912,7 @@ body .is-layout-flex.is-content-justification-stretch {
 }
 .is-vertical .is-content-justification-center {
   align-items: center;
+  width: 100%;
 }
 
 article > .container-style-section:first-child:first-child {
@@ -820,8 +925,8 @@ article > .container-style-section:first-child:first-child {
 }
 
 @media (min-width: 480.1px) {
-  .section-block:has(.positioned-element),
-  .container-style-section:has(.positioned-element) {
+  .section-block:has(.positioned-element) p,
+  .container-style-section:has(.positioned-element) p {
     text-wrap: balance;
   }
 }
@@ -915,10 +1020,25 @@ article > .container-style-section:first-child:first-child {
 }
 
 .container-style-card,
-.container-style-card-small {
+.container-style-card-small,
+.container-style-card-x-small {
   border-radius: 18px;
-  border: 0.859px solid #e7e7e7;
+  border: var(--border-1px-width, 1px) solid #e7e7e7;
   background: #ffffff;
+}
+.container-style-card.has-background.has-light-purple-background-color, .container-style-card.has-background.has-lightest-purple-background-color,
+.container-style-card-small.has-background.has-light-purple-background-color,
+.container-style-card-small.has-background.has-lightest-purple-background-color,
+.container-style-card-x-small.has-background.has-light-purple-background-color,
+.container-style-card-x-small.has-background.has-lightest-purple-background-color {
+  border-color: #9069ac;
+}
+.container-style-card.has-background.has-light-blue-background-color, .container-style-card.has-background.has-lightest-blue-background-color,
+.container-style-card-small.has-background.has-light-blue-background-color,
+.container-style-card-small.has-background.has-lightest-blue-background-color,
+.container-style-card-x-small.has-background.has-light-blue-background-color,
+.container-style-card-x-small.has-background.has-lightest-blue-background-color {
+  border-color: #0957de;
 }
 
 .container-style-card {
@@ -934,12 +1054,8 @@ article > .container-style-section:first-child:first-child {
   }
 }
 
-.container-style-floating-bg {
-  position: relative;
-}
-
-.container-style-floating-bg * {
-  z-index: 2;
+.container-style-card-x-small {
+  padding: 16px;
 }
 
 .container-style-stretch-columns,
@@ -973,13 +1089,25 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
     margin-top: auto;
   }
 }
+.container-style-floating-bg,
+.container-style-floating-bg-wide {
+  position: relative;
+}
+
+.container-style-floating-bg *,
+.container-style-floating-bg-wide * {
+  z-index: 2;
+}
+
 @media (max-width: 782px) {
-  .container-style-floating-bg {
+  .container-style-floating-bg,
+  .container-style-floating-bg-wide {
     background: #fff;
   }
 }
 @media (min-width: 782.1px) {
-  .container-style-floating-bg::before {
+  .container-style-floating-bg::before,
+  .container-style-floating-bg-wide::before {
     content: "";
     display: block;
     position: absolute;
@@ -990,6 +1118,21 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
     top: 0;
     bottom: 0;
     border-radius: 100px 0 0 100px;
+  }
+  .container-style-floating-bg-wide::before {
+    left: 50%;
+    width: clamp(1200.1px, 83.333%, 1920px);
+    transform: translateX(-50%);
+    max-width: 100%;
+    box-shadow: 50vw 0 0 #fff;
+  }
+}
+@media (max-width: 900px) {
+  .container-style-floating-bg-wide {
+    background: #fff;
+  }
+  .container-style-floating-bg-wide::before {
+    display: none;
   }
 }
 @media (max-width: 782px) {
@@ -1036,42 +1179,42 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 .gap-none,
 .editor-styles-wrapper .gap-none {
-  gap: min(0px, 0vw);
+  gap: 0px;
 }
 
 .gap-2,
 .editor-styles-wrapper .gap-2 {
-  gap: min(2px, 0.1041666667vw);
+  gap: 2px;
 }
 
 .gap-4,
 .editor-styles-wrapper .gap-4 {
-  gap: min(4px, 0.2083333333vw);
+  gap: 4px;
 }
 
 .gap-6,
 .editor-styles-wrapper .gap-6 {
-  gap: min(6px, 0.3125vw);
+  gap: 6px;
 }
 
 .gap-8,
 .editor-styles-wrapper .gap-8 {
-  gap: min(8px, 0.4166666667vw);
+  gap: 8px;
 }
 
 .gap-12,
 .editor-styles-wrapper .gap-12 {
-  gap: min(12px, 0.625vw);
+  gap: 12px;
 }
 
 .gap-16,
 .editor-styles-wrapper .gap-16 {
-  gap: min(16px, 0.8333333333vw);
+  gap: 16px;
 }
 
 .gap-20,
 .editor-styles-wrapper .gap-20 {
-  gap: min(20px, 1.0416666667vw);
+  gap: 20px;
 }
 @media (max-width: 782px) {
   .gap-20,
@@ -1082,7 +1225,7 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 .gap-24,
 .editor-styles-wrapper .gap-24 {
-  gap: min(24px, 1.25vw);
+  gap: 24px;
 }
 @media (max-width: 782px) {
   .gap-24,
@@ -1093,7 +1236,7 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 .gap-40,
 .editor-styles-wrapper .gap-40 {
-  gap: min(40px, 2.0833333333vw);
+  gap: 40px;
 }
 @media (max-width: 782px) {
   .gap-40,
@@ -1104,7 +1247,7 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 .gap-60,
 .editor-styles-wrapper .gap-60 {
-  gap: min(60px, 3.125vw);
+  gap: 60px;
 }
 @media (max-width: 782px) {
   .gap-60,
@@ -1115,7 +1258,7 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 .gap-80,
 .editor-styles-wrapper .gap-80 {
-  gap: min(80px, 4.1666666667vw);
+  gap: 80px;
 }
 @media (max-width: 782px) {
   .gap-80,
@@ -1212,6 +1355,10 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
   .mobile-reverse-order {
     flex-direction: column-reverse;
   }
+  .mobile-column-stack {
+    display: grid !important;
+    grid-template-columns: 1fr;
+  }
 }
 .wp-block-columns {
   margin-bottom: 0;
@@ -1238,6 +1385,85 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
   .bottom-padding-250 {
     padding-bottom: 250px;
   }
+}
+
+@media (min-width: 900.1px) {
+  .column-split-lists {
+    padding-left: 40px;
+  }
+}
+@media (min-width: 1920px) {
+  .column-split-lists {
+    padding-left: 80px;
+  }
+  .column-split-lists .wp-block-group:nth-child(1) {
+    width: 18%;
+  }
+  .column-split-lists li {
+    white-space: nowrap;
+  }
+}
+@media (min-width: 782px) and (max-width: 1919.9px) {
+  .column-split-lists .wp-block-group:nth-child(1) {
+    width: 280px;
+  }
+}
+@media (max-width: 1400px) {
+  .column-split-lists .wp-block-group:nth-child(2) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
+  }
+}
+@media (max-width: 900px) {
+  .column-split-lists {
+    display: grid !important;
+    padding-left: 40px;
+    gap: 15px !important;
+  }
+  .column-split-lists .wp-block-group:nth-child(1) {
+    display: grid;
+    row-gap: 16px;
+  }
+  .column-split-lists .wp-block-group:nth-child(1) > * {
+    width: 100% !important;
+  }
+}
+@media (max-width: 600px) {
+  .column-split-lists .wp-block-group:nth-child(2) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.price-comparison-cards > .wp-block-group > .wp-block-group > :first-child {
+  width: 60px;
+  flex-shrink: 0;
+}
+.price-comparison-cards > .wp-block-group > .wp-block-group > :last-child {
+  flex-grow: 1;
+}
+.price-comparison-cards > .wp-block-group:nth-child(3) {
+  position: relative;
+}
+.price-comparison-cards > .wp-block-group:nth-child(3) > .wp-block-group > .wp-block-group > .wp-block-group:nth-child(2) {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.wp-block-image .border-blue img,
+.wp-block-image.border-blue img {
+  border: var(--border-1px-width, 1px) solid #0957de;
+}
+
+.wp-block-image .border-purple img,
+.wp-block-image.border-purple img {
+  border: var(--border-1px-width, 1px) solid #9069ac;
+}
+
+.wp-block-image .border-black img,
+.wp-block-image.border-black img {
+  border: var(--border-1px-width, 1px) solid #0e0d0d;
 }
 
 .is-layout-flex.providers-grid {
@@ -1460,15 +1686,19 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 .gcm-accordion-block:not(.size-large) .gcm-accordion .gcm-handle > a {
   font-size: 32px;
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
+  }
+  */
   line-height: 1.25;
   font-weight: 500;
   padding-left: 0;
-  padding-right: 0;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .gcm-accordion-block:not(.size-large) .gcm-accordion .gcm-handle > a {
-    font-size: min(32px, 1.67vw);
-  }
+  padding-right: 40px;
 }
 @media (max-width: 1200px) {
   .gcm-accordion-block:not(.size-large) .gcm-accordion .gcm-handle > a {
@@ -1515,6 +1745,7 @@ ul.wp-block-categories-list.is-style-button-list a {
   line-height: 1;
   text-decoration: none;
   border-radius: 100px;
+  cursor: pointer;
   padding: 18px 48px;
   padding: 4px 16px 7px;
   border-radius: 100px !important;
@@ -1727,7 +1958,7 @@ body .is-layout-constrained > .gcm-before-after-gallery-block {
 }
 
 .position-area-outside-top-left {
-  top: 50%;
+  top: 15%;
   left: min(-115px, -5.9895833333vw);
 }
 @media (max-width: 782px) {
@@ -1902,140 +2133,6 @@ body .is-layout-constrained > .gcm-before-after-gallery-block {
 /*
 Global structure
 */
-h1,
-h2 {
-  font-size: 60px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  h1,
-  h2 {
-    font-size: min(60px, 3.13vw);
-  }
-}
-@media (max-width: 1200px) {
-  h1,
-  h2 {
-    font-size: 32px;
-  }
-}
-
-h3 {
-  font-size: 32px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  h3 {
-    font-size: min(32px, 1.67vw);
-  }
-}
-@media (max-width: 1200px) {
-  h3 {
-    font-size: 24px;
-  }
-}
-
-h4 {
-  font-size: 28px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  h4 {
-    font-size: min(28px, 1.46vw);
-  }
-}
-@media (max-width: 1200px) {
-  h4 {
-    font-size: 18px;
-  }
-}
-
-h5 {
-  font-size: 18px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  h5 {
-    font-size: min(18px, 0.94vw);
-  }
-}
-@media (max-width: 1200px) {
-  h5 {
-    font-size: 18px;
-  }
-}
-
-h6 {
-  font-size: 14px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  h6 {
-    font-size: min(14px, 0.73vw);
-  }
-}
-@media (max-width: 1200px) {
-  h6 {
-    font-size: 14px;
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 500;
-  margin: 0 0 15px;
-}
-
-p, ul, ol {
-  margin: 0 0 15px;
-}
-@media (max-width: 1200px) {
-  p, ul, ol {
-    margin-bottom: 12px;
-  }
-}
-
-strong {
-  font-weight: 700;
-}
-
-a {
-  color: inherit;
-  text-decoration: underline;
-}
-a:hover {
-  color: #9069ac;
-}
-
-a:has(.gcm-icon) {
-  display: inline-grid;
-  grid-template-columns: 1fr auto;
-  gap: 12px;
-  text-decoration: none;
-}
-a:has(.gcm-icon):hover {
-  color: #0957de;
-  text-decoration: underline;
-}
-a:has(.gcm-icon) .gcm-icon {
-  display: block;
-  height: 24px;
-}
-a:has(.gcm-icon) .gcm-icon .icon-frame {
-  width: 14px;
-  height: 14px;
-  padding: 5px;
-}
-a:has(.gcm-icon) .gcm-icon .icon-frame svg {
-  width: 20px;
-  height: 20px;
-  margin: -3px;
-}
-
 .font-sofia-pro {
   font-family: sofia-pro, Helvetica, Arial, sans-serif;
 }
@@ -2096,6 +2193,22 @@ a:has(.gcm-icon) .gcm-icon .icon-frame svg {
   font-family: "Abhaya Libre", serif;
 }
 
+.weight-light {
+  font-weight: 300;
+}
+
+.weight-regular {
+  font-weight: 400;
+}
+
+.weight-medium {
+  font-weight: 500;
+}
+
+.weight-bold {
+  font-weight: 700;
+}
+
 .heading-eyebrow-text {
   color: #0957de;
   font-weight: 300;
@@ -2105,13 +2218,16 @@ a:has(.gcm-icon) .gcm-icon .icon-frame svg {
 .heading-h1,
 .heading-h2 {
   font-size: 60px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .heading-h1,
-  .heading-h2 {
-    font-size: min(60px, 3.13vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   .heading-h1,
@@ -2122,12 +2238,16 @@ a:has(.gcm-icon) .gcm-icon .icon-frame svg {
 
 .heading-h3 {
   font-size: 32px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .heading-h3 {
-    font-size: min(32px, 1.67vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   .heading-h3 {
@@ -2137,12 +2257,16 @@ a:has(.gcm-icon) .gcm-icon .icon-frame svg {
 
 .heading-h4 {
   font-size: 28px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .heading-h4 {
-    font-size: min(28px, 1.46vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   .heading-h4 {
@@ -2154,40 +2278,24 @@ a:has(.gcm-icon) .gcm-icon .icon-frame svg {
   font-size: 18px;
   line-height: 1.25;
 }
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .heading-h5 {
-    font-size: min(18px, 0.94vw);
-  }
-}
-@media (max-width: 1200px) {
-  .heading-h5 {
-    font-size: 18px;
-  }
-}
 
 .heading-h6 {
   font-size: 14px;
   line-height: 1.25;
 }
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .heading-h6 {
-    font-size: min(14px, 0.73vw);
-  }
-}
-@media (max-width: 1200px) {
-  .heading-h6 {
-    font-size: 14px;
-  }
-}
 
 .heading-page-title {
   font-size: 80px;
-  line-height: 1.4;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .heading-page-title {
-    font-size: min(80px, 4.17vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.4;
 }
 @media (max-width: 1200px) {
   .heading-page-title {
@@ -2544,6 +2652,7 @@ Rounded Styles
 }
 
 .archive-item h2 a:not(:hover) {
+  color: inherit;
   text-decoration: none;
 }
 

@@ -9,6 +9,26 @@ body .editor-styles-wrapper {
 	@include vertical_margins();
 }
 
+// Site icon in block editor
+.edit-post-fullscreen-mode-close.components-button {
+
+	img.edit-post-fullscreen-mode-close_site-icon {
+		display: none;
+	}
+
+	&::before {
+		content: '';
+
+		// GCM Logo
+		// background: url(assets/images/svg/editor-gcm-icon.svg) center no-repeat;
+
+		// Default WP logo
+		background: url(assets/images/svg/editor-default-icon.svg) center no-repeat;
+
+		background-size: 85%;
+	}
+}
+
 // Gutenberg editor background
 body .editor-styles-wrapper {
 	background: $color_black_lightest;
@@ -16,17 +36,22 @@ body .editor-styles-wrapper {
 
 // Reduced space on first section (allowing 2nd level in case wrapped in a group)
 .editor-styles-wrapper .is-root-container > .container-style-section:first-child,
-.editor-styles-wrapper .is-root-container > :first-child > .container-style-section:first-child {
+.editor-styles-wrapper .is-root-container > :first-child > .container-style-section:first-child,
+.editor-styles-wrapper .is-root-container > .wp-block-acf-section:first-child > .section-block > .container,
+.editor-styles-wrapper .is-root-container > :first-child > .wp-block-acf-section:first-child > .section-block > .container {
 	padding-top: 0 !important;
 }
 
 // Gutenberg post title
 .edit-post-visual-editor__post-title-wrapper {
+	width: fit-content;
+	min-width: min(100vw, 800px);
 	max-width: $break_at_desktop;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 40px;
 
+	/*
 	// Pages do not show post title by default, emphasize that
 	body.post-type-page & {
 		h1 {
@@ -34,7 +59,7 @@ body .editor-styles-wrapper {
 		}
 
 		h1::before {
-			content: 'Page title is not displayed on the front-end.';
+			content: 'Page title is not displayed on the front-end for standard pages.';
 			opacity: 0.5;
 			position: absolute;
 			top: 100%;
@@ -48,6 +73,56 @@ body .editor-styles-wrapper {
 			h1::before { display: none; }
 		}
 	}
+	*/
+}
+
+// Fix the outline > list view screen going to far too the right with lots of nested layers
+.block-editor-list-view-tree .block-editor-list-view-leaf .block-editor-list-view-block-select-button__label-wrapper {
+	min-width: 25px;
+}
+
+// Customize the Gutenberg post title area
+.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+
+	& {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+
+		margin: 0 0 30px !important;
+		padding: 40px 20px;
+
+		width: auto;
+		max-width: none;
+
+		background: #fff;
+		border-bottom: 2px solid #e9e9e9;
+	}
+
+	h1 {
+		position: relative;
+		text-align: center;
+	}
+
+	h1::after {
+		position: absolute;
+		width: 100%;
+
+		display: block;
+		font-size: 14px;
+		opacity: 0;
+		font-weight: 300;
+		text-align: center;
+
+		content: 'Post Title';
+
+		body.post-type-page & {
+			content: 'Page Title';
+		}
+	}
+
+	&:hover h1::after { opacity: 0.25; }
+	&:focus-within h1::after { opacity: 0.75; }
 }
 
 // Gutenberg editor: button groups

@@ -5,7 +5,7 @@
 	"style": [ "flickity" ],
 	"script": [ "flickity" ],
 	"category": "great-city-medical",
-	"icon": "admin-gcm-icon",
+	"icon": "editor-gcm-icon",
 	"keywords": ["content", "gallery", "image", "photo", "slider"],
 	"align": "full",
 	"acf": {

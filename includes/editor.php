@@ -78,6 +78,26 @@ function gcm_insert_editor_formats( $init_array ) {
 					'inline' => 'span',
 					'classes'  => 'text-uppercase',
 				),
+				array(
+					'title'   => 'Weight: Light (300)',
+					'inline' => 'span',
+					'classes'  => 'weight-light', // 300
+				),
+				array(
+					'title'   => 'Weight: Regular (400)',
+					'inline' => 'span',
+					'classes'  => 'weight-regular', // 400
+				),
+				array(
+					'title'   => 'Weight: Medium (500)',
+					'inline' => 'span',
+					'classes'  => 'weight-medium', // 500
+				),
+				array(
+					'title'   => 'Weight: Bold (700)',
+					'inline' => 'span',
+					'classes'  => 'weight-bold', // 700
+				),
 			),
 		),
 		array(

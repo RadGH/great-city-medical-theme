@@ -120,6 +120,27 @@ Custom search replace
 https://css-tricks.com/snippets/sass/str-replace-function/
 */
 /*
+// For the property "border-color", the border will inherit the background color of the current element.
+@mixin match_background_color( $property ) {
+	&.has-background {
+		&.has-purple-background-color          { $property: var( --wp--preset--color--purple          ); }
+		&.has-light-purple-background-color    { $property: var( --wp--preset--color--light-purple    ); }
+		&.has-lightest-purple-background-color { $property: var( --wp--preset--color--lightest-purple ); }
+		&.has-blue-background-color            { $property: var( --wp--preset--color--blue            ); }
+		&.has-light-blue-background-color      { $property: var( --wp--preset--color--light-blue      ); }
+		&.has-lightest-blue-background-color   { $property: var( --wp--preset--color--lightest-blue   ); }
+		&.has-gray-10-background-color         { $property: var( --wp--preset--color--gray-10         ); }
+		&.has-gray-8-background-color          { $property: var( --wp--preset--color--gray-8          ); }
+		&.has-gray-6-background-color          { $property: var( --wp--preset--color--gray-6          ); }
+		&.has-gray-4-background-color          { $property: var( --wp--preset--color--gray-4          ); }
+		&.has-gray-2-background-color          { $property: var( --wp--preset--color--gray-2          ); }
+		&.has-dark-purple-background-color     { $property: var( --wp--preset--color--dark-purple     ); }
+		&.has-white-background-color           { $property: var( --wp--preset--color--white           ); }
+		&.has-black-background-color           { $property: var( --wp--preset--color--black           ); }
+	}
+}
+*/
+/*
 Icon picker in acf dropdown
 */
 .select2-selection .acf-selection .icon-title {
@@ -215,6 +236,32 @@ Start: Seamless clone field style
 /*
 End: Seamless clone field style
 */
+body.wp-admin::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #1d2327;
+}
+body.wp-admin::-webkit-scrollbar-thumb {
+  background: #2271b1;
+}
+
+.interface-navigable-region::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.interface-navigable-region::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+.interface-navigable-region:hover::-webkit-scrollbar, .interface-navigable-region:focus-within::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.interface-navigable-region:hover::-webkit-scrollbar-thumb, .interface-navigable-region:focus-within::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.33);
+}
+
 /*
 Great City Medical icon
 Used on the theme settings page
@@ -241,19 +288,6 @@ body.toplevel_page_acf-gcm-settings .wrap h1::before {
 
 #adminmenu .current div.dashicons-gcm-icon::before,
 #adminmenu .wp-has-current-submenu div.dashicons-gcm-icon::before {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%23ffffff' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-.components-button.is-active .dashicons-editor-gcm-icon {
-  background: #1e1e1e;
-  border-radius: 1px;
-  box-shadow: 0 0 0 1px #1e1e1e;
-  color: #fff;
-}
-.components-button .dashicons-editor-gcm-icon::before {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%231e1e1e' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
-}
-.components-button.is-active .dashicons-editor-gcm-icon::before {
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%23ffffff' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
 }
 

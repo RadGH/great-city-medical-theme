@@ -61,6 +61,9 @@ domReady(function () {
 			<Path d="M6.594 5.742v2.61h.5v-2.61z" />
 		</SVG>;
 
+	// Create a new icon
+
+
 	// -------------
 	// Utilities
 	// -------------
@@ -254,6 +257,16 @@ domReady(function () {
 				formatName: 'gcm/serif',
 				title: 'Serif',
 				className: 'text-serif',
+			},
+			{
+				formatName: 'gcm/weight-light',
+				title: 'Weight: Light (300)',
+				className: 'weight-light',
+			},
+			{
+				formatName: 'gcm/weight-medium',
+				title: 'Weight: Medium (500)',
+				className: 'weight-medium',
 			},
 			// {
 			// 	formatName: 'gcm/eyebrow',
@@ -960,6 +973,7 @@ domReady(function () {
 				};
 
 				// Reverse order changed
+				/*
 				const reverseOrderChanged = (value) => {
 					// Get classes
 					let updatedClassName = attributes.className || '';
@@ -985,6 +999,7 @@ domReady(function () {
 						reverseOrderOnMobile: value
 					});
 				};
+				*/
 
 				const handleClassChange = ( value, target_class ) => {
 					// Get classes
@@ -1067,6 +1082,12 @@ domReady(function () {
 										label="Reverse order on mobile"
 										checked={hasClassName('mobile-reverse-order')}
 										onChange={(value) => handleClassChange(value, 'mobile-reverse-order')}
+									/>
+
+									<ToggleControl
+										label="Stack columns on mobile"
+										checked={hasClassName('mobile-column-stack')}
+										onChange={(value) => handleClassChange(value, 'mobile-column-stack')}
 									/>
 
 								</PanelBody>
@@ -1229,17 +1250,27 @@ domReady(function () {
 				{
 					name: 'card',
 					className: 'container-style-card',
-					label: 'Card'
+					label: 'Card (24px)'
 				},
 				{
 					name: 'card-small',
 					className: 'container-style-card-small',
-					label: 'Card (Small)'
+					label: 'Card (20px)'
+				},
+				{
+					name: 'card-small',
+					className: 'container-style-card-x-small',
+					label: 'Card (16px)'
 				},
 				{
 					name: 'floating-bg',
 					className: 'container-style-floating-bg',
 					label: 'Floating BG'
+				},
+				{
+					name: 'floating-bg-wide',
+					className: 'container-style-floating-bg-wide',
+					label: 'Floating BG Wide'
 				},
 				{
 					name: 'button-row',

@@ -25,6 +25,7 @@
 
 
 	@if ( $responsive ) {
+		/*
 		// Scale fonts between 1920px and 1200px
 		@media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
 			// 80px font size = 4.16vw on desktop
@@ -32,6 +33,7 @@
 			$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
 			font-size: min( $desktop_px, $desktop_vw );
 		}
+		*/
 
 		// Scale mobile fonts between 1200px and 375px
 		@media ( max-width: $break_at_desktop ) {
@@ -89,6 +91,7 @@
 	line-height: 1;
 	text-decoration: none;
 	border-radius: 100px;
+	cursor: pointer;
 	@include button_padding( 'normal' );
 }
 
@@ -396,6 +399,11 @@
 	.text-sans-serif { font-family: $font_family_sans_serif; }
 	.text-serif { font-family: $font_family_serif; }
 
+	.weight-light { font-weight: 300; }
+	.weight-regular { font-weight: 400; }
+	.weight-medium { font-weight: 500; }
+	.weight-bold { font-weight: 700; }
+
 	.heading-eyebrow-text {
 		// Text style for "eyebrow" headings. Typically an <h6>
 		// This is the small blue text that appears before titles on most pages/sections, including the contact us text in the footer
@@ -408,8 +416,8 @@
 	.heading-h2 { @include font_size_h2(); }
 	.heading-h3 { @include font_size_h3(); }
 	.heading-h4 { @include font_size_h4(); }
-	.heading-h5 { @include font_size_h5(); }
-	.heading-h6 { @include font_size_h6(); }
+	.heading-h5 { @include font_size_h5( false ); }
+	.heading-h6 { @include font_size_h6( false ); }
 
 	.heading-page-title { @include font_size_h1(); }
 
@@ -618,5 +626,40 @@
 			}
 
 		}
+	}
+}
+
+/*
+// For the property "border-color", the border will inherit the background color of the current element.
+@mixin match_background_color( $property ) {
+	&.has-background {
+		&.has-purple-background-color          { $property: var( --wp--preset--color--purple          ); }
+		&.has-light-purple-background-color    { $property: var( --wp--preset--color--light-purple    ); }
+		&.has-lightest-purple-background-color { $property: var( --wp--preset--color--lightest-purple ); }
+		&.has-blue-background-color            { $property: var( --wp--preset--color--blue            ); }
+		&.has-light-blue-background-color      { $property: var( --wp--preset--color--light-blue      ); }
+		&.has-lightest-blue-background-color   { $property: var( --wp--preset--color--lightest-blue   ); }
+		&.has-gray-10-background-color         { $property: var( --wp--preset--color--gray-10         ); }
+		&.has-gray-8-background-color          { $property: var( --wp--preset--color--gray-8          ); }
+		&.has-gray-6-background-color          { $property: var( --wp--preset--color--gray-6          ); }
+		&.has-gray-4-background-color          { $property: var( --wp--preset--color--gray-4          ); }
+		&.has-gray-2-background-color          { $property: var( --wp--preset--color--gray-2          ); }
+		&.has-dark-purple-background-color     { $property: var( --wp--preset--color--dark-purple     ); }
+		&.has-white-background-color           { $property: var( --wp--preset--color--white           ); }
+		&.has-black-background-color           { $property: var( --wp--preset--color--black           ); }
+	}
+}
+*/
+
+// For the property "border-color", the border will be given a contrasting
+// color to go with the background color of the current element.
+// If you make a card the lightest blue, the border will be solid blue
+@mixin contrast_background_color( $property ) {
+	&.has-background {
+		&.has-light-purple-background-color,
+		&.has-lightest-purple-background-color { #{$property}: $color_purple; }
+
+		&.has-light-blue-background-color,
+		&.has-lightest-blue-background-color   { #{$property}: $color_blue; }
 	}
 }

@@ -1,0 +1,32 @@
+@mixin admin_scrollbars( $background: null, $handle: null ) {
+	@if $background == null {
+		$background: rgba(0,0,0, 5%);
+	}
+
+	@if $handle == null {
+		$handle: rgba(0,0,0, 45%);
+	}
+
+	&::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+		background-color: $background;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $handle;
+	}
+}
+
+body.wp-admin {
+	// @include admin_scrollbars( #b5bcb9, #1d2327 );
+	@include admin_scrollbars( #1d2327, #2271b1 );
+}
+
+.interface-navigable-region {
+	@include admin_scrollbars( null, rgba(0,0,0, 10%) );
+
+	&:hover, &:focus-within {
+		@include admin_scrollbars( null, rgba(0,0,0, 33%) );
+	}
+}

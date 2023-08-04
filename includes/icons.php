@@ -171,7 +171,7 @@ function gcm_icon_config() {
 		),
 		'infant-footprints' => array(
 			'filename' => 'infant-footprints.svg',
-			'tags' => 'infant footprints',
+			'tags' => 'infant baby feet footprints',
 		),
 		'iud-implant' => array(
 			'filename' => 'iud-implant.svg',
@@ -195,7 +195,7 @@ function gcm_icon_config() {
 		),
 		'maternity' => array(
 			'filename' => 'maternity.svg',
-			'tags' => 'maternity',
+			'tags' => 'maternity infant baby feet footprints',
 		),
 		'medicine' => array(
 			'filename' => 'medicine.svg',
@@ -263,7 +263,7 @@ function gcm_icon_config() {
 		),
 		'surgery' => array(
 			'filename' => 'surgery.svg',
-			'tags' => 'surgery',
+			'tags' => 'surgery tools scalpel syringe',
 		),
 		'surgery-tools' => array(
 			'filename' => 'surgery-tools.svg',

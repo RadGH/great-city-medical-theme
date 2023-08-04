@@ -16,7 +16,11 @@ body .is-layout-flex.is-content-justification-stretch { align-items: stretch; }
 .is-vertical {
 	flex-direction: column;
 
-	.is-content-justification-center { align-items: center; }
+	.is-content-justification-center {
+		align-items: center;
+		width: 100%;
+	}
+
 }
 
 // Block sections
@@ -49,8 +53,8 @@ article > .container-style-section:first-child {
 }
 
 @media ( min-width: $break_above_mobile ) {
-	.section-block:has(.positioned-element),
-	.container-style-section:has(.positioned-element) {
+	.section-block:has(.positioned-element) p,
+	.container-style-section:has(.positioned-element) p {
 		// Make text balanced to hopefully give more room for positioned elements
 		// for example: https://radleysustaire.com/s3/b88806/chrome
 		text-wrap: balance;
@@ -84,12 +88,17 @@ article > .container-style-section:first-child {
 // Vertical margins
 @include vertical_margins();
 
+
 // Container styles
 .container-style-card,
-.container-style-card-small {
+.container-style-card-small,
+.container-style-card-x-small {
 	border-radius: 18px;
-	border: 0.859px solid $color_gray_6; // #ECEAEA
+	border: var( --border-1px-width, 1px ) solid $color_gray_6; // #ECEAEA
 	background: $color_white;
+
+	// If you make a card the lightest blue, the border will be solid blue
+	@include contrast_background_color( 'border-color' );
 }
 
 .container-style-card {
@@ -104,12 +113,8 @@ article > .container-style-section:first-child {
 	}
 }
 
-.container-style-floating-bg {
-	position: relative;
-}
-
-.container-style-floating-bg * {
-	z-index: 2;
+.container-style-card-x-small {
+	padding: 16px;
 }
 
 .container-style-stretch-columns,
@@ -150,14 +155,26 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 }
 
 // Container style: Floating background (for use on 3 column grid, front page, About Us section)
+.container-style-floating-bg,
+.container-style-floating-bg-wide {
+	position: relative;
+}
+
+.container-style-floating-bg *,
+.container-style-floating-bg-wide * {
+	z-index: 2;
+}
+
 @media ( max-width: $break_at_tablet ) {
-	.container-style-floating-bg {
+	.container-style-floating-bg,
+	.container-style-floating-bg-wide {
 		background: #fff;
 	}
 }
 
 @media ( min-width: $break_above_tablet ) {
-	.container-style-floating-bg::before {
+	.container-style-floating-bg::before,
+	.container-style-floating-bg-wide::before {
 		content: '';
 		display: block;
 		position: absolute;
@@ -169,6 +186,23 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 		top: 0;
 		bottom: 0;
 		border-radius: 100px 0 0 100px;
+	}
+
+	.container-style-floating-bg-wide::before {
+		left: 50%;
+		width: clamp(1200.1px, 83.333%, 1920px);
+		transform: translateX(-50%);
+		max-width: 100%;
+		box-shadow: 50vw 0 0 #fff;
+	}
+}
+
+@media ( max-width: 900px ) {
+	.container-style-floating-bg-wide {
+		background: #fff;
+	}
+	.container-style-floating-bg-wide::before {
+		display: none;
 	}
 }
 
@@ -236,8 +270,9 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 	.editor-styles-wrapper #{$className} {
 
 		// Scale based on screen size
-		$vw: calc($pixels / $design_width) * 100vw;
-		gap: min( $pixels, $vw );
+		// $vw: calc($pixels / $design_width) * 100vw;
+		// gap: min( $pixels, $vw );
+		gap: $pixels;
 
 		// Half size for mobile, for 20px or larger gaps
 		@if ( $pixels >= 20px ) {
@@ -291,10 +326,16 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 @include gapClassMobile( '.mobile-gap-60',  60px );
 @include gapClassMobile( '.mobile-gap-80',  80px );
 
-// Reverse order mobile
 @media ( max-width: $break_at_tablet ) {
+	// Reverse order mobile
 	.mobile-reverse-order {
 		flex-direction: column-reverse;
+	}
+
+	// Stack columns on mobile (wrap)
+	.mobile-column-stack {
+		display: grid !important;
+		grid-template-columns: 1fr;
 	}
 }
 
@@ -322,6 +363,104 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 	@media ( min-width: $break_at_desktop ) {
 		padding-bottom: 250px;
 	}
+}
+
+// Used on gynecology page
+.column-split-lists {
+
+	@media ( min-width: 900.1px ) {
+		padding-left: 40px;
+	}
+
+	@media ( min-width: 1920px ) {
+		padding-left: 80px;
+
+		.wp-block-group:nth-child(1) {
+			width: 18%;
+		}
+
+		li {
+			white-space: nowrap;
+		}
+	}
+
+	@media ( min-width: 782px ) and ( max-width: 1919.9px ) {
+		.wp-block-group:nth-child(1) {
+			width: 280px;
+		}
+	}
+
+
+	@media ( max-width: 1400px ) {
+		.wp-block-group:nth-child(2) {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			row-gap: 16px;
+		}
+	}
+
+	@media (max-width: 900px) {
+		display: grid !important;
+		padding-left: 40px;
+		gap: 15px !important;
+
+		.wp-block-group:nth-child(1) {
+			display: grid;
+			row-gap: 16px;
+		}
+
+		.wp-block-group:nth-child(1) > * {
+			width: 100% !important;
+		}
+
+	}
+
+	@media ( max-width: 600px ) {
+		.wp-block-group:nth-child(2) {
+			grid-template-columns: 1fr;
+		}
+
+	}
+}
+
+// Used on pricing page
+.price-comparison-cards {
+	& > .wp-block-group > .wp-block-group > :first-child {
+		width: 60px;
+		flex-shrink: 0;
+	}
+
+	& > .wp-block-group > .wp-block-group > :last-child {
+		flex-grow: 1;
+	}
+
+	// 3rd card down
+	& > .wp-block-group:nth-child(3) {
+		position: relative;
+
+		// quote icon
+		& > .wp-block-group > .wp-block-group > .wp-block-group:nth-child(2) {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+		}
+	}
+
+}
+
+// Borders
+// Used on Price Comparison page
+.wp-block-image .border-blue img,
+.wp-block-image.border-blue img {
+	border: var( --border-1px-width, 1px ) solid $color_blue;
+}
+.wp-block-image .border-purple img,
+.wp-block-image.border-purple img {
+	border: var( --border-1px-width, 1px ) solid $color_purple;
+}
+.wp-block-image .border-black img,
+.wp-block-image.border-black img {
+	border: var( --border-1px-width, 1px ) solid $color_black;
 }
 
 // Providers grid

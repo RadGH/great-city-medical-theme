@@ -1,3 +1,5 @@
+@include theme_styles( true );
+
 body {
 	@include body_styles( true );
 }
@@ -26,6 +28,30 @@ ol {
 
 li {
 	margin-bottom: 5px;
+}
+
+ul {
+	padding-left: 16px;
+}
+
+li {
+	margin-bottom: 16px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&::marker {
+		color: #e6c8ff;
+	}
+}
+
+a {
+	color: $color_blue;
+
+	&:hover {
+		color: $color_purple;
+	}
 }
 
 // Admin bar on front-end

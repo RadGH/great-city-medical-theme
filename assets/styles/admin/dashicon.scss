@@ -26,22 +26,3 @@ body.toplevel_page_acf-gcm-settings .wrap h1::before {
 #adminmenu .wp-has-current-submenu div.dashicons-gcm-icon::before {
 	content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%23ffffff' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
 }
-
-
-// Block editor icon
-.components-button {
-	&.is-active .dashicons-editor-gcm-icon {
-		background: #1e1e1e;
-		border-radius: 1px;
-		box-shadow: 0 0 0 1px #1e1e1e;
-		color: #fff;
-	}
-
-	.dashicons-editor-gcm-icon::before {
-		content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%231e1e1e' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
-	}
-
-	&.is-active .dashicons-editor-gcm-icon::before {
-		content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12.082 12.015'%3E%3Cg stroke='%23ffffff' fill='none' stroke-width='0.75'%3E%3Cpath d='M11.582 6.007c0 3.041-2.48 5.508-5.54 5.508C2.98 11.515.5 9.048.5 6.007.5 2.967 2.98.5 6.041.5c3.06 0 5.541 2.466 5.541 5.507z'/%3E%3Cpath d='M8.234 6.091c.932-1.323-.266-2.514-1.197-2.514-.746 0-1.11.441-1.198.662-.133-.22-.56-.662-1.198-.662-.798 0-1.596.926-1.463 1.852.106.741 1.774 2.602 2.66 3.572l.4-.397'/%3E%3Cpath d='M8.399 7.297h-2.61Z'/%3E%3Cpath d='M7.094 8.602v-2.61z'/%3E%3C/g%3E%3C/svg%3E");
-	}
-}

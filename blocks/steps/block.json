@@ -5,7 +5,7 @@
 	"style": [ "file:/steps.css" ],
 	"script": [ "file:/steps.js" ],
 	"category": "great-city-medical",
-	"icon": "admin-gcm-icon",
+	"icon": "editor-gcm-icon",
 	"keywords": ["content", "steps"],
 	"align": "full",
 	"acf": {

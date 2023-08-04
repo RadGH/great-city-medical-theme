@@ -120,6 +120,27 @@ Custom search replace
 https://css-tricks.com/snippets/sass/str-replace-function/
 */
 /*
+// For the property "border-color", the border will inherit the background color of the current element.
+@mixin match_background_color( $property ) {
+	&.has-background {
+		&.has-purple-background-color          { $property: var( --wp--preset--color--purple          ); }
+		&.has-light-purple-background-color    { $property: var( --wp--preset--color--light-purple    ); }
+		&.has-lightest-purple-background-color { $property: var( --wp--preset--color--lightest-purple ); }
+		&.has-blue-background-color            { $property: var( --wp--preset--color--blue            ); }
+		&.has-light-blue-background-color      { $property: var( --wp--preset--color--light-blue      ); }
+		&.has-lightest-blue-background-color   { $property: var( --wp--preset--color--lightest-blue   ); }
+		&.has-gray-10-background-color         { $property: var( --wp--preset--color--gray-10         ); }
+		&.has-gray-8-background-color          { $property: var( --wp--preset--color--gray-8          ); }
+		&.has-gray-6-background-color          { $property: var( --wp--preset--color--gray-6          ); }
+		&.has-gray-4-background-color          { $property: var( --wp--preset--color--gray-4          ); }
+		&.has-gray-2-background-color          { $property: var( --wp--preset--color--gray-2          ); }
+		&.has-dark-purple-background-color     { $property: var( --wp--preset--color--dark-purple     ); }
+		&.has-white-background-color           { $property: var( --wp--preset--color--white           ); }
+		&.has-black-background-color           { $property: var( --wp--preset--color--black           ); }
+	}
+}
+*/
+/*
 CSS Reset
 */
 html {
@@ -288,6 +309,18 @@ body.mce-content-body .text-sans-serif {
 body.mce-content-body .text-serif {
   font-family: "Abhaya Libre", serif;
 }
+body.mce-content-body .weight-light {
+  font-weight: 300;
+}
+body.mce-content-body .weight-regular {
+  font-weight: 400;
+}
+body.mce-content-body .weight-medium {
+  font-weight: 500;
+}
+body.mce-content-body .weight-bold {
+  font-weight: 700;
+}
 body.mce-content-body .heading-eyebrow-text {
   color: #0957de;
   font-weight: 300;
@@ -296,13 +329,16 @@ body.mce-content-body .heading-eyebrow-text {
 body.mce-content-body .heading-h1,
 body.mce-content-body .heading-h2 {
   font-size: 60px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body.mce-content-body .heading-h1,
-  body.mce-content-body .heading-h2 {
-    font-size: min(60px, 3.13vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h1,
@@ -312,12 +348,16 @@ body.mce-content-body .heading-h2 {
 }
 body.mce-content-body .heading-h3 {
   font-size: 32px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body.mce-content-body .heading-h3 {
-    font-size: min(32px, 1.67vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h3 {
@@ -326,12 +366,16 @@ body.mce-content-body .heading-h3 {
 }
 body.mce-content-body .heading-h4 {
   font-size: 28px;
-  line-height: 1.25;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body.mce-content-body .heading-h4 {
-    font-size: min(28px, 1.46vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-h4 {
@@ -342,38 +386,22 @@ body.mce-content-body .heading-h5 {
   font-size: 18px;
   line-height: 1.25;
 }
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body.mce-content-body .heading-h5 {
-    font-size: min(18px, 0.94vw);
-  }
-}
-@media (max-width: 1200px) {
-  body.mce-content-body .heading-h5 {
-    font-size: 18px;
-  }
-}
 body.mce-content-body .heading-h6 {
   font-size: 14px;
   line-height: 1.25;
 }
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body.mce-content-body .heading-h6 {
-    font-size: min(14px, 0.73vw);
-  }
-}
-@media (max-width: 1200px) {
-  body.mce-content-body .heading-h6 {
-    font-size: 14px;
-  }
-}
 body.mce-content-body .heading-page-title {
   font-size: 80px;
-  line-height: 1.4;
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  body.mce-content-body .heading-page-title {
-    font-size: min(80px, 4.17vw);
+  /*
+  // Scale fonts between 1920px and 1200px
+  @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
+  	// 80px font size = 4.16vw on desktop
+  	// (80 / 1920) * 100 = 4.16vw
+  	$desktop_vw: calc( round( calc($desktop_px / $design_width) * 10000vw ) / 100 );
+  	font-size: min( $desktop_px, $desktop_vw );
   }
+  */
+  line-height: 1.4;
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-page-title {
@@ -387,6 +415,7 @@ body.mce-content-body .heading-page-title {
   line-height: 1;
   text-decoration: none;
   border-radius: 100px;
+  cursor: pointer;
   padding: 18px 48px;
 }
 .button:focus-within {
@@ -575,6 +604,7 @@ body.mce-content-body .heading-page-title {
   line-height: 1;
   text-decoration: none;
   border-radius: 100px;
+  cursor: pointer;
   padding: 18px 48px;
   color: #9069ac;
   border: 1px solid #9069ac;
@@ -599,7 +629,95 @@ body.mce-content-body .heading-page-title {
   display: none !important;
 }
 
-/* form fields */ /*
+/* form fields */
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=phone],
+input[type=date],
+input[type=number],
+textarea,
+select {
+  border-radius: 8px;
+  border: 1px solid #D3D3D3;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 18px 16px;
+}
+
+select {
+  -webkit-appearance: none;
+  background: #fff no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='%23d3d3d3' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  background-position: calc(100% - 12px) 50%;
+  padding-right: 40px;
+}
+
+select:hover,
+select:focus-within {
+  border-color: #000;
+  outline: 1px solid #000;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='black' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+}
+
+input[type=checkbox],
+input[type=radio] {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+}
+
+input[type=radio] {
+  border-radius: 100% !important;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9.5' fill='white' stroke='%23D3D3D3'/%3E%3C/svg%3E%0A");
+}
+input[type=radio]:hover, input[type=radio]:focus-visible {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+}
+input[type=radio]:checked {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3Ccircle cx='10' cy='10' r='5.5' fill='%239069AC' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+}
+
+input[type=checkbox] {
+  border-radius: 5px !important;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='4.5' fill='white' stroke='%23D3D3D3'/%3E%3C/svg%3E%0A");
+}
+input[type=checkbox]:hover, input[type=checkbox]:focus-visible {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='4.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+}
+input[type=checkbox]:checked {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='2.5' fill='%23FAF5FF' stroke='%239069AC'/%3E%3Crect x='4.5' y='4.5' width='11' height='11' rx='2.5' fill='%239069AC' stroke='%239069AC'/%3E%3C/svg%3E%0A");
+}
+
+input[type=button],
+input[type=submit],
+button {
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 100px;
+  cursor: pointer;
+  padding: 18px 48px;
+  border-radius: 100px !important;
+  color: #9069ac;
+  border: 1px solid #9069ac;
+  background: #faf4ff;
+}
+input[type=button]:focus-within,
+input[type=submit]:focus-within,
+button:focus-within {
+  outline: 3px solid #9069ac;
+  outline-color: inherit;
+}
+input[type=button]:hover,
+input[type=submit]:hover,
+button:hover {
+  color: #ffffff;
+  border: 1px solid #9069ac;
+  background: #9069ac;
+}
+
+/*
 Icon type: Circle (type-circle)
 */
 .gcm-icon {
