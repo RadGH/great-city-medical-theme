@@ -237,13 +237,15 @@
 	// Keep the main content at the correct ratio of total width to match the design
 	// 81.25% = 1560px / 1920px
 	// 83.33% = 1600px / 1920px
+	/*
 	@media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
 		width: clamp( $break_above_desktop, 85%, $design_width );
 
 		body .editor-styles-wrapper & {
-			width: auto !important; /* Do not clamp in editor */
+			width: auto !important; // Do not clamp in editor
 		}
 	}
+	*/
 }
 
 @mixin site-gutters() {

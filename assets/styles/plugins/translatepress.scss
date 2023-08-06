@@ -5,5 +5,10 @@
 
 // Main menu in spanish smaller font size so it fits
 body.translatepress-es_MX .primary-menu {
-	font-size: 13px;
+	@media ( max-width: 1600px ) and ( min-width: 1400.1px ) {
+		font-size: 15px;
+	}
+	@media ( max-width: 1400px ) {
+		font-size: 14px;
+	}
 }

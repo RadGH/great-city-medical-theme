@@ -291,20 +291,21 @@ article > .container-style-section:first-child:first-child {
 .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
   margin-left: auto;
   margin-right: auto;
+  /*
+  @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
+  	width: clamp( $break_above_desktop, 85%, $design_width );
+
+  	body .editor-styles-wrapper & {
+  		width: auto !important; // Do not clamp in editor
+  	}
+  }
+  */
   padding-left: 20px;
   padding-right: 20px;
 }
 @media (min-width: 1600px) {
   .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
     max-width: 1600px;
-  }
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
-    width: clamp(1200.1px, 85%, 1920px);
-  }
-  body .editor-styles-wrapper .article-width, body .editor-styles-wrapper .entry-content, body .editor-styles-wrapper .container-style-section:not(.alignfull), body .editor-styles-wrapper .container-style-section-width {
-    width: auto !important; /* Do not clamp in editor */
   }
 }
 @media (min-width: 782px) and (max-width: 1200px) {
@@ -479,7 +480,6 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
   }
   .container-style-floating-bg-wide::before {
     left: 50%;
-    width: clamp(1200.1px, 83.333%, 1920px);
     transform: translateX(-50%);
     max-width: 100%;
     box-shadow: 50vw 0 0 #fff;
@@ -2064,20 +2064,21 @@ body {
 .inside {
   margin-left: auto;
   margin-right: auto;
+  /*
+  @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
+  	width: clamp( $break_above_desktop, 85%, $design_width );
+
+  	body .editor-styles-wrapper & {
+  		width: auto !important; // Do not clamp in editor
+  	}
+  }
+  */
   padding-left: 20px;
   padding-right: 20px;
 }
 @media (min-width: 1600px) {
   .inside {
     max-width: 1600px;
-  }
-}
-@media (min-width: 1200.1px) and (max-width: 1920px) {
-  .inside {
-    width: clamp(1200.1px, 85%, 1920px);
-  }
-  body .editor-styles-wrapper .inside {
-    width: auto !important; /* Do not clamp in editor */
   }
 }
 @media (min-width: 782px) and (max-width: 1200px) {
@@ -3902,8 +3903,15 @@ body.admin-bar table.gcm-icon-list thead {
   z-index: 5 !important;
 }
 
-body.translatepress-es_MX .primary-menu {
-  font-size: 13px;
+@media (max-width: 1600px) and (min-width: 1400.1px) {
+  body.translatepress-es_MX .primary-menu {
+    font-size: 15px;
+  }
+}
+@media (max-width: 1400px) {
+  body.translatepress-es_MX .primary-menu {
+    font-size: 14px;
+  }
 }
 
 .yoast-breadcrumbs {

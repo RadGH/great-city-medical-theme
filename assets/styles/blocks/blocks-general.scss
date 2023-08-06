@@ -190,7 +190,7 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 
 	.container-style-floating-bg-wide::before {
 		left: 50%;
-		width: clamp(1200.1px, 83.333%, 1920px);
+		// width: clamp(1200.1px, 83.333%, 1920px);
 		transform: translateX(-50%);
 		max-width: 100%;
 		box-shadow: 50vw 0 0 #fff;

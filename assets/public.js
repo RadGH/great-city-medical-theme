@@ -58,26 +58,23 @@
 
 		// When a menu is opened, check if you clicked out of the menu. if so, close the menu instead
 		const clicked_unknown_item = function(e) {
-			// on second thought, do nothing
-			/*
 			if ( ! monitor_unknown_clicks ) return;
 
 			// Only run once, re-hooked when each menu is opened
 			monitor_unknown_clicks = false;
 
 			// Check for any open menus
-			let other_menus = document.querySelectorAll('.sub-menu-open');
-			if ( other_menus.length < 1 ) return;
+			let open_menus = document.querySelectorAll('.sub-menu-open');
+			if ( open_menus.length < 1 ) return;
 
 			// Close menus
-			other_menus.forEach(function(m) {
+			open_menus.forEach(function(m) {
 				m.classList.remove('sub-menu-open');
 			});
 
 			// Because a menu was closed instead of clicking on a link, block the click
 			e.preventDefault();
 			e.stopPropagation();
-			*/
 		};
 
 		// Whenever a menu item containing a sub menu is clicked, open the sub menu first

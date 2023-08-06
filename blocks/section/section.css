@@ -11,11 +11,13 @@
     padding-bottom: min(150px, 7.8125vw);
 }
 
+/*
 @media ( min-width: 1200.1px ) and ( max-width: 1920px ) {
     .section-block .container {
         max-width: clamp(1200.1px, 83.333%, 1920px);
     }
 }
+*/
 
 @media screen and (max-width: 768px) {
     .section-block .container {
