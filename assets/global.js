@@ -41,11 +41,6 @@ jQuery(function() {
 				.attr( 'role', 'region' )
 				.attr( 'aria-labelledby', link_id );
 
-			// Add a class if the accordion is followed by another accordion
-			if ( $accordion.next('.gcm-accordion').length > 0 ) {
-				$accordion.addClass('gcm-has-next-accordion');
-			}
-
 			// Accordion is ready
 			$accordion.addClass('gcm-initialized');
 		};

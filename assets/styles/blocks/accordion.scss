@@ -166,16 +166,6 @@
 		}
 	}
 
-	.gcm-accordion.gcm-has-next-accordion.gcm-expanded::after {
-		// Line following accordion
-		content: '';
-		display: block;
-		width: 1px;
-		height: 142px;
-		border-left: 1px solid #0957de;
-		margin: 24px auto;
-	}
-
 	@media ( max-width: $break_at_desktop ) {
 		.gcm-accordion {
 			border-radius: 36px;
@@ -217,10 +207,6 @@
 	.gcm-accordion + .gcm-accordion {
 		padding-top: 5px;
 		border-top: 1px solid rgba(9, 87, 222, 0.2);
-	}
-
-	.gcm-accordion.gcm-has-next-accordion {
-		padding-bottom: 5px;
 	}
 
 	.gcm-accordion .gcm-handle .gcm-arrow {
