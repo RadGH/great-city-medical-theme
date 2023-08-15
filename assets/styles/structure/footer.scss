@@ -313,7 +313,8 @@ body.single-post .site-footer {
 // Tablet + Desktop: Show two columns locations (which each have two columns in them)
 @media ( min-width: $break_above_tablet ) {
 	.footer-locations .location-list {
-		grid-template-columns: 1fr 1fr;
+		// grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
 	}
 }
 

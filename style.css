@@ -25,7 +25,7 @@ body {
 	--color-dark-purple: #68626e;
 	--color-black: #0e0d0d;
 
-	--color-gray-10: #fafafa;
+	--color-gray-10: #fbfbfb;
 	--color-gray-8: #f1f1f1;
 	--color-gray-6: #e7e7e7;
 	--color-gray-4: #e3e3e3;
@@ -37,7 +37,7 @@ body {
 	--color-text-purple: #9069ac;
 	--color-text-blue: #0957de;
 	--color-black-light: #e3e3e3;
-	--color-black-lightest: #fafafa;
+	--color-black-lightest: #fbfbfb;
 
 	// Font Sizes
 	--font-size-body: 16px;
@@ -128,6 +128,30 @@ Custom search replace
 https://css-tricks.com/snippets/sass/str-replace-function/
 */
 /*
+@mixin site-content-width() {
+	margin-left: auto;
+	margin-right: auto;
+
+	@media ( min-width: $site_content_width ) {
+		// max-width: $site_content_width;
+		max-width: var(--wp--style--global--content-size, $site_content_width);
+	}
+
+	// Keep the main content at the correct ratio of total width to match the design
+	// 81.25% = 1560px / 1920px
+	// 83.33% = 1600px / 1920px
+
+	// @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
+	// 	width: clamp( $break_above_desktop, 85%, $design_width );
+	//
+	// 	body .editor-styles-wrapper & {
+	// 		width: auto !important; // Do not clamp in editor
+	// 	}
+	// }
+
+}
+*/
+/*
 // For the property "border-color", the border will inherit the background color of the current element.
 @mixin match_background_color( $property ) {
 	&.has-background {
@@ -192,11 +216,15 @@ Reusable formats
 }
 
 a:focus-within,
-input:focus-within {
+input:focus-within,
+select:focus-within,
+textarea:focus-within {
   outline: 3px solid #9069ac;
 }
 a:focus-within:not(.button):not(.wp-block-button__link):not(.screen-reader-shortcut),
-input:focus-within:not(.button):not(.wp-block-button__link):not(.screen-reader-shortcut) {
+input:focus-within:not(.button):not(.wp-block-button__link):not(.screen-reader-shortcut),
+select:focus-within:not(.button):not(.wp-block-button__link):not(.screen-reader-shortcut),
+textarea:focus-within:not(.button):not(.wp-block-button__link):not(.screen-reader-shortcut) {
   border-radius: 4px;
 }
 
@@ -273,6 +301,10 @@ body .is-layout-flex.is-content-justification-stretch {
   width: 100%;
 }
 
+.wp-block-separator {
+  border-color: #e3e3e3;
+}
+
 article > .container-style-section:first-child:first-child {
   padding-top: min(92px, 4.7916666667vw);
 }
@@ -289,29 +321,40 @@ article > .container-style-section:first-child:first-child {
   }
 }
 .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
-  margin-left: auto;
-  margin-right: auto;
-  /*
-  @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
-  	width: clamp( $break_above_desktop, 85%, $design_width );
-
-  	body .editor-styles-wrapper & {
-  		width: auto !important; // Do not clamp in editor
-  	}
-  }
-  */
   padding-left: 20px;
   padding-right: 20px;
-}
-@media (min-width: 1600px) {
-  .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
-    max-width: 1600px;
-  }
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (min-width: 782px) and (max-width: 1200px) {
   .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
     padding-left: 40px;
     padding-right: 40px;
+  }
+}
+@media (min-width: 1600px) {
+  .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
+    max-width: var(--wp--style--global--content-size, 1600px);
+  }
+}
+@media (max-width: 1920px) and (min-width: 1200.1px) {
+  .article-width, .entry-content, .container-style-section:not(.alignfull), .container-style-section-width {
+    width: calc(0px + 83.3333333333%);
+  }
+}
+
+.section-block .container {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 1600px) {
+  .section-block .container {
+    max-width: var(--wp--style--global--content-size, 1640px);
+  }
+}
+@media (max-width: 1920px) and (min-width: 1200.1px) {
+  .section-block .container {
+    width: calc(40px + 85.4166666667%);
   }
 }
 
@@ -375,6 +418,54 @@ article > .container-style-section:first-child:first-child {
   margin-bottom: 150px;
 }
 :last-child > .vertical-margin-huge:last-child {
+  margin-bottom: 0;
+}
+
+.wp-block-columns.vertical-margin-none {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+:last-child > .wp-block-columns.vertical-margin-none:last-child {
+  margin-bottom: 0;
+}
+
+.wp-block-columns.vertical-margin-x-small {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+:last-child > .wp-block-columns.vertical-margin-x-small:last-child {
+  margin-bottom: 0;
+}
+
+.wp-block-columns.vertical-margin-small {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+:last-child > .wp-block-columns.vertical-margin-small:last-child {
+  margin-bottom: 0;
+}
+
+.wp-block-columns.vertical-margin-medium {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+:last-child > .wp-block-columns.vertical-margin-medium:last-child {
+  margin-bottom: 0;
+}
+
+.wp-block-columns.vertical-margin-large {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+:last-child > .wp-block-columns.vertical-margin-large:last-child {
+  margin-bottom: 0;
+}
+
+.wp-block-columns.vertical-margin-huge {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+:last-child > .wp-block-columns.vertical-margin-huge:last-child {
   margin-bottom: 0;
 }
 
@@ -482,7 +573,7 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
     left: 50%;
     transform: translateX(-50%);
     max-width: 100%;
-    box-shadow: 50vw 0 0 #fff;
+    box-shadow: 25vw 0 0 #fff, 50vw 0 0 #fff;
   }
 }
 @media (max-width: 900px) {
@@ -1528,7 +1619,7 @@ Global structure
 }
 
 .text-color-black-lightest {
-  color: #fafafa;
+  color: #fbfbfb;
 }
 
 .text-color-white {
@@ -1643,7 +1734,7 @@ Global structure
 }
 
 .heading-page-title {
-  font-size: 80px;
+  font-size: 60px;
   /*
   // Scale fonts between 1920px and 1200px
   @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
@@ -1653,11 +1744,16 @@ Global structure
   	font-size: min( $desktop_px, $desktop_vw );
   }
   */
-  line-height: 1.4;
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   .heading-page-title {
-    font-size: 36px;
+    font-size: 32px;
+  }
+}
+@media (min-width: 1920.1px) {
+  .heading-page-title {
+    font-size: 80px;
   }
 }
 
@@ -1805,12 +1901,12 @@ Rounded Styles
 .wp-block-button.button-color-black.button-style-primary .wp-block-button__link:hover {
   color: #0e0d0d;
   border: 1px solid #0e0d0d;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 .wp-block-button.button-color-black.button-style-secondary .wp-block-button__link {
   color: #0e0d0d;
   border: 1px solid #0e0d0d;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 .wp-block-button.button-color-black.button-style-secondary .wp-block-button__link:hover {
   color: #ffffff;
@@ -2062,24 +2158,10 @@ body {
 }
 
 .inside {
-  margin-left: auto;
-  margin-right: auto;
-  /*
-  @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
-  	width: clamp( $break_above_desktop, 85%, $design_width );
-
-  	body .editor-styles-wrapper & {
-  		width: auto !important; // Do not clamp in editor
-  	}
-  }
-  */
   padding-left: 20px;
   padding-right: 20px;
-}
-@media (min-width: 1600px) {
-  .inside {
-    max-width: 1600px;
-  }
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (min-width: 782px) and (max-width: 1200px) {
   .inside {
@@ -2087,9 +2169,19 @@ body {
     padding-right: 40px;
   }
 }
+@media (min-width: 1600px) {
+  .inside {
+    max-width: var(--wp--style--global--content-size, 1640px);
+  }
+}
+@media (max-width: 1920px) and (min-width: 1200.1px) {
+  .inside {
+    width: calc(40px + 85.4166666667%);
+  }
+}
 
 .site-content {
-  background: #fafafa;
+  background: #fbfbfb;
 }
 
 .wp-block-group p,
@@ -2554,12 +2646,12 @@ article.single-post {
 .button.button-black:hover {
   color: #0e0d0d;
   border: 1px solid #0e0d0d;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 .button.button-black.button-secondary {
   color: #0e0d0d;
   border: 1px solid #0e0d0d;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 .button.button-black.button-secondary:hover {
   color: #ffffff;
@@ -2669,18 +2761,39 @@ input[type=password],
 input[type=phone],
 input[type=date],
 input[type=number],
+input[type=search],
 textarea,
 select {
+  background-color: transparent;
   border-radius: 8px;
   border: 1px solid #D3D3D3;
   font-size: 18px;
-  line-height: 20px;
-  padding: 18px 16px;
+  line-height: 30px;
+  padding: 12px 16px;
+  font-weight: 500;
+  color: #000;
+}
+input[type=text]:focus-visible,
+input[type=email]:focus-visible,
+input[type=password]:focus-visible,
+input[type=phone]:focus-visible,
+input[type=date]:focus-visible,
+input[type=number]:focus-visible,
+input[type=search]:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  background-color: #fff;
+}
+
+textarea {
+  line-height: 22px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 select {
   -webkit-appearance: none;
-  background: #fff no-repeat;
+  background-repeat: no-repeat;
   background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='%23d3d3d3' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
   background-position: calc(100% - 12px) 50%;
   padding-right: 40px;
@@ -2689,8 +2802,11 @@ select {
 select:hover,
 select:focus-within {
   border-color: #000;
-  outline: 1px solid #000;
   background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='black' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+}
+
+select:focus-within {
+  border-color: #9069ac;
 }
 
 input[type=checkbox],
@@ -2712,7 +2828,7 @@ input[type=radio]:checked {
 }
 
 input[type=checkbox] {
-  border-radius: 5px !important;
+  border-radius: 3px !important;
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='4.5' fill='white' stroke='%23D3D3D3'/%3E%3C/svg%3E%0A");
 }
 input[type=checkbox]:hover, input[type=checkbox]:focus-visible {
@@ -2732,9 +2848,6 @@ button {
   cursor: pointer;
   padding: 18px 48px;
   border-radius: 100px !important;
-  color: #9069ac;
-  border: 1px solid #9069ac;
-  background: #faf4ff;
 }
 input[type=button]:focus-within,
 input[type=submit]:focus-within,
@@ -2742,12 +2855,256 @@ button:focus-within {
   outline: 3px solid #9069ac;
   outline-color: inherit;
 }
-input[type=button]:hover,
-input[type=submit]:hover,
-button:hover {
+input[type=button]:not(.button),
+input[type=submit]:not(.button),
+button:not(.button) {
+  color: #9069ac;
+  border: 1px solid #9069ac;
+  background: #faf4ff;
+}
+input[type=button]:not(.button):hover,
+input[type=submit]:not(.button):hover,
+button:not(.button):hover {
   color: #ffffff;
   border: 1px solid #9069ac;
   background: #9069ac;
+}
+
+/*
+Field group structure
+Used for contact form 7, one usage is on the i639 form
+*/
+.field-group-heading,
+.field-group {
+  margin: 48px 0;
+}
+
+.field-group-heading {
+  display: grid;
+  padding-bottom: 45px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.field-group-heading .step {
+  color: #7c7c7c;
+  text-transform: uppercase;
+}
+
+.field-group-heading .title {
+  margin: 0;
+}
+
+.field-group {
+  display: grid;
+  gap: 30px;
+}
+
+.field-group .group-label {
+  font-size: 24px;
+  line-height: 1.15;
+  color: #7C7C7C;
+  text-transform: uppercase;
+}
+
+.field-group .group-fields {
+  display: grid;
+  gap: 20px;
+}
+
+.field-group .group-fields .field {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.field-group .group-fields .field .field-label {
+  margin: 0 0 8px;
+}
+
+/* Remove CF7 inserted paragraphs */
+.field-group .step > p,
+.field-group .field-label > p,
+.field-group .field-content > p {
+  display: contents;
+  margin: 0;
+}
+
+/* CF7 validation errors */
+.field-content label.error {
+  display: block;
+  padding: 0;
+  margin: 3px 0 0;
+}
+
+/* CF7 conditional field group (must add class:cf7-conditional) */
+.field-group .cf7-conditional:not(.wpcf7cf-hidden) {
+  display: contents !important;
+}
+
+/* Submit row */
+.field-group.group-submit .group-fields .field {
+  grid-column-end: -1;
+}
+
+.field-group.group-submit .button {
+  width: 100%;
+}
+
+/* Field structure */
+.field-group .field.type-text input[type=text],
+.field-group .field.type-text input[type=email],
+.field-group .field.type-text input[type=date],
+.field-group .field.type-text textarea,
+.field-group .field select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1200.1px) {
+  /* Responsive (large) - Structure */
+  .field-group {
+    grid-template-columns: minmax(0px, 1fr) minmax(0px, 2fr);
+  }
+  .field-group .group-fields {
+    grid-column: 2;
+  }
+}
+@media (min-width: 782.1px) and (max-width: 1200px) {
+  /* Responsive (large -> medium) - Structure */
+}
+@media (min-width: 782.1px) {
+  /*
+  label: 398px. fields: 1162px. (0.3425, 0.6574)
+  field gap: 32px. field width: 366px. (0.0275, 0.3149)
+  */
+  /* Responsive (medium) - Structure */
+  .field-group .group-fields {
+    display: grid;
+    gap: 45px 30px;
+  }
+  .field-group .group-fields.group-columns-2 {
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+  }
+  .field-group .group-fields.group-columns-3 {
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+  }
+  .field-group .group-fields.group-columns-4 {
+    grid-template-columns: repeat(4, minmax(0px, 1fr));
+  }
+  /* Responsive (medium) - Typography */
+}
+/* Radio / Checkbox button row */
+.radio-button-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* input styles */
+  border-radius: 8px;
+  border: 1px solid #D3D3D3;
+  font-weight: 500;
+}
+
+.radio-button-row:has(.error) {
+  border-color: #990000;
+}
+
+.radio-button-row label {
+  display: grid;
+  position: relative;
+  text-align: center;
+}
+
+.radio-button-row label > input {
+  position: absolute;
+  width: 1px !important;
+  height: 1px !important;
+  clip: rect(0, 0, 0, 0);
+  z-index: -1;
+}
+
+.radio-button-row label > span {
+  width: 100%;
+  height: 100%;
+  padding: 16px 8px;
+  border-radius: 8px;
+  border: var(--border-1px-width, 1px) solid transparent;
+  cursor: pointer;
+}
+
+/* Radio / Checkbox button row - Grid alignment and overlap */
+@media (min-width: 320.1px) {
+  .radio-button-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .radio-button-row label {
+    flex-grow: 1;
+  }
+  .radio-button-row label:not(:first-child) {
+    margin-left: -16px;
+  }
+}
+@media (max-width: 320px) {
+  .radio-button-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+/* Radio / Checkbox button row - Button style */
+.radio-button-row label > span {
+  background: transparent;
+  color: #0e0d0d;
+  border-color: transparent;
+  transition: all 0.08s linear;
+}
+
+.radio-button-row label:hover > span {
+  background: #f1f1f1;
+  color: #0e0d0d;
+  border-color: #e3e3e3;
+}
+
+.radio-button-row label > input:checked + span {
+  background: #9069ac;
+  color: #ffffff;
+  border-color: #9069ac;
+}
+
+.radio-button-row label > input:focus + span {
+  background: #faf4ff;
+  color: #9069ac;
+  border-color: #9069ac;
+}
+
+@media (pointer: fine) {
+  /* Desktop-only hover effect */
+  .radio-button-row label > input[type=checkbox]:checked:hover + span {
+    background: #faf4ff;
+    color: #9069ac;
+    border-color: #9069ac;
+  }
+}
+/* Radio / Checkbox button row - Layering */
+.radio-button-row label > span {
+  position: relative;
+}
+
+.radio-button-row label > span:hover {
+  z-index: 2;
+}
+
+.radio-button-row label > input:checked + span {
+  z-index: 3;
+}
+
+.radio-button-row label > input:checked:hover + span {
+  z-index: 4;
+}
+
+/* End field group with divider */
+.field-group.group-submit {
+  padding-top: 45px;
+  border-top: 1px solid #e3e3e3;
 }
 
 /* Header */
@@ -2851,6 +3208,7 @@ END: Header location
 .gcm-menu ul li {
   list-style: none;
   margin: 0;
+  padding: 0;
 }
 
 .gcm-menu a {
@@ -3110,7 +3468,7 @@ body:not(.menu-use-clicks) .gcm-menu li.menu-item-has-children:focus-within > .s
 */
 .site-footer {
   padding-top: 150px;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 
 body:not(:has(.site-content .is-root-container > .has-white-background-color:last-child)) .site-footer {
@@ -3387,7 +3745,7 @@ body.single-post .site-footer {
 
 @media (min-width: 782.1px) {
   .footer-locations .location-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
   }
 }
 @media (min-width: 1200.1px) {
@@ -3488,7 +3846,7 @@ Icon frame styles
 
 .gcm-icon.type-circle.color-black .icon-frame {
   box-shadow: inset 0 0 0 1px #0e0d0d;
-  background-color: #fafafa;
+  background-color: #fbfbfb;
 }
 
 /*
@@ -3898,6 +4256,27 @@ body.admin-bar table.gcm-icon-list thead {
   }
 }
 
+.wpcf7-form-control.wpcf7-radio,
+.wpcf7-form-control.wpcf7-checkbox {
+  display: grid;
+  gap: 10px;
+}
+.wpcf7-form-control.wpcf7-radio .wpcf7-list-item,
+.wpcf7-form-control.wpcf7-checkbox .wpcf7-list-item {
+  display: block;
+  margin: 0;
+}
+.wpcf7-form-control.wpcf7-radio .wpcf7-list-item label,
+.wpcf7-form-control.wpcf7-checkbox .wpcf7-list-item label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+}
+.wpcf7-form-control.wpcf7-radio .wpcf7-list-item input,
+.wpcf7-form-control.wpcf7-checkbox .wpcf7-list-item input {
+  margin: 3px 0 0;
+}
+
 #trp-floater-ls {
   display: none !important;
   z-index: 5 !important;
@@ -3941,7 +4320,7 @@ body.slug-contact-us article > .container-style-section:last-child {
 }
 body.slug-contact-us .site-footer {
   padding-top: 0;
-  background-color: #fafafa;
+  background-color: #fbfbfb;
 }
 body.slug-contact-us .footer-locations {
   margin-top: 0;

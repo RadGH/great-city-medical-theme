@@ -5,7 +5,9 @@
 
 // Focus styles
 a:focus-within,
-input:focus-within {
+input:focus-within,
+select:focus-within,
+textarea:focus-within {
 	@include focus_within;
 	&:not(.button):not(.wp-block-button__link):not(.screen-reader-shortcut) {
 		border-radius: 4px;

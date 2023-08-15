@@ -19,7 +19,7 @@ get_header();
 	<article <?php post_class( 'entry not-found' ); ?>>
 		
 		<div class="entry-content">
-			<?php echo wpautop($content); ?>
+			<?php echo ($content); ?>
 		</div>
 	
 	</article>

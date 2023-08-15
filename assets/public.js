@@ -10,6 +10,8 @@
 
 		prevent_language_preview_click();
 
+		setup_cf7_radio_button_rows();
+
 	};
 
 	// ------------------------------------------------------------
@@ -186,6 +188,53 @@
 				e.stopPropagation();
 			});
 		});
+	};
+
+	const setup_cf7_radio_button_rows = function() {
+		let radio_rows = document.querySelectorAll('.cf7_radio_button_row');
+		if ( radio_rows.length < 1 ) return;
+
+		// Restructure the radio button list to match the field group structure
+		// OLD:
+		// span.wpcf7-form-control.wpcf7-radio.cf7_radio_button_row
+		// > span.wpcf7-list-item
+		//   > label
+		//     > input[type="radio"]
+		//     > span
+
+		// NEW:
+		// div.radio-button-row
+		// > label
+		//   > input[type="radio"]
+		//   > span
+
+		radio_rows.forEach(function(row) {
+
+			// Modify classes of the row
+			row.classList.add('radio-button-row');
+			row.classList.remove('wpcf7-form-control');
+			// row.classList.remove('wpcf7-radio'); // needs to stay for validation
+
+			// Select each radio item
+			row.querySelectorAll('span.wpcf7-list-item').forEach(function(item) {
+				let label = item.querySelector('label');
+
+				// Move the label to the outside of the span
+				item.parentNode.insertBefore(label, item);
+
+				// Remove the "wpcf7-list-item" class from the label
+				label.classList.remove('wpcf7-list-item');
+
+				// Remove the "wpcf7-list-item-label" class from the label
+				label.classList.remove('wpcf7-list-item-label');
+
+				// Remove the wrapping span that is now empty
+				item.remove();
+
+			});
+
+		});
+
 	};
 
 	document.addEventListener('DOMContentLoaded', initialize);

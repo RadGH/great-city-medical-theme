@@ -1,5 +1,10 @@
 <?php
 
+if ( ! have_posts() ) {
+	get_template_part('404');
+	return;
+}
+
 get_header();
 
 while( have_posts() ): the_post();

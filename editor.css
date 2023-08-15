@@ -17,7 +17,7 @@ body {
 	--color-dark-purple: #68626e;
 	--color-black: #0e0d0d;
 
-	--color-gray-10: #fafafa;
+	--color-gray-10: #fbfbfb;
 	--color-gray-8: #f1f1f1;
 	--color-gray-6: #e7e7e7;
 	--color-gray-4: #e3e3e3;
@@ -29,7 +29,7 @@ body {
 	--color-text-purple: #9069ac;
 	--color-text-blue: #0957de;
 	--color-black-light: #e3e3e3;
-	--color-black-lightest: #fafafa;
+	--color-black-lightest: #fbfbfb;
 
 	// Font Sizes
 	--font-size-body: 16px;
@@ -118,6 +118,30 @@ body {
 /*
 Custom search replace
 https://css-tricks.com/snippets/sass/str-replace-function/
+*/
+/*
+@mixin site-content-width() {
+	margin-left: auto;
+	margin-right: auto;
+
+	@media ( min-width: $site_content_width ) {
+		// max-width: $site_content_width;
+		max-width: var(--wp--style--global--content-size, $site_content_width);
+	}
+
+	// Keep the main content at the correct ratio of total width to match the design
+	// 81.25% = 1560px / 1920px
+	// 83.33% = 1600px / 1920px
+
+	// @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
+	// 	width: clamp( $break_above_desktop, 85%, $design_width );
+	//
+	// 	body .editor-styles-wrapper & {
+	// 		width: auto !important; // Do not clamp in editor
+	// 	}
+	// }
+
+}
 */
 /*
 // For the property "border-color", the border will inherit the background color of the current element.
@@ -292,7 +316,7 @@ body.mce-content-body .text-color-black-light {
   color: #e3e3e3;
 }
 body.mce-content-body .text-color-black-lightest {
-  color: #fafafa;
+  color: #fbfbfb;
 }
 body.mce-content-body .text-color-white {
   color: #ffffff;
@@ -391,7 +415,7 @@ body.mce-content-body .heading-h6 {
   line-height: 1.25;
 }
 body.mce-content-body .heading-page-title {
-  font-size: 80px;
+  font-size: 60px;
   /*
   // Scale fonts between 1920px and 1200px
   @media ( min-width: $break_above_desktop ) and ( max-width: $break_at_large_desktop ) {
@@ -401,11 +425,16 @@ body.mce-content-body .heading-page-title {
   	font-size: min( $desktop_px, $desktop_vw );
   }
   */
-  line-height: 1.4;
+  line-height: 1.25;
 }
 @media (max-width: 1200px) {
   body.mce-content-body .heading-page-title {
-    font-size: 36px;
+    font-size: 32px;
+  }
+}
+@media (min-width: 1920.1px) {
+  body.mce-content-body .heading-page-title {
+    font-size: 80px;
   }
 }
 
@@ -521,12 +550,12 @@ body.mce-content-body .heading-page-title {
 .button.button-black:hover {
   color: #0e0d0d;
   border: 1px solid #0e0d0d;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 .button.button-black.button-secondary {
   color: #0e0d0d;
   border: 1px solid #0e0d0d;
-  background: #fafafa;
+  background: #fbfbfb;
 }
 .button.button-black.button-secondary:hover {
   color: #ffffff;
@@ -636,18 +665,39 @@ input[type=password],
 input[type=phone],
 input[type=date],
 input[type=number],
+input[type=search],
 textarea,
 select {
+  background-color: transparent;
   border-radius: 8px;
   border: 1px solid #D3D3D3;
   font-size: 18px;
-  line-height: 20px;
-  padding: 18px 16px;
+  line-height: 30px;
+  padding: 12px 16px;
+  font-weight: 500;
+  color: #000;
+}
+input[type=text]:focus-visible,
+input[type=email]:focus-visible,
+input[type=password]:focus-visible,
+input[type=phone]:focus-visible,
+input[type=date]:focus-visible,
+input[type=number]:focus-visible,
+input[type=search]:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  background-color: #fff;
+}
+
+textarea {
+  line-height: 22px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 select {
   -webkit-appearance: none;
-  background: #fff no-repeat;
+  background-repeat: no-repeat;
   background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='%23d3d3d3' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
   background-position: calc(100% - 12px) 50%;
   padding-right: 40px;
@@ -656,8 +706,11 @@ select {
 select:hover,
 select:focus-within {
   border-color: #000;
-  outline: 1px solid #000;
   background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995' stroke='black' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+}
+
+select:focus-within {
+  border-color: #9069ac;
 }
 
 input[type=checkbox],
@@ -679,7 +732,7 @@ input[type=radio]:checked {
 }
 
 input[type=checkbox] {
-  border-radius: 5px !important;
+  border-radius: 3px !important;
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='19' height='19' rx='4.5' fill='white' stroke='%23D3D3D3'/%3E%3C/svg%3E%0A");
 }
 input[type=checkbox]:hover, input[type=checkbox]:focus-visible {
@@ -699,9 +752,6 @@ button {
   cursor: pointer;
   padding: 18px 48px;
   border-radius: 100px !important;
-  color: #9069ac;
-  border: 1px solid #9069ac;
-  background: #faf4ff;
 }
 input[type=button]:focus-within,
 input[type=submit]:focus-within,
@@ -709,9 +759,16 @@ button:focus-within {
   outline: 3px solid #9069ac;
   outline-color: inherit;
 }
-input[type=button]:hover,
-input[type=submit]:hover,
-button:hover {
+input[type=button]:not(.button),
+input[type=submit]:not(.button),
+button:not(.button) {
+  color: #9069ac;
+  border: 1px solid #9069ac;
+  background: #faf4ff;
+}
+input[type=button]:not(.button):hover,
+input[type=submit]:not(.button):hover,
+button:not(.button):hover {
   color: #ffffff;
   border: 1px solid #9069ac;
   background: #9069ac;
@@ -757,7 +814,7 @@ Icon frame styles
 
 .gcm-icon.type-circle.color-black .icon-frame {
   box-shadow: inset 0 0 0 1px #0e0d0d;
-  background-color: #fafafa;
+  background-color: #fbfbfb;
 }
 
 /*

@@ -1,14 +1,16 @@
-.section-block .container {
-    max-width: var(--wp--style--global--content-size, 1560px);
-
-    margin-left: auto;
-    margin-right: auto;
-
+.section-block {
     padding-left: 20px;
     padding-right: 20px;
 
     padding-top: min(150px, 7.8125vw);
     padding-bottom: min(150px, 7.8125vw);
+}
+
+.section-block .container {
+    max-width: var(--wp--style--global--content-size, 1560px);
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*
@@ -20,14 +22,14 @@
 */
 
 @media screen and (max-width: 768px) {
-    .section-block .container {
+    .section-block {
         padding-top: 60px;
         padding-bottom: 60px;
     }
 }
 
 @media screen and (min-width: 768.1px ) {
-    .is-root-container > .section-block:first-child .container {
+    .is-root-container > .section-block:first-child {
         padding-top: 92px;
     }
 }

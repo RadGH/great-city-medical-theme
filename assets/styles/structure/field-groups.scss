@@ -1,0 +1,286 @@
+/*
+Field group structure
+Used for contact form 7, one usage is on the i639 form
+*/
+.field-group-heading,
+.field-group {
+	margin: 48px 0;
+}
+
+.field-group-heading {
+	display: grid;
+	padding-bottom: 45px;
+	border-bottom: 1px solid $color_gray_4;
+}
+
+.field-group-heading .step {
+	color: #7c7c7c;
+	text-transform: uppercase;
+}
+
+.field-group-heading .title {
+	margin: 0;
+}
+
+.field-group {
+	display: grid;
+	gap: 30px;
+}
+
+.field-group .group-label {
+	font-size: 24px;
+	line-height: 1.15;
+	color: #7C7C7C;
+	text-transform: uppercase;
+}
+
+.field-group .group-fields {
+	display: grid;
+	gap: 20px;
+}
+
+.field-group .group-fields.group-columns-3 {
+
+}
+
+.field-group .group-fields .field {
+	display: grid;
+	grid-template-rows: auto 1fr;
+}
+
+.field-group .group-fields .field.type-text {
+
+}
+
+.field-group .group-fields .field .field-label {
+	margin: 0 0 8px;
+}
+
+.field-group .group-fields .field .field-label label {
+
+}
+
+.field-group .group-fields .field .field-content {
+}
+
+/* Remove CF7 inserted paragraphs */
+.field-group .step > p,
+.field-group .field-label > p,
+.field-group .field-content > p {
+	display: contents;
+	margin: 0;
+}
+
+/* CF7 validation errors */
+.field-content label.error {
+	display: block;
+	padding: 0;
+	margin: 3px 0 0;
+}
+
+/* CF7 conditional field group (must add class:cf7-conditional) */
+.field-group .cf7-conditional:not(.wpcf7cf-hidden) {
+	display: contents !important;
+}
+
+/* Submit row */
+.field-group.group-submit .group-fields  {
+
+}
+
+.field-group.group-submit .group-fields .button {
+
+}
+
+.field-group.group-submit .group-fields .field {
+	grid-column-end: -1;
+}
+
+.field-group.group-submit .button {
+	width: 100%;
+}
+
+/* Field structure */
+.field-group .field.type-text input[type="text"],
+.field-group .field.type-text input[type="email"],
+.field-group .field.type-text input[type="date"],
+.field-group .field.type-text textarea,
+.field-group .field select {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+@media ( min-width: $break_above_desktop ) {
+	/* Responsive (large) - Structure */
+	.field-group {
+		grid-template-columns: minmax(0px, 1fr) minmax(0px, 2fr);
+	}
+
+	.field-group .group-fields {
+		grid-column: 2;
+	}
+}
+
+@media ( min-width: $break_above_tablet ) and ( max-width: $break_at_desktop ) {
+	/* Responsive (large -> medium) - Structure */
+}
+
+@media ( min-width: $break_above_tablet ) {
+	/*
+	label: 398px. fields: 1162px. (0.3425, 0.6574)
+	field gap: 32px. field width: 366px. (0.0275, 0.3149)
+	*/
+
+	/* Responsive (medium) - Structure */
+	.field-group {
+	}
+
+	.field-group .group-label {
+
+	}
+
+	.field-group .group-fields {
+		display: grid;
+		gap: 45px 30px;
+	}
+
+	.field-group .group-fields.group-columns-2 {
+		grid-template-columns: repeat( 2, minmax(0px, 1fr) );
+	}
+
+	.field-group .group-fields.group-columns-3 {
+		grid-template-columns: repeat( 3, minmax(0px, 1fr) );
+	}
+
+	.field-group .group-fields.group-columns-4 {
+		grid-template-columns: repeat( 4, minmax(0px, 1fr) );
+	}
+
+
+	/* Responsive (medium) - Typography */
+	.field-group .group-label {
+	}
+}
+
+/* Radio / Checkbox button row */
+.radio-button-row {
+	display: grid;
+	grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+
+	/* input styles */
+	border-radius: 8px;
+	border: 1px solid #D3D3D3;
+	font-weight: 500;
+}
+
+.radio-button-row:has(.error) {
+	border-color: #990000;
+}
+
+.radio-button-row label {
+	display: grid;
+	position: relative;
+	text-align: center;
+}
+
+.radio-button-row label > input {
+	position: absolute;
+	width: 1px !important;
+	height: 1px !important;
+	clip: rect(0, 0, 0, 0);
+	z-index: -1;
+}
+
+.radio-button-row label > span {
+	width: 100%;
+	height: 100%;
+	padding: 16px 8px;
+	border-radius: 8px;
+	border: var(--border-1px-width, 1px) solid transparent;
+	cursor: pointer;
+}
+
+/* Radio / Checkbox button row - Grid alignment and overlap */
+@media ( min-width: $break_above_small_mobile ) {
+	.radio-button-row {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+
+	.radio-button-row label {
+		flex-grow: 1;
+	}
+
+	.radio-button-row label:not(:first-child) {
+		margin-left: -16px;
+	}
+}
+
+@media ( max-width: $break_at_small_mobile ) {
+	.radio-button-row {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Radio / Checkbox button row - Button style */
+.radio-button-row label > span {
+	background: transparent;
+	color: $color_black;
+	border-color: transparent;
+
+	transition: all 0.08s linear;
+}
+
+.radio-button-row label:hover > span {
+	background: $color_gray_8;
+	color: $color_black;
+	border-color: $color_gray_4;
+}
+
+.radio-button-row label > input:checked + span {
+	background: $color_purple;
+	color: $color_white;
+	border-color: $color_purple;
+}
+
+.radio-button-row label > input:focus + span {
+	background: $color_purple_lightest;
+	color: $color_purple;
+	border-color: $color_purple;
+}
+
+@media ( pointer: fine ) {
+	/* Desktop-only hover effect */
+	.radio-button-row label > input[type="radio"]:checked:hover + span {
+		// Radio buttons cannot be un-checked, so do not highlight on hover
+	}
+
+	.radio-button-row label > input[type="checkbox"]:checked:hover + span {
+		background: $color_purple_lightest;
+		color: $color_purple;
+		border-color: $color_purple;
+	}
+}
+
+/* Radio / Checkbox button row - Layering */
+.radio-button-row label > span {
+	position: relative;
+}
+.radio-button-row label > span:hover {
+	z-index: 2;
+}
+.radio-button-row label > input:checked + span {
+	z-index: 3;
+}
+.radio-button-row label > input:checked:hover + span {
+	z-index: 4;
+}
+
+/* End field group with divider */
+.field-group.group-submit {
+	padding-top: 45px;
+	border-top: 1px solid $color_gray_4;
+}

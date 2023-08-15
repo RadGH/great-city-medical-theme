@@ -6,7 +6,7 @@ if ( ! have_posts() ) {
 	return;
 }
 
-if ( gcm_has_ajax_load_more() ) {
+if ( gcm_has_ajax_load_more() && ! is_search() ) {
 	
 	// If using ajax load more, the shortcode will handle the post display and pagination
 	gcm_display_ajax_load_more_archive();

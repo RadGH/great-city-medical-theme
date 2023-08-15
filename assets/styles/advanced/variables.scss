@@ -57,12 +57,16 @@ $color_white: #ffffff;                    // --wp--preset--color--white
 $color_dark_purple: #68626e;              // --wp--preset--color--dark-purple
 $color_black: #0e0d0d;                    // --wp--preset--color--black
 
-$color_gray_10: #fafafa; // old: #fbfbfb  // --wp--preset--color--gray-10
+$color_gray_10: #fbfbfb; // old: #fafafa  // --wp--preset--color--gray-10
 $color_gray_8: #f1f1f1;                   // --wp--preset--color--gray-8
 // $color_gray_7: #ECEAEA;                   // --wp--preset--color--gray-6
 $color_gray_6: #e7e7e7;                   // --wp--preset--color--gray-6
 $color_gray_4: #e3e3e3;                   // --wp--preset--color--gray-4
 $color_gray_2: #3e3e3e;                   // --wp--preset--color--gray-2
+
+// In use, but no variable yet:
+// color: #7c7c7c; (field-groups.scss)
+// color: #D3D3D3; (field-groups.scss)
 
 // Aliases
 $color_text_primary: $color_black;

@@ -17,7 +17,7 @@ body {
 	--color-dark-purple: #68626e;
 	--color-black: #0e0d0d;
 
-	--color-gray-10: #fafafa;
+	--color-gray-10: #fbfbfb;
 	--color-gray-8: #f1f1f1;
 	--color-gray-6: #e7e7e7;
 	--color-gray-4: #e3e3e3;
@@ -29,7 +29,7 @@ body {
 	--color-text-purple: #9069ac;
 	--color-text-blue: #0957de;
 	--color-black-light: #e3e3e3;
-	--color-black-lightest: #fafafa;
+	--color-black-lightest: #fbfbfb;
 
 	// Font Sizes
 	--font-size-body: 16px;
@@ -118,6 +118,30 @@ body {
 /*
 Custom search replace
 https://css-tricks.com/snippets/sass/str-replace-function/
+*/
+/*
+@mixin site-content-width() {
+	margin-left: auto;
+	margin-right: auto;
+
+	@media ( min-width: $site_content_width ) {
+		// max-width: $site_content_width;
+		max-width: var(--wp--style--global--content-size, $site_content_width);
+	}
+
+	// Keep the main content at the correct ratio of total width to match the design
+	// 81.25% = 1560px / 1920px
+	// 83.33% = 1600px / 1920px
+
+	// @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
+	// 	width: clamp( $break_above_desktop, 85%, $design_width );
+	//
+	// 	body .editor-styles-wrapper & {
+	// 		width: auto !important; // Do not clamp in editor
+	// 	}
+	// }
+
+}
 */
 /*
 // For the property "border-color", the border will inherit the background color of the current element.
@@ -331,7 +355,7 @@ Icon frame styles
 
 .gcm-icon.type-circle.color-black .icon-frame {
   box-shadow: inset 0 0 0 1px #0e0d0d;
-  background-color: #fafafa;
+  background-color: #fbfbfb;
 }
 
 /*

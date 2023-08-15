@@ -321,7 +321,7 @@ function gcm_get_icon_colors() {
 		'black' => array(
 			'outline' => '#0e0d0d',
 			'fill' => '#e3e3e3',
-			'fill_light' => '#fafafa',
+			'fill_light' => '#fbfbfb',
 			'overlay' => '#ffffff',
 		),
 	);

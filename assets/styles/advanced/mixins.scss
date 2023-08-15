@@ -193,59 +193,81 @@
 	transition: all 0.2s ease-in-out;
 }
 
-@mixin vertical_margins {
-	.vertical-margin-none {
+@mixin vertical_margins( $prefix: '' ) {
+	#{$prefix}.vertical-margin-none {
 		margin-top: 0;
 		margin-bottom: 0;
 		:last-child > &:last-child { margin-bottom: 0; }
 	}
-	.vertical-margin-x-small {
+	#{$prefix}.vertical-margin-x-small {
 		margin-top: 16px;
 		margin-bottom: 16px;
 		:last-child > &:last-child { margin-bottom: 0; }
 	}
-	.vertical-margin-small {
+	#{$prefix}.vertical-margin-small {
 		margin-top: 24px;
 		margin-bottom: 24px;
 		:last-child > &:last-child { margin-bottom: 0; }
 	}
-	.vertical-margin-medium {
+	#{$prefix}.vertical-margin-medium {
 		margin-top: 40px;
 		margin-bottom: 40px;
 		:last-child > &:last-child { margin-bottom: 0; }
 	}
-	.vertical-margin-large {
+	#{$prefix}.vertical-margin-large {
 		margin-top: 80px;
 		margin-bottom: 80px;
 		:last-child > &:last-child { margin-bottom: 0; }
 	}
-	.vertical-margin-huge {
+	#{$prefix}.vertical-margin-huge {
 		margin-top: 150px;
 		margin-bottom: 150px;
 		:last-child > &:last-child { margin-bottom: 0; }
 	}
 }
 
+/*
 @mixin site-content-width() {
 	margin-left: auto;
 	margin-right: auto;
 
 	@media ( min-width: $site_content_width ) {
-		max-width: $site_content_width;
+		// max-width: $site_content_width;
+		max-width: var(--wp--style--global--content-size, $site_content_width);
 	}
 
 	// Keep the main content at the correct ratio of total width to match the design
 	// 81.25% = 1560px / 1920px
 	// 83.33% = 1600px / 1920px
-	/*
-	@media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
-		width: clamp( $break_above_desktop, 85%, $design_width );
 
-		body .editor-styles-wrapper & {
-			width: auto !important; // Do not clamp in editor
-		}
+	// @media ( min-width: $break_above_desktop ) and ( max-width: $design_width ) {
+	// 	width: clamp( $break_above_desktop, 85%, $design_width );
+	//
+	// 	body .editor-styles-wrapper & {
+	// 		width: auto !important; // Do not clamp in editor
+	// 	}
+	// }
+
+}
+*/
+
+@mixin site-width( $extra_padding: 0px ) {
+	$max_w: $site_content_width + $extra_padding;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	@media ( min-width: $site_content_width ) {
+		// max-width: $site_content_width;
+		max-width: var(--wp--style--global--content-size, $max_w);
 	}
-	*/
+
+	// OPTIONAL: Keep gutter width on small-medium desktops, like you would see on a large desktop
+	// On small-medium desktop, apply a percentage width to the site content to match the gutter space in the design
+	@media ( max-width: $break_at_large_desktop ) and ( min-width: $break_above_desktop ) {
+		$width_percent: calc( $max_w / $design_width ) * 100%;
+		width: calc( $extra_padding + $width_percent );
+	}
 }
 
 @mixin site-gutters() {
@@ -421,7 +443,13 @@
 	.heading-h5 { @include font_size_h5( false ); }
 	.heading-h6 { @include font_size_h6( false ); }
 
-	.heading-page-title { @include font_size_h1(); }
+	.heading-page-title {
+		@include font_size_h2();
+
+		@media ( min-width: $break_above_large_desktop ) {
+			font-size: $font_size_h1;
+		}
+	}
 
 }
 

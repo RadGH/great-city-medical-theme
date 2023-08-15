@@ -5,8 +5,8 @@ body {
 }
 
 .inside {
-	@include site-content-width();
 	@include site-gutters();
+	@include site-width( 40px );
 }
 
 .site-content {
