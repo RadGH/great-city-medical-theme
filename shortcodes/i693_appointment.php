@@ -7,6 +7,8 @@ function shortcode_i693_appointment( $atts, $content = '', $shortcode_name = 'i6
 	
 	if ( !$date && !$time && !$location ) return '';
 	
+	$date = date( 'm/d/Y', strtotime($date) );
+	
 	$address = '';
 	
 	if ( $location == '1513V' ) $address = '1513 Voorhies Ave 3rd Floor, Brooklyn, NY 11235';
