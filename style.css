@@ -1101,14 +1101,6 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
   bottom: 32px;
   border-left: 1px solid #0957de;
 }
-.gcm-accordion-block.size-large .gcm-accordion.gcm-has-next-accordion.gcm-expanded::after {
-  content: "";
-  display: block;
-  width: 1px;
-  height: 142px;
-  border-left: 1px solid #0957de;
-  margin: 24px auto;
-}
 @media (max-width: 1200px) {
   .gcm-accordion-block.size-large .gcm-accordion {
     border-radius: 36px;
@@ -1157,9 +1149,6 @@ body .is-layout-flex > .container-style-space-between > .wp-block-column {
 .gcm-accordion-block:not(.size-large) .gcm-accordion + .gcm-accordion {
   padding-top: 5px;
   border-top: 1px solid rgba(9, 87, 222, 0.2);
-}
-.gcm-accordion-block:not(.size-large) .gcm-accordion.gcm-has-next-accordion {
-  padding-bottom: 5px;
 }
 .gcm-accordion-block:not(.size-large) .gcm-accordion .gcm-handle .gcm-arrow {
   top: 50%;
