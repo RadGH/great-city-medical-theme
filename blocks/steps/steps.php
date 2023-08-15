@@ -23,6 +23,7 @@ $steps = get_field( 'steps' );
 if ( ! $id ) $id = uniqid('steps-block-');
 
 $classes[] = 'gcm-steps-block';
+$classes[] = 'count-'. count($steps);
 
 ?>
 <div <?php echo ($id ? 'id="'. esc_attr($id) .'" ' : ''); ?> class="<?php echo esc_attr( implode(' ', $classes) ); ?>">
