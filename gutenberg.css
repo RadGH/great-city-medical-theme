@@ -2806,7 +2806,7 @@ Rounded Styles
     font-size: 12px;
   }
 }
-body.wp-admin.post-type-post .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper,
+body.wp-admin.post-type-post .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper h1,
 body.wp-admin.post-type-post .editor-styles-wrapper .is-root-container,
 .single-post .post-content {
   max-width: 840px;
