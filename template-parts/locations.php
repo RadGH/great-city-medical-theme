@@ -9,9 +9,49 @@ $icon_color = $args['icon_color'] ?? 'purple'; // unused
 $icon_type = $args['icon_type'] ?? 'flat';
 $icon_size = $args['icon_size'] ?? ''; // unused
 $show_closed_days = $args['show_closed_days'] ?? true;
+$allow_location_switching = $args['switching'] ?? false; // whether you can switch locations
 
 $locations = gcm_get_locations();
 if ( ! $locations ) return;
+
+$html_id = 'L' . uniqid();
+
+// Allow choosing which location is active (for the current page)
+$current_location_title = is_singular() ? get_field( 'gcm_location', get_the_ID() ) : false;
+$current_location_index = 0;
+
+echo '<div class="locations '. ($allow_location_switching ? 'allow-switching' : 'no-switching') .'">';
+
+// Determine the index of the current location. If not found, ignore the current location value.
+if ( $current_location_title ) {
+	foreach( $locations as $i => $l ) {
+		$title = $l['title'];
+		if ( $current_location_title === $title ) $current_location_index = $i;
+	}
+	if ( ! $current_location_index ) $current_location_title = false;
+}
+
+// Radio buttons are displayed first, so they can be used with + selectors in CSS to style the active label and location
+if ( $allow_location_switching ) {
+	foreach( $locations as $i => $l ) {
+		$title = $l['title'];
+		
+		echo '<input type="radio" class="active-location visually-hidden" name="'. $html_id .'" id="'. $html_id .'-' . $i . '" value="' . $i . '" ' . checked( $current_location_index, $i, false ) . '>';
+	}
+}
+
+// Display labels which correspond to radio buttons inside the location list.
+if ( $allow_location_switching ) {
+	echo '<div class="location-labels">';
+	foreach( $locations as $i => $l ) {
+		$title = $l['title'];
+		
+		echo '<h3 class="title location-'. $i .'" itemprop="name">';
+		echo '<label for="' . $html_id . '-' . $i . '">' . esc_html( $title ) . '</label>';
+		echo '</h3>';
+	}
+	echo '</div>';
+}
 
 echo '<div class="location-list">';
 
@@ -24,9 +64,17 @@ foreach( $locations as $i => $l ) {
 	
 	$title = __( $title, 'gcm' );
 	
+	$classes = array( 'location' );
+	$classes[] = 'location-' . $i;
+	
+	// Default to the first location if no location is specified
+	// if ( $current_location_index === $i ) {
+	// 	$classes[] = 'active';
+	// }
+	
 	// For schema address markup, see example #3: https://schema.org/address
 	?>
-	<div class="location" data-location="<?php echo esc_attr($title); ?>" itemscope itemtype="https://schema.org/LocalBusiness">
+	<div class="<?php echo esc_attr(implode(' ', $classes)); ?>" data-location="<?php echo esc_attr($title); ?>" itemscope itemtype="https://schema.org/LocalBusiness">
 		
 		<?php if ( $title ) { ?>
 		<h3 class="title" itemprop="name">
@@ -77,3 +125,5 @@ foreach( $locations as $i => $l ) {
 }
 
 echo '</div>'; // .location-list
+
+echo '</div>'; // .locations

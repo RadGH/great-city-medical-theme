@@ -139,3 +139,36 @@ function gcm_add_post_type_editor_class($classes) {
 	return $classes;
 }
 add_filter('admin_body_class', 'gcm_add_post_type_editor_class' );
+
+/**
+ * List the locations from theme settings (Great City Medical menu) as options for the Location acf field on pages.
+ * The location field lets a page specify which location to show in the header.
+ *
+ * @param array $field
+ *
+ * @return array
+ */
+function gcm_acf_location_choices( $field ) {
+	// Do not apply to the field group editor
+	if ( acf_is_screen('acf-field-group') ) return $field;
+	
+	// Get the current screen
+	$current_screen = function_exists('get_current_screen') ? get_current_screen() : false;
+	if ( ! $current_screen ) return $field;
+	
+	// Check if on the new page / edit page screen
+	if ( $current_screen->base != 'post' ) return $field;
+	
+	// Get the locations from the theme settings
+	$locations = gcm_get_locations();
+	
+	// Add the locations to the field choices
+	$field['choices'] = array();
+	
+	foreach( $locations as $i => $location ) {
+		$field['choices'][ $location['title'] ] = $location['title'];
+	}
+	
+	return $field;
+}
+add_filter( 'acf/load_field/name=gcm_location', 'gcm_acf_location_choices' );

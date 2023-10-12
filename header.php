@@ -59,7 +59,7 @@ $tab_index = ($show_admin_bar ?? false) ? 2 : 1;
 		<div class="inside">
 	
 			<div class="header-locations">
-				<?php get_template_part( 'template-parts/locations', null, array( 'hours' => false, 'icon_size' => 'tiny' ) ); ?>
+				<?php get_template_part( 'template-parts/locations', null, array( 'hours' => false, 'icon_size' => 'tiny', 'switching' => true ) ); ?>
 			</div>
 			
 			<div class="header-logo">

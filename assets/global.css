@@ -1,1 +1,199 @@
-/* nyi */
+/*
+Fix for wpcf7-form-control
+The class needs to stay or else validation breaks.
+We need to override the display and gap.
+*/
+@media (max-width: 320px) {
+	.wpcf7-form-control.wpcf7-radio.radio-button-row,
+	.wpcf7-form-control.wpcf7-checkbox.radio-button-row {
+		display: grid;
+		gap: 0;
+	}
+}
+
+@media (min-width: 320.1px) {
+	.wpcf7-form-control.wpcf7-radio.radio-button-row,
+	.wpcf7-form-control.wpcf7-checkbox.radio-button-row {
+		display: flex;
+		gap: 0;
+	}
+}
+/*
+End - Fix for wpcf7-form-control
+*/
+
+
+/*
+Start: Header bar scrolling with page (desktop and mobile)
+*/
+.menu-header,
+header.site-header {
+	background: #fff;
+}
+
+.menu-header {
+	position: sticky;
+	z-index: 210;
+	top: 0;
+}
+
+header.site-header {
+	position: sticky;
+	z-index: 200;
+	top: 0;
+}
+
+@media ( min-width: 1200.1px ) {
+	body.admin-bar .menu-header {
+		top: 0; /* not visible anyway */
+	}
+	body.admin-bar header.site-header {
+		top: 32px;
+	}
+}
+
+@media ( max-width: 1200px )  {
+	header.site-header {
+		margin-left: auto;
+	}
+
+	body.menu-open .site-content,
+	body.menu-open .site-footer {
+		display: none;
+	}
+}
+
+@media ( max-width: 1200px ) and ( min-width: 782.1px ) {
+	.menu-header {
+	}
+
+	header.site-header {
+		position: sticky;
+	}
+}
+
+@media ( min-width: 782.1px ) and ( max-width: 1200px ) {
+	body.admin-bar .menu-header {
+		top: 32px;
+	}
+
+	body.admin-bar header.site-header {
+		top: 107px; /* 32px + 75px */
+	}
+}
+
+@media ( max-width: 782px ) {
+	/* between 782px-600px, the admin bar is slightly taller */
+	body.admin-bar .menu-header {
+		top: 46px;
+	}
+
+	body.admin-bar header.site-header {
+		top: 121px; /* 46px + 75px */
+	}
+}
+
+/*
+do not make the header bar scroll when:
+1. screen is too short
+2. screen is too narrow that admin bar would become static
+*/
+@media ( max-height: 450px ) or ( max-width: 600px ) {
+	.menu-header,
+	header.site-header {
+		position: static !important;
+	}
+}
+
+/* Body background */
+body {
+	background: #fbfbfb;
+}
+
+/* Once scrolled down, apply scroll effects */
+@media ( min-width: 1200px ) {
+	header.site-header {
+		transform: translateY(0px);
+		transition: transform 0.25s linear;
+		transition-timing-function: cubic-bezier(0.18, -0.15, 0.56, 1.45);
+	}
+
+	body.scrolled-down header.site-header {
+		transform: translateY(-98px);
+		transition-duration: 0.5s;
+	}
+}
+/*
+End: Header bar scrolling with page (desktop and mobile)
+*/
+
+/*
+Start: Fix language flag alignment in footer
+*/
+.language-list.with-icons.display-name a {
+	grid-template-columns: auto 1fr auto;
+}
+/*
+End: Fix language flag alignment in footer
+*/
+
+/*
+Start: Switchable locations
+*/
+.locations.allow-switching .location-labels {
+   display: flex;
+   flex-direction: row;
+   gap: 5px;
+   margin: 0 0 10px;
+}
+
+.locations.allow-switching .location-labels h3 {
+   font-size: inherit;
+   font-weight: 300;
+   margin: 0;
+}
+
+.locations.allow-switching .location-labels h3 label:hover,
+.locations.allow-switching .location-labels h3 label:focus-visible {
+   color: #9069ac;
+   cursor: pointer;
+}
+
+.locations.allow-switching .location-labels h3 label:focus-visible {
+   outline: 2px solid #9069ac;
+}
+
+.locations.allow-switching .location-labels h3:not(:last-child)::after {
+   content: '|';
+   display: inline-block;
+   color: #e3e3e3;
+   margin-left: 5px;
+}
+
+.locations.allow-switching input.active-location {
+   position: absolute;
+   visibility: hidden;
+   opacity: 0;
+   pointer-events: none;
+}
+
+.locations.allow-switching input.active-location[value="0"]:checked + input + .location-labels h3.location-0,
+.locations.allow-switching input.active-location[value="1"]:checked + .location-labels h3.location-1 {
+   font-weight: 500;
+}
+
+.locations.allow-switching .location-list .location {
+	display: none;
+}
+
+.locations.allow-switching input.active-location[value="0"]:not(:checked) + input + .location-labels + .location-list .location-0,
+.locations.allow-switching input.active-location[value="1"]:not(:checked) + .location-labels + .location-list .location-1 {
+   display: block;
+}
+
+.locations.allow-switching .location-list h3 {
+   display: none;
+}
+/*
+End: Switchable locations
+*/
