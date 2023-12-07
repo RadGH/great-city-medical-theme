@@ -186,8 +186,8 @@ Start: Switchable locations
 	display: none;
 }
 
-.locations.allow-switching input.active-location[value="0"]:not(:checked) + input + .location-labels + .location-list .location-0,
-.locations.allow-switching input.active-location[value="1"]:not(:checked) + .location-labels + .location-list .location-1 {
+.locations.allow-switching input.active-location[value="0"]:checked + input + .location-labels + .location-list .location-0,
+.locations.allow-switching input.active-location[value="1"]:checked + .location-labels + .location-list .location-1 {
    display: block;
 }
 
