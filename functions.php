@@ -21,9 +21,6 @@ require_once( __DIR__ . '/includes/theme-setup.php' );
 // Block and customizations for the Gutenberg block editor
 require_once( __DIR__ . '/includes/block-editor.php' );
 
-// Customizations to the dashboard
-require_once( __DIR__ . '/includes/dashboard.php' );
-
 // Customizations to the visual editor
 require_once( __DIR__ . '/includes/editor.php' );
 
@@ -39,5 +36,26 @@ require_once( __DIR__ . '/shortcodes/bt_fallbacks.php' );
 require_once( __DIR__ . '/shortcodes/gcm_accordion.php' );
 require_once( __DIR__ . '/shortcodes/gcm_form_structure.php' );
 require_once( __DIR__ . '/shortcodes/gcm_icon.php' );
-require_once( __DIR__ . '/shortcodes/i693_appointment.php' );
-require_once( __DIR__ . '/shortcodes/legacy.php' );
+
+// Add a fallback setting page if the GCM plugin is not active
+if ( ! function_exists('gcm_register_options_pages') ) {
+	function gcm_register_fallback_options_page() {
+		add_menu_page(
+			null,
+			__( 'Great City Medical', 'gcm' ),
+			'manage_options',
+			'acf-gcm-settings',
+			function() {
+				?>
+				<div class="wrap">
+					<h1>General Settings</h1>
+					<p>Activate the Great City Medical plugin to enable theme settings.</p>
+				</div>
+				<?php
+			},
+			'dashicons-gcm-icon',
+			80
+		);
+	}
+	add_action( 'admin_menu', 'gcm_register_fallback_options_page' );
+}

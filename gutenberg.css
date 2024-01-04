@@ -1,5 +1,9 @@
 /*
 body {
+	// WordPress adds these automatically
+	--wp--style--global--content-size: 1560px;
+	--wp--style--global--wide-size: 1560px;
+
 	// Font Families
 	--font-sofia-pro: sofia-pro, Helvetica, Arial, sans-serif;
 	--font-abhaya-libre: Abhaya Libre, serif;
@@ -168,6 +172,7 @@ https://css-tricks.com/snippets/sass/str-replace-function/
 Reusable formats
 */
 body .editor-styles-wrapper {
+  color: #0e0d0d;
   font-family: sofia-pro, Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.4;

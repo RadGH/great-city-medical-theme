@@ -111,6 +111,10 @@ $font_size_button_mobile: 16px;
 
 /*
 body {
+	// WordPress adds these automatically
+	--wp--style--global--content-size: 1560px;
+	--wp--style--global--wide-size: 1560px;
+
 	// Font Families
 	--font-sofia-pro: #{$font_family_body};
 	--font-abhaya-libre: #{$font_family_serif};

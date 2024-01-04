@@ -514,3 +514,87 @@ function gcm_load_icon_field( $field ) {
 	return $field;
 }
 add_filter('acf/load_field/key=field_649c97ef3f394', 'gcm_load_icon_field', 10, 1); // field group "Block - Icon" -> field "Icon"
+
+
+
+/**
+ * Register a submenu page for icon settings
+ */
+function gcm_register_icon_settings_pages() {
+	// Add other sub options pages
+	// Great City Medical -> Icons
+	add_submenu_page(
+		'acf-gcm-settings', // $parent, // 'acf-gcm-root',
+		'Icons',
+		'Icons',
+		'manage_options',
+		'gcm-icons-settings',
+		'gcm_display_icons_settings_page'
+	);
+}
+add_action( 'admin_menu', 'gcm_register_icon_settings_pages' );
+
+/**
+ * Displays the icons settings page
+ *
+ * @return void
+ */
+function gcm_display_icons_settings_page() {
+	global $title;
+	
+	?>
+	<div class="wrap">
+		
+		<h2><?php echo $title; ?></h2>
+		
+		<div id="poststuff" class="poststuff">
+			<div id="post-body" class="metabox-holder columns-1">
+				<div id="postbox-container-1" class="postbox-container">
+					
+					<!-- Icon List -->
+					<div class="instructions-postbox postbox">
+						<div class="postbox-header">
+							<h2 id="instructions">Icon List</h2>
+						</div>
+						
+						<div class="inside">
+							
+							<p>
+								<a href="<?php echo add_query_arg(array('gcm_flush_icon_cache' => 1)); ?>" class="button button-secondary">Flush Icon Cache</a>
+								
+								<?php
+								if ( isset($_GET['gcm_icon_cache_cleared']) ) {
+									?>
+									<span id="icon-cache-cleared" style="margin-left: 5px;">
+										Icon cache has been cleared!
+									</span>
+									<script>
+										setTimeout(function() {
+											document.querySelector( '#icon-cache-cleared' ).remove();
+
+											// Remove from the url: &gcm_icon_cache_cleared=1
+											let url = window.location.href;
+											url = url.replace( /[?&]gcm_icon_cache_cleared=1/g, '' );
+											window.history.replaceState({}, document.title, url);
+										}, 3000);
+									</script>
+									<?php
+								}
+								?>
+							</p>
+							
+							<div class="gcm-icons-admin-preview">
+								<?php echo do_shortcode('[gcm_icon_list]'); ?>
+							</div>
+						
+						</div>
+					</div>
+					<!-- End: Icon List -->
+				
+				</div>
+			</div>
+		</div>
+	
+	</div>
+	<?php
+}

@@ -301,6 +301,7 @@
 // With Gutenberg, this is applied to the "body .editor-styles-wrapper" selector instead.
 // The classic editor uses $responsive = false
 @mixin body_styles( $responsive: true ) {
+	color: $color_black;
 	font-family: $font_family_body;
 	font-weight: 300;
 	line-height: 1.4;

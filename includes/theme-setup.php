@@ -234,8 +234,8 @@ function gcm_enqueue_global_scripts() {
 	gcm_enqueue_asset( 'gcm-global', 'assets/global.css', array(), gcm_get_theme_version() );
 	gcm_enqueue_asset( 'gcm-global', 'assets/global.js', array(), gcm_get_theme_version() );
 }
-add_action( 'wp_enqueue_scripts', 'gcm_enqueue_global_scripts', 15 );
-add_action( 'admin_enqueue_scripts', 'gcm_enqueue_global_scripts', 15 );
+add_action( 'wp_enqueue_scripts', 'gcm_enqueue_global_scripts', 25 );
+add_action( 'admin_enqueue_scripts', 'gcm_enqueue_global_scripts', 25 );
 
 /**
  * Add CSS/JS to the visual editor (classic editor / tinymce, NOT gutenberg)
@@ -316,3 +316,31 @@ function gcm_send_404_error() {
 	}
 }
 add_action( 'template_redirect', 'gcm_send_404_error' );
+
+
+/**
+ * Allow SVG image upload
+ *
+ * @param string[] $mimes
+ *
+ * @return string[]
+ */
+function gcm_allow_svg_upload( $mimes ) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter( 'upload_mimes', 'gcm_allow_svg_upload' );
+
+/**
+ * Remove unwanted meta boxes
+ *
+ * @return void
+ */
+function gcm_remove_meta_boxes() {
+	$post_types = get_post_types(array( 'public' => true ));
+	
+	foreach( $post_types as $post_type ) {
+		remove_meta_box( 'wpcode-metabox-snippets', $post_type, 'normal' );
+	}
+}
+add_action( 'add_meta_boxes', 'gcm_remove_meta_boxes', 1000 );
