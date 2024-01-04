@@ -63,14 +63,56 @@ function gcm_get_languages( $language_code = null ) {
 			'icon_svg' => 'lang-es_mx.svg',
 			'slug' => 'es',
 		),
+		'ru_ru' => array(
+			'code_short' => 'ru', // alternate: rus
+			'code_long' => 'ru_ru',
+			'code_full' => 'ru_RU',
+			'english_name' => 'Russian',
+			'display_name' => 'Русский',
+			'display_code' => 'RU',
+			'icon_png' => 'lang-ru_ru.png',
+			'icon_svg' => 'lang-ru_ru.svg',
+			'slug' => 'ru',
+		),
 		// we also have an icon lang-es_es: Spanish (Spain)
 	);
+	
+	// Get TranslatePress language codes
+	$trp_codes = gcm_get_trp_language_codes();
+	
+	// Remove any languages that are not registered in TranslatePress
+	foreach( $languages as $code => $l ) {
+		if ( ! in_array( $code, $trp_codes ) ) {
+			unset( $languages[ $code ] );
+		}
+	}
 	
 	if ( $language_code !== null ) {
 		return $languages[ $language_code ] ?? false;
 	}else{
 		return $languages;
 	}
+}
+
+/**
+ * Get translated language codes that are registered in TranslatePress
+ *
+ * @return string[]  Array of language codes, like "en_us" or "es_mx"
+ */
+function gcm_get_trp_language_codes() {
+	// Get languages configured by TranslatePress
+	$settings = get_option( 'trp_settings' );
+	
+	// Get the language codes
+	// $settinsg['url-slugs']['en_US'] = 'en_us';
+	// $settinsg['url-slugs']['es_MX'] = 'es';
+	$language_codes = $settings ? array_keys( $settings['url-slugs'] ) : array();
+
+	// Lower case
+	// $language_codes = array( 'en_us', 'es_mx' );
+	$language_codes = array_map( 'strtolower', $language_codes );
+	
+	return $language_codes;
 }
 
 /**
@@ -87,7 +129,13 @@ function gcm_get_language_url( $url, $language_code = 'en_us' ) {
 	
 	// TranslatePress requires "en_US" capitalization
 	if ( $language_code == 'en_us' ) $language_code = 'en_US';
-	if ( $language_code == 'es_mx' ) $language_code = 'es_MX';
+	else if ( $language_code == 'es_mx' ) $language_code = 'es_MX';
+	else if ( $language_code == 'ru_ru' ) $language_code = 'ru_RU';
+	else {
+		// Translate each letter following an underscore
+		$up = function( $matches ) { return '_' . strtoupper( $matches[1] ); };
+		$language_code = preg_replace_callback( '/_([a-z]+)$/', $up, $language_code );
+	}
 	
 	// third parameter defaults to "#TRPLINKPROCESSED", meaning the link will not be translated again
 	// to disable, you could pass an empty string as third parameter.
