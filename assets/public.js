@@ -12,6 +12,8 @@
 
 		setup_cf7_radio_button_rows();
 
+		setup_scroll_classes();
+
 	};
 
 	// ------------------------------------------------------------
@@ -212,7 +214,7 @@
 
 			// Modify classes of the row
 			row.classList.add('radio-button-row');
-			row.classList.remove('wpcf7-form-control');
+			// row.classList.remove('wpcf7-form-control'); // needs to stay or else validation error occurs
 			// row.classList.remove('wpcf7-radio'); // needs to stay for validation
 
 			// Select each radio item
@@ -235,6 +237,26 @@
 
 		});
 
+	};
+
+	const setup_scroll_classes = function() {
+
+		// Get max height from either: .site-header or .menu-header
+		let header = document.querySelector('.site-header');
+		let mobile_header = document.querySelector('.menu-header');
+
+		// Use the larger header as minimum scroll distance
+		let min_scroll_distance = Math.max( header.offsetHeight, mobile_header.offsetHeight );
+
+		// Add scroll listener to toggle classes
+		window.addEventListener('scroll', function () {
+			let is_scrolled = window.scrollY > min_scroll_distance;
+			document.body.classList.toggle( 'scrolled-down', is_scrolled );
+			document.body.classList.toggle( 'not-scrolled', !is_scrolled );
+		});
+
+		// Add an initial class
+		document.body.classList.toggle( 'not-scrolled', true );
 	};
 
 	document.addEventListener('DOMContentLoaded', initialize);
