@@ -10,6 +10,7 @@ $icon_type = $args['icon_type'] ?? 'flat';
 $icon_size = $args['icon_size'] ?? ''; // unused
 $show_closed_days = $args['show_closed_days'] ?? true;
 $allow_location_switching = $args['switching'] ?? false; // whether you can switch locations
+$show_map = $args['show_map'] ?? false; // whether to display the google map or not
 
 $locations = gcm_get_locations();
 if ( ! $locations ) return;
@@ -61,6 +62,7 @@ foreach( $locations as $i => $l ) {
 	$address = $l['address'];
 	$phone   = $l['phone'];
 	$hours   = $l['hours']; // ['sunday'] -> ['saturday']
+	$map_embed_code = $l['google_map_embed_code'];
 	
 	$title = __( $title, 'gcm' );
 	
@@ -116,6 +118,12 @@ foreach( $locations as $i => $l ) {
 				
 			}
 		?></div>
+		<?php } ?>
+		
+		<?php if ( $show_map && $map_embed_code ) { ?>
+		<div class="map-embed">
+			<?php echo $map_embed_code; ?>
+		</div>
 		<?php } ?>
 		
 	</div>
