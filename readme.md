@@ -3,9 +3,9 @@ Great City Medical Theme
 
 A custom WordPress theme for Great City Medical.
 
-Built by Radley Sustaire, using PHPStorm.
+Built by Radley Sustaire, using PHPStorm. Designed by Pavel, using Figma.
 
-Designed by Pavel, using Figma.
+![Theme Screenshot](screenshot.png)
 
 ## Quick Links
 
