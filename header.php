@@ -29,6 +29,13 @@
 	if ( $js = get_field( 'custom_js_header', 'option' ) ) {
 		echo "\n<script type=\"text/javascript\" id=\"custom-header-js\">\n". esc_html( $js ) . "\n</script>\n";
 	}
+	
+	// Custom header tracking codes (plain html) from GCM general settings
+	if ( $tracking = get_field( 'header_tracking_code', 'gcm_settings' ) ) {
+		echo "\n<!-- GCM Header Tracking Codes -->\n";
+		echo $tracking;
+		echo "\n<!-- END: GCM Header Tracking Codes -->\n";
+	}
 	?>
 </head>
 
