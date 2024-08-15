@@ -1,5 +1,20 @@
 <?php
-// Displays a list of locations from the theme General Settings
+
+
+/**
+ * Displays a list of locations from the theme General Settings
+ *
+ * @see Great_City_Medical_Map_Plugin
+ * Or go to /plugins/greatcitymedical-map/
+ *
+ * @global array $args
+ */
+
+do_action( 'great-city-medical/locations', $args );
+
+return;
+
+/*
 
 // Optional args supplied by get_template_part
 $display_address = $args['address'] ?? true; // unused
@@ -109,13 +124,10 @@ foreach( $locations as $i => $l ) {
 				
 				$classes = ( 'day-' . $day ) . ( $hour_text ? '' : ' hours-none' );
 				
-				/* <div class="hours-item day-<?php echo esc_attr($day); ?> <?php if ( ! $hour_text ) echo 'closed'; ?>"> */
 				?>
-					<span class="day <?php echo esc_attr($classes); ?>"><?php echo esc_html($day_text); ?></span>
-					<span class="hours <?php echo esc_attr($classes); ?>"><?php echo esc_html($hour_text ?: __('Closed', 'gcm') ); ?></span>
+				<span class="day <?php echo esc_attr($classes); ?>"><?php echo esc_html($day_text); ?></span>
+				<span class="hours <?php echo esc_attr($classes); ?>"><?php echo esc_html($hour_text ?: __('Closed', 'gcm') ); ?></span>
 				<?php
-				/* </div> */
-				
 			}
 		?></div>
 		<?php } ?>
@@ -135,3 +147,4 @@ foreach( $locations as $i => $l ) {
 echo '</div>'; // .location-list
 
 echo '</div>'; // .locations
+*/
